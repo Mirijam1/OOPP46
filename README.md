@@ -17,7 +17,7 @@ NetID:4660129
 Name:Qingna Zheng
 
 NetID: 4834127
-picture: ![](doc/pictures/zheng.png)
+![](doc/pictures/zheng.png)
 
 ### Tim
 Name: Tim
