@@ -39,3 +39,10 @@ Name:[enter name]7
 NetID:[enter]
 
 Picture: (doc/pictures/your_picture.jpg)
+
+
+### Tim
+Name: Tim
+
+NetID: tpdanema 
+![My picture](doc/pictures/tim_picture.JPG)
