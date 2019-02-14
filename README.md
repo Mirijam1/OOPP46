@@ -22,7 +22,7 @@ NetId: mbozhkov
 ### Stephen
 Name:Stephen van der Kruk
 
-NetID: 4832868
+NetID: svanderkruk
 
 ![](doc/pictures/svanderkruk.jpg)
 
