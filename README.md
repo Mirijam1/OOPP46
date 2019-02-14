@@ -21,3 +21,6 @@ Run `maven install` ([Intellij](https://www.jetbrains.com/help/idea/2016.3/getti
 
 **Checkstyle**:  
 Run `maven site`
+
+Mirijam Zhang 4660129
+[(right)](https://www.dropbox.com/s/ghgiwtnpd98mfxf/Photo%2031-08-13%2020%2035%2040.jpg?dl=0)
