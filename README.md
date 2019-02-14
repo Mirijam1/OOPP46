@@ -1,8 +1,8 @@
-Name:[enter name]1
+Name:Mirijam Zhang
 
-NetID:[enter]
+NetID:4660129
 
-Picture: (doc/pictures/your_picture.jpg)
+Picture: (right) https://www.dropbox.com/s/ghgiwtnpd98mfxf/Photo%2031-08-13%2020%2035%2040.jpg?dl=0
 
 Name:[enter name]2
 
