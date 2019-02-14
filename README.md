@@ -33,3 +33,10 @@ NetID: dtoader
 
 ![](doc/pictures/dtoader.jpeg)
 
+### Shah Farooq
+Name: Shah Farooq
+
+NetID: sfarooq
+
+![](doc/pictures/shah.jpg)
+
