@@ -1,3 +1,9 @@
+### Mirijam
+Name:Mirijam Zhang
+
+NetID:4660129
+
+Picture: (right) https://www.dropbox.com/s/ghgiwtnpd98mfxf/Photo%2031-08-13%2020%2035%2040.jpg?dl=0
 
 ### Stephen
 Name:Stephen van der Kruk
@@ -11,14 +17,7 @@ Name:Mirijam Zhang
 
 NetID:4660129
 
-![](doc/pictures/20180414_072509081_iOS.jpg)
-
-### Qingna Zheng
-Name:Qingna Zheng
-
-NetID: 4834127
-
-![](doc/pictures/zheng.png)
+Picture: (right) https://www.dropbox.com/s/ghgiwtnpd98mfxf/Photo%2031-08-13%2020%2035%2040.jpg?dl=0
 
 ### Tim
 Name: Tim
@@ -34,10 +33,3 @@ NetID: dtoader
 
 ![](doc/pictures/dtoader.jpeg)
 
-### Momchil Bozhkov
-Name: Momchil
-
-NetId: mbozhkov
-
-
-![](doc/pictures/37050613_2133834693325887_4237135342316027904_n.jpg)
