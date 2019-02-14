@@ -10,11 +10,11 @@ NetID: 4904648
 
 Picture: (doc/pictures/dtoader.jpg)
 
-Name:[enter name]3
+Name:Stephen van der Kruk
 
-NetID:[enter]
+NetID: 4832868
 
-Picture: (doc/pictures/your_picture.jpg)
+Picture: (doc/pictures/svanderkruk.jpg)
 
 Name:[enter name]4
 
