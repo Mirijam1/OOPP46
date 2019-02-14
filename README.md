@@ -4,11 +4,11 @@ NetID:[enter]
 
 Picture: (doc/pictures/your_picture.jpg)
 
-Name:[enter name]2
+Name: Daniela Toader
 
-NetID:[enter]
+NetID: 4904648
 
-Picture: (doc/pictures/your_picture.jpg)
+Picture: (doc/pictures/dtoader.jpg)
 
 Name:[enter name]3
 
@@ -46,3 +46,9 @@ Name: Tim
 
 NetID: tpdanema 
 ![My picture](doc/pictures/tim_picture.JPG)
+
+### Daniela
+Name: Daniela
+
+NetID: dtoader
+![My picture](doc/pictures/dtoader.JPEG)
