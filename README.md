@@ -29,7 +29,7 @@ NetID: svanderkruk
 ### Mirijam
 Name:Mirijam Zhang
 
-NetID:4660129
+NetID:sxzhang
 
 Picture: ![](doc/pictures/20180414_072509081_iOS.jpg)
 
