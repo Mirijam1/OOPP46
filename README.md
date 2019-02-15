@@ -7,16 +7,16 @@ Name:Qingna Zheng
 
 NetID: qingnazheng
 
-![](doc/pictures/zheng.png)
+<img src="doc/pictures/zheng.png"  width="250" height="250">
 
 
-### Momchil Bozhkov
-Name: Momchil
+### Momchil 
+Name: Momchil Bozhkov
 
 NetId: mbozhkov
 
 
-![](doc/pictures/37050613_2133834693325887_4237135342316027904_n.jpg)
+<img src="doc/pictures/37050613_2133834693325887_4237135342316027904_n.jpg"  width="250" height="250">
 
 Personal Development Plan
 
@@ -40,7 +40,7 @@ Name:Stephen van der Kruk
 
 NetID: svanderkruk
 
-![](doc/pictures/svanderkruk.jpg)
+<img src="doc/pictures/svanderkruk.jpg"  width="250" height="250">
 
 Personal Development Plan
 
@@ -66,7 +66,7 @@ Name:Mirijam Zhang
 
 NetID:sxzhang
 
-Picture: ![](doc/pictures/20180414_072509081_iOS.jpg)
+<img src="doc/pictures/20180414_072509081_iOS.jpg"  width="300" height="300">
 
 Personal Development Plan
 
@@ -93,21 +93,67 @@ Name: Tim
 
 NetID: tpdanema 
 
-![](doc/pictures/tim_picture.JPG)
+<img src="doc/pictures/tim_picture.JPG"  width="250" height="250">
+
 
 ### Daniela
 Name: Daniela
 
 NetID: dtoader
 
-![](doc/pictures/dtoader.jpeg)
+<img src="doc/pictures/dtoader.jpeg"  width="250" height="250">
 
 ### Shah Farooq
 Name: Shah Farooq
 
 NetID: sfarooq
 
-![](doc/pictures/shah.jpg)
+<img src="doc/pictures/shah.jpg"  width="250" height="250">
+
+#### Personal Development Plan
+
+2 Strong Points 
+
+* Previous working experience in a start-up consisting of web-based development on Node, Angular & React, Git therefore I’m aware of what it’s like to be in a professional environment.
+
+* Positive attitude & commitment – not afraid to jump out of my usual comfort zone to go above & beyond my assigned tasks, help others when they’re stuck and see things through to the end. 
+
+2 Weaker Points
+
+* Haven’t programmed professionally in Java before – intimidating new frameworks and learning their functionalities and their effective usage scenarios. 
+
+* Procrastination comes naturally. For me, personally, this how I produce my best output by procrastinating - maybe it’s the adrenaline rush of the thrill of working close to deadlines.
+
+Core Quadrant
+
+Quality: absorb info quickly ->Pitfall: learn irrelevant things ->Challenge: effective use of knowledge->Allergy: Take time for simple concepts 
+
+Quality: Commitment ->Pitfall: spend excessive time->Challenge: timely done tasks->Allergy: procrastination
+
+#### My learning Goals
+
+* learn industry-standard frameworks/libraries by experimenting and get the most out of them to build high-quality software, by producing quality code according to specifications using best practices.  
+
+* Improve problem-solving and critical thinking skills to come up with creative solutions by making judgment calls and trade-off analysis. 
+
+* Since the project is more about software engineering methods than programming, it’s a good idea to learn about modern development processes like agile and software-development life cycles.
+
+* Having professional, friendly and open team communication to clearly get ideas across the group and be open to constructive criticism.
+
+* Efficient time-management – prioritise tasks in an effective workflow environment using scrum methods.
+
+
+#### Steps to Achieve Goal
+
+* After setting my goals, I need actively start working towards my goals this can be done by:
+
+* Having the right mindset – dedication and passion to build a complete end-to-end product which will serve as an achievement to myself and motivate me further to do more.
+
+* Make side projects and build something that it is standalone which can be used in the final build and learning from its inevitable failures.   
+
+* Revisit OOP from Q1 which has a lot of transferrable skills and refresh my memory on the fundamentals of MVC and key skills learnt during the course.
+
+* We’re in the 21st century and have numerous resources and tools at our disposal to take advantage of such as Google, StackOverflow, Books and of course team members past experiences. With my teammates we can: brainstorm, get new ideas and creative juices flowing and think in different perspectives. 
 
 
 ## How To Use
