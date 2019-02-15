@@ -52,6 +52,26 @@ NetID:sxzhang
 
 Picture: ![](doc/pictures/20180414_072509081_iOS.jpg)
 
+Personal Development Plan
+
+Two of my strong points:
+- Commitment, I work seriously on my tasks and always try my best.
+- Supportive, I'm always willing to help my teammates with their tasks or explain things they don't understand to them.
+
+Two of my weaker points:
+- Lazy, I am quite lazy, so I usually prefer people telling me what to do (preferably the easy tasks). In a team I usually do what I am told to do without thinking about it. This ends up in me not understanding my tasks and not doing a good job.
+- Perfectionist, when I do get what's going on I feel like I need to make everything look perfect and that can lead to me pushing my way of doing it onto other people. 
+
+Core quadrants:
+
+Commitment -> pitfall: bad time management -> challenge: don't focus too much on one thing -> allergy: slacking off
+
+Supportive -> pitfall: annoying -> challenge: don't do more than you've been asked to -> allergy: nonchalant
+
+My goals:
+1. I want to know how to work together on a project. This is important to me since I know that in the future, building anything will be done in a team, so it's important to learn how to work together without conflict. I will listen to the thoughts of my teammates, help them if they need help, let them help me if I need help and try to actively think of ways to improve our program and myself.
+2. I want to know more about programming. This is obviously important since I study CSE. I want to know more about the different aspects of the code that builds the program, like the database and the UI. I will do this by understanding what my teammates coded and not work on one thing.
+
 ### Tim
 Name: Tim
 
