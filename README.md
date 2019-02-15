@@ -18,6 +18,22 @@ NetId: mbozhkov
 
 ![](doc/pictures/37050613_2133834693325887_4237135342316027904_n.jpg)
 
+Personal Development Plan
+
+2 Strong points:
+- Determination. Having the inner courage to do everything, that needs to be done in order to achieve the goal that i have put in front of myself. Forcing myself to do the things i need to do, even when i dont feel like it, is something which makes me treat myself to a higher standard and also makes me enjoy the sweet fruit of reward much more when said goal has been achieved and achieved with high remarks.
+- Good spirit and being nice in general. Being able to make a certain situation less intimidating for a single person or a group of people is very important to me so i give it my all when somebody is strugling or is in need of some sort of help. If someone is having a bad day and you make them smile for just 10 seconds that person would be gratefull to you for the rest of the day. So having the abillity to help out my teammates whether its when we are stuck on a certain problem or just make everyone smile and be motivated so that they can do their best work is something i aspire to.
+ 
+2 Weaker points:
+- Procrastination and laziness. I have been strugling with these two since i was a small child but i try my best every single day to just make them dissapear little by little so that it dosen't affect my work and the essentials of what i have to do to achieve.
+- Not a lot of experience with CS in general. I am a medium pace learner of sorts and Computer Science has a lot of things that need to be inherited at a quick pace so i find myself sometimes strugling to stay a float.
+
+My goals:
+
+1. Experience what it's like to work in a real Software Team enviroment so that i could more easily get acquainted with the way work is done in this whole industry for later down the road.
+2. Get to grip with software and programing on a more in-depth scale and see what areas of my CS skills i need to work on so that i can contribute more effectively to my team now and later on when working for an actual Software company.
+
+
 
 ### Stephen
 Name:Stephen van der Kruk
