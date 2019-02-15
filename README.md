@@ -145,6 +145,24 @@ To help achieve this goal I should probably be more accepting of other people's 
 
 <img src="doc/pictures/dtoader.jpeg"  width="250" height="250">
 
+Personal Development Plan
+
+Stronger:
+
+Some of my strong points are being a communicative as well as a dedicated person. 
+They are shown through the favorable way of interacting with the teammates and through the valuable quality of the end products I create during the projects I work on.
+
+Weaker:
+
+Two of my weaker points are stressing more than it would be necessary in the process of doing assignments and not knowing extra information related to programming that could be useful in these kinds of tasks.
+They might be shown in a team by my attempts to solve as many things as possible in a short period of time and by the fact that I tend to accomplish the tasks that have been assigned to me more than taking initiative.
+
+Goals:
+
+Developing better teamwork abilities as well as gaining more experience with task management. I consider these ideas to be extremely important since the IT world requires you to be able to divide big assignments in many small brances distributed among the entire team. Moreover, this kind of environment also involves a lot of social skills.
+Improving my programming knowledge which is an essential part in the process of becoming a computer scientist.
+
+
 <br>
 
 ### Shah Farooq
