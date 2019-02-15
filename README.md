@@ -2,14 +2,6 @@
 WIP page
 
 ## Our group
-### Qingna Zheng
-**Name:** Qingna Zheng<br>
-**NetID:** qingnazheng
-
-<img src="doc/pictures/zheng.png"  width="250" height="250">
-
-<br>
-
 ### Momchil Bozhkov
 **Name:** Momchil<br>
 **NetId:** mbozhkov
@@ -84,6 +76,28 @@ Supportive -> pitfall: annoying -> challenge: don't do more than you've been ask
 My goals:
 1. I want to know how to work together on a project. This is important to me since I know that in the future, building anything will be done in a team, so it's important to learn how to work together without conflict. I will listen to the thoughts of my teammates, help them if they need help, let them help me if I need help and try to actively think of ways to improve our program and myself.
 2. I want to know more about programming. This is obviously important since I study CSE. I want to know more about the different aspects of the code that builds the program, like the database and the UI. I will do this by understanding what my teammates coded and not work on one thing.
+
+<br>
+
+### Qingna Zheng
+**Name:** Qingna Zheng<br>
+**NetID:** qingnazheng
+
+<img src="doc/pictures/zheng.png"  width="250" height="250">
+
+#### Personal Development Plan
+
+2 Strong points:
+- accommodate, I will try my best to help my teammates understand things they do not know if possible.
+- self-discipline, I will force myself to finish the task before the deadline.
+
+2 Weaker points:
+- Not good at communicating. I would not say I like to talk in the team since my English is quite bad compared to others, and I am afraid that someone will laugh at me even though I know they won’t. 
+- Lazy. I usually do the task which is asked to do; I would not say I like to do more things that are not in my range.
+
+My goals:
+- I want to improve my English since I need to communicate the project with my teammates. To achieve it, I need to learn several new words with English every day and interact with my teammates as much as possible.
+- I want to improve my programming skill, almost no experience about Computer Science at all and I find it is quite difficult for me to learn this course. During this course, I can practice with my teammates. As I exercise more, I can learn more stuff in it.
 
 <br>
 
