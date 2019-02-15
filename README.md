@@ -3,22 +3,20 @@ WIP page
 
 ## Our group
 ### Qingna Zheng
-Name:Qingna Zheng
-
-NetID: qingnazheng
+**Name:** Qingna Zheng<br>
+**NetID:** qingnazheng
 
 <img src="doc/pictures/zheng.png"  width="250" height="250">
 
+<br>
 
-### Momchil 
-Name: Momchil Bozhkov
-
-NetId: mbozhkov
-
+### Momchil Bozhkov
+**Name:** Momchil<br>
+**NetId:** mbozhkov
 
 <img src="doc/pictures/37050613_2133834693325887_4237135342316027904_n.jpg"  width="250" height="250">
 
-Personal Development Plan
+#### Personal Development Plan
 
 2 Strong points:
 - Determination. Having the inner courage to do everything, that needs to be done in order to achieve the goal that i have put in front of myself. Forcing myself to do the things i need to do, even when i dont feel like it, is something which makes me treat myself to a higher standard and also makes me enjoy the sweet fruit of reward much more when said goal has been achieved and achieved with high remarks.
@@ -33,16 +31,15 @@ My goals:
 1. Experience what it's like to work in a real Software Team enviroment so that i could more easily get acquainted with the way work is done in this whole industry for later down the road.
 2. Get to grip with software and programing on a more in-depth scale and see what areas of my CS skills i need to work on so that i can contribute more effectively to my team now and later on when working for an actual Software company.
 
-
+<br>
 
 ### Stephen
-Name:Stephen van der Kruk
-
-NetID: svanderkruk
+**Name:** Stephen van der Kruk<br>
+**NetID:** svanderkruk
 
 <img src="doc/pictures/svanderkruk.jpg"  width="250" height="250">
 
-Personal Development Plan
+#### Personal Development Plan
 
 2 Strong points:
 - Perseverance. I don’t like when I dash off my work. So really try my hardest to know as much as I can. This is because I think that you need a good foundation of previous material before you start branching off into material which depends on that knowledge. This point is shown in the team in that I really try to finish my part of the work. I think peer pressure is a good thing in this case since I don’t want to let my team down by giving up on my work.
@@ -60,15 +57,15 @@ My goals
 1. I want to extend my knowledge on programming. This is of obviously important since there is a lot to learn. I achieved this, when I have a good understanding of how all parts of our program work in coherence with each other. To achieve this, I will be learning through collaboration with my team, documentation and other learning material. I hope to learn from mistakes. I think testing is an important tool to understand your mistakes. I think the best thing to do now is to design and program the things that are on the planning and keep doing that throughout the project.
 2. This is the more important goal in my opinion. I want to gain more experience on working in a team and learn how to be a meaningful addition to the team. This is very important to me since (software) engineering is nowadays all about collaborating. I achieved this when I have reflected and learned from the feedback of my team. So, this depends on what my team will think of my actions during the project. Whether good or bad, I hope to learn from it to do even better next time. To actively be working on learning from my actions I can ask my teammates for their opinions and feedback. That can be done by e.g. asking about the usefulness of my action.
 
+<br>
 
 ### Mirijam
-Name:Mirijam Zhang
-
-NetID:sxzhang
+**Name:** Mirijam Zhang<br>
+**NetID:** sxzhang
 
 <img src="doc/pictures/20180414_072509081_iOS.jpg"  width="300" height="300">
 
-Personal Development Plan
+#### Personal Development Plan
 
 Two of my strong points:
 - Commitment, I work seriously on my tasks and always try my best.
@@ -88,25 +85,71 @@ My goals:
 1. I want to know how to work together on a project. This is important to me since I know that in the future, building anything will be done in a team, so it's important to learn how to work together without conflict. I will listen to the thoughts of my teammates, help them if they need help, let them help me if I need help and try to actively think of ways to improve our program and myself.
 2. I want to know more about programming. This is obviously important since I study CSE. I want to know more about the different aspects of the code that builds the program, like the database and the UI. I will do this by understanding what my teammates coded and not work on one thing.
 
-### Tim
-Name: Tim
+<br>
 
-NetID: tpdanema 
+### Tim
+**Name:** Tim Anema<br>
+**NetID:** tpdanema 
 
 <img src="doc/pictures/tim_picture.JPG"  width="250" height="250">
 
+#### Personal development plan
+**_Two of my stronger points:_**
+* **Organized.**<br> I'm not one to start something and 'see what happens', when I start with something I usually try to plan everything out beforehand. 
+For programs like this I like to make simple drawing of most models and how they interact with each other, effectively making the whole scheme on paper first. 
+This might sound inefficient, but I've come to realize this strategy is usually faster in the long run.<br>
+ I suppose this will help the team by preventing us from developing things needlessly.
+* **Eager to learn.**<br> I don't mind spending extra time outside of school to get a better understanding of something.
+This something can be a (programming) language, framework or something else entirely.<br>
+This should be useful in a team project because I'm always willing to spend extra time understanding something to explain it later to teammates who do not yet fully understand something or require help.
+
+<br>**_Two of my weaker points:_**
+* **Control freak.**<br>
+The reason why I sometimes prefer working alone is because I'm in control. 
+I try to control a lot of things, and want to know what everybody is doing. 
+At first I always felt this was a good thing, at least someone was in control. 
+But as I did more group projects in highschool, it became apparent this characteristic was not very useful and more often than not caused a conflict with other 'control freaks'. <br>
+In a team I might look bossy or a know-it-all.
+* **Difficulty with pacing myself.**<br>
+This is the one thing that I really struggle with in group assignments, especially when I like the project. 
+When starting an assignment/project, more often than not I just want to sit down and complete it as fast as I can. 
+Sometimes this is appreciated (mostly by groupmates who do not feel like doing much), but I suppose this might also be annoying for students who actually want to work on a project. 
+It's also not like I don't feel like explaining things, it's the opposite actually.
+I really like to explain stuff, but I also regularly forget people may just have started with programming/working with X, which sometimes causes them to be more confused after my 'explanation'.
+
+<br>**_Core quadrants:_**<br>
+*Organized* -> **Pitfall**: *Overly organized* -> **Challenge:** *Leave thing as they are* -> **Allergy:** *Disorganized*<br>
+*Eager to learn* -> **Pitfall**: *Spending to much time on the project* -> **Challenge:** *Stop always trying to understand everything* -> **Allergy:** *Brainless copy-pasting*
+
+<br>**_My goals:_**
+1. **I want to expand my knowledge of the Spring framework, and RESTful APIs.**<br>
+This is important to me because I personally really like working on the backend-side of projects, but I've never actually made a medium-big RESTful API from 'scratch' (quotation marks because of frameworks) in a team. 
+I'm actively working on this goal, by creating a RESTful API with Spring in a team.<br>
+We haven't really started development at the time of writing this plan, but at the moment I've managed to learn more about efficiently loading entity relations with JDA and Hibernate.<br>
+I assume the best way to achieve this goal is by just doing it and having an active role in developing our backend. 
+Another option is by making an extra API to give our project the most accurate CO2 values. 
+However, my best option is by far the first one, since that will take the most effort. 
+I will start on achieving this goal as soon as we start programming. At the moment I can just learn and practice.
+2. **My second goal is to be more effective in working with a team.**<br>
+I think this is something I definitely should work on because it is something that will be relevent my entire career (and probably even my entire life). 
+Besides the obvious reason, I also think this is something I should work on for the sake of my future teammates.<br>
+As I hinted in the previous sentence, teamwork is not really my strong suit.
+I think the fact that I'm willing to explain is already a good thing, but my stubborness to sometimes not accept other people's insights might negate this.<br>
+To help achieve this goal I should probably be more accepting of other people's ideas, and help them. 
+
+<br>
 
 ### Daniela
-Name: Daniela
-
-NetID: dtoader
+**Name:** Daniela<br>
+**NetID:** dtoader
 
 <img src="doc/pictures/dtoader.jpeg"  width="250" height="250">
 
-### Shah Farooq
-Name: Shah Farooq
+<br>
 
-NetID: sfarooq
+### Shah Farooq
+**Name:** Shah Farooq<br>
+**NetID:** sfarooq
 
 <img src="doc/pictures/shah.jpg"  width="250" height="250">
 
@@ -132,7 +175,7 @@ Quality: Commitment ->Pitfall: spend excessive time->Challenge: timely done task
 
 #### My learning Goals
 
-* learn industry-standard frameworks/libraries by experimenting and get the most out of them to build high-quality software, by producing quality code according to specifications using best practices.  
+* Learn industry-standard frameworks/libraries by experimenting and get the most out of them to build high-quality software, by producing quality code according to specifications using best practices.  
 
 * Improve problem-solving and critical thinking skills to come up with creative solutions by making judgment calls and trade-off analysis. 
 
@@ -168,9 +211,9 @@ $ git clone https://gitlab.ewi.tudelft.nl/cse1105/2018-2019/oopp-group-46/templa
 $ mvn clean install
 
 # Run the server
-$ java server/target/Server.jar
+$ java -jar server/target/Server.jar
 
 # Run the client
-$ java client/target/Client.jar
+$ java -jar client/target/Client.jar
 ```
 
