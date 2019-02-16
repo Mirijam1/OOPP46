@@ -230,22 +230,341 @@ Quality: Commitment ->Pitfall: spend excessive time->Challenge: timely done task
 
 * We’re in the 21st century and have numerous resources and tools at our disposal to take advantage of such as Google, StackOverflow, Books and of course team members past experiences. With my teammates we can: brainstorm, get new ideas and creative juices flowing and think in different perspectives. 
 
-
 ## How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com), [Maven](https://maven.apache.org/install.html) and [Java](https://www.oracle.com/technetwork/java/javase/downloads/index.html) installed on your computer. From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Java](https://www.oracle.com/technetwork/java/javase/downloads/index.html) installed on your computer. From your command line:
 
 ```bash
 # Clone this repository
 $ git clone https://gitlab.ewi.tudelft.nl/cse1105/2018-2019/oopp-group-46/template.git
 
-# Build project
-$ mvn clean install
+# Go into directory
+$ cd template
+
+# Build project (Windows CMD)
+$ mvnw clean install
+
+# Build project (Unix terminal / Git Bash)
+$ ./mvnw clean install
 
 # Run the server
 $ java -jar server/target/Server.jar
 
 # Run the client
 $ java -jar client/target/Client.jar
+```
+
+### Git basics
+Quick disclaimer: I've left out a lot of things, and this is just a short summary with some example. 
+If you want to know more, there are some quality links on Brightspace. I also can recommend [this website](https://learngitbranching.js.org/), because they visualize git which can be helpful.<br>
+You will probably need the next few commands a lot, so here's a short summary of useful commands dealing with changes:
+```bash
+# Stage changes 
+$ git add fileName
+
+# View status of 'staging area'
+$ git status
+
+# Unstage changes
+$ git reset fileName
+
+# Commit changes
+$ git commit -am "Commit message"
+
+# Push changes
+$ git push origin branchName
+
+# Stash changes
+$ git stash
+
+# Apply changes
+$ git stash pop
+
+```
+
+#### Branches
+The next few commands are a little bit more advanced, but important nevertheless. You use these commands to work with branches
+```bash
+# Get all branches (active branch will have a * prefix)
+$ git branch
+
+# Create a new branch
+$ git branch branchName
+
+# Switch to branch
+$ git checkout branchName
+
+# Create a new branch from 'dev' branch and switch to it
+$ git checkout -b branchName dev
+
+# Update branch
+$ git pull origin branchName
+
+# Merge other branch into current branch
+$ git merge otherBranch
+
+# Delete branch (use -D to force delete it)
+$ git branch -d branchName
+
+```
+
+#### Examples
+All the commands above are useful, but useless if you don't know how to combine them. I will show a few examples in this section.
+```bash
+# Lets say you want to create a new branch 'feature/print-leaderbord-button'
+# and merge it into 'dev' when you are done
+
+# First you have to create and checkout the branch which is based on the latest dev branch
+$ git checkout -b feature/print-leaderbord-button dev
+
+# After you did some work you add and commit your work
+$ git add .
+$ git commit -am "Finished the button"
+
+# This will result in something along the lines of this
+[feature/print-leaderbord-button 36b9621] Finish the button
+ 1 file changed, 1 insertion(+)
+ create mode 100644 BUTTON_FILE.md
+ 
+# Now your feature is done, and you want to merge it into the dev branch
+# However, it might be someone else already merged their feature into dev
+# That's why you first have to update your branch, to start first switch to dev and update it
+$ git checkout dev
+$ git pull origin dev 
+
+# This pull can result in three different scenarios. 
+# 1) No updates, your branch is up-to-date
+# 2) Updates, but no merge conflicts. Git can fix this on its own
+# 3) Merge conflict, you first have to fix the conflict before you can update
+# For now assume there were no updates (see 'Fixing merge conflicts' if you want to see the third scenario)
+
+# After your pull, you should see something like this (scenario 1)
+From https://gitlab.com/timanema/xxx
+ * branch            dev        -> FETCH_HEAD
+Already up to date.
+
+# You can now merge dev into your feature branch
+$ git checkout feature/print-leaderbord-button
+$ git merge dev
+
+# This will result in something like this (still scenario 1)
+Switched to branch 'feature/print-leaderbord-button'
+Already up to date.
+
+# Now your branch is ready to be merged
+# You do this by opening a merge request on gitlab
+
+# After you merged the branch you should do some local cleanup
+# First switch to dev and fetch the updates
+$ git checkout dev
+$ git fetch -p
+
+# You should see something like this
+From https://gitlab.com/timanema/xxx
+ - [deleted]         (none)     -> origin/feature/print-leaderbord-button
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 1 (delta 0)
+Unpacking objects: 100% (1/1), done.
+   c259fd4..4b98097  dev        -> origin/dev
+
+# After that just remove the branch and you're done!
+$ git branch -D feature/print-leaderbord-button
+
+```
+<br>
+
+```bash
+# Lets say you been working on a bugfix and you are ready to commit and push it to the repo
+# Just before you commit you realise your mistake: you've been working on the wrong branch
+# Instead of copying your code, switching branches and pasting your code you can use something called the stash
+
+# First make sure your changes are staged
+$ git add .
+
+# Then save your changes in the stash
+$ git stash
+
+# This should give you something like this
+Saved working directory and index state WIP on wrong-branch: ebf7a7c Previous commit
+
+# Switch to the correct branch
+$ git checkout right-branch
+
+# Then apply your stash
+$ git stash pop
+
+# This will result in something like this
+On branch right-branch
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   CORRECT_FILE.md
+
+Dropped refs/stash@{0} (c599b166ac8997086d9171d1e91091169d9271c1)
+
+# Now your changes are moved, and you can commit and push like you normally would
+$ git commit -am "Worked on feature"
+$ git push origin right-branch
+
+```
+
+<br>
+
+```bash
+# Lets say you have some changes that you have not yet committed, and you want to pull to update your branch
+$ git pull origin dev
+
+# If someone else has already pushed to the dev branch you will get something like this
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 2), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From https://gitlab.com/timanema/xxx
+ * branch            dev        -> FETCH_HEAD
+   9692bda..1733107  dev        -> origin/dev
+error: Your local changes to the following files would be overwritten by merge:
+        README.md
+Please commit your changes or stash them before you merge.
+Aborting
+Updating 2256a11..1733107
+
+# As the message suggests you can either commit or stash your changes. For the sake of this example I will use stash
+# It's as simple as 
+$ git stash
+
+# Which will result in 
+Saved working directory and index state WIP on dev: 2256a11 Merge branch 'dev' of https://gitlab.com/timanema/xxx into dev
+
+# Then pull again
+$ git pull origin dev
+
+# Which will now succeed
+From https://gitlab.com/timanema/xxx
+ * branch            dev        -> FETCH_HEAD
+Updating 2256a11..1733107
+Fast-forward
+ COOLFILE.md | 4 ++++
+ README.md   | 1 +
+ 2 files changed, 5 insertions(+)
+
+# Now apply your stash with
+$ git stash pop
+
+# Which will result in an auto merge or a merge conflict. The first scenario is displayed here, but the other one can be solved similarly to the one in 'Merge conflicts'
+Auto-merging README.md
+On branch dev
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (d0cec675b201016a1cb43d38669752af9f501042)
+
+# You can now continue developing
+# Once you are ready to commit simly do the regular
+$ git add .
+$ git commit -am "Done with X"
+$ git push origin dev
+
+# Which will get you
+[dev ea89f56] wauwie
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 342 bytes | 171.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote:
+remote: To create a merge request for dev, visit:
+remote:   https://gitlab.com/timanema/xxx/merge_requests/new?merge_request%5Bsource_branch%5D=dev
+remote:
+To https://gitlab.com/timanema/xxx
+   1733107..ea89f56  dev -> dev
+
+
+```
+
+#### Merge conflicts
+These can be annoying at first, but you'll notice soon enough that you can more often than not easily fix them.
+```bash
+# Lets continue with the merge feature branch example, but this time we encounter scenario 3
+# All steps are the same up until (and including) 'git merge dev'
+# This time however you get this result
+Auto-merging COOLFILE.md
+CONFLICT (content): Merge conflict in COOLFILE.md
+Automatic merge failed; fix conflicts and then commit the result.
+
+# If we now open the file indicated by the message (in this case COOLFILE.md), we see something along the lines of this
+<<<<<<< HEAD
+Thank YOUYOU next V2.1
+=======
+Thank you next V2.1
+>>>>>>> dev
+
+# To decypher that a bit: HEAD is the place you currently are (the feature branch in this case), and dev is the dev branch.
+# This shows what's on the server and what's on your branch. To fix this conflict you simply have to choose between the lines by
+# removing '<<<<<<< HEAD', '=======', '>>>>>>> dev' and the line you DO NOT want.
+# Lets say in this example you want your code, then changing the previous lines to this would fix it:
+Thank YOUYOU next V2.1
+
+# To see what git wants you to do now run this command
+$ git status
+
+# This outputs something like this
+On branch feature/print-leaderbord-button
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+
+        new file:   BUTTON_FILE.md
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+        both modified:   COOLFILE.md
+
+# This status message tells us the BUTTON_FILE.md file is ready to be committed, but the COOLFILE.md is currently conflicting
+# Do as the message tells you to do and mark the COOLFILE.md file as fixed (since we fixed it)
+$ git add COOLFILE.md
+
+# Another 'git status' tell us the current state of the merge:
+On branch feature/print-leaderbord-button
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+
+        new file:   BUTTON_FILE.md
+        modified:   COOLFILE.md
+
+# All conflicts are fixed and we can simply commit and push our merge
+$ git commit
+$ git push origin feature/print-leaderbord-button
+
+# As the push message tells us, our branch is now updated and ready to be merged on gitlab
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 365 bytes | 121.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote:
+remote: To create a merge request for feature/print-leaderbord-button, visit:
+remote:   https://gitlab.com/timanema/xxx/merge_requests/new?merge_request%5Bsource_branch%5D=feature%2Fprint-leaderbord-button
+remote:
+To https://gitlab.com/timanema/xxx
+   c747d35..ec19c40  feature/print-leaderbord-button -> feature/print-leaderbord-button
+
+# After you merged it in gitlab your run the usual commands to clean up, and you're done!
+$ git checkout dev
+$ git fetch -p
+$ git branch -D feature/print-leaderbord-button
 ```
 
