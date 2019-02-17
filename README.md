@@ -4,7 +4,7 @@ WIP page
 ## Our group
 ### Momchil
 **Name:** Momchil Bozhkov<br>
-**NetId:** mbozhkov
+**NetID:** mbozhkov
 
 <img src="doc/pictures/37050613_2133834693325887_4237135342316027904_n.jpg"  width="250" height="250">
 
