@@ -87,17 +87,21 @@ My goals:
 
 #### Personal Development Plan
 
-2 Strong points:
-- accommodate, I will try my best to help my teammates understand things they do not know if possible.
-- self-discipline, I will force myself to finish the task before the deadline.
+**_Two of my stronger points:_**
+* **Supportive.**<br> I will try my best to help my teammates understand things they do not know if possible.
+* **Self-discipline.**<br> I will force myself to finish the task before the deadline.
 
-2 Weaker points:
-- Not good at communicating. I would not say I like to talk in the team since my English is quite bad compared to others, and I am afraid that someone will laugh at me even though I know they won’t. 
-- Lazy. I usually do the task which is asked to do; I would not say I like to do more things that are not in my range.
+<br>**_Two of my weaker points:_**
+* **Not good at communicating.**<br> I would not say I like to talk in the team since my English is quite bad compared to others, and I am afraid that someone will laugh at me even though I know they won’t. 
+* **Lazy.**<br> I usually do the task which is asked to do; I would not say I like to do more things that are not in my range.<br>
 
-My goals:
-- I want to improve my English since I need to communicate the project with my teammates. To achieve it, I need to learn several new words with English every day and interact with my teammates as much as possible.
-- I want to improve my programming skill, almost no experience about Computer Science at all and I find it is quite difficult for me to learn this course. During this course, I can practice with my teammates. As I exercise more, I can learn more stuff in it.
+<br>**_Core quadrants:_**<br><br>
+**Quality:** *Supportive* -> **Pitfall:** *Spending too much time helping the others* -> **Challenge:** *Concentrate on your own job* -> **Allergy:** *Less supportive*<br><br>
+**Quality:** *Self-discipline* -> **Pitfall:** *Overly disciplined* -> **Challenge:** *Be more flexible* -> **Allergy:** *Lacking self-control*<br>
+
+<br>**_My goals:_**
+1. **Improving my English.**<br> This is important to me since I need to communicate during the project with my teammates. To achieve it, I need to learn several new English words every day and interact with my teammates as much as possible.<br>
+2. **Improving my programming skills**<br> I would like to do this as I have almost no experience with Computer Science at all and I find it is quite difficult for me to learn this course. During this course, I can practice with my teammates. As I exercise more, I can learn more stuff in it.
 
 <br>
 
@@ -162,28 +166,20 @@ To help achieve this goal I should probably be more accepting of other people's 
 #### Personal Development Plan
 
 **_Two of my stronger points:_**
-
 * **Communicative.**<br>It is shown through the favorable way of interacting with the teammates. I always like to begin with knowing a few details about each member of the group before starting the actual work. Also, I am very happy when we have discussions related to the steps we should follow in order to get to the final form of our assignment. I think this is undoubtedly important because it helps everyone know how the project flows.
-
 * **Dedicated.**<br>This can be observed through the valuable quality of the end products I create for the projects I work on. I tend to work extra if it is required in order to achieve some of the best results as I appreciate good quality work. I also try to help the people around me if it happens for me to know more so we can all successfully complete everything we come up with.
 
-
 **_Two of my weaker points:_**
-
 * **Stressed.**<br>One of my weaker points is stressing more than it would be necessary in the process of doing assignments. It might be shown in a team by my attempts to solve as many things as possible in a short period of time.
-
 * **Unexperienced.**<br>Not knowing extra information related to programming that could be useful in these kinds of tasks might drag me down a little, which could mean spending more time on descovering how things actually work instead of immediately doing them. This can also appear as a tendency to accomplish the tasks that have been assigned to me more than taking initiative.<br>
-
 
 <br>**_Core quadrants:_**<br><br>
 **Quality:** *Communicative* -> **Pitfall:** *Deviating from the subject* -> **Challenge:** *Concentrate on doing rather than expressing* -> **Allergy:** *Communicating less*<br><br>
 **Quality:** *Dedicated* -> **Pitfall:** *Exhaustion* -> **Challenge:** *Do less things* -> **Allergy:** *Lacking dedication*<br>
 
 <br>**_My goals:_**
-
 1. **Developing better teamwork abilities as well as gaining more experience with splitting the tasks.**<br> 
 I consider these ideas to be extremely important since the IT world requires you to have social skills. Moreover, this kind of environment also involves dividing big assignments into many small branches distributed among the entire team. I am actively working on my goal as I’m trying to establish strong connections throughout the team and I will also do my best to make sure everyone has his/her own important part in this process. I consider I have plenty of options regarding this topic, thanks to my positive attitude, desire to work together with the others and to my colleagues’ receptiveness.<br>
-
 2. **Improving my programming knowledge.**<br>
 This is an essential part in the process of becoming a computer scientist as it is what all is based on. I am actively working on this goal by trying to absorb as much information as I can from each experience I get involved in and by doing research. There are many options to choose from when talking about learning how to properly do programming and the one I will use most is actually this project during which I’ll get an actual perspective on the idea of being a programmer.
 
