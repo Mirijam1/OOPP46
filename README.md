@@ -32,22 +32,21 @@ My goals:
 <img src="doc/pictures/svanderkruk.jpg"  width="250" height="250">
 
 #### Personal Development Plan
+**_Two of my stronger points:_**
+* **Perseverance.**<br> I don’t like when I dash off my work. So really try my hardest to know as much as I can. This is because I think that you need a good foundation of previous material before you start branching off into material which depends on that knowledge. This point is shown in the team in that I really try to finish my part of the work. I think peer pressure is a good thing in this case since I don’t want to let my team down by giving up on my work.
+* **Organized.**<br> I want a clear definition of what I’m doing before I start. This way I reduce the chance of digression from what must be done. In the team I think this help with knowing what we are all up to instead of digressing too much.
 
-2 Strong points:
-- Perseverance. I don’t like when I dash off my work. So really try my hardest to know as much as I can. This is because I think that you need a good foundation of previous material before you start branching off into material which depends on that knowledge. This point is shown in the team in that I really try to finish my part of the work. I think peer pressure is a good thing in this case since I don’t want to let my team down by giving up on my work.
-- Organized. I want a clear definition of what I’m doing before I start. This way I reduce the chance of digression from what must be done. In the team I think this help with knowing what we are all up to instead of digressing too much.
+<br>**_Two of my weaker points:_**
+* **Time Management.**<br> Trying to work out all the details takes a lot of time and taking the time to sort all the work doesn’t help either. I think in a group this isn’t really a problem since I really get that extra bit of motivation from working with a team to do the work immediately.
+* **Control freak.**<br> I don’t like it when I don’t know what something (or somebody) is doing. This sounds bad, but from previous experience from working in teams I have learned from my mistakes. Everybody knows what they are doing, so why do I feel the need to take over? That is what I ask myself. So, I’ll try to use the good parts of being a control freak, that is, being in control of what I’m doing instead of someone else is doing.
 
-2 Weaker points
-- Time Management. Trying to work out all the details takes a lot of time and taking the time to sort all the work doesn’t help either. I think in a group this isn’t really a problem since I really get that extra bit of motivation from working with a team to do the work immediately.
-- Control freak. I don’t like it when I don’t know what something (or somebody) is doing. This sounds bad, but from previous experience from working in teams I have learned from my mistakes. Everybody knows what they are doing, so why do I feel the need to take over? That is what I ask myself. So, I’ll try to use the good parts of being a control freak, that is, being in control of what I’m doing instead of someone else is doing.
+<br><br>**_Core quadrants:_**<br>
+* **Quality:** *Perseverance* -> **Pitfall:** *Bad time management* -> **Challenge:** *Prioritize your work* -> **Allergy:** *Dashing off*<br>
+* **Quality:** *Organized* -> **Pitfall:** *Control Freak* -> **Challenge:** *Focus only on my work* -> **Allergy:** *Disorganized*<br>
 
-Quality 1: Perseverance -> Pitfall: Bad time management -> Challenge: Prioritize your work -> Allergy: Dashing off
-
-Quality 2: Organized -> Pitfall: Control Freak -> Challenge: Focus only on my work -> Allergy: Disorganized
-
-My goals
-1. I want to extend my knowledge on programming. This is of obviously important since there is a lot to learn. I achieved this, when I have a good understanding of how all parts of our program work in coherence with each other. To achieve this, I will be learning through collaboration with my team, documentation and other learning material. I hope to learn from mistakes. I think testing is an important tool to understand your mistakes. I think the best thing to do now is to design and program the things that are on the planning and keep doing that throughout the project.
-2. This is the more important goal in my opinion. I want to gain more experience on working in a team and learn how to be a meaningful addition to the team. This is very important to me since (software) engineering is nowadays all about collaborating. I achieved this when I have reflected and learned from the feedback of my team. So, this depends on what my team will think of my actions during the project. Whether good or bad, I hope to learn from it to do even better next time. To actively be working on learning from my actions I can ask my teammates for their opinions and feedback. That can be done by e.g. asking about the usefulness of my action.
+<br>**_My goals:_**
+1. **I want to extend my knowledge on programming.**<br> This is of obviously important since there is a lot to learn. I achieved this, when I have a good understanding of how all parts of our program work in coherence with each other. To achieve this, I will be learning through collaboration with my team, documentation and other learning material. I hope to learn from mistakes. I think testing is an important tool to understand your mistakes. I think the best thing to do now is to design and program the things that are on the planning and keep doing that throughout the project.<br>
+2. **Enhance teamwork abilities**<br> This is the more important goal in my opinion. I want to gain more experience on working in a team and learn how to be a meaningful addition to the team. This is very important to me since (software) engineering is nowadays all about collaborating. I achieved this when I have reflected and learned from the feedback of my team. So, this depends on what my team will think of my actions during the project. Whether good or bad, I hope to learn from it to do even better next time. To actively be working on learning from my actions I can ask my teammates for their opinions and feedback. That can be done by e.g. asking about the usefulness of my action.
 
 <br>
 
@@ -60,7 +59,7 @@ My goals
 #### Personal Development Plan
 **_Two of my stronger points:_**
 * **Commitment.**<br> I work seriously on my tasks and always try my best.
-* **Supportive.**<br> I'm always willing to help my teammates with their tasks or explain things they don't understand to them.
+* **Supportive.**<br> I'm always willing to help my teammates with their tasks or explain things they don't understand to them.<br>
 
 **_Two of my weaker points:_**
 * **Lazy.**<br>I am quite lazy, so I usually prefer people telling me what to do (preferably the easy tasks). In a team I usually do what I am told to do without thinking about it. This ends up in me not understanding my tasks and not doing a good job.
@@ -89,9 +88,9 @@ My goals
 
 <br>**_Two of my weaker points:_**
 * **Not good at communicating.**<br> I would not say I like to talk in the team since my English is quite bad compared to others, and I am afraid that someone will laugh at me even though I know they won’t. 
-* **Lazy.**<br> I usually do the task which is asked to do; I would not say I like to do more things that are not in my range.<br>
+* **Lazy.**<br> I usually do the task which is asked to do; I would not say I like to do more things that are not in my range.
 
-<br>**_Core quadrants:_**<br>
+<br><br>**_Core quadrants:_**<br>
 * **Quality:** *Supportive* -> **Pitfall:** *Spending too much time helping the others* -> **Challenge:** *Concentrate on your own job* -> **Allergy:** *Less supportive*<br>
 * **Quality:** *Self-discipline* -> **Pitfall:** *Overly disciplined* -> **Challenge:** *Be more flexible* -> **Allergy:** *Lacking self-control*<br>
 
@@ -166,11 +165,11 @@ To help achieve this goal I should probably be more accepting of other people's 
 
 **_Two of my weaker points:_**
 * **Stressed.**<br>One of my weaker points is stressing more than it would be necessary in the process of doing assignments. It might be shown in a team by my attempts to solve as many things as possible in a short period of time.
-* **Unexperienced.**<br>Not knowing extra information related to programming that could be useful in these kinds of tasks might drag me down a little, which could mean spending more time on descovering how things actually work instead of immediately doing them. This can also appear as a tendency to accomplish the tasks that have been assigned to me more than taking initiative.<br>
+* **Unexperienced.**<br>Not knowing extra information related to programming that could be useful in these kinds of tasks might drag me down a little, which could mean spending more time on descovering how things actually work instead of immediately doing them. This can also appear as a tendency to accomplish the tasks that have been assigned to me more than taking initiative.
 
 <br>**_Core quadrants:_**<br>
 * **Quality:** *Communicative* -> **Pitfall:** *Deviating from the subject* -> **Challenge:** *Concentrate on doing rather than expressing* -> **Allergy:** *Communicating less*<br>
-* **Quality:** *Dedicated* -> **Pitfall:** *Exhaustion* -> **Challenge:** *Do less things* -> **Allergy:** *Lacking dedication*<br>
+* **Quality:** *Dedicated* -> **Pitfall:** *Exhaustion* -> **Challenge:** *Do less things* -> **Allergy:** *Lacking dedication*
 
 <br>**_My goals:_**
 1. **Developing better teamwork abilities as well as gaining more experience with splitting the tasks.**<br> 
