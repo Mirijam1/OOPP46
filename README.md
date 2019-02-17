@@ -93,7 +93,7 @@ WIP page
 * **Lazy.**<br> I usually only do the tasks which are asked to do; I would not say I like to do more things that are not in my range.
 
 <br>**_Core quadrants:_**<br>
-* **Quality:** *Supportive* -> **Pitfall:** *Cannot explain to others clearly as my poor English* -> **Challenge:** *Concentrate on your own job* -> **Allergy:** *Less supportive*<br>
+* **Quality:** *Supportive* -> **Pitfall:** *Spending too much helping the others* -> **Challenge:** *Concentrate on your own job* -> **Allergy:** *Less supportive*<br>
 * **Quality:** *Self-discipline* -> **Pitfall:** *Overly disciplined* -> **Challenge:** *Be more flexible* -> **Allergy:** *Lacking self-control*<br>
 
 <br>**_My goals:_**
