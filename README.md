@@ -198,48 +198,34 @@ This is an essential part in the process of becoming a computer scientist as it 
 
 #### Personal Development Plan
 
-2 Strong Points 
-
-* Previous working experience in a start-up consisting of web-based development on Node, Angular & React, Git therefore I’m aware of what it’s like to be in a professional environment.
-
-* Positive attitude & commitment – not afraid to jump out of my usual comfort zone to go above & beyond my assigned tasks, help others when they’re stuck and see things through to the end. 
-
-2 Weaker Points
-
-* Haven’t programmed professionally in Java before – intimidating new frameworks and learning their functionalities and their effective usage scenarios. 
-
-* Procrastination comes naturally. For me, personally, this how I produce my best output by procrastinating - maybe it’s the adrenaline rush of the thrill of working close to deadlines.
-
-Core Quadrant
-
-Quality: absorb info quickly ->Pitfall: learn irrelevant things ->Challenge: effective use of knowledge->Allergy: Take time for simple concepts 
-
-Quality: Commitment ->Pitfall: spend excessive time->Challenge: timely done tasks->Allergy: procrastination
-
-#### My learning Goals
-
-* Learn industry-standard frameworks/libraries by experimenting and get the most out of them to build high-quality software, by producing quality code according to specifications using best practices.  
-
-* Improve problem-solving and critical thinking skills to come up with creative solutions by making judgment calls and trade-off analysis. 
-
-* Since the project is more about software engineering methods than programming, it’s a good idea to learn about modern development processes like agile and software-development life cycles.
-
-* Having professional, friendly and open team communication to clearly get ideas across the group and be open to constructive criticism.
-
-* Efficient time-management – prioritise tasks in an effective workflow environment using scrum methods.
+**_Two of my stronger points:_**
 
 
-#### Steps to Achieve Goal
+* **Experience**<br> Work Experience in a start-up with tasks consisting of web-based development on Node, Angular & React, Git therefore I’m aware of what it’s like to be in a professional environment.
 
-* After setting my goals, I need actively start working towards my goals this can be done by:
+* **Positive attitude & commitment** <br>To go above and beyond my assigned tasks by helping and learning from others when we’re stuck and see things through to the end. 
 
-* Having the right mindset – dedication and passion to build a complete end-to-end product which will serve as an achievement to myself and motivate me further to do more.
 
-* Make side projects and build something that it is standalone which can be used in the final build and learning from its inevitable failures.   
+**_Two of my weaker points:_**
 
-* Revisit OOP from Q1 which has a lot of transferrable skills and refresh my memory on the fundamentals of MVC and key skills learnt during the course.
+* **Staying Calm**<br> The project is exciting, however, intimidating because I have to grasp new frameworks like Spring,Maven,JavaFX, numerous other libraries and learning their functionalities and their effective usage scenarios. Therefore, it is a substantial part of my learning goal during this course to know how to produce large-scale projects.   
 
-* We’re in the 21st century and have numerous resources and tools at our disposal to take advantage of such as Google, StackOverflow, Books and of course team members past experiences. With my teammates we can: brainstorm, get new ideas and creative juices flowing and think in different perspectives. 
+* **Procrastination**<br> It comes naturally. For me, personally, this how I produce my best output by procrastinating - maybe it’s the adrenaline rush of the thrill of working close to deadlines.
+
+<br>**_Core quadrants:_**<br>
+
+**Quality:** *Experience* -> **Pitfall:** *May seem like a know-it-all* -> **Challenge:** *Share productive techniques for project success* -> **Allergy:** *Enforcing bad practices*<br>
+
+**Quality:** *Optimism* -> **Pitfall:** *positive but unproductive* -> **Challenge:** *Timely Done Tasks* -> **Allergy:** *Pessimism*<br>
+
+
+<br>**_My goals:_**
+
+1. **Improve problem-solving and critical thinking skills to come up with creative solutions by making judgment calls and trade-off analysis.**<br>
+Problem-solving skills are essential for programmers in the 21st century and we have numerous resources and tools at our disposal to take advantage of such as Google, StackOverflow, Books and of course team members past experiences.  With my teammates we can: brainstorm, get new ideas and creative juices flowing and think in different perspectives. 
+
+2. **Having professional, friendly and open team communication to clearly get ideas across the group and be open to constructive criticism.**<br>
+Since the project is more about software engineering methods than programming, communication is key so it’s a good idea to learn about modern development processes like agile and software-development life cycles. Efficient time-management – prioritise tasks in an effective workflow environment using scrum methods.
 
 ## How To Use
 
