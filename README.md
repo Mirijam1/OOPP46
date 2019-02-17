@@ -154,12 +154,12 @@ To help achieve this goal I should probably be more accepting of other people's 
 <br>
 
 ### Daniela
-**Name:** Daniela<br>
+**Name:** Daniela Toader <br>
 **NetID:** dtoader
 
 <img src="doc/pictures/dtoader.jpeg"  width="250" height="250">
 
-####Personal Development Plan
+#### Personal Development Plan
 
 Two of my stronger points:
 
