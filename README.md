@@ -95,6 +95,10 @@ My goals:
 - Not good at communicating. I would not say I like to talk in the team since my English is quite bad compared to others, and I am afraid that someone will laugh at me even though I know they won’t. 
 - Lazy. I usually do the task which is asked to do; I would not say I like to do more things that are not in my range.
 
+Core quadrants:
+Accommodate -> pitfall: Impatient -> challenge: sometimes cannot explain to others clearly as my poor English -> allergy: don’t want to answer questions
+Self-discipline -> pitfall: not good at time management -> challenge: normally finish the task on the last day-> allergy: completed the task in a hurry
+
 My goals:
 - I want to improve my English since I need to communicate the project with my teammates. To achieve it, I need to learn several new words with English every day and interact with my teammates as much as possible.
 - I want to improve my programming skill, almost no experience about Computer Science at all and I find it is quite difficult for me to learn this course. During this course, I can practice with my teammates. As I exercise more, I can learn more stuff in it.
