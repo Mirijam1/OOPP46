@@ -165,7 +165,7 @@ To help achieve this goal I should probably be more accepting of other people's 
 
 * **Communicative.**<br>It is shown through the favorable way of interacting with the teammates. I always like to begin with knowing a few details about each member of the group before starting the actual work. Also, I am very happy when we have discussions related to the steps we should follow in order to get to the final form of our assignment. I think this is undoubtedly important because it helps everyone know how the project flows.
 
-* **Dedicated.**<br>This can be observed through the valuable quality of the end products I create during the projects I work on. I tend to work extra if it is required in order to achieve some of the best results as I appreciate good quality work. I also try to help the people around me if it happens for me to know more so we can all successfully complete everything we come up with.
+* **Dedicated.**<br>This can be observed through the valuable quality of the end products I create for the projects I work on. I tend to work extra if it is required in order to achieve some of the best results as I appreciate good quality work. I also try to help the people around me if it happens for me to know more so we can all successfully complete everything we come up with.
 
 
 **_Two of my weaker points:_**
@@ -176,7 +176,7 @@ To help achieve this goal I should probably be more accepting of other people's 
 
 
 <br>**_Core quadrants:_**<br>
-**Quality:** *Communicative* -> **Pitfall:** *Deviating from the subject* -> **Challenge:** *Concentrate on doing rather than expressing* -> **Allergy:** *Communicating less*<br>
+**Quality:** *Communicative* -> **Pitfall:** *Deviating from the subject* -> **Challenge:** *Concentrate on doing rather than expressing* -> **Allergy:** *Communicating less*<br><br>
 **Quality:** *Dedicated* -> **Pitfall:** *Exhaustion* -> **Challenge:** *Do less things* -> **Allergy:** *Lacking dedication*<br>
 
 <br>**_My goals:_**
