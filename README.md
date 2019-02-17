@@ -2,26 +2,28 @@
 WIP page
 
 ## Our group
-### Momchil Bozhkov
-**Name:** Momchil<br>
-**NetId:** mbozhkov
+### Momchil
+**Name:** Momchil Bozhkov<br>
+**NetID:** mbozhkov
 
 <img src="doc/pictures/37050613_2133834693325887_4237135342316027904_n.jpg"  width="250" height="250">
 
 #### Personal Development Plan
-
-2 Strong points:
-- Determination. Having the inner courage to do everything, that needs to be done in order to achieve the goal that i have put in front of myself. Forcing myself to do the things i need to do, even when i dont feel like it, is something which makes me treat myself to a higher standard and also makes me enjoy the sweet fruit of reward much more when said goal has been achieved and achieved with high remarks.
-- Good spirit and being nice in general. Being able to make a certain situation less intimidating for a single person or a group of people is very important to me so i give it my all when somebody is strugling or is in need of some sort of help. If someone is having a bad day and you make them smile for just 10 seconds that person would be gratefull to you for the rest of the day. So having the abillity to help out my teammates whether its when we are stuck on a certain problem or just make everyone smile and be motivated so that they can do their best work is something i aspire to.
+**_Two of my stronger points:_**
+* **Determination.**<br> Having the inner courage to do everything that needs to be done in order to achieve the goal that I set myself. Forcing myself to do the things I need to do, even when I don't feel like it is something which makes me treat myself to a higher standard and also makes me enjoy the sweet fruit of reward much more when the goal has been achieved, achieved with high results.
+* **Good spirit and being nice in general.**<br> Being able to make a certain situation less intimidating for a single person or a group of people is very important to me so I give it my all when somebody is strugling or is in need of some sort of help. If someone is having a bad day and you make them smile for just 10 seconds that person would be grateful to you for the rest of the day. So, having the ability to help my teammates, whether it is when we are stuck on a certain problem, or just make everyone smile and be motivated so that they can do their best work is something I'm aspiring to.
  
-2 Weaker points:
-- Procrastination and laziness. I have been strugling with these two since i was a small child but i try my best every single day to just make them dissapear little by little so that it dosen't affect my work and the essentials of what i have to do to achieve.
-- Not a lot of experience with CS in general. I am a medium pace learner of sorts and Computer Science has a lot of things that need to be inherited at a quick pace so i find myself sometimes strugling to stay a float.
+<br>**_Two of my weaker points:_**
+* **Procrastination and laziness.**<br> I have been strugling with these two since i was a small child but i try my best every single day to just make them dissapear little by little so that it dosen't affect my work and the essentials of what i have to do to achieve.
+* **Not a lot of experience with CS in general.**<br> I am a medium pace learner of sorts and Computer Science has a lot of things that need to be inherited at a quick pace so i find myself sometimes strugling to stay a float.
 
-My goals:
+<br>**_Core quadrants:_**<br>
+* **Quality:** *Determined* -> **Pitfall:** *Tired* -> **Challenge:** *Take it easier* -> **Allergy:** *Being less willing to work*<br>
+* **Quality:** *Being nice* -> **Pitfall:** *Overly nice* -> **Challenge:** *Don't overdo* -> **Allergy:** *Becoming cold*<br>
 
-1. Experience what it's like to work in a real Software Team enviroment so that i could more easily get acquainted with the way work is done in this whole industry for later down the road.
-2. Get to grip with software and programing on a more in-depth scale and see what areas of my CS skills i need to work on so that i can contribute more effectively to my team now and later on when working for an actual Software company.
+<br>**_My goals:_**
+1. **Becoming more experienced**<br> I am excited to find out what it's like to work in a real Software Team environment so that I could more easily get acquainted with the way work is done in this whole industry for later on this path.
+2. **Acquiring knowledge**<br> I plan to get a good grip on software and programming at a more in-depth scale and see what areas of my CS skills I need to work on so that I can contribute more effectively to my team now and later on when working for an actual Software company.
 
 <br>
 
@@ -32,22 +34,21 @@ My goals:
 <img src="doc/pictures/svanderkruk.jpg"  width="250" height="250">
 
 #### Personal Development Plan
+**_Two of my stronger points:_**
+* **Perseverance.**<br> I don’t like when I dash off my work. So really try my hardest to know as much as I can. This is because I think that you need a good foundation of previous material before you start branching off into material which depends on that knowledge. This point is shown in the team in that I really try to finish my part of the work. I think peer pressure is a good thing in this case since I don’t want to let my team down by giving up on my work.
+* **Organized.**<br> I want a clear definition of what I’m doing before I start. This way I reduce the chance of digression from what must be done. In the team I think this help with knowing what we are all up to instead of digressing too much.
 
-2 Strong points:
-- Perseverance. I don’t like when I dash off my work. So really try my hardest to know as much as I can. This is because I think that you need a good foundation of previous material before you start branching off into material which depends on that knowledge. This point is shown in the team in that I really try to finish my part of the work. I think peer pressure is a good thing in this case since I don’t want to let my team down by giving up on my work.
-- Organized. I want a clear definition of what I’m doing before I start. This way I reduce the chance of digression from what must be done. In the team I think this help with knowing what we are all up to instead of digressing too much.
+<br>**_Two of my weaker points:_**
+* **Time Management.**<br> Trying to work out all the details takes a lot of time and taking the time to sort all the work doesn’t help either. I think in a group this isn’t really a problem since I really get that extra bit of motivation from working with a team to do the work immediately.
+* **Control freak.**<br> I don’t like it when I don’t know what something (or somebody) is doing. This sounds bad, but from previous experience from working in teams I have learned from my mistakes. Everybody knows what they are doing, so why do I feel the need to take over? That is what I ask myself. So, I’ll try to use the good parts of being a control freak, that is, being in control of what I’m doing instead of someone else is doing.
 
-2 Weaker points
-- Time Management. Trying to work out all the details takes a lot of time and taking the time to sort all the work doesn’t help either. I think in a group this isn’t really a problem since I really get that extra bit of motivation from working with a team to do the work immediately.
-- Control freak. I don’t like it when I don’t know what something (or somebody) is doing. This sounds bad, but from previous experience from working in teams I have learned from my mistakes. Everybody knows what they are doing, so why do I feel the need to take over? That is what I ask myself. So, I’ll try to use the good parts of being a control freak, that is, being in control of what I’m doing instead of someone else is doing.
+<br>**_Core quadrants:_**<br>
+* **Quality:** *Perseverance* -> **Pitfall:** *Bad time management* -> **Challenge:** *Prioritize your work* -> **Allergy:** *Dashing off*<br>
+* **Quality:** *Organized* -> **Pitfall:** *Control Freak* -> **Challenge:** *Focus only on my work* -> **Allergy:** *Disorganized*<br>
 
-Quality 1: Perseverance -> Pitfall: Bad time management -> Challenge: Prioritize your work -> Allergy: Dashing off
-
-Quality 2: Organized -> Pitfall: Control Freak -> Challenge: Focus only on my work -> Allergy: Disorganized
-
-My goals
-1. I want to extend my knowledge on programming. This is of obviously important since there is a lot to learn. I achieved this, when I have a good understanding of how all parts of our program work in coherence with each other. To achieve this, I will be learning through collaboration with my team, documentation and other learning material. I hope to learn from mistakes. I think testing is an important tool to understand your mistakes. I think the best thing to do now is to design and program the things that are on the planning and keep doing that throughout the project.
-2. This is the more important goal in my opinion. I want to gain more experience on working in a team and learn how to be a meaningful addition to the team. This is very important to me since (software) engineering is nowadays all about collaborating. I achieved this when I have reflected and learned from the feedback of my team. So, this depends on what my team will think of my actions during the project. Whether good or bad, I hope to learn from it to do even better next time. To actively be working on learning from my actions I can ask my teammates for their opinions and feedback. That can be done by e.g. asking about the usefulness of my action.
+<br>**_My goals:_**
+1. **I want to extend my knowledge on programming.**<br> This is of obviously important since there is a lot to learn. I achieved this, when I have a good understanding of how all parts of our program work in coherence with each other. To achieve this, I will be learning through collaboration with my team, documentation and other learning material. I hope to learn from mistakes. I think testing is an important tool to understand your mistakes. I think the best thing to do now is to design and program the things that are on the planning and keep doing that throughout the project.<br>
+2. **Enhance teamwork abilities**<br> This is the more important goal in my opinion. I want to gain more experience on working in a team and learn how to be a meaningful addition to the team. This is very important to me since (software) engineering is nowadays all about collaborating. I achieved this when I have reflected and learned from the feedback of my team. So, this depends on what my team will think of my actions during the project. Whether good or bad, I hope to learn from it to do even better next time. To actively be working on learning from my actions I can ask my teammates for their opinions and feedback. That can be done by e.g. asking about the usefulness of my action.
 
 <br>
 
@@ -60,13 +61,13 @@ My goals
 #### Personal Development Plan
 **_Two of my stronger points:_**
 * **Commitment.**<br> I work seriously on my tasks and always try my best.
-* **Supportive.**<br> I'm always willing to help my teammates with their tasks or explain things they don't understand to them.
+* **Supportive.**<br> I'm always willing to help my teammates with their tasks or explain things they don't understand to them.<br>
 
-**_Two of my weaker points:_**
+<br>**_Two of my weaker points:_**
 * **Lazy.**<br>I am quite lazy, so I usually prefer people telling me what to do (preferably the easy tasks). In a team I usually do what I am told to do without thinking about it. This ends up in me not understanding my tasks and not doing a good job.
 * **Perfectionist.**<br> when I do get what's going on I feel like I need to make everything look perfect and that can lead to me pushing my way of doing it onto other people. 
 
-<br><br>**_Core quadrants:_**<br>
+<br>**_Core quadrants:_**<br>
 * **Quality:** *Commitment* -> **Pitfall:** *Bad time management* -> **Challenge:** *Don't focus too much on one thing* -> **Allergy:** *Slacking off*<br>
 * **Quality:** *Supportive* -> **Pitfall:** *Annoying* -> **Challenge:** *Don't do more than you've been asked to* -> **Allergy:** *Nonchalant*<br>
 
@@ -76,7 +77,7 @@ My goals
 
 <br>
 
-### Qingna Zheng
+### Qingna
 **Name:** Qingna Zheng<br>
 **NetID:** qingnazheng
 
@@ -89,7 +90,7 @@ My goals
 
 <br>**_Two of my weaker points:_**
 * **Not good at communicating.**<br> I would not say I like to talk in the team since my English is quite bad compared to others, and I am afraid that someone will laugh at me even though I know they won’t. 
-* **Lazy.**<br> I usually do the task which is asked to do; I would not say I like to do more things that are not in my range.<br>
+* **Lazy.**<br> I usually do the task which is asked to do; I would not say I like to do more things that are not in my range.
 
 <br>**_Core quadrants:_**<br>
 * **Quality:** *Supportive* -> **Pitfall:** *Spending too much time helping the others* -> **Challenge:** *Concentrate on your own job* -> **Allergy:** *Less supportive*<br>
@@ -132,8 +133,8 @@ It's also not like I don't feel like explaining things, it's the opposite actual
 I really like to explain stuff, but I also regularly forget people may just have started with programming/working with X, which sometimes causes them to be more confused after my 'explanation'.
 
 <br>**_Core quadrants:_**<br>
-*Organized* -> **Pitfall**: *Overly organized* -> **Challenge:** *Leave thing as they are* -> **Allergy:** *Disorganized*<br>
-*Eager to learn* -> **Pitfall**: *Spending to much time on the project* -> **Challenge:** *Stop always trying to understand everything* -> **Allergy:** *Brainless copy-pasting*
+* **Quality:** *Organized* -> **Pitfall**: *Overly organized* -> **Challenge:** *Leave thing as they are* -> **Allergy:** *Disorganized*<br>
+* **Quality:** *Eager to learn* -> **Pitfall**: *Spending to much time on the project* -> **Challenge:** *Stop always trying to understand everything* -> **Allergy:** *Brainless copy-pasting*
 
 <br>**_My goals:_**
 1. **I want to expand my knowledge of the Spring framework, and RESTful APIs.**<br>
@@ -164,13 +165,13 @@ To help achieve this goal I should probably be more accepting of other people's 
 * **Communicative.**<br>It is shown through the favorable way of interacting with the teammates. I always like to begin with knowing a few details about each member of the group before starting the actual work. Also, I am very happy when we have discussions related to the steps we should follow in order to get to the final form of our assignment. I think this is undoubtedly important because it helps everyone know how the project flows.
 * **Dedicated.**<br>This can be observed through the valuable quality of the end products I create for the projects I work on. I tend to work extra if it is required in order to achieve some of the best results as I appreciate good quality work. I also try to help the people around me if it happens for me to know more so we can all successfully complete everything we come up with.
 
-**_Two of my weaker points:_**
+<br>**_Two of my weaker points:_**
 * **Stressed.**<br>One of my weaker points is stressing more than it would be necessary in the process of doing assignments. It might be shown in a team by my attempts to solve as many things as possible in a short period of time.
-* **Unexperienced.**<br>Not knowing extra information related to programming that could be useful in these kinds of tasks might drag me down a little, which could mean spending more time on descovering how things actually work instead of immediately doing them. This can also appear as a tendency to accomplish the tasks that have been assigned to me more than taking initiative.<br>
+* **Unexperienced.**<br>Not knowing extra information related to programming that could be useful in these kinds of tasks might drag me down a little, which could mean spending more time on descovering how things actually work instead of immediately doing them. This can also appear as a tendency to accomplish the tasks that have been assigned to me more than taking initiative.
 
 <br>**_Core quadrants:_**<br>
 * **Quality:** *Communicative* -> **Pitfall:** *Deviating from the subject* -> **Challenge:** *Concentrate on doing rather than expressing* -> **Allergy:** *Communicating less*<br>
-* **Quality:** *Dedicated* -> **Pitfall:** *Exhaustion* -> **Challenge:** *Do less things* -> **Allergy:** *Lacking dedication*<br>
+* **Quality:** *Dedicated* -> **Pitfall:** *Exhaustion* -> **Challenge:** *Do less things* -> **Allergy:** *Lacking dedication*
 
 <br>**_My goals:_**
 1. **Developing better teamwork abilities as well as gaining more experience with splitting the tasks.**<br> 
@@ -180,40 +181,28 @@ This is an essential part in the process of becoming a computer scientist as it 
 
 <br>
 
-### Shah Farooq
+### Shah
 **Name:** Shah Farooq<br>
 **NetID:** sfarooq
 
 <img src="doc/pictures/shah.jpg"  width="250" height="250">
 
 #### Personal Development Plan
-
 **_Two of my stronger points:_**
+* **Experience.**<br> Work Experience in a start-up with tasks consisting of web-based development on Node, Angular & React, Git therefore I’m aware of what it’s like to be in a professional environment.
+* **Positive attitude & commitment.**<br> To go above and beyond my assigned tasks by helping and learning from others when we’re stuck and see things through to the end. 
 
-
-* **Experience**<br> Work Experience in a start-up with tasks consisting of web-based development on Node, Angular & React, Git therefore I’m aware of what it’s like to be in a professional environment.
-
-* **Positive attitude & commitment** <br>To go above and beyond my assigned tasks by helping and learning from others when we’re stuck and see things through to the end. 
-
-
-**_Two of my weaker points:_**
-
-* **Staying Calm**<br> The project is exciting, however, intimidating because I have to grasp new frameworks like Spring,Maven,JavaFX, numerous other libraries and learning their functionalities and their effective usage scenarios. Therefore, it is a substantial part of my learning goal during this course to know how to produce large-scale projects.   
-
+<br>**_Two of my weaker points:_**
+* **Staying Calm**<br> The project is exciting, however, intimidating because I have to grasp new frameworks like Spring,Maven,JavaFX, numerous other libraries and learning their functionalities and their effective usage scenarios. Therefore, it is a substantial part of my learning goal during this course to know how to produce large-scale projects.
 * **Procrastination**<br> It comes naturally. For me, personally, this how I produce my best output by procrastinating - maybe it’s the adrenaline rush of the thrill of working close to deadlines.
 
 <br>**_Core quadrants:_**<br>
-
-**Quality:** *Experience* -> **Pitfall:** *May seem like a know-it-all* -> **Challenge:** *Share productive techniques for project success* -> **Allergy:** *Enforcing bad practices*<br>
-
-**Quality:** *Optimism* -> **Pitfall:** *positive but unproductive* -> **Challenge:** *Timely Done Tasks* -> **Allergy:** *Pessimism*<br>
-
+* **Quality:** *Experience* -> **Pitfall:** *May seem like a know-it-all* -> **Challenge:** *Share productive techniques for project success* -> **Allergy:** *Enforcing bad practices*<br>
+* **Quality:** *Optimism* -> **Pitfall:** *positive but unproductive* -> **Challenge:** *Timely Done Tasks* -> **Allergy:** *Pessimism*<br>
 
 <br>**_My goals:_**
-
 1. **Improve problem-solving and critical thinking skills to come up with creative solutions by making judgment calls and trade-off analysis.**<br>
 Problem-solving skills are essential for programmers in the 21st century and we have numerous resources and tools at our disposal to take advantage of such as Google, StackOverflow, Books and of course team members past experiences.  With my teammates we can: brainstorm, get new ideas and creative juices flowing and think in different perspectives. 
-
 2. **Having professional, friendly and open team communication to clearly get ideas across the group and be open to constructive criticism.**<br>
 Since the project is more about software engineering methods than programming, communication is key so it’s a good idea to learn about modern development processes like agile and software-development life cycles. Efficient time-management – prioritise tasks in an effective workflow environment using scrum methods.
 
