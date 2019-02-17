@@ -58,24 +58,21 @@ My goals
 <img src="doc/pictures/20180414_072509081_iOS.jpg"  width="300" height="300">
 
 #### Personal Development Plan
+**_Two of my stronger points:_**
+* **Commitment.**<br> I work seriously on my tasks and always try my best.
+* **Supportive.**<br> I'm always willing to help my teammates with their tasks or explain things they don't understand to them.
 
-Two of my strong points:
-- Commitment, I work seriously on my tasks and always try my best.
-- Supportive, I'm always willing to help my teammates with their tasks or explain things they don't understand to them.
+**_Two of my weaker points:_**
+* **Lazy.**<br>I am quite lazy, so I usually prefer people telling me what to do (preferably the easy tasks). In a team I usually do what I am told to do without thinking about it. This ends up in me not understanding my tasks and not doing a good job.
+* **Perfectionist.**<br> when I do get what's going on I feel like I need to make everything look perfect and that can lead to me pushing my way of doing it onto other people. 
 
-Two of my weaker points:
-- Lazy, I am quite lazy, so I usually prefer people telling me what to do (preferably the easy tasks). In a team I usually do what I am told to do without thinking about it. This ends up in me not understanding my tasks and not doing a good job.
-- Perfectionist, when I do get what's going on I feel like I need to make everything look perfect and that can lead to me pushing my way of doing it onto other people. 
+<br><br>**_Core quadrants:_**<br>
+* **Quality:** *Commitment* -> **Pitfall:** *Bad time management* -> **Challenge:** *Don't focus too much on one thing* -> **Allergy:** *Slacking off*<br>
+* **Quality:** *Supportive* -> **Pitfall:** *Annoying* -> **Challenge:** *Don't do more than you've been asked to* -> **Allergy:** *Nonchalant*<br>
 
-Core quadrants:
-
-Commitment -> pitfall: bad time management -> challenge: don't focus too much on one thing -> allergy: slacking off
-
-Supportive -> pitfall: annoying -> challenge: don't do more than you've been asked to -> allergy: nonchalant
-
-My goals:
-1. I want to know how to work together on a project. This is important to me since I know that in the future, building anything will be done in a team, so it's important to learn how to work together without conflict. I will listen to the thoughts of my teammates, help them if they need help, let them help me if I need help and try to actively think of ways to improve our program and myself.
-2. I want to know more about programming. This is obviously important since I study CSE. I want to know more about the different aspects of the code that builds the program, like the database and the UI. I will do this by understanding what my teammates coded and not work on one thing.
+<br>**_My goals:_**
+1. **I want to know how to work together on a project.**<br> This is important to me since I know that in the future, building anything will be done in a team, so it's important to learn how to work together without conflict. I will listen to the thoughts of my teammates, help them if they need help, let them help me if I need help and try to actively think of ways to improve our program and myself.<br>
+2. **I want to know more about programming.**<br> This is obviously important since I study CSE. I want to know more about the different aspects of the code that builds the program, like the database and the UI. I will do this by understanding what my teammates coded and not work on one thing.
 
 <br>
 
@@ -86,7 +83,6 @@ My goals:
 <img src="doc/pictures/zheng.png"  width="250" height="250">
 
 #### Personal Development Plan
-
 **_Two of my stronger points:_**
 * **Supportive.**<br> I will try my best to help my teammates understand things they do not know if possible.
 * **Self-discipline.**<br> I will force myself to finish the task before the deadline.
@@ -164,7 +160,6 @@ To help achieve this goal I should probably be more accepting of other people's 
 <img src="doc/pictures/dtoader.jpeg"  width="250" height="250">
 
 #### Personal Development Plan
-
 **_Two of my stronger points:_**
 * **Communicative.**<br>It is shown through the favorable way of interacting with the teammates. I always like to begin with knowing a few details about each member of the group before starting the actual work. Also, I am very happy when we have discussions related to the steps we should follow in order to get to the final form of our assignment. I think this is undoubtedly important because it helps everyone know how the project flows.
 * **Dedicated.**<br>This can be observed through the valuable quality of the end products I create for the projects I work on. I tend to work extra if it is required in order to achieve some of the best results as I appreciate good quality work. I also try to help the people around me if it happens for me to know more so we can all successfully complete everything we come up with.
@@ -182,7 +177,6 @@ To help achieve this goal I should probably be more accepting of other people's 
 I consider these ideas to be extremely important since the IT world requires you to have social skills. Moreover, this kind of environment also involves dividing big assignments into many small branches distributed among the entire team. I am actively working on my goal as I’m trying to establish strong connections throughout the team and I will also do my best to make sure everyone has his/her own important part in this process. I consider I have plenty of options regarding this topic, thanks to my positive attitude, desire to work together with the others and to my colleagues’ receptiveness.<br>
 2. **Improving my programming knowledge.**<br>
 This is an essential part in the process of becoming a computer scientist as it is what all is based on. I am actively working on this goal by trying to absorb as much information as I can from each experience I get involved in and by doing research. There are many options to choose from when talking about learning how to properly do programming and the one I will use most is actually this project during which I’ll get an actual perspective on the idea of being a programmer.
-
 
 <br>
 
