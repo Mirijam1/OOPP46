@@ -34,7 +34,7 @@ WIP page
 <img src="doc/pictures/svanderkruk.jpg"  width="250" height="250">
 
 #### Personal Development Plan
-<br>**_Two of my stronger points:_**
+**_Two of my stronger points:_**
 * **Perseverance.**<br> I don’t like when I dash off my work. So really try my hardest to know as much as I can. This is because I think that you need a good foundation of previous material before you start branching off into material which depends on that knowledge. This point is shown in the team in that I really try to finish my part of the work. I think peer pressure is a good thing in this case since I don’t want to let my team down by giving up on my work.
 * **Organized.**<br> I want a clear definition of what I’m doing before I start. This way I reduce the chance of digression from what must be done. In the team I think this help with knowing what we are all up to instead of digressing too much.
 
@@ -59,7 +59,7 @@ WIP page
 <img src="doc/pictures/20180414_072509081_iOS.jpg"  width="300" height="300">
 
 #### Personal Development Plan
-<br>**_Two of my stronger points:_**
+**_Two of my stronger points:_**
 * **Commitment.**<br> I work seriously on my tasks and always try my best.
 * **Supportive.**<br> I'm always willing to help my teammates with their tasks or explain things they don't understand to them.<br>
 
@@ -84,7 +84,7 @@ WIP page
 <img src="doc/pictures/zheng.png"  width="250" height="250">
 
 #### Personal Development Plan
-<br>**_Two of my stronger points:_**
+**_Two of my stronger points:_**
 * **Supportive.**<br> I will try my best to help my teammates understand things they do not know if possible.
 * **Self-discipline.**<br> I will force myself to finish the task before the deadline.
 
@@ -109,7 +109,7 @@ WIP page
 <img src="doc/pictures/tim_picture.JPG"  width="250" height="250">
 
 #### Personal development plan
-<br>**_Two of my stronger points:_**
+**_Two of my stronger points:_**
 * **Organized.**<br> I'm not one to start something and 'see what happens', when I start with something I usually try to plan everything out beforehand. 
 For programs like this I like to make simple drawing of most models and how they interact with each other, effectively making the whole scheme on paper first. 
 This might sound inefficient, but I've come to realize this strategy is usually faster in the long run.<br>
@@ -161,7 +161,7 @@ To help achieve this goal I should probably be more accepting of other people's 
 <img src="doc/pictures/dtoader.jpeg"  width="250" height="250">
 
 #### Personal Development Plan
-<br>**_Two of my stronger points:_**
+**_Two of my stronger points:_**
 * **Communicative.**<br>It is shown through the favorable way of interacting with the teammates. I always like to begin with knowing a few details about each member of the group before starting the actual work. Also, I am very happy when we have discussions related to the steps we should follow in order to get to the final form of our assignment. I think this is undoubtedly important because it helps everyone know how the project flows.
 * **Dedicated.**<br>This can be observed through the valuable quality of the end products I create for the projects I work on. I tend to work extra if it is required in order to achieve some of the best results as I appreciate good quality work. I also try to help the people around me if it happens for me to know more so we can all successfully complete everything we come up with.
 
@@ -188,7 +188,7 @@ This is an essential part in the process of becoming a computer scientist as it 
 <img src="doc/pictures/shah.jpg"  width="250" height="250">
 
 #### Personal Development Plan
-<br>**_Two of my stronger points:_**
+**_Two of my stronger points:_**
 * **Experience.**<br> Work Experience in a start-up with tasks consisting of web-based development on Node, Angular & React, Git therefore I’m aware of what it’s like to be in a professional environment.
 * **Positive attitude & commitment.**<br> To go above and beyond my assigned tasks by helping and learning from others when we’re stuck and see things through to the end. 
 
