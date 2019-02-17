@@ -161,35 +161,30 @@ To help achieve this goal I should probably be more accepting of other people's 
 
 #### Personal Development Plan
 
-Two of my stronger points:
+**_Two of my stronger points:_**
 
-Communicative.
-It is shown through the favorable way of interacting with the teammates. I always like to begin with knowing a few details about each member of the group before starting the actual work. Also, I am very happy when we have discussions related to the steps we should follow in order to get to the final form of our assignment. I think this is undoubtedly important because it helps everyone know how the project flows.
+* **Communicative.**<br>It is shown through the favorable way of interacting with the teammates. I always like to begin with knowing a few details about each member of the group before starting the actual work. Also, I am very happy when we have discussions related to the steps we should follow in order to get to the final form of our assignment. I think this is undoubtedly important because it helps everyone know how the project flows.
 
-Dedicated.
-This can be observed through the valuable quality of the end products I create during the projects I work on. I tend to work extra if it is required in order to achieve some of the best results as I appreciate good quality work. I also try to help the people around me if it happens for me to know more so we can all successfully complete everything we come up with.
+* **Dedicated.**<br>This can be observed through the valuable quality of the end products I create during the projects I work on. I tend to work extra if it is required in order to achieve some of the best results as I appreciate good quality work. I also try to help the people around me if it happens for me to know more so we can all successfully complete everything we come up with.
 
 
-Two of my weaker points:
+**_Two of my weaker points:_**
 
-Stressed.
-One of my weaker points is stressing more than it would be necessary in the process of doing assignments. It might be shown in a team by my attempts to solve as many things as possible in a short period of time.
+* **Stressed.**<br>One of my weaker points is stressing more than it would be necessary in the process of doing assignments. It might be shown in a team by my attempts to solve as many things as possible in a short period of time.
 
-Unexperienced.
-Not knowing extra information related to programming that could be useful in these kinds of tasks might drag me down a little, which could mean spending more time on descovering how things actually work instead of immediately doing them. This can also appear as a tendency to accomplish the tasks that have been assigned to me more than taking initiative.
+* **Unexperienced.**<br>Not knowing extra information related to programming that could be useful in these kinds of tasks might drag me down a little, which could mean spending more time on descovering how things actually work instead of immediately doing them. This can also appear as a tendency to accomplish the tasks that have been assigned to me more than taking initiative.<br>
 
 
-Core quadrants:
-Quality: Communicative -> Pitfall: Deviating from the subject -> Challenge: Concentrate on doing rather than expressing -> Allergy: Communicating less
-Quality: Dedicated -> Pitfall: exhaustion -> Challenge: Do less things -> Allergy: Lacking dedication
+<br>**_Core quadrants:_**<br>
+**Quality:** *Communicative* -> **Pitfall:** *Deviating from the subject* -> **Challenge:** *Concentrate on doing rather than expressing* -> **Allergy:** *Communicating less*<br>
+**Quality:** *Dedicated* -> **Pitfall:** *Exhaustion* -> **Challenge:** *Do less things* -> **Allergy:** *Lacking dedication*<br>
 
+<br>**_My goals:_**
 
-My goals:
+1. **Developing better teamwork abilities as well as gaining more experience with splitting the tasks.**<br> 
+I consider these ideas to be extremely important since the IT world requires you to have social skills. Moreover, this kind of environment also involves dividing big assignments into many small branches distributed among the entire team. I am actively working on my goal as I’m trying to establish strong connections throughout the team and I will also do my best to make sure everyone has his/her own important part in this process. I consider I have plenty of options regarding this topic, thanks to my positive attitude, desire to work together with the others and to my colleagues’ receptiveness.<br>
 
-Developing better teamwork abilities as well as gaining more experience with splitting the tasks. 
-I consider these ideas to be extremely important since the IT world requires you to have social skills. Moreover, this kind of environment also involves dividing big assignments into many small branches distributed among the entire team. I am actively working on my goal as I’m trying to establish strong connections throughout the team and I will also do my best to make sure everyone has his/her own important part in this process. I consider I have plenty of options regarding this topic, thanks to my positive attitude, desire to work together with the others and to my colleagues’ receptiveness.
-
-Improving my programming knowledge.
+2. **Improving my programming knowledge.**<br>
 This is an essential part in the process of becoming a computer scientist as it is what all is based on. I am actively working on this goal by trying to absorb as much information as I can from each experience I get involved in and by doing research. There are many options to choose from when talking about learning how to properly do programming and the one I will use most is actually this project during which I’ll get an actual perspective on the idea of being a programmer.
 
 
