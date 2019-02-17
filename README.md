@@ -89,16 +89,16 @@ WIP page
 * **Self-discipline.**<br> I will force myself to finish the task before the deadline.
 
 <br>**_Two of my weaker points:_**
-* **Not good at communicating.**<br> I would not say I like to talk in the team since my English is quite bad compared to others, and I am afraid that someone will laugh at me even though I know they won’t. 
-* **Lazy.**<br> I usually do the task which is asked to do; I would not say I like to do more things that are not in my range.
+* **Not good at communicating.**<br> I would not say I like to talk a lot in the team since my English is quite bad compared to others, and I will be nervous if I do not know how to do my part of the task as I am afraid to ask.
+* **Lazy.**<br> I usually only do the tasks which are asked to do; I would not say I like to do more things that are not in my range.
 
 <br>**_Core quadrants:_**<br>
-* **Quality:** *Supportive* -> **Pitfall:** *Spending too much time helping the others* -> **Challenge:** *Concentrate on your own job* -> **Allergy:** *Less supportive*<br>
+* **Quality:** *Supportive* -> **Pitfall:** *Cannot explain to others clearly as my poor English* -> **Challenge:** *Concentrate on your own job* -> **Allergy:** *Less supportive*<br>
 * **Quality:** *Self-discipline* -> **Pitfall:** *Overly disciplined* -> **Challenge:** *Be more flexible* -> **Allergy:** *Lacking self-control*<br>
 
 <br>**_My goals:_**
 1. **Improving my English.**<br> This is important to me since I need to communicate during the project with my teammates. To achieve it, I need to learn several new English words every day and interact with my teammates as much as possible.<br>
-2. **Improving my programming skills.**<br> I would like to do this as I have almost no experience with Computer Science at all and I find it is quite difficult for me to learn this course. During this course, I can practice with my teammates. As I exercise more, I can learn more stuff in it.
+2. **Improving my programming skills.**<br> I would like to do this as I have no experience with Computer Science at all and I find it is quite difficult for me to learn this course. During this course, I can practice with my teammates. As I exercise more, I can learn more stuff in it.
 
 <br>
 
