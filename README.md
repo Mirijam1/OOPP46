@@ -9,19 +9,21 @@ WIP page
 <img src="doc/pictures/37050613_2133834693325887_4237135342316027904_n.jpg"  width="250" height="250">
 
 #### Personal Development Plan
-
-2 Strong points:
-- Determination. Having the inner courage to do everything, that needs to be done in order to achieve the goal that i have put in front of myself. Forcing myself to do the things i need to do, even when i dont feel like it, is something which makes me treat myself to a higher standard and also makes me enjoy the sweet fruit of reward much more when said goal has been achieved and achieved with high remarks.
-- Good spirit and being nice in general. Being able to make a certain situation less intimidating for a single person or a group of people is very important to me so i give it my all when somebody is strugling or is in need of some sort of help. If someone is having a bad day and you make them smile for just 10 seconds that person would be gratefull to you for the rest of the day. So having the abillity to help out my teammates whether its when we are stuck on a certain problem or just make everyone smile and be motivated so that they can do their best work is something i aspire to.
+**_Two of my stronger points:_**
+* **Determination.**<br> Having the inner courage to do everything that needs to be done in order to achieve the goal that I set myself. Forcing myself to do the things I need to do, even when I don't feel like it is something which makes me treat myself to a higher standard and also makes me enjoy the sweet fruit of reward much more when the goal has been achieved, achieved with high results.
+* **Good spirit and being nice in general.**<br> Being able to make a certain situation less intimidating for a single person or a group of people is very important to me so I give it my all when somebody is strugling or is in need of some sort of help. If someone is having a bad day and you make them smile for just 10 seconds that person would be grateful to you for the rest of the day. So, having the ability to help my teammates, whether it is when we are stuck on a certain problem, or just make everyone smile and be motivated so that they can do their best work is something I'm aspiring to.
  
-2 Weaker points:
-- Procrastination and laziness. I have been strugling with these two since i was a small child but i try my best every single day to just make them dissapear little by little so that it dosen't affect my work and the essentials of what i have to do to achieve.
-- Not a lot of experience with CS in general. I am a medium pace learner of sorts and Computer Science has a lot of things that need to be inherited at a quick pace so i find myself sometimes strugling to stay a float.
+<br>**_Two of my weaker points:_**
+* **Procrastination and laziness.**<br> I have been strugling with these two since i was a small child but i try my best every single day to just make them dissapear little by little so that it dosen't affect my work and the essentials of what i have to do to achieve.
+* **Not a lot of experience with CS in general.**<br> I am a medium pace learner of sorts and Computer Science has a lot of things that need to be inherited at a quick pace so i find myself sometimes strugling to stay a float.
 
-My goals:
+<br>**_Core quadrants:_**<br>
+* **Quality:** *Determined* -> **Pitfall:** *Tired* -> **Challenge:** *Take it easier* -> **Allergy:** *Being less willing to work*<br>
+* **Quality:** *Being nice* -> **Pitfall:** *Overly nice* -> **Challenge:** *Don't overdo* -> **Allergy:** *Becoming cold*<br>
 
-1. Experience what it's like to work in a real Software Team enviroment so that i could more easily get acquainted with the way work is done in this whole industry for later down the road.
-2. Get to grip with software and programing on a more in-depth scale and see what areas of my CS skills i need to work on so that i can contribute more effectively to my team now and later on when working for an actual Software company.
+<br>**_My goals:_**
+1. **Becoming more experienced**<br> I am excited to find out what it's like to work in a real Software Team environment so that I could more easily get acquainted with the way work is done in this whole industry for later on this path.
+2. **Acquiring knowledge**<br> I plan to get a good grip on software and programming at a more in-depth scale and see what areas of my CS skills I need to work on so that I can contribute more effectively to my team now and later on when working for an actual Software company.
 
 <br>
 
@@ -40,7 +42,7 @@ My goals:
 * **Time Management.**<br> Trying to work out all the details takes a lot of time and taking the time to sort all the work doesn’t help either. I think in a group this isn’t really a problem since I really get that extra bit of motivation from working with a team to do the work immediately.
 * **Control freak.**<br> I don’t like it when I don’t know what something (or somebody) is doing. This sounds bad, but from previous experience from working in teams I have learned from my mistakes. Everybody knows what they are doing, so why do I feel the need to take over? That is what I ask myself. So, I’ll try to use the good parts of being a control freak, that is, being in control of what I’m doing instead of someone else is doing.
 
-<br><br>**_Core quadrants:_**<br>
+<br>**_Core quadrants:_**<br>
 * **Quality:** *Perseverance* -> **Pitfall:** *Bad time management* -> **Challenge:** *Prioritize your work* -> **Allergy:** *Dashing off*<br>
 * **Quality:** *Organized* -> **Pitfall:** *Control Freak* -> **Challenge:** *Focus only on my work* -> **Allergy:** *Disorganized*<br>
 
@@ -65,7 +67,7 @@ My goals:
 * **Lazy.**<br>I am quite lazy, so I usually prefer people telling me what to do (preferably the easy tasks). In a team I usually do what I am told to do without thinking about it. This ends up in me not understanding my tasks and not doing a good job.
 * **Perfectionist.**<br> when I do get what's going on I feel like I need to make everything look perfect and that can lead to me pushing my way of doing it onto other people. 
 
-<br><br>**_Core quadrants:_**<br>
+<br>**_Core quadrants:_**<br>
 * **Quality:** *Commitment* -> **Pitfall:** *Bad time management* -> **Challenge:** *Don't focus too much on one thing* -> **Allergy:** *Slacking off*<br>
 * **Quality:** *Supportive* -> **Pitfall:** *Annoying* -> **Challenge:** *Don't do more than you've been asked to* -> **Allergy:** *Nonchalant*<br>
 
@@ -90,7 +92,7 @@ My goals:
 * **Not good at communicating.**<br> I would not say I like to talk in the team since my English is quite bad compared to others, and I am afraid that someone will laugh at me even though I know they won’t. 
 * **Lazy.**<br> I usually do the task which is asked to do; I would not say I like to do more things that are not in my range.
 
-<br><br>**_Core quadrants:_**<br>
+<br>**_Core quadrants:_**<br>
 * **Quality:** *Supportive* -> **Pitfall:** *Spending too much time helping the others* -> **Challenge:** *Concentrate on your own job* -> **Allergy:** *Less supportive*<br>
 * **Quality:** *Self-discipline* -> **Pitfall:** *Overly disciplined* -> **Challenge:** *Be more flexible* -> **Allergy:** *Lacking self-control*<br>
 
