@@ -2,8 +2,8 @@
 WIP page
 
 ## Our group
-### Momchil Bozhkov
-**Name:** Momchil<br>
+### Momchil
+**Name:** Momchil Bozhkov<br>
 **NetId:** mbozhkov
 
 <img src="doc/pictures/37050613_2133834693325887_4237135342316027904_n.jpg"  width="250" height="250">
@@ -34,7 +34,7 @@ WIP page
 <img src="doc/pictures/svanderkruk.jpg"  width="250" height="250">
 
 #### Personal Development Plan
-**_Two of my stronger points:_**
+<br>**_Two of my stronger points:_**
 * **Perseverance.**<br> I don’t like when I dash off my work. So really try my hardest to know as much as I can. This is because I think that you need a good foundation of previous material before you start branching off into material which depends on that knowledge. This point is shown in the team in that I really try to finish my part of the work. I think peer pressure is a good thing in this case since I don’t want to let my team down by giving up on my work.
 * **Organized.**<br> I want a clear definition of what I’m doing before I start. This way I reduce the chance of digression from what must be done. In the team I think this help with knowing what we are all up to instead of digressing too much.
 
@@ -59,11 +59,11 @@ WIP page
 <img src="doc/pictures/20180414_072509081_iOS.jpg"  width="300" height="300">
 
 #### Personal Development Plan
-**_Two of my stronger points:_**
+<br>**_Two of my stronger points:_**
 * **Commitment.**<br> I work seriously on my tasks and always try my best.
 * **Supportive.**<br> I'm always willing to help my teammates with their tasks or explain things they don't understand to them.<br>
 
-**_Two of my weaker points:_**
+<br>**_Two of my weaker points:_**
 * **Lazy.**<br>I am quite lazy, so I usually prefer people telling me what to do (preferably the easy tasks). In a team I usually do what I am told to do without thinking about it. This ends up in me not understanding my tasks and not doing a good job.
 * **Perfectionist.**<br> when I do get what's going on I feel like I need to make everything look perfect and that can lead to me pushing my way of doing it onto other people. 
 
@@ -77,14 +77,14 @@ WIP page
 
 <br>
 
-### Qingna Zheng
+### Qingna
 **Name:** Qingna Zheng<br>
 **NetID:** qingnazheng
 
 <img src="doc/pictures/zheng.png"  width="250" height="250">
 
 #### Personal Development Plan
-**_Two of my stronger points:_**
+<br>**_Two of my stronger points:_**
 * **Supportive.**<br> I will try my best to help my teammates understand things they do not know if possible.
 * **Self-discipline.**<br> I will force myself to finish the task before the deadline.
 
@@ -109,7 +109,7 @@ WIP page
 <img src="doc/pictures/tim_picture.JPG"  width="250" height="250">
 
 #### Personal development plan
-**_Two of my stronger points:_**
+<br>**_Two of my stronger points:_**
 * **Organized.**<br> I'm not one to start something and 'see what happens', when I start with something I usually try to plan everything out beforehand. 
 For programs like this I like to make simple drawing of most models and how they interact with each other, effectively making the whole scheme on paper first. 
 This might sound inefficient, but I've come to realize this strategy is usually faster in the long run.<br>
@@ -133,8 +133,8 @@ It's also not like I don't feel like explaining things, it's the opposite actual
 I really like to explain stuff, but I also regularly forget people may just have started with programming/working with X, which sometimes causes them to be more confused after my 'explanation'.
 
 <br>**_Core quadrants:_**<br>
-*Organized* -> **Pitfall**: *Overly organized* -> **Challenge:** *Leave thing as they are* -> **Allergy:** *Disorganized*<br>
-*Eager to learn* -> **Pitfall**: *Spending to much time on the project* -> **Challenge:** *Stop always trying to understand everything* -> **Allergy:** *Brainless copy-pasting*
+* **Quality:** *Organized* -> **Pitfall**: *Overly organized* -> **Challenge:** *Leave thing as they are* -> **Allergy:** *Disorganized*<br>
+* **Quality:** *Eager to learn* -> **Pitfall**: *Spending to much time on the project* -> **Challenge:** *Stop always trying to understand everything* -> **Allergy:** *Brainless copy-pasting*
 
 <br>**_My goals:_**
 1. **I want to expand my knowledge of the Spring framework, and RESTful APIs.**<br>
@@ -161,11 +161,11 @@ To help achieve this goal I should probably be more accepting of other people's 
 <img src="doc/pictures/dtoader.jpeg"  width="250" height="250">
 
 #### Personal Development Plan
-**_Two of my stronger points:_**
+<br>**_Two of my stronger points:_**
 * **Communicative.**<br>It is shown through the favorable way of interacting with the teammates. I always like to begin with knowing a few details about each member of the group before starting the actual work. Also, I am very happy when we have discussions related to the steps we should follow in order to get to the final form of our assignment. I think this is undoubtedly important because it helps everyone know how the project flows.
 * **Dedicated.**<br>This can be observed through the valuable quality of the end products I create for the projects I work on. I tend to work extra if it is required in order to achieve some of the best results as I appreciate good quality work. I also try to help the people around me if it happens for me to know more so we can all successfully complete everything we come up with.
 
-**_Two of my weaker points:_**
+<br>**_Two of my weaker points:_**
 * **Stressed.**<br>One of my weaker points is stressing more than it would be necessary in the process of doing assignments. It might be shown in a team by my attempts to solve as many things as possible in a short period of time.
 * **Unexperienced.**<br>Not knowing extra information related to programming that could be useful in these kinds of tasks might drag me down a little, which could mean spending more time on descovering how things actually work instead of immediately doing them. This can also appear as a tendency to accomplish the tasks that have been assigned to me more than taking initiative.
 
@@ -181,40 +181,28 @@ This is an essential part in the process of becoming a computer scientist as it 
 
 <br>
 
-### Shah Farooq
+### Shah
 **Name:** Shah Farooq<br>
 **NetID:** sfarooq
 
 <img src="doc/pictures/shah.jpg"  width="250" height="250">
 
 #### Personal Development Plan
+<br>**_Two of my stronger points:_**
+* **Experience.**<br> Work Experience in a start-up with tasks consisting of web-based development on Node, Angular & React, Git therefore I’m aware of what it’s like to be in a professional environment.
+* **Positive attitude & commitment.**<br> To go above and beyond my assigned tasks by helping and learning from others when we’re stuck and see things through to the end. 
 
-**_Two of my stronger points:_**
-
-
-* **Experience**<br> Work Experience in a start-up with tasks consisting of web-based development on Node, Angular & React, Git therefore I’m aware of what it’s like to be in a professional environment.
-
-* **Positive attitude & commitment** <br>To go above and beyond my assigned tasks by helping and learning from others when we’re stuck and see things through to the end. 
-
-
-**_Two of my weaker points:_**
-
-* **Staying Calm**<br> The project is exciting, however, intimidating because I have to grasp new frameworks like Spring,Maven,JavaFX, numerous other libraries and learning their functionalities and their effective usage scenarios. Therefore, it is a substantial part of my learning goal during this course to know how to produce large-scale projects.   
-
+<br>**_Two of my weaker points:_**
+* **Staying Calm**<br> The project is exciting, however, intimidating because I have to grasp new frameworks like Spring,Maven,JavaFX, numerous other libraries and learning their functionalities and their effective usage scenarios. Therefore, it is a substantial part of my learning goal during this course to know how to produce large-scale projects.
 * **Procrastination**<br> It comes naturally. For me, personally, this how I produce my best output by procrastinating - maybe it’s the adrenaline rush of the thrill of working close to deadlines.
 
 <br>**_Core quadrants:_**<br>
-
-**Quality:** *Experience* -> **Pitfall:** *May seem like a know-it-all* -> **Challenge:** *Share productive techniques for project success* -> **Allergy:** *Enforcing bad practices*<br>
-
-**Quality:** *Optimism* -> **Pitfall:** *positive but unproductive* -> **Challenge:** *Timely Done Tasks* -> **Allergy:** *Pessimism*<br>
-
+* **Quality:** *Experience* -> **Pitfall:** *May seem like a know-it-all* -> **Challenge:** *Share productive techniques for project success* -> **Allergy:** *Enforcing bad practices*<br>
+* **Quality:** *Optimism* -> **Pitfall:** *positive but unproductive* -> **Challenge:** *Timely Done Tasks* -> **Allergy:** *Pessimism*<br>
 
 <br>**_My goals:_**
-
 1. **Improve problem-solving and critical thinking skills to come up with creative solutions by making judgment calls and trade-off analysis.**<br>
 Problem-solving skills are essential for programmers in the 21st century and we have numerous resources and tools at our disposal to take advantage of such as Google, StackOverflow, Books and of course team members past experiences.  With my teammates we can: brainstorm, get new ideas and creative juices flowing and think in different perspectives. 
-
 2. **Having professional, friendly and open team communication to clearly get ideas across the group and be open to constructive criticism.**<br>
 Since the project is more about software engineering methods than programming, communication is key so it’s a good idea to learn about modern development processes like agile and software-development life cycles. Efficient time-management – prioritise tasks in an effective workflow environment using scrum methods.
 
