@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- General information -->
+    <artifactId>client</artifactId>
+
+    <!-- Parent -->
+    <parent>
+        <groupId>nl.tudelft.gogreen</groupId>
+        <artifactId>OOP-Project</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <!-- Properties -->
+    <properties>
+        <!-- Main class -->
+        <client.main.class>nl.tudelft.gogreen.client.Client</client.main.class>
+
+        <!-- Versions -->
+        <org.apache.maven.plugins-version>2.4.2</org.apache.maven.plugins-version>
+        <org.apache.maven.plugins-jar-version>3.1.0</org.apache.maven.plugins-jar-version>
+        <com.mashape.unirest-version>1.4.9</com.mashape.unirest-version>
+        <http.client.version>4.3.6</http.client.version>
+        <http.asyncclient.version>4.0.2</http.asyncclient.version>
+        <http.mime.version>4.3.6</http.mime.version>
+        <json.version>20140107</json.version>
+    </properties>
+
+    <!-- Dependencies -->
+    <dependencies>
+        <dependency>
+            <groupId>com.mashape.unirest</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>${com.mashape.unirest-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${http.client.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpasyncclient</artifactId>
+            <version>${http.asyncclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>${http.mime.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${json.version}</version>
+        </dependency>
+    </dependencies>
+
+    <!-- Build configuration -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${org.apache.maven.plugins-version}</version>
+                <configuration>
+                    <skipTests>${client.test.skip}</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${org.apache.maven.plugins-jar-version}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>${client.main.class}</mainClass>
+                        </manifest>
+                    </archive>
+                    <finalName>Client</finalName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
