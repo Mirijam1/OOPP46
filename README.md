@@ -87,21 +87,21 @@ My goals:
 
 #### Personal Development Plan
 
-2 Strong points:
-- accommodate, I will try my best to help my teammates understand things they do not know if possible.
-- self-discipline, I will force myself to finish the task before the deadline.
+**_Two of my stronger points:_**
+* **Supportive.**<br> I will try my best to help my teammates understand things they do not know if possible.
+* **Self-discipline.**<br> I will force myself to finish the task before the deadline.
 
-2 Weaker points:
-- Not good at communicating. I would not say I like to talk in the team since my English is quite bad compared to others, and I am afraid that someone will laugh at me even though I know they won’t. 
-- Lazy. I usually do the task which is asked to do; I would not say I like to do more things that are not in my range.
+<br>**_Two of my weaker points:_**
+* **Not good at communicating.**<br> I would not say I like to talk in the team since my English is quite bad compared to others, and I am afraid that someone will laugh at me even though I know they won’t. 
+* **Lazy.**<br> I usually do the task which is asked to do; I would not say I like to do more things that are not in my range.<br>
 
-Core quadrants:
-Accommodate -> pitfall: Impatient -> challenge: sometimes cannot explain to others clearly as my poor English -> allergy: don’t want to answer questions
-Self-discipline -> pitfall: not good at time management -> challenge: normally finish the task on the last day-> allergy: completed the task in a hurry
+<br>**_Core quadrants:_**<br>
+* **Quality:** *Supportive* -> **Pitfall:** *Spending too much time helping the others* -> **Challenge:** *Concentrate on your own job* -> **Allergy:** *Less supportive*<br>
+* **Quality:** *Self-discipline* -> **Pitfall:** *Overly disciplined* -> **Challenge:** *Be more flexible* -> **Allergy:** *Lacking self-control*<br>
 
-My goals:
-- I want to improve my English since I need to communicate the project with my teammates. To achieve it, I need to learn several new words with English every day and interact with my teammates as much as possible.
-- I want to improve my programming skill, almost no experience about Computer Science at all and I find it is quite difficult for me to learn this course. During this course, I can practice with my teammates. As I exercise more, I can learn more stuff in it.
+<br>**_My goals:_**
+1. **Improving my English.**<br> This is important to me since I need to communicate during the project with my teammates. To achieve it, I need to learn several new English words every day and interact with my teammates as much as possible.<br>
+2. **Improving my programming skills.**<br> I would like to do this as I have almost no experience with Computer Science at all and I find it is quite difficult for me to learn this course. During this course, I can practice with my teammates. As I exercise more, I can learn more stuff in it.
 
 <br>
 
@@ -166,28 +166,20 @@ To help achieve this goal I should probably be more accepting of other people's 
 #### Personal Development Plan
 
 **_Two of my stronger points:_**
-
 * **Communicative.**<br>It is shown through the favorable way of interacting with the teammates. I always like to begin with knowing a few details about each member of the group before starting the actual work. Also, I am very happy when we have discussions related to the steps we should follow in order to get to the final form of our assignment. I think this is undoubtedly important because it helps everyone know how the project flows.
-
-* **Dedicated.**<br>This can be observed through the valuable quality of the end products I create during the projects I work on. I tend to work extra if it is required in order to achieve some of the best results as I appreciate good quality work. I also try to help the people around me if it happens for me to know more so we can all successfully complete everything we come up with.
-
+* **Dedicated.**<br>This can be observed through the valuable quality of the end products I create for the projects I work on. I tend to work extra if it is required in order to achieve some of the best results as I appreciate good quality work. I also try to help the people around me if it happens for me to know more so we can all successfully complete everything we come up with.
 
 **_Two of my weaker points:_**
-
 * **Stressed.**<br>One of my weaker points is stressing more than it would be necessary in the process of doing assignments. It might be shown in a team by my attempts to solve as many things as possible in a short period of time.
-
 * **Unexperienced.**<br>Not knowing extra information related to programming that could be useful in these kinds of tasks might drag me down a little, which could mean spending more time on descovering how things actually work instead of immediately doing them. This can also appear as a tendency to accomplish the tasks that have been assigned to me more than taking initiative.<br>
 
-
 <br>**_Core quadrants:_**<br>
-**Quality:** *Communicative* -> **Pitfall:** *Deviating from the subject* -> **Challenge:** *Concentrate on doing rather than expressing* -> **Allergy:** *Communicating less*<br>
-**Quality:** *Dedicated* -> **Pitfall:** *Exhaustion* -> **Challenge:** *Do less things* -> **Allergy:** *Lacking dedication*<br>
+* **Quality:** *Communicative* -> **Pitfall:** *Deviating from the subject* -> **Challenge:** *Concentrate on doing rather than expressing* -> **Allergy:** *Communicating less*<br>
+* **Quality:** *Dedicated* -> **Pitfall:** *Exhaustion* -> **Challenge:** *Do less things* -> **Allergy:** *Lacking dedication*<br>
 
 <br>**_My goals:_**
-
 1. **Developing better teamwork abilities as well as gaining more experience with splitting the tasks.**<br> 
 I consider these ideas to be extremely important since the IT world requires you to have social skills. Moreover, this kind of environment also involves dividing big assignments into many small branches distributed among the entire team. I am actively working on my goal as I’m trying to establish strong connections throughout the team and I will also do my best to make sure everyone has his/her own important part in this process. I consider I have plenty of options regarding this topic, thanks to my positive attitude, desire to work together with the others and to my colleagues’ receptiveness.<br>
-
 2. **Improving my programming knowledge.**<br>
 This is an essential part in the process of becoming a computer scientist as it is what all is based on. I am actively working on this goal by trying to absorb as much information as I can from each experience I get involved in and by doing research. There are many options to choose from when talking about learning how to properly do programming and the one I will use most is actually this project during which I’ll get an actual perspective on the idea of being a programmer.
 
@@ -202,48 +194,34 @@ This is an essential part in the process of becoming a computer scientist as it 
 
 #### Personal Development Plan
 
-2 Strong Points 
-
-* Previous working experience in a start-up consisting of web-based development on Node, Angular & React, Git therefore I’m aware of what it’s like to be in a professional environment.
-
-* Positive attitude & commitment – not afraid to jump out of my usual comfort zone to go above & beyond my assigned tasks, help others when they’re stuck and see things through to the end. 
-
-2 Weaker Points
-
-* Haven’t programmed professionally in Java before – intimidating new frameworks and learning their functionalities and their effective usage scenarios. 
-
-* Procrastination comes naturally. For me, personally, this how I produce my best output by procrastinating - maybe it’s the adrenaline rush of the thrill of working close to deadlines.
-
-Core Quadrant
-
-Quality: absorb info quickly ->Pitfall: learn irrelevant things ->Challenge: effective use of knowledge->Allergy: Take time for simple concepts 
-
-Quality: Commitment ->Pitfall: spend excessive time->Challenge: timely done tasks->Allergy: procrastination
-
-#### My learning Goals
-
-* Learn industry-standard frameworks/libraries by experimenting and get the most out of them to build high-quality software, by producing quality code according to specifications using best practices.  
-
-* Improve problem-solving and critical thinking skills to come up with creative solutions by making judgment calls and trade-off analysis. 
-
-* Since the project is more about software engineering methods than programming, it’s a good idea to learn about modern development processes like agile and software-development life cycles.
-
-* Having professional, friendly and open team communication to clearly get ideas across the group and be open to constructive criticism.
-
-* Efficient time-management – prioritise tasks in an effective workflow environment using scrum methods.
+**_Two of my stronger points:_**
 
 
-#### Steps to Achieve Goal
+* **Experience**<br> Work Experience in a start-up with tasks consisting of web-based development on Node, Angular & React, Git therefore I’m aware of what it’s like to be in a professional environment.
 
-* After setting my goals, I need actively start working towards my goals this can be done by:
+* **Positive attitude & commitment** <br>To go above and beyond my assigned tasks by helping and learning from others when we’re stuck and see things through to the end. 
 
-* Having the right mindset – dedication and passion to build a complete end-to-end product which will serve as an achievement to myself and motivate me further to do more.
 
-* Make side projects and build something that it is standalone which can be used in the final build and learning from its inevitable failures.   
+**_Two of my weaker points:_**
 
-* Revisit OOP from Q1 which has a lot of transferrable skills and refresh my memory on the fundamentals of MVC and key skills learnt during the course.
+* **Staying Calm**<br> The project is exciting, however, intimidating because I have to grasp new frameworks like Spring,Maven,JavaFX, numerous other libraries and learning their functionalities and their effective usage scenarios. Therefore, it is a substantial part of my learning goal during this course to know how to produce large-scale projects.   
 
-* We’re in the 21st century and have numerous resources and tools at our disposal to take advantage of such as Google, StackOverflow, Books and of course team members past experiences. With my teammates we can: brainstorm, get new ideas and creative juices flowing and think in different perspectives. 
+* **Procrastination**<br> It comes naturally. For me, personally, this how I produce my best output by procrastinating - maybe it’s the adrenaline rush of the thrill of working close to deadlines.
+
+<br>**_Core quadrants:_**<br>
+
+**Quality:** *Experience* -> **Pitfall:** *May seem like a know-it-all* -> **Challenge:** *Share productive techniques for project success* -> **Allergy:** *Enforcing bad practices*<br>
+
+**Quality:** *Optimism* -> **Pitfall:** *positive but unproductive* -> **Challenge:** *Timely Done Tasks* -> **Allergy:** *Pessimism*<br>
+
+
+<br>**_My goals:_**
+
+1. **Improve problem-solving and critical thinking skills to come up with creative solutions by making judgment calls and trade-off analysis.**<br>
+Problem-solving skills are essential for programmers in the 21st century and we have numerous resources and tools at our disposal to take advantage of such as Google, StackOverflow, Books and of course team members past experiences.  With my teammates we can: brainstorm, get new ideas and creative juices flowing and think in different perspectives. 
+
+2. **Having professional, friendly and open team communication to clearly get ideas across the group and be open to constructive criticism.**<br>
+Since the project is more about software engineering methods than programming, communication is key so it’s a good idea to learn about modern development processes like agile and software-development life cycles. Efficient time-management – prioritise tasks in an effective workflow environment using scrum methods.
 
 ## How To Use
 
