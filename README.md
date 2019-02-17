@@ -175,7 +175,7 @@ To help achieve this goal I should probably be more accepting of other people's 
 * **Unexperienced.**<br>Not knowing extra information related to programming that could be useful in these kinds of tasks might drag me down a little, which could mean spending more time on descovering how things actually work instead of immediately doing them. This can also appear as a tendency to accomplish the tasks that have been assigned to me more than taking initiative.<br>
 
 
-<br>**_Core quadrants:_**<br>
+<br>**_Core quadrants:_**<br><br>
 **Quality:** *Communicative* -> **Pitfall:** *Deviating from the subject* -> **Challenge:** *Concentrate on doing rather than expressing* -> **Allergy:** *Communicating less*<br><br>
 **Quality:** *Dedicated* -> **Pitfall:** *Exhaustion* -> **Challenge:** *Do less things* -> **Allergy:** *Lacking dedication*<br>
 
