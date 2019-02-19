@@ -16,20 +16,12 @@ import javax.persistence.Table;
 public class Category {
     @Id
     @Column(name = "CID", nullable = false, unique = true, updatable = false)
-    private String id;
+    private int id;
 
     @Column(name = "NAME", nullable = false, unique = true)
     private String categoryname;
 
     @Column(name = "DESCRIPTION", nullable = false, unique = true)
     private String description;
-
-
-    public Category(String id, String name, String description) {
-        super();
-        this.id = id;
-        this.categoryname = name;
-        this.description = description;
-    }
 
 }

@@ -19,7 +19,7 @@ public class ActivityController {
     }
 
     @RequestMapping("/activities/{id}")
-    public Activity getActivity(@PathVariable String id) {
+    public Activity getActivity(@PathVariable Integer id) {
         return activityService.getActivity(id);
     }
 
@@ -29,12 +29,12 @@ public class ActivityController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/activities/{id}")
-    public void updateActivity(@RequestBody Activity activity, @PathVariable String id) {
+    public void updateActivity(@RequestBody Activity activity, @PathVariable Integer id) {
         activityService.updateActivity(id, activity);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/activities/{id}")
-    public void deleteActivity(@PathVariable String id) {
+    public void deleteActivity(@PathVariable Integer id) {
         activityService.deleteActivity(id);
     }
 }

@@ -19,21 +19,21 @@ public class ActivityService {
         return Activities;
     }
 
-    public Activity getActivity(String id) {
-        Activity t = activityRepository.findById(id).get();
-        return t;
+    public Activity getActivity(Integer id) {
+        return activityRepository.findById(id).get();
+
     }
 
-    public void addActivity(Activity Activity) {
+    public void addActivity(Activity activity) {
 
-        activityRepository.save(Activity);
+        activityRepository.save(activity);
     }
 
-    public void updateActivity(String id, Activity Activity) {
-        activityRepository.save(Activity);
+    public void updateActivity(Integer id, Activity activity) {
+        activityRepository.save(activity);
     }
 
-    public void deleteActivity(String id) {
+    public void deleteActivity(Integer id) {
         activityRepository.deleteById(id);
     }
 

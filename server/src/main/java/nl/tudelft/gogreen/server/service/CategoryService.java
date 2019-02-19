@@ -19,20 +19,19 @@ public class CategoryService {
         return categories;
     }
 
-    public Category getCategory(String id) {
-        Category t = categoryRepository.findById(id).get();
-        return t;
+    public Category getCategory(Integer id) {
+        return categoryRepository.findById(id).get();
     }
 
-    public void addCategory(Category Category) {
-        categoryRepository.save(Category);
+    public void addCategory(Category category) {
+        categoryRepository.save(category);
     }
 
-    public void updateCategory(String id, Category Category) {
-        categoryRepository.save(Category);
+    public void updateCategory(Integer id, Category category) {
+        categoryRepository.save(category);
     }
 
-    public void deleteCategory(String id) {
+    public void deleteCategory(Integer id) {
         categoryRepository.deleteById(id);
     }
 }

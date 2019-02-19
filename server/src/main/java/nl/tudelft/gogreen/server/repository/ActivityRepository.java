@@ -2,9 +2,8 @@ package nl.tudelft.gogreen.server.repository;
 
 import nl.tudelft.gogreen.server.models.Activity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 
-import java.util.List;
-
-public interface ActivityRepository extends JpaRepository<Activity, String> {
-    List<Activity> findByActivityName(String name);
+public interface ActivityRepository extends JpaRepository<Activity, Integer> {
+    Activity findByActivityname(@Param("activityname") String ActivityName);
 }

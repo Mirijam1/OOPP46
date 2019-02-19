@@ -16,24 +16,24 @@ import java.util.UUID;
 public class Activity {
     @Id
     @Column(name = "UID", nullable = false, unique = true, updatable = false)
-    private String id;
+    private int id;
 
     @Column(name = "NAME", nullable = false, unique = true)
     private String activityname;
 
     @Column(name = "CATEGORY", nullable = false)
-    private Category category;
+    private int cid;
 
     @Column(name = "POINTS", nullable = false)
     private double points;
 
-    public Activity(String id, String name, Category Category, double Points) {
-        super();
-        this.id = id;
-        this.activityname = name;
-        this.category = Category;
-        this.points=Points;
-    }
+//    public Activity(String id, String name, Category Category, double Points) {
+//        super();
+//        this.id = id;
+//        this.activityname = name;
+//        this.category = Category;
+//        this.points=Points;
+//    }
 
 
     //    @ManyToMany(fetch = FetchType.EAGER)
@@ -46,7 +46,7 @@ public class Activity {
 //            referencedColumnName = "CID"
 //        )
 //          )
-    private Collection<Activity> activities;
+//    private Collection<Activity> activities;
 /*
 TODO: ADD METHODS
 @Override
