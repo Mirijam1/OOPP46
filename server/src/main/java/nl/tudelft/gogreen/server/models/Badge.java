@@ -13,14 +13,14 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @AllArgsConstructor
 @Builder(toBuilder = true)
-
+@Table(name = "BADGE")
 public class Badge {
     @Id
-    @Column(name = "UID", nullable = false, unique = true, updatable = false)
+    @Column(name = "BADGE_ID", nullable = false, unique = true, updatable = false)
     private UUID id;
 
     @Column(name = "NAME", nullable = false, unique = true)
-    private String badgename;
+    private String badgeName;
 
     @Column(name = "TYPE", nullable = false)
     private String type;

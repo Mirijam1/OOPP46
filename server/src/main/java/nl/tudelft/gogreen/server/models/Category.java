@@ -12,16 +12,15 @@ import javax.persistence.Table;
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @AllArgsConstructor
 @Builder(toBuilder = true)
-@Table(name = "CATEGORY_TABLE")
+@Table(name = "CATEGORY")
 public class Category {
     @Id
-    @Column(name = "CID", nullable = false, unique = true, updatable = false)
-    private int id;
+    @Column(name = "CATEGORY_ID", nullable = false, unique = true, updatable = false)
+    private String id;
 
     @Column(name = "NAME", nullable = false, unique = true)
-    private String categoryname;
+    private String categoryName;
 
-    @Column(name = "DESCRIPTION", nullable = false, unique = true)
+    @Column(name = "DESCRIPTION", nullable = false)
     private String description;
-
 }

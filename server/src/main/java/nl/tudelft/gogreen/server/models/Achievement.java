@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @AllArgsConstructor
 @Builder(toBuilder = true)
-@Table(name = "ACHIEVEMENT_TABLE")
+@Table(name = "ACHIEVEMENT")
 public class Achievement {
     @Id
     @Column(name = "UID", nullable = false, unique = true, updatable = false)
