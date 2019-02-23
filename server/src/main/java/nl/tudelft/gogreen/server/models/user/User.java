@@ -1,6 +1,7 @@
-package nl.tudelft.gogreen.server.models;
+package nl.tudelft.gogreen.server.models.user;
 
 import lombok.*;
+import nl.tudelft.gogreen.server.models.Authority;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,12 +21,13 @@ Very basic class, will be developed further
 @Table(name = "USER_TABLE")
 public class User implements UserDetails, Serializable {
     @Id
-    @Column(name = "UID", nullable = false, unique = true, updatable = false)
+    @Column(name = "USER_ID", nullable = false, unique = true, updatable = false)
     private UUID id;
 
     @Column(name = "NAME", nullable = false, unique = true)
     private String username;
 
+    @JsonIgnore
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
@@ -39,13 +41,12 @@ public class User implements UserDetails, Serializable {
     private boolean enabled;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JsonIgnore
     @OrderBy
     @JoinTable(
         name = "USER_AUTHORITIES",
         joinColumns = @JoinColumn(
             name = "USER_ID",
-            referencedColumnName = "UID"
+            referencedColumnName = "USER_ID"
         ),
         inverseJoinColumns = @JoinColumn(
             name = "AUTHORITY_ID",
