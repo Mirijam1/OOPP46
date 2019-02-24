@@ -1,5 +1,8 @@
 package nl.tudelft.gogreen.server.config.security;
 
+import nl.tudelft.gogreen.server.config.error.AuthFailureHandler;
+import nl.tudelft.gogreen.server.config.error.EntryDenied;
+import nl.tudelft.gogreen.server.config.error.EntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +15,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 import javax.sql.DataSource;
 
@@ -23,12 +25,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final DataSource dataSource;
     private final PasswordEncoder passwordEncoder;
+    private final EntryPoint entryPoint;
+    private final EntryDenied entryDenied;
+    private final AuthSuccessHandler authSuccessHandler;
+    private final AuthFailureHandler authFailureHandler;
 
     @Autowired
-    public SecurityConfig(UserDetailsService userDetailsService, DataSource dataSource, PasswordEncoder passwordEncoder) {
+    public SecurityConfig(UserDetailsService userDetailsService,
+                          DataSource dataSource,
+                          PasswordEncoder passwordEncoder,
+                          EntryPoint entryPoint,
+                          EntryDenied entryDenied,
+                          AuthSuccessHandler authSuccessHandler,
+                          AuthFailureHandler authFailureHandler) {
         this.userDetailsService = userDetailsService;
         this.dataSource = dataSource;
         this.passwordEncoder = passwordEncoder;
+        this.entryPoint = entryPoint;
+        this.entryDenied = entryDenied;
+        this.authSuccessHandler = authSuccessHandler;
+        this.authFailureHandler = authFailureHandler;
     }
 
     @Override
@@ -52,7 +68,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .csrf().disable()
             .exceptionHandling()
-            .authenticationEntryPoint(new EntryPoint())
+            .authenticationEntryPoint(entryPoint)
+            .accessDeniedHandler(entryDenied)
             .and()
             .authorizeRequests()
             .antMatchers("/api/restricted/**").access("hasAnyAuthority('USER_AUTHORITY')")
@@ -61,8 +78,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/status/admin/**").access("hasAnyAuthority('ADMIN_AUTHORITY')")
             .and()
             .formLogin()
-            .successHandler(new AuthSuccessHandler())
-            .failureHandler(new SimpleUrlAuthenticationFailureHandler())
+            .successHandler(authSuccessHandler)
+            .failureHandler(authFailureHandler)
             .and()
             .logout()
             .logoutSuccessUrl("/login");
