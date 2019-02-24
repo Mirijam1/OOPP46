@@ -61,7 +61,7 @@ public class UserController {
         // TODO: Find something better than static call
         SecurityContextHolder.clearContext();
 
-        return Collections.singletonMap("success", "true");
+        return Collections.singletonMap("response", "DELETED");
     }
 
     @RequestMapping(path = "/update", method = RequestMethod.PATCH, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

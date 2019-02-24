@@ -1,23 +1,44 @@
 package nl.tudelft.gogreen.server.config.security;
 
+import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
+@Component
 public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+    private final ObjectMapper mapper;
     private RequestCache requestCache = new HttpSessionRequestCache();
+
+    @Autowired
+    public AuthSuccessHandler(ObjectMapper mapper) {
+        this.mapper = mapper;
+    }
 
     @Override
     public void onAuthenticationSuccess(
         HttpServletRequest request,
         HttpServletResponse response,
-        Authentication authentication) {
+        Authentication authentication) throws IOException {
+        Map<String, String> map = new HashMap<>();
+        map.put("response", "SUCCESS");
+
+        response.setStatus(HttpServletResponse.SC_OK);
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(mapper.writeValueAsString(map));
 
         // Copied logic from parents, just changed 301 -> 200
 
