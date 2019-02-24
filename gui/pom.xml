@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>OOP-Project</artifactId>
+        <groupId>nl.tudelft.gogreen</groupId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>gui</artifactId>
+    <!-- Properties -->
+    <properties>
+        <!-- Main class -->
+        <gui.main.class>Gui</gui.main.class>
+
+        <!-- Versions -->
+        <org.apache.maven.plugins-version>2.4.2</org.apache.maven.plugins-version>
+        <org.springframework.security.oath-version>2.3.3.RELEASE</org.springframework.security.oath-version>
+        <org.postgresql-version>42.2.5</org.postgresql-version>
+        <io.rest-assured-version>3.3.0</io.rest-assured-version>
+    </properties>
+    <!-- Build configuration -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${org.apache.maven.plugins-version}</version>
+                <configuration>
+                    <skipTests>${server.test.skip}</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>${gui.main.class}</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

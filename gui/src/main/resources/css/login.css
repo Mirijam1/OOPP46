@@ -1,0 +1,10 @@
+#AnchorPane {
+    -fx-background-image: url('../img/loginbackground.jpg');
+    -fx-background-size: cover;
+}
+
+#btn {
+    -fx-background-color: #0c9900;
+
+}
+

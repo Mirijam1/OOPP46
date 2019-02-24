@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="cntrls.DashboardController">
+    <children>
+        <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="533.0" layoutY="14.0" pickOnBounds="true"
+                   preserveRatio="true" AnchorPane.rightAnchor="0.0">
+            <image>
+                <Image url="@../img/user.png"/>
+            </image>
+        </ImageView>
+        <Label layoutX="465.0" layoutY="23.0" prefHeight="28.0" prefWidth="58.0" text="User"
+               AnchorPane.rightAnchor="42.0"/>
+        <Label layoutX="196.0" layoutY="20.0" prefHeight="35.0" prefWidth="131.0" text="New Window"
+               AnchorPane.topAnchor="20.0">
+            <font>
+                <Font size="19.0"/>
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
