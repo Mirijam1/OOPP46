@@ -1,27 +1,33 @@
 package nl.tudelft.gogreen.server;
 
-import nl.tudelft.gogreen.shared.Shared;
+import org.codehaus.jackson.JsonParser;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Collections;
-import java.util.Map;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-@RestController
-@RequestMapping("/")
+@Configuration
+@EnableTransactionManagement
 public class Server {
     /* Just ignore for now */
     public static void main(String... args) {
         SpringApplication.run(Server.class);
     }
 
-    @RequestMapping(value = "test", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody Map<String, String> test() {
-        return Collections.singletonMap("response", Shared.getTestString());
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(10);
+    }
+
+    @Bean
+    public ObjectMapper jackson2JsonObjectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
+        return mapper;
     }
 }

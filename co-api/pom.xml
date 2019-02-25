@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- General information -->
-    <artifactId>server</artifactId>
+    <artifactId>co-api</artifactId>
 
     <!-- Parent -->
     <parent>
@@ -17,42 +17,18 @@
     <!-- Properties -->
     <properties>
         <!-- Main class -->
-        <server.main.class>nl.tudelft.gogreen.server.Server</server.main.class>
+        <server.main.class>nl.tudelft.gogreen.coapi.CarbonServer</server.main.class>
 
         <!-- Versions -->
         <org.apache.maven.plugins-version>3.0.0-M3</org.apache.maven.plugins-version>
-        <org.springframework.security.oath-version>2.3.3.RELEASE</org.springframework.security.oath-version>
-        <org.postgresql-version>42.2.5</org.postgresql-version>
         <io.rest-assured-version>3.3.0</io.rest-assured-version>
     </properties>
 
     <!-- Dependencies -->
     <dependencies>
         <dependency>
-            <groupId>nl.tudelft.gogreen</groupId>
-            <artifactId>shared</artifactId>
-            <version>0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-hateoas</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-            <version>${org.springframework.security.oath-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -62,24 +38,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Database (H2) for testing -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-        </dependency>
-
-        <!-- Database (PostGreSQL) for live-->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${org.postgresql-version}</version>
         </dependency>
 
         <!-- Testing libs for REST applications -->
@@ -115,5 +73,6 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>CO-API</finalName>
     </build>
 </project>

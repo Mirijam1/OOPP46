@@ -33,6 +33,7 @@
         <module>server</module>
         <module>shared</module>
         <module>gui</module>
+        <module>co-api</module>
     </modules>
 
     <!-- Properties -->

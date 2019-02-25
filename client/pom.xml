@@ -20,7 +20,7 @@
         <client.main.class>nl.tudelft.gogreen.client.Client</client.main.class>
 
         <!-- Versions -->
-        <org.apache.maven.plugins-version>2.4.2</org.apache.maven.plugins-version>
+        <org.apache.maven.plugins-version>3.0.0-M3</org.apache.maven.plugins-version>
         <org.apache.maven.plugins-jar-version>3.1.0</org.apache.maven.plugins-jar-version>
         <com.mashape.unirest-version>1.4.9</com.mashape.unirest-version>
         <http.client.version>4.3.6</http.client.version>

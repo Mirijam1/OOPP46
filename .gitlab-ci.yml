@@ -1,0 +1,48 @@
+image: tmaier/docker-compose
+services:
+  - docker:dind
+
+stages:
+  - build
+  - package
+  - deploy
+
+build_stage:
+  image: maven:3-jdk-8
+  stage: build
+  script: "mvn package -B"
+  artifacts:
+    paths:
+      - server/target/Server.jar
+      - client/target/Client.jar
+      - co-api/target/CO-API.jar
+
+docker_stage:
+  stage: package
+  before_script:
+    - docker version
+    - docker-compose --version
+  script:
+    - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USER --password-stdin
+    - docker-compose build --pull
+    - docker-compose push
+    - docker logout
+  only:
+    - tags
+
+deploy_to_server:
+  stage: deploy
+  before_script:
+    - 'which ssh-agent || ( apk update && apk add openssh )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+  script:
+    - scp -o StrictHostKeyChecking=no docker-compose.yml ooppdeploy@oopp.timanema.net:~/docker-compose.yml
+    - ssh -o StrictHostKeyChecking=no ooppdeploy@oopp.timanema.net "./run.sh && exit"
+  environment:
+    name: VPS
+    url: https://oopp.timanema.net
+  only:
+    - tags
