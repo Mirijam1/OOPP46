@@ -20,7 +20,7 @@
         <server.main.class>nl.tudelft.gogreen.server.Server</server.main.class>
 
         <!-- Versions -->
-        <org.apache.maven.plugins-version>2.4.2</org.apache.maven.plugins-version>
+        <org.apache.maven.plugins-version>3.0.0-M3</org.apache.maven.plugins-version>
         <org.springframework.security.oath-version>2.3.3.RELEASE</org.springframework.security.oath-version>
         <org.postgresql-version>42.2.5</org.postgresql-version>
         <io.rest-assured-version>3.3.0</io.rest-assured-version>

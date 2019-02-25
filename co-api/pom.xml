@@ -20,7 +20,7 @@
         <server.main.class>nl.tudelft.gogreen.coapi.CarbonServer</server.main.class>
 
         <!-- Versions -->
-        <org.apache.maven.plugins-version>2.4.2</org.apache.maven.plugins-version>
+        <org.apache.maven.plugins-version>3.0.0-M3</org.apache.maven.plugins-version>
         <io.rest-assured-version>3.3.0</io.rest-assured-version>
     </properties>
 
