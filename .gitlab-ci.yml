@@ -41,5 +41,8 @@ deploy_to_server:
   script:
     - scp -o StrictHostKeyChecking=no docker-compose.yml ooppdeploy@oopp.timanema.net:~/docker-compose.yml
     - ssh -o StrictHostKeyChecking=no ooppdeploy@oopp.timanema.net "./run.sh && exit"
+  environment:
+    name: VPS
+    url: https://oopp.timanema.net
   only:
     - tags

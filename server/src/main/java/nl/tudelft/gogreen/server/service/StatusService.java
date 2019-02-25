@@ -4,9 +4,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StatusService implements IStatusService {
-    private static final String DEFAULT_STATUS_RESPONSE = "If you receive this the API is online";
-    private static final String DEFAULT_RESTRICTED_STATUS_RESPONSE = "If you receive this you have been authenticated as user";
-    private static final String DEFAULT_ADMIN_STATUS_RESPONSE = "If you receive this you have been authenticated as admin";
+    private static final String DEFAULT_STATUS_RESPONSE =
+        "If you receive this the API is online";
+    private static final String DEFAULT_RESTRICTED_STATUS_RESPONSE =
+        "If you receive this you have been authenticated as user";
+    private static final String DEFAULT_ADMIN_STATUS_RESPONSE =
+        "If you receive this you have been authenticated as admin";
 
     @Override
     public String getStatus() {

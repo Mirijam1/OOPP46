@@ -10,13 +10,15 @@ import java.util.List;
 
 @Service
 public class ActivityService {
+    private final ActivityRepository activityRepository;
+
     @Autowired
-    private ActivityRepository activityRepository;
+    public ActivityService(ActivityRepository activityRepository) {
+        this.activityRepository = activityRepository;
+    }
 
     public List<Activity> getAllActivities() {
-        List<Activity> Activities = new ArrayList<>();
-        activityRepository.findAll().forEach(Activities::add);
-        return Activities;
+        return new ArrayList<>(activityRepository.findAll());
     }
 
     public Activity getActivity(Integer id) {

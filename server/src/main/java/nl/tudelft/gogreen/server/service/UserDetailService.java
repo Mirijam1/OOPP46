@@ -2,9 +2,7 @@ package nl.tudelft.gogreen.server.service;
 
 import nl.tudelft.gogreen.server.models.Authority;
 import nl.tudelft.gogreen.server.models.user.User;
-import nl.tudelft.gogreen.server.models.user.UserProfile;
 import nl.tudelft.gogreen.server.repository.AuthorityRepository;
-import nl.tudelft.gogreen.server.repository.ProfileRepository;
 import nl.tudelft.gogreen.server.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
