@@ -8,9 +8,11 @@ stages:
   - deploy
 
 build_stage:
-  image: maven:3-jdk-8
+  image: kaiwinter/docker-java8-maven
   stage: build
-  script: "mvn package -B"
+  before_script:
+    - chmod +x mvnw
+  script: "./mvnw clean install -B"
   artifacts:
     paths:
       - server/target/Server.jar
