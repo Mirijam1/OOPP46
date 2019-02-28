@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class Category {
     @Id
     @Column(name = "CATEGORY_ID", nullable = false, unique = true, updatable = false)
-    private String id;
+    private Integer id;
 
     @Column(name = "NAME", nullable = false, unique = true)
     private String categoryName;

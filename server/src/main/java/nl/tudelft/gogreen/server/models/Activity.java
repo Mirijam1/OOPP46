@@ -23,7 +23,7 @@ import java.util.UUID;
 public class Activity {
     @Id
     @Column(name = "ACTIVITY_ID", nullable = false, unique = true, updatable = false)
-    private UUID id;
+    private Integer id;
 
     @Column(name = "NAME", nullable = false, unique = true)
     private String activityName;
