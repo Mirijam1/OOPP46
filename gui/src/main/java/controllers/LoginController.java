@@ -1,4 +1,4 @@
-package cntrls;
+package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,9 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+@Component
 public class LoginController {
 
     @FXML
@@ -24,7 +26,7 @@ public class LoginController {
     void login(ActionEvent event) throws Exception {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/accountPage.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/dashboard.fxml"));
             Stage stage = new Stage();
             stage.setTitle("GoGreen");
             stage.setScene(new Scene(root, 1280, 720));

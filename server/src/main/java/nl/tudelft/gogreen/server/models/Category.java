@@ -1,10 +1,6 @@
 package nl.tudelft.gogreen.server.models;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +13,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Table(name = "CATEGORY")
+@Getter
 public class Category {
     @Id
     @Column(name = "CATEGORY_ID", nullable = false, unique = true, updatable = false)
@@ -27,4 +24,6 @@ public class Category {
 
     @Column(name = "DESCRIPTION", nullable = false)
     private String description;
+
+
 }

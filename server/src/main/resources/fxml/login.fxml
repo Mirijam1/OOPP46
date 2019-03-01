@@ -11,7 +11,7 @@
 <?import java.net.URL?>
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="400.0000999999975" prefWidth="600.0000999999975" xmlns:fx="http://javafx.com/fxml/1"
-            xmlns="http://javafx.com/javafx/2.2" fx:controller="controllers.LoginController">
+            xmlns="http://javafx.com/javafx/2.2" fx:controller="nl.tudelft.gogreen.server.fxcontrollers.LoginController">
     <children>
         <Button fx:id="btn" disable="false" focusTraversable="true" layoutX="312.0" layoutY="271.0"
                 mnemonicParsing="false" onAction="#login" opacity="1.0" prefHeight="27.0" prefWidth="200.0" text="Login"

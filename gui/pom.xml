@@ -10,10 +10,22 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>gui</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>nl.tudelft.gogreen</groupId>
+            <artifactId>server</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
     <!-- Properties -->
     <properties>
         <!-- Main class -->
-        <gui.main.class>Gui</gui.main.class>
+        <gui.main.class>nl.tudelft.gogreen.gui.Gui</gui.main.class>
 
         <!-- Versions -->
         <org.apache.maven.plugins-version>2.4.2</org.apache.maven.plugins-version>

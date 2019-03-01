@@ -1,10 +1,6 @@
 package nl.tudelft.gogreen.server.models;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.UUID;
-
+@Getter
 @Data
 @Entity
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
@@ -34,6 +30,8 @@ public class Activity {
 
     @Column(name = "POINTS", nullable = false)
     private double points;
+
+
 
     //TODO: Add methods
 }
