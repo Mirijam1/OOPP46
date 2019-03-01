@@ -2,12 +2,7 @@ package nl.tudelft.gogreen.server.models;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 @Getter
 @Data
@@ -19,7 +14,7 @@ import java.util.UUID;
 public class Activity {
     @Id
     @Column(name = "ACTIVITY_ID", nullable = false, unique = true, updatable = false)
-    private Integer id;
+    private UUID id;
 
     @Column(name = "NAME", nullable = false, unique = true)
     private String activityName;

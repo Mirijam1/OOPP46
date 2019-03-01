@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 @Component
 @Service
 public class ActivityService {
@@ -22,7 +24,7 @@ public class ActivityService {
         return new ArrayList<>(activityRepository.findAll());
     }
 
-    public Activity getActivity(Integer id) {
+    public Activity getActivity(UUID id) {
         return activityRepository.findById(id).get();
 
     }
@@ -32,11 +34,11 @@ public class ActivityService {
         activityRepository.save(activity);
     }
 
-    public void updateActivity(Integer id, Activity activity) {
+    public void updateActivity(UUID id, Activity activity) {
         activityRepository.save(activity);
     }
 
-    public void deleteActivity(Integer id) {
+    public void deleteActivity(UUID id) {
         activityRepository.deleteById(id);
     }
 

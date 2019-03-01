@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 @Component
 @Service
@@ -32,7 +31,7 @@ public class CategoryService {
 //    public List<Category> getAllCategories(){
 //        return categories;
 //    }
-    public Category getCategory(Integer id) {
+    public Category getCategory(String id) {
         return categoryRepository.findById(id).get();
     }
 
@@ -40,11 +39,11 @@ public class CategoryService {
         categoryRepository.save(category);
     }
 
-    public void updateCategory(Integer id, Category category) {
+    public void updateCategory(String id, Category category) {
         categoryRepository.save(category);
     }
 
-    public void deleteCategory(Integer id) {
+    public void deleteCategory(String id) {
         categoryRepository.deleteById(id);
     }
 }

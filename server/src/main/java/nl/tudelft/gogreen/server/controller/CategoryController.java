@@ -3,11 +3,7 @@ package nl.tudelft.gogreen.server.controller;
 import nl.tudelft.gogreen.server.models.Category;
 import nl.tudelft.gogreen.server.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +19,7 @@ public class CategoryController {
     }
 
     @RequestMapping("/categories/{id}")
-    public Category getCategory(@PathVariable Integer id) {
+    public Category getCategory(@PathVariable String id) {
         return categoryService.getCategory(id);
     }
 
@@ -33,12 +29,12 @@ public class CategoryController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/categories/{id}")
-    public void updateCategory(@RequestBody Category category, @PathVariable Integer id) {
+    public void updateCategory(@RequestBody Category category, @PathVariable String id) {
         categoryService.updateCategory(id, category);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/categories/{id}")
-    public void deleteCategory(@PathVariable Integer id) {
+    public void deleteCategory(@PathVariable String id) {
         categoryService.deleteCategory(id);
     }
 }
