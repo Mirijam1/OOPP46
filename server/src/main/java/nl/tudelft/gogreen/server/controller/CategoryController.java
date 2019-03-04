@@ -3,8 +3,10 @@ package nl.tudelft.gogreen.server.controller;
 import nl.tudelft.gogreen.server.models.activity.Category;
 import nl.tudelft.gogreen.server.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,14 +21,15 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @RequestMapping("/")
-    public List<Category> getCategories() {
+    @RequestMapping(value = "/",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Category> getAllCategories() {
         return categoryService.getAllCategories();
     }
 
-    //Change later to use name ed
     @RequestMapping("/{id}")
-    public Category getCategory(@PathVariable String id) {
-        return categoryService.getCategory(id);
+    public Category getCategory(@PathVariable String name) {
+        return categoryService.getCategory(name);
     }
 }

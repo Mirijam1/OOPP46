@@ -1,0 +1,4 @@
+#sidebarbg {
+    -fx-background-image: url('../img/loginbackground.jpg');
+    -fx-background-size: cover;
+}

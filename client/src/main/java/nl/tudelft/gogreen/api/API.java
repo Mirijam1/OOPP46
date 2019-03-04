@@ -2,18 +2,26 @@ package nl.tudelft.gogreen.api;
 
 import com.mashape.unirest.http.HttpMethod;
 import com.mashape.unirest.request.HttpRequestWithBody;
+import nl.tudelft.gogreen.api.servermodels.Activity;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
+import nl.tudelft.gogreen.api.servermodels.Category;
 import nl.tudelft.gogreen.api.servermodels.User;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class API {
     private static String locationUrl = "";
 
     /**
      * Prepares the API for use by this client application.
+     *
      * @param local Boolean indicating whether this application is running in local mode, or not.
      */
     public static void prepareAPI(boolean local) {
@@ -48,7 +56,7 @@ public class API {
      * @param endpoint A {@link String} representing the endpoint to request from.
      */
     public static void requestStatus(ServerCallback<BasicResponse> callback, String endpoint) {
-        HttpRequestWithBody body = ServerConnection.buildRequestWithFields(HttpMethod.GET,
+        HttpRequestWithBody body = ServerConnection.buildSimpleRequest(HttpMethod.GET,
             buildUrl(endpoint));
 
         ServerConnection.request(BasicResponse.class, body, callback);
@@ -56,8 +64,9 @@ public class API {
 
     /**
      * <p>Attempt to authenticate with the given {@link User}.</p>
+     *
      * @param callback {@link ServerCallback} which will be called when the request returns.
-     * @param user A {@link User} which represents the user credentials.
+     * @param user     A {@link User} which represents the user credentials.
      */
     public static void attemptAuthentication(ServerCallback<BasicResponse> callback, User user) {
         String url = buildUrl(EndPoints.LOGIN);
@@ -71,4 +80,26 @@ public class API {
 
         ServerConnection.request(BasicResponse.class, body, callback);
     }
+
+    public static void retrieveCategoryList(ServerCallback<Category[]> callback) {
+        String url = buildUrl(EndPoints.CATEGORY);
+
+        // Replace with real logger later
+        System.out.println("Endpoint url:" + url);
+
+        HttpRequestWithBody body = ServerConnection
+            .buildSimpleRequest(HttpMethod.GET, url);
+        ServerConnection.request(Category[].class, body, callback);
+    }
+    public static void retrieveActivityList(ServerCallback<Activity[]> callback) {
+        String url = buildUrl(EndPoints.ACTIVITY);
+
+        // Replace with real logger later
+        System.out.println("Endpoint url:" + url);
+
+        HttpRequestWithBody body = ServerConnection
+            .buildSimpleRequest(HttpMethod.GET, url);
+        ServerConnection.request(Activity[].class, body, callback);
+    }
 }
+
