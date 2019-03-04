@@ -6,15 +6,10 @@ import nl.tudelft.gogreen.api.servermodels.Activity;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
 import nl.tudelft.gogreen.api.servermodels.Category;
 import nl.tudelft.gogreen.api.servermodels.User;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class API {
     private static String locationUrl = "";

@@ -4,5 +4,5 @@ INSERT INTO AUTHORITY (AID, NAME) VALUES ('0', 'USER_AUTHORITY');
 INSERT INTO AUTHORITY (AID, NAME) VALUES ('1', 'ADMIN_AUTHORITY');
 INSERT INTO USER_AUTHORITIES (USER_ID, AUTHORITY_ID) VALUES ('054597382efa45f5b3cfebcdb16d6cd4', '0');
 INSERT INTO USER_AUTHORITIES (USER_ID, AUTHORITY_ID) VALUES ('054597382efa45f5b3cfebcdb16d6cd4', '1');
--- INSERT INTO CATEGORY (CATEGORY_ID, NAME, DESCRIPTION) VALUES ('1', 'Food', 'Food items'),('2', 'Transport', 'Transportation'),('3', 'Energy', 'Energy items'),('4', 'Misc', 'Other items');
--- INSERT INTO ACTIVITY (ACTIVITY_ID,NAME,CATEGORY,POINTS) VALUES (1,'Eating a veg meal', '1', 0.3),(2,'Using bike instead of car','2', 0.1),(3,'Reducing heating','3', 0.15),(4,'Planting a garden', '4', 0.25);
+INSERT INTO CATEGORY (ID, NAME, DESCRIPTION) VALUES ('1', 'Food', 'Food items'),('2', 'Transport', 'Transportation'),('3', 'Energy', 'Energy items'),('4', 'Misc', 'Other items');
+INSERT INTO ACTIVITY (ID,NAME,DESCRIPTION, CATEGORY) VALUES (1,'Eating a veg meal', 'desc', '1'),(2,'Using bike instead of car','desc', '2'),(3,'Reducing heating','desc', '3'),(4,'Planting a garden','desc',  '4');

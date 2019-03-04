@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fx:id="overview" layoutX="294.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overview of CO2 tracker" wrappingWidth="843.1953125">
+         <font>
+            <Font name="Microsoft YaHei Light" size="60.0" />
+         </font>
+         <fill>
+            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startY="1.0">
+               <stops>
+                  <Stop color="#00ccff" />
+                  <Stop color="#00ffa4" offset="0.534375" />
+                  <Stop color="#00ff3e" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <Label fx:id="history" layoutX="226.0" layoutY="327.0" text="History of activities">
+         <font>
+            <Font name="Microsoft YaHei Light" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="suggustions" layoutX="745.0" layoutY="327.0" text="Suggestions">
+         <font>
+            <Font name="Microsoft YaHei Light" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="1152.0" layoutY="28.0" prefHeight="20.0" prefWidth="40.0" text="User" />
+      <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="1213.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/user.png"/>
+         </image>
+      </ImageView>
+      <Text fx:id="CO2Saved" layoutX="388.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount of CO2 Saved:">
+         <font>
+            <Font name="Microsoft YaHei Light" size="30.0" />
+         </font>
+      </Text>
+      <Label fx:id="amount" layoutX="740.0" layoutY="189.0" text="&lt;amount&gt;">
+         <font>
+            <Font name="Microsoft YaHei Light" size="30.0" />
+         </font>
+      </Label>
+      <ScrollPane fx:id="historyPane" layoutX="224.0" layoutY="360.0" prefHeight="300.0" prefWidth="400.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        </content>
+      </ScrollPane>
+      <ScrollPane fx:id="suggestiongsPane" layoutX="745.0" layoutY="360.0" prefHeight="300.0" prefWidth="400.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

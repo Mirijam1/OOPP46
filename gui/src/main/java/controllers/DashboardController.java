@@ -78,10 +78,6 @@ public class DashboardController {
     }
 
     private void loadActivityList() {
-//
-//
-//        List<Activity> energyList = actlist.stream().filter(activity -> activity.getcatName().contains("Energy")).collect(Collectors.toList());
-//        List<Activity> miscList = actlist.stream().filter(activity -> activity.getcatName().contains("Misc")).collect(Collectors.toList());
         API.retrieveActivityList(new ServerCallback<Activity[]>() {
             @Override
             public void run() {
@@ -90,17 +86,19 @@ public class DashboardController {
                 }
 
                 List<Activity> activities = Arrays.stream(getResult()).collect(Collectors.toList());
-                 // Call method after async call is finished
-               fillActivities(activities,cat.getText());
+                // Call method after async call is finished
+
+                fillActivities(activities, cat.getText());
             }
         });
 
     }
 
-    private void fillActivities(List<Activity> actList, String category ){
-        List<Activity> filterList = actList.stream().filter(activity -> activity.getcatName().contains(category)).collect(Collectors.toList());
+    private void fillActivities(List<Activity> actList, String category) {
+        //List<Activity> filterList = actList.stream().filter(activity -> activity.getcatName().contains(category)).collect(Collectors.toList());
+
         activityBox.setConverter(new ActivityNameStringConverter());
-        activityBox.setItems(FXCollections.observableArrayList(filterList));
+        activityBox.setItems(FXCollections.observableArrayList(actList));
     }
 
 

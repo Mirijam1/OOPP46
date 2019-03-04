@@ -2,3 +2,11 @@
     -fx-background-image: url('../img/loginbackground.jpg');
     -fx-background-size: cover;
 }
+.button{
+    -fx-background-color: #C5F0C0;
+    -fx-border-color: #FFFFFF;
+}
+
+#sidebar {
+    -fx-background-color: #C5F0C0;
+}
