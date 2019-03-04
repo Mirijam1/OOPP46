@@ -9,7 +9,6 @@ import com.mashape.unirest.http.async.Callback;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.BaseRequest;
 import com.mashape.unirest.request.HttpRequestWithBody;
-import com.mashape.unirest.request.body.MultipartBody;
 import com.mashape.unirest.request.body.RequestBodyEntity;
 import lombok.NonNull;
 
@@ -86,8 +85,8 @@ public class ServerConnection {
         return new HttpRequestWithBody(method, url).body(body);
     }
 
-    protected static HttpRequestWithBody buildRequestWithFields(HttpMethod method,
-                                                        String url) {
+    protected static HttpRequestWithBody buildSimpleRequest(HttpMethod method,
+                                                            String url) {
         return buildRequestWithFields(url, method, new HashMap<>());
     }
 

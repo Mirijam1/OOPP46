@@ -11,4 +11,9 @@ public class EndPoints {
     public static final String LOGOUT = "logout";
 
     // PROFILE ENDPOINTS
+
+    //MODEL ENDPOINTS
+    public static final String ACTIVITY = "api/activity/activities";
+    public static final String CATEGORY = "api/category/";
+
 }

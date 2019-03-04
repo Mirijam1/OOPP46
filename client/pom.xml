@@ -26,7 +26,7 @@
         <http.client.version>4.3.6</http.client.version>
         <http.asyncclient.version>4.0.2</http.asyncclient.version>
         <http.mime.version>4.3.6</http.mime.version>
-        <json.version>20140107</json.version>
+        <json.version>20180813</json.version>
     </properties>
 
     <!-- Dependencies -->
@@ -130,7 +130,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>2.4.3</version>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
                         <id>create-fat-jar</id>
@@ -147,7 +147,7 @@
                             </transformers>
                             <artifactSet>
                                 <includes>
-                                    <include>nl.tudelft:shared</include>
+                                    <include>nl.tudelft.gogreen:shared</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
