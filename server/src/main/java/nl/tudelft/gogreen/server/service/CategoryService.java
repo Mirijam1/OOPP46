@@ -1,6 +1,6 @@
 package nl.tudelft.gogreen.server.service;
 
-import nl.tudelft.gogreen.server.models.Category;
+import nl.tudelft.gogreen.server.models.activity.Category;
 import nl.tudelft.gogreen.server.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,27 +23,7 @@ public class CategoryService {
         return new ArrayList<>(categoryRepository.findAll());
     }
 
-//private List<Category> categories = new ArrayList<>(Arrays.asList(
-//    new Category(5, "Spring 1", "my descrpiton"),
-//    new Category(6, "Spring 2", "my descrpiton"),
-//    new Category(7, "Spring Framework", "my descrpiton")
-//));
-//    public List<Category> getAllCategories(){
-//        return categories;
-//    }
-    public Category getCategory(String id) {
-        return categoryRepository.findById(id).get();
-    }
-
-    public void addCategory(Category category) {
-        categoryRepository.save(category);
-    }
-
-    public void updateCategory(String id, Category category) {
-        categoryRepository.save(category);
-    }
-
-    public void deleteCategory(String id) {
-        categoryRepository.deleteById(id);
+    public Category getCategory(String name) {
+        return categoryRepository.findByCategoryName(name);
     }
 }

@@ -1,6 +1,6 @@
 package nl.tudelft.gogreen.server.config.security;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
@@ -27,6 +27,10 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         this.mapper = mapper;
     }
 
+    public void injectCache(RequestCache cache) {
+        this.requestCache = cache;
+    }
+
     @Override
     public void onAuthenticationSuccess(
         HttpServletRequest request,
@@ -35,10 +39,12 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         Map<String, String> map = new HashMap<>();
         map.put("response", "SUCCESS");
 
+        String result = mapper.writeValueAsString(map);
+
         response.setStatus(HttpServletResponse.SC_OK);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(mapper.writeValueAsString(map));
+        response.getWriter().write(result);
 
         // Copied logic from parents, just changed 301 -> 200
 
@@ -49,10 +55,10 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
             clearAuthenticationAttributes(request);
             return;
         }
+
         String targetUrlParam = getTargetUrlParameter();
         if (isAlwaysUseDefaultTargetUrl()
-            || (targetUrlParam != null
-            && StringUtils.hasText(request.getParameter(targetUrlParam)))) {
+            || (targetUrlParam != null && StringUtils.hasText(request.getParameter(targetUrlParam)))) {
             requestCache.removeRequest(request, response);
             clearAuthenticationAttributes(request);
             return;

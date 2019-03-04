@@ -1,12 +1,13 @@
 package nl.tudelft.gogreen.server.models.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import nl.tudelft.gogreen.server.models.Authority;
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Column;
@@ -31,6 +32,7 @@ Very basic class, will be developed further
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Table(name = "USER_TABLE")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements UserDetails, Serializable {
     @Id
     @Column(name = "USER_ID", nullable = false, unique = true, updatable = false)
@@ -39,7 +41,7 @@ public class User implements UserDetails, Serializable {
     @Column(name = "NAME", nullable = false, unique = true)
     private String username;
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
