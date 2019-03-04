@@ -1,10 +1,12 @@
 package nl.tudelft.gogreen.server.models.user;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import nl.tudelft.gogreen.server.models.Badge;
+import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -47,4 +50,8 @@ public class UserProfile implements Serializable {
         )
     )
     private Collection<Badge> badges;
+
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "profile", orphanRemoval = true)
+    private Collection<CompletedActivity> activities;
 }
