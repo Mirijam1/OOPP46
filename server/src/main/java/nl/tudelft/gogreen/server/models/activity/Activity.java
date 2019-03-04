@@ -37,7 +37,7 @@ public class Activity {
     private String description;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CATEGORY", referencedColumnName = "ID")
     private Category category;
 

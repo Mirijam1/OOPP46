@@ -4,9 +4,7 @@ import com.mashape.unirest.http.Headers;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import lombok.Data;
-import nl.tudelft.gogreen.api.servermodels.Category;
 
-import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Data
