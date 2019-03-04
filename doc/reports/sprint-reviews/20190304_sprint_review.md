@@ -6,6 +6,6 @@
 
 
 ## Adjustments from previous sprints
-
+- We didn't have a proper sprint yet
 
 ## Adjustments for next sprint
