@@ -35,7 +35,7 @@
             <Font name="Microsoft YaHei Light" size="25.0" />
          </font>
       </Label>
-      <Label fx:id="suggustions" layoutX="745.0" layoutY="327.0" text="Suggestions">
+      <Label fx:id="suggestions" layoutX="745.0" layoutY="327.0" text="Suggestions">
          <font>
             <Font name="Microsoft YaHei Light" size="25.0" />
          </font>
@@ -61,7 +61,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
         </content>
       </ScrollPane>
-      <ScrollPane fx:id="suggestiongsPane" layoutX="745.0" layoutY="360.0" prefHeight="300.0" prefWidth="400.0">
+      <ScrollPane fx:id="suggestionsPane" layoutX="745.0" layoutY="360.0" prefHeight="300.0" prefWidth="400.0">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
          </content>
