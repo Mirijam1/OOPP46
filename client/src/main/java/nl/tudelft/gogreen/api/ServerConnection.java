@@ -10,8 +10,10 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import lombok.NonNull;
 import nl.tudelft.gogreen.cache.Request;
 import nl.tudelft.gogreen.cache.RequestCache;
+import org.objenesis.ObjenesisStd;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.Map;
 
 public class ServerConnection {
@@ -69,7 +71,7 @@ public class ServerConnection {
      * @param request {@link Request} to make
      * @param callback {@link ServerCallback} which will be ran after the request returns
      * @param useCache Boolean indicating whether this request should use the cache
-     * @param ttl Time to live of the cache in seconds
+     * @param ttl Time to live of the cache in seconds, where -1 means 'until the program closes'
      * @param <T> Type of the object to map to
      */
     protected static <T> void request(@NonNull Class<? extends T> clazz,
@@ -118,6 +120,72 @@ public class ServerConnection {
                 }
             }
         });
+    }
+
+    /**
+     * <p>Builds a fake response from the server. This method can be used to implement client-side functionality for
+     * functions that have not yet been implemented server-side.</p>
+     *
+     * <p>Warning: This code qualifies to be called 'hacky' and might be a bit slow since it uses reflection.
+     * The function mocks a basic {@link HttpResponse}, so some values might be null. This shouldn't be an issue, since
+     * null-checks should be in place, but keep it in mind. By default, the statusText is set to 'Ok' (which you
+     * cannot change) and all other fields except body and statuscode are null.</p>
+     * @param clazz Class of the object to map to
+     * @param request {@link Request} to make
+     * @param callback {@link ServerCallback} which will be ran after the request returns
+     * @param useCache Boolean indicating whether this request should use the cache
+     * @param ttl Time to live of the cache in seconds, where -1 means 'until the program closes'
+     * @param <T> Type of the object to map to
+     * @param response Object that will be put into the {@link HttpResponse}, as if it was returned from the server.
+     * @param responseStatusCode Status code that will be put into the {@link HttpResponse},
+     *                           as if it was returned from the server.
+     *                           Keep in mind that this parameter will not affect the status text field.
+     */
+    protected static <T> void mockRequest(@NonNull Class<? extends T> clazz,
+                                          @NonNull Request<T> request,
+                                          @NonNull ServerCallback<T> callback,
+                                          @NonNull boolean useCache,
+                                          @NonNull int ttl,
+                                          @NonNull T response,
+                                          int responseStatusCode) {
+        // Replace with proper logger
+        System.out.println(Thread.currentThread() + " => Creating mock request for '" + clazz.getName() + "' with settings ["
+            + "useCache=" + useCache
+            + ", ttl=" + ttl
+            + ", request=" + request
+            + ", response=" + response
+            + "]");
+
+        HttpResponse<T> httpResponse = null;
+        try {
+            httpResponse = new ObjenesisStd().getInstantiatorOf(HttpResponse.class).newInstance();
+
+            // Status to 200
+            Field statusCodeField = httpResponse.getClass().getDeclaredField("statusCode");
+            statusCodeField.setAccessible(true);
+            statusCodeField.set(httpResponse, responseStatusCode);
+
+            // Text to 'Ok'
+            Field statusTextField = httpResponse.getClass().getDeclaredField("statusText");
+            statusTextField.setAccessible(true);
+            statusTextField.set(httpResponse, "Ok");
+
+            // Body to given response
+            Field bodyField = httpResponse.getClass().getDeclaredField("body");
+            bodyField.setAccessible(true);
+            bodyField.set(httpResponse, response);
+        } catch (NoSuchFieldException | IllegalAccessException exception) {
+            exception.printStackTrace();
+        }
+
+        if (!response.getClass().equals(clazz)) {
+            callback.fail(new RuntimeException("Given class was not equal to the response object!"));
+            callback.run();
+            return;
+        }
+
+        callback.result(response, httpResponse, useCache, request);
+        callback.run();
     }
 
     protected static <T> Request<T> buildSimpleRequest(@NonNull HttpMethod method,

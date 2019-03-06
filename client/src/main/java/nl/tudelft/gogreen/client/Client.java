@@ -1,11 +1,9 @@
 package nl.tudelft.gogreen.client;
 
 import nl.tudelft.gogreen.api.API;
-import nl.tudelft.gogreen.api.EndPoints;
 import nl.tudelft.gogreen.api.ServerCallback;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
 import nl.tudelft.gogreen.api.servermodels.Category;
-import nl.tudelft.gogreen.api.servermodels.User;
 import nl.tudelft.gogreen.shared.Shared;
 import nl.tudelft.gogreen.shared.StatusCodes;
 
@@ -27,59 +25,66 @@ public class Client {
 
         API.prepareAPI(true);
 
+        API.requestFakeStatus(new ServerCallback<BasicResponse>() {
+            @Override
+            public void run() {
+                System.out.println("Found (fake) response: " + getResult().getResponse());
+            }
+        });
+
         /*
         Please ignore the ugly looking code for now, it's mainly for testing the cache
          */
         // Test status
-        API.requestStatus(new ServerCallback<BasicResponse>() {
-            @Override
-            public void run() {
-                System.out.println(Thread.currentThread().getName() + " => " + "Found" + (isCached() ? " cached " : " ") + "response: " + getResult().getResponse());
-
-                API.requestStatus(new ServerCallback<BasicResponse>() {
-                    @Override
-                    public void run() {
-                        System.out.println(Thread.currentThread().getName() + " => " + "Found" + (isCached() ? " cached " : " ") + "response: " + getResult().getResponse());
-
-                        API.requestStatus(new ServerCallback<BasicResponse>() {
-                            @Override
-                            public void run() {
-                                System.out.println(Thread.currentThread().getName() + " => " + "Found" + (isCached() ? " cached " : " ") + "response: " + getResult().getResponse());
-
-                                clearCache();
-
-                                API.requestStatus(new ServerCallback<BasicResponse>() {
-                                    @Override
-                                    public void run() {
-                                        System.out.println(Thread.currentThread().getName() + " => " + "Found" + (isCached() ? " cached " : " ") + "response: " + getResult().getResponse());
-
-                                        API.requestStatus(new ServerCallback<BasicResponse>() {
-                                            @Override
-                                            public void run() {
-                                                System.out.println(Thread.currentThread().getName() + " => " + "Found" + (isCached() ? " cached " : " ") + "response: " + getResult().getResponse());
-
-                                                API.attemptAuthentication(new ServerCallback<BasicResponse>() {
-                                                    @Override
-                                                    public void run() {
-                                                        if (getResponse().getStatus() == StatusCodes.AUTHENTICATED) {
-                                                            System.out.println("Logged in!");
-                                                        } else {
-                                                            System.out.println("Login failed!");
-                                                        }
-
-                                                        API.closeAPI();
-                                                    }
-                                                }, new User("admin", "password"));
-                                            }
-                                        }, EndPoints.STATUS);
-                                    }
-                                }, EndPoints.STATUS);
-                            }
-                        }, EndPoints.STATUS);
-                    }
-                }, EndPoints.STATUS);
-            }
-        }, EndPoints.STATUS);
+//        API.requestStatus(new ServerCallback<BasicResponse>() {
+//            @Override
+//            public void run() {
+//                System.out.println(Thread.currentThread().getName() + " => " + "Found" + (isCached() ? " cached " : " ") + "response: " + getResult().getResponse());
+//
+//                API.requestStatus(new ServerCallback<BasicResponse>() {
+//                    @Override
+//                    public void run() {
+//                        System.out.println(Thread.currentThread().getName() + " => " + "Found" + (isCached() ? " cached " : " ") + "response: " + getResult().getResponse());
+//
+//                        API.requestStatus(new ServerCallback<BasicResponse>() {
+//                            @Override
+//                            public void run() {
+//                                System.out.println(Thread.currentThread().getName() + " => " + "Found" + (isCached() ? " cached " : " ") + "response: " + getResult().getResponse());
+//
+//                                clearCache();
+//
+//                                API.requestStatus(new ServerCallback<BasicResponse>() {
+//                                    @Override
+//                                    public void run() {
+//                                        System.out.println(Thread.currentThread().getName() + " => " + "Found" + (isCached() ? " cached " : " ") + "response: " + getResult().getResponse());
+//
+//                                        API.requestStatus(new ServerCallback<BasicResponse>() {
+//                                            @Override
+//                                            public void run() {
+//                                                System.out.println(Thread.currentThread().getName() + " => " + "Found" + (isCached() ? " cached " : " ") + "response: " + getResult().getResponse());
+//
+//                                                API.attemptAuthentication(new ServerCallback<BasicResponse>() {
+//                                                    @Override
+//                                                    public void run() {
+//                                                        if (getResponse().getStatus() == StatusCodes.AUTHENTICATED) {
+//                                                            System.out.println("Logged in!");
+//                                                        } else {
+//                                                            System.out.println("Login failed!");
+//                                                        }
+//
+//                                                        API.closeAPI();
+//                                                    }
+//                                                }, new User("admin", "password"));
+//                                            }
+//                                        }, EndPoints.STATUS);
+//                                    }
+//                                }, EndPoints.STATUS);
+//                            }
+//                        }, EndPoints.STATUS);
+//                    }
+//                }, EndPoints.STATUS);
+//            }
+//        }, EndPoints.STATUS);
 
 
         //getCatList();

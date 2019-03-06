@@ -57,6 +57,23 @@ public class API {
     }
 
     /**
+     * <p>Makes a fake request to the status endpoint. This function is more or less made to show the
+     * functionality of mocking requests.</p>
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
+    public static void requestFakeStatus(ServerCallback<BasicResponse> callback) {
+        Request<BasicResponse> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, "/api/fake/url");
+
+        ServerConnection.mockRequest(BasicResponse.class,
+            request,
+            callback,
+            true,
+            15,
+            new BasicResponse("Fake response from server"),
+            200);
+    }
+
+    /**
      * <p>Attempt to authenticate with the given {@link User}.</p>
      *
      * @param callback {@link ServerCallback} which will be called when the request returns.

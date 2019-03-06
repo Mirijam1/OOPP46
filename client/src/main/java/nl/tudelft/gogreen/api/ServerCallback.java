@@ -1,7 +1,6 @@
 package nl.tudelft.gogreen.api;
 
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import lombok.Data;
 import lombok.NonNull;
 import nl.tudelft.gogreen.cache.Request;
@@ -15,7 +14,7 @@ public abstract class ServerCallback<T> {
     private HttpResponse response;
     private AtomicBoolean cancelled;
     private AtomicBoolean failed;
-    private UnirestException exception;
+    private Exception exception;
     private boolean cached;
 
     public ServerCallback() {
@@ -30,7 +29,7 @@ public abstract class ServerCallback<T> {
         cancelled.set(true);
     }
 
-    protected synchronized void fail(UnirestException exception) {
+    protected synchronized void fail(Exception exception) {
         failed.set(true);
         this.exception = exception;
     }
