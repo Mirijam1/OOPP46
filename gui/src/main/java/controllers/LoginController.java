@@ -24,10 +24,10 @@ public class LoginController {
     void login(ActionEvent event) throws Exception {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/dashboard.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/sidebar.fxml"));
             Stage stage = new Stage();
             stage.setTitle("GoGreen");
-            stage.setScene(new Scene(root, 1280, 720));
+            stage.setScene(new Scene(root, 700, 650));
             stage.show();
             // Hide this current window (if this is what you want)
             ((Node) (event.getSource())).getScene().getWindow().hide();

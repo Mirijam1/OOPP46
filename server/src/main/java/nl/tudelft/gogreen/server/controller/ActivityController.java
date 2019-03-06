@@ -19,12 +19,12 @@ public class ActivityController {
         this.activityService = activityService;
     }
 
-    @RequestMapping("/activities")
+    @RequestMapping("/")
     public List<Activity> getActivities() {
         return activityService.getAllActivities();
     }
 
-    @RequestMapping("/activities/{id}")
+    @RequestMapping("/{id}")
     public Activity getActivity(@PathVariable Integer id) {
         return activityService.getActivity(id);
     }

@@ -1,11 +1,11 @@
 package nl.tudelft.gogreen.api;
 
 import com.mashape.unirest.http.HttpMethod;
-import com.mashape.unirest.request.HttpRequestWithBody;
 import nl.tudelft.gogreen.api.servermodels.Activity;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
 import nl.tudelft.gogreen.api.servermodels.Category;
 import nl.tudelft.gogreen.api.servermodels.User;
+import nl.tudelft.gogreen.cache.Request;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -51,10 +51,9 @@ public class API {
      * @param endpoint A {@link String} representing the endpoint to request from.
      */
     public static void requestStatus(ServerCallback<BasicResponse> callback, String endpoint) {
-        HttpRequestWithBody body = ServerConnection.buildSimpleRequest(HttpMethod.GET,
-            buildUrl(endpoint));
+        Request<BasicResponse> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, buildUrl(endpoint));
 
-        ServerConnection.request(BasicResponse.class, body, callback);
+        ServerConnection.request(BasicResponse.class, request, callback, true, 15);
     }
 
     /**
@@ -70,31 +69,33 @@ public class API {
         credentials.put("username", user.getName());
         credentials.put("password", user.getPassword());
 
-        HttpRequestWithBody body = ServerConnection
-            .buildRequestWithFields(url, HttpMethod.POST, credentials);
+        Request<BasicResponse> request = ServerConnection.buildRequestWithFields(HttpMethod.POST, url, credentials);
 
-        ServerConnection.request(BasicResponse.class, body, callback);
+        ServerConnection.request(BasicResponse.class, request, callback, false, 0);
     }
+
+    /* Please add javadocs below */
 
     public static void retrieveCategoryList(ServerCallback<Category[]> callback) {
-        String url = buildUrl(EndPoints.CATEGORY);
+        String url = buildUrl(EndPoints.CATEGORYLIST);
 
         // Replace with real logger later
         System.out.println("Endpoint url:" + url);
 
-        HttpRequestWithBody body = ServerConnection
+        Request<Category[]> body = ServerConnection
             .buildSimpleRequest(HttpMethod.GET, url);
-        ServerConnection.request(Category[].class, body, callback);
+        ServerConnection.request(Category[].class, body, callback, true, -1);
     }
-    public static void retrieveActivityList(ServerCallback<Activity[]> callback) {
-        String url = buildUrl(EndPoints.ACTIVITY);
+
+    public static void retrieveActivityList(ServerCallback<Activity[]> callback, String category) {
+        String url = buildUrl(EndPoints.ACTIVITYLIST) + category;
 
         // Replace with real logger later
         System.out.println("Endpoint url:" + url);
 
-        HttpRequestWithBody body = ServerConnection
+        Request<Activity[]> body = ServerConnection
             .buildSimpleRequest(HttpMethod.GET, url);
-        ServerConnection.request(Activity[].class, body, callback);
+        ServerConnection.request(Activity[].class, body, callback, true, -1);
     }
 }
 

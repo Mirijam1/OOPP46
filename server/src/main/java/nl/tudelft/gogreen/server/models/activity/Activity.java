@@ -9,14 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import nl.tudelft.gogreen.server.models.activity.config.ActivityOption;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Collection;
 
 @Data
@@ -37,7 +30,7 @@ public class Activity {
     private String description;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CATEGORY", referencedColumnName = "ID")
     private Category category;
 

@@ -13,7 +13,8 @@ public class EndPoints {
     // PROFILE ENDPOINTS
 
     //MODEL ENDPOINTS
-    public static final String ACTIVITY = "api/activity/activities";
-    public static final String CATEGORY = "api/category/";
+    public static final String ACTIVITYLIST = "api/category/activity/";
+    public static final String CATEGORYLIST = "api/category/";
+    public static final String ACTIVITY="api/activity/";
 
 }

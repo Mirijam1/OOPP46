@@ -18,7 +18,6 @@ public class Gui extends Application {
         close it in your IDE). To stop the threads just call API.closeAPI() when the program should exit.
          */
 
-
         // Continue start
         Parent root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
       //  primaryStage.getIcons().add(new Image("img/logo.png"));
@@ -29,10 +28,7 @@ public class Gui extends Application {
             Platform.exit();
             System.exit(0);
         });
-
-
     }
-
 
     public static void main(String[] args) {
         launch(args);

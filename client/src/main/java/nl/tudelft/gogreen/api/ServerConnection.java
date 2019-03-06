@@ -7,13 +7,11 @@ import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.async.Callback;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.request.BaseRequest;
-import com.mashape.unirest.request.HttpRequestWithBody;
-import com.mashape.unirest.request.body.RequestBodyEntity;
 import lombok.NonNull;
+import nl.tudelft.gogreen.cache.Request;
+import nl.tudelft.gogreen.cache.RequestCache;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 public class ServerConnection {
@@ -50,53 +48,92 @@ public class ServerConnection {
         Unirest.shutdown();
     }
 
-    protected static <T> void request(Class<T> objectMap,
-                                    BaseRequest request,
-                                    ServerCallback<T> serverCallback) {
-        request.asObjectAsync(objectMap, new Callback<T>() {
+    /**
+     * <p>Makes the request to the server, and runs the given {@link ServerCallback} when the request returns.</p>
+     * <p>This method makes some assumptions about caching, for the sake of easy usage. By default request made using
+     * this method will use the cache with a TTL of 5 minutes.</p>
+     * @param clazz Class of the object to map to
+     * @param request {@link Request} to make
+     * @param callback {@link ServerCallback} which will be ran after the request returns
+     * @param <T> Type of the object to map to
+     */
+    protected static <T> void request(@NonNull Class<? extends T> clazz,
+                                      @NonNull Request<T> request,
+                                      @NonNull ServerCallback<T> callback) {
+        request(clazz, request, callback, true, 5 * 60 * 60);
+    }
+
+    /**
+     * <p>Makes the request to the server, and runs the given {@link ServerCallback} when the request returns.</p>
+     * @param clazz Class of the object to map to
+     * @param request {@link Request} to make
+     * @param callback {@link ServerCallback} which will be ran after the request returns
+     * @param useCache Boolean indicating whether this request should use the cache
+     * @param ttl Time to live of the cache in seconds
+     * @param <T> Type of the object to map to
+     */
+    protected static <T> void request(@NonNull Class<? extends T> clazz,
+                                      @NonNull Request<T> request,
+                                      @NonNull ServerCallback<T> callback,
+                                      @NonNull boolean useCache,
+                                      @NonNull int ttl) {
+        final RequestCache cache = RequestCache.getInstance();
+
+        if (useCache) {
+            HttpResponse<T> cachedResponse = cache.retrieveFromCache(request);
+
+            if (cachedResponse != null) {
+                callback.result(cachedResponse.getBody(), cachedResponse, true, request);
+                callback.run();
+                return;
+            }
+        }
+
+        request.buildHttpRequest().asObjectAsync(clazz, new Callback<T>() {
             @Override
             public void completed(HttpResponse<T> httpResponse) {
-                if (!serverCallback.getCancelled().get()) {
-                    serverCallback.result(httpResponse.getBody(), httpResponse);
-                    serverCallback.run();
+                if (useCache) {
+                    cache.updateCache(request, httpResponse, ttl);
+                }
+
+                if (!callback.getCancelled().get()) {
+                    callback.result(httpResponse.getBody(), httpResponse, false, request);
+                    callback.run();
                 }
             }
 
             @Override
-            public void failed(UnirestException e) {
-                if (!serverCallback.getCancelled().get()) {
-                    serverCallback.fail(e);
-                    serverCallback.run();
+            public void failed(UnirestException exception) {
+                if (!callback.getCancelled().get()) {
+                    callback.fail(exception);
+                    callback.run();
                 }
             }
 
             @Override
             public void cancelled() {
-                if (!serverCallback.getCancelled().get()) {
-                    serverCallback.fail(new UnirestException("Request cancelled"));
-                    serverCallback.run();
+                if (!callback.getCancelled().get()) {
+                    callback.fail(new UnirestException("Request cancelled"));
+                    callback.run();
                 }
             }
         });
     }
 
-    protected static <T> RequestBodyEntity buildRequestWithBody(HttpMethod method,
-                                                              String url, @NonNull T body) {
-        return new HttpRequestWithBody(method, url).body(body);
+    protected static <T> Request<T> buildSimpleRequest(@NonNull HttpMethod method,
+                                                       @NonNull String url) {
+        return new Request<>(method, url);
     }
 
-    protected static HttpRequestWithBody buildSimpleRequest(HttpMethod method,
-                                                            String url) {
-        return buildRequestWithFields(url, method, new HashMap<>());
+    protected static <T> Request<T> buildRequestWithFields(@NonNull HttpMethod method,
+                                                           @NonNull String url,
+                                                           @NonNull Map<String, Object> fields) {
+        return new Request<>(method, url, fields, null);
     }
 
-    protected static HttpRequestWithBody buildRequestWithFields(String url,
-                                                        HttpMethod method,
-                                                        @NonNull Map<String, Object> fields) {
-        HttpRequestWithBody request = new HttpRequestWithBody(method, url);
-
-        request.fields(fields);
-
-        return request;
+    protected static <T> Request<T> buildRequestWithBody(@NonNull HttpMethod method,
+                                                           @NonNull String url,
+                                                           @NonNull T body) {
+        return new Request<>(method, url, null, body);
     }
 }
