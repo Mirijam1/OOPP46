@@ -114,5 +114,17 @@ public class API {
             .buildSimpleRequest(HttpMethod.GET, url);
         ServerConnection.request(Activity[].class, body, callback, true, -1);
     }
+
+    public static void retrieveFakeCo2(ServerCallback<BasicResponse> callback) {
+        Request<BasicResponse> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, "/api/co2here");
+
+        ServerConnection.mockRequest(BasicResponse.class,
+            request,
+            callback,
+            true,
+            15,
+            new BasicResponse("co2 here"),
+            200);
+    }
 }
 

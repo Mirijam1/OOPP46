@@ -1,5 +1,6 @@
 package nl.tudelft.gogreen.client;
 
+import javafx.application.Platform;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
@@ -29,6 +30,18 @@ public class Client {
             @Override
             public void run() {
                 System.out.println("Found (fake) response: " + getResult().getResponse());
+            }
+        });
+
+        // Example
+        API.retrieveFakeCo2(new ServerCallback<BasicResponse>() {
+            @Override
+            public void run() {
+                if (getStatusCode() != 200) {
+                    System.out.println("error");
+                } else {
+                    doSomething(getResult());
+                }
             }
         });
 
@@ -91,7 +104,11 @@ public class Client {
 
     }
 
-
+    public static void doSomething(BasicResponse basicResponse) {
+        Platform.runLater(() -> {
+            System.out.println("Do something with this value: " + basicResponse.getResponse());
+        });
+    }
     //TODO: Remove these async chains, this is just to give an example
 
 //    private static void asyncChain1() {
