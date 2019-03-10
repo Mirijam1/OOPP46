@@ -67,8 +67,8 @@ public class CompletedActivity {
 
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER", referencedColumnName = "PROFILE_ID")
+    @ManyToOne
+    @JoinColumn(name = "PROFILE", referencedColumnName = "PROFILE_ID")
     private UserProfile profile;
 
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
