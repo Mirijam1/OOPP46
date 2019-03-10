@@ -1,6 +1,7 @@
 package nl.tudelft.gogreen.server.models.activity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Table(name = "ACTIVITY")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Activity {
     @Id
     @Column(name = "ID", nullable = false, unique = true, updatable = false)
@@ -30,7 +32,7 @@ public class Activity {
     private String description;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "CATEGORY", referencedColumnName = "ID")
     private Category category;
 

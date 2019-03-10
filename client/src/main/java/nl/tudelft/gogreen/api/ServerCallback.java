@@ -8,9 +8,9 @@ import nl.tudelft.gogreen.cache.Request;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Data
-public abstract class ServerCallback<T> {
+public abstract class ServerCallback<T, I> {
     private Request<T> request;
-    private T result;
+    private I result;
     private HttpResponse response;
     private AtomicBoolean cancelled;
     private AtomicBoolean failed;
@@ -34,7 +34,7 @@ public abstract class ServerCallback<T> {
         this.exception = exception;
     }
 
-    protected synchronized void result(@NonNull T result,
+    protected synchronized void result(@NonNull I result,
                                        @NonNull HttpResponse response,
                                        @NonNull boolean cached,
                                        @NonNull Request<T> request) {
