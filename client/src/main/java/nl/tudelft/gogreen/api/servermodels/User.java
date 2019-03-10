@@ -14,4 +14,8 @@ import lombok.NoArgsConstructor;
 public class User {
     private String name;
     private String password;
+<<<<<<< HEAD
+=======
+    private Float points;
+>>>>>>> dev
 }

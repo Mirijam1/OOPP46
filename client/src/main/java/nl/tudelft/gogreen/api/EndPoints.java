@@ -12,8 +12,18 @@ public class EndPoints {
 
     // PROFILE ENDPOINTS
 
+<<<<<<< HEAD
     //MODEL ENDPOINTS
     public static final String ACTIVITY = "api/activity/activities";
     public static final String CATEGORY = "api/category/";
+=======
+    // ACTIVITY ENDPOINTS
+    public static final String ALL_CATEGORIES = "api/categories/";
+    public static final String FIND_CATEGORY = "api/categories/{var}";
+    public static final String SUBMIT_ACTIVITY = "api/profile/activities/submit";
+
+    public static final String ACTIVITY = "api/activities/";
+    public static final String FIND_ACTIVITIES_FROM_CATEGORY = "api/activities/category/{var}";
+>>>>>>> dev
 
 }

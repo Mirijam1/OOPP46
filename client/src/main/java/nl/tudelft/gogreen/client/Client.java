@@ -1,5 +1,6 @@
 package nl.tudelft.gogreen.client;
 
+<<<<<<< HEAD
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.EndPoints;
 import nl.tudelft.gogreen.api.ServerCallback;
@@ -11,6 +12,16 @@ import nl.tudelft.gogreen.shared.StatusCodes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+=======
+import javafx.application.Platform;
+import nl.tudelft.gogreen.api.API;
+import nl.tudelft.gogreen.api.ServerCallback;
+import nl.tudelft.gogreen.api.servermodels.BasicResponse;
+import nl.tudelft.gogreen.api.servermodels.User;
+import nl.tudelft.gogreen.shared.Shared;
+import nl.tudelft.gogreen.shared.models.SubmitResponse;
+import nl.tudelft.gogreen.shared.models.SubmittedActivity;
+>>>>>>> dev
 
 public class Client {
     /* Just ignore this for now */
@@ -21,12 +32,17 @@ public class Client {
     in the soon future, as soon as its purpose (giving an example) has been fulfilled.
      */
 
+<<<<<<< HEAD
     public static void main(String... args)  {
+=======
+    public static void main(String... args) {
+>>>>>>> dev
         System.out.println("Hello, world!");
         System.out.println(Shared.getTestString());
 
         API.prepareAPI(true);
 
+<<<<<<< HEAD
         // Test status
 //        API.requestStatus(new ServerCallback<BasicResponse>() {
 //            @Override
@@ -115,6 +131,51 @@ public class Client {
     public static ArrayList<Category> getCategoryList(ArrayList<Category> list) {
         System.out.println(list.toString());
         return list;
+=======
+        API.requestFakeStatus(new ServerCallback<Object, BasicResponse>() {
+            @Override
+            public void run() {
+                System.out.println("Found (fake) response: " + getResult().getResponse());
+            }
+        });
+
+        // Example
+        API.retrieveFakeCo2(new ServerCallback<Object, BasicResponse>() {
+            @Override
+            public void run() {
+                if (getStatusCode() != 200) {
+                    System.out.println("error");
+                } else {
+                    doSomething(getResult());
+                }
+            }
+        });
+
+
+        API.attemptAuthentication(new ServerCallback<Object, BasicResponse>() {
+            @Override
+            public void run() {
+                System.out.println("Logged in");
+
+                API.submitActivity(new ServerCallback<SubmittedActivity, SubmitResponse>() {
+                    @Override
+                    public void run() {
+                        System.out.println("Submitted activity!");
+                        System.out.println(getResult().getExternalId());
+                        System.out.println(getResult().getPoints());
+                        System.out.println(getResult().getUpdatedPoints());
+                        System.out.println(getResult().getResponse());
+                    }
+                }, SubmittedActivity.builder().activityId(1).build());
+            }
+        }, new User("admin", "password", 0F));
+    }
+
+    public static void doSomething(BasicResponse basicResponse) {
+        Platform.runLater(() -> {
+            System.out.println("Do something with this value: " + basicResponse.getResponse());
+        });
+>>>>>>> dev
     }
 }
 

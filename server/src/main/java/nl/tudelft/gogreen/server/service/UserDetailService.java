@@ -25,12 +25,20 @@ public class UserDetailService implements UserDetailsService, IUserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthorityRepository authorityRepository;
+<<<<<<< HEAD
     private final ProfileService profileService;
+=======
+    private final IProfileService profileService;
+>>>>>>> dev
 
     @Autowired
     public UserDetailService(UserRepository userRepository,
                              PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository,
+<<<<<<< HEAD
                              ProfileService profileService) {
+=======
+                             IProfileService profileService) {
+>>>>>>> dev
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
@@ -41,7 +49,11 @@ public class UserDetailService implements UserDetailsService, IUserService {
     @Transactional(readOnly = true)
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         logger.info("Looking for user with name: " + username);
+<<<<<<< HEAD
         User user = this.userRepository.findByUsername(username);
+=======
+        User user = this.userRepository.findUserByUsername(username);
+>>>>>>> dev
 
         // Return user if found
         if (user != null) {

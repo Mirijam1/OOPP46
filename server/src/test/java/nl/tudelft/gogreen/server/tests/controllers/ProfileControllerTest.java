@@ -21,7 +21,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class ProfileControllerTest {
+<<<<<<< HEAD
     private final String basicEndpoint = "/api/restricted/profile/";
+=======
+    private final String basicEndpoint = "/api/profile/";
+>>>>>>> dev
 
     @Autowired
     private MockMvc mock;

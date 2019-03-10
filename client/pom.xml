@@ -114,6 +114,14 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.9.8</version>
         </dependency>
+<<<<<<< HEAD
+=======
+        <dependency>
+            <groupId>org.objenesis</groupId>
+            <artifactId>objenesis</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+>>>>>>> dev
     </dependencies>
 
     <!-- Build configuration -->

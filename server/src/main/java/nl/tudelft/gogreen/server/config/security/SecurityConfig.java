@@ -72,6 +72,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .accessDeniedHandler(entryDenied)
             .and()
             .authorizeRequests()
+<<<<<<< HEAD
+=======
+            .antMatchers("/api/profile/**").access("hasAnyAuthority('USER_AUTHORITY')")
+>>>>>>> dev
             .antMatchers("/api/restricted/**").access("hasAnyAuthority('USER_AUTHORITY')")
             .antMatchers("/api/status/restricted/**").access("hasAnyAuthority('USER_AUTHORITY')")
             .antMatchers("/api/admin/**").access("hasAnyAuthority('ADMIN_AUTHORITY')")

@@ -3,6 +3,7 @@ package nl.tudelft.gogreen.server.controller;
 import nl.tudelft.gogreen.server.models.activity.Category;
 import nl.tudelft.gogreen.server.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/category")
+=======
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Collection;
+
+@RestController
+@RequestMapping("/api/categories")
+>>>>>>> dev
 public class CategoryController {
     private final CategoryService categoryService;
 
@@ -21,6 +32,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+<<<<<<< HEAD
     @RequestMapping(value = "/",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
@@ -31,5 +43,15 @@ public class CategoryController {
     @RequestMapping("/{id}")
     public Category getCategory(@PathVariable String name) {
         return categoryService.getCategory(name);
+=======
+    @RequestMapping("/")
+    public Collection<Category> getAllCategories() {
+        return categoryService.getAllCategories();
+    }
+
+    @RequestMapping("/{categoryName}")
+    public Category getCategory(@PathVariable String categoryName) {
+        return categoryService.getCategory(categoryName);
+>>>>>>> dev
     }
 }
