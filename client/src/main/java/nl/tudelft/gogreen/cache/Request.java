@@ -31,10 +31,11 @@ public class Request<T> {
      * @return A {@link BaseRequest} initialized with the parameters of the request
      */
     public BaseRequest buildHttpRequest() {
-        HttpRequestWithBody request = new HttpRequestWithBody(method, url);
+        HttpRequestWithBody request = new HttpRequestWithBody(method, url)
+            .header("accept", "application/json");
 
         if (data != null) {
-            return request.body(data);
+            return request.header("Content-Type", "application/json").body(data);
         }
 
         if (fields != null) {

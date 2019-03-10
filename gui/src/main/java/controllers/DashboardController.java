@@ -48,7 +48,7 @@ public class DashboardController {
     public void initialize() {
         //    bindProperty();
         // Start retrieval
-        API.retrieveCategoryList(new ServerCallback<Category[]>() {
+        API.retrieveCategoryList(new ServerCallback<Object, Category[]>() {
             @Override
             public void run() {
                 // Handle this a bit more gracefully, just an example
@@ -88,7 +88,7 @@ public class DashboardController {
     }
 
     private void loadActivityList() {
-        API.retrieveActivityList(new ServerCallback<Activity[]>() {
+        API.retrieveActivityList(new ServerCallback<Object, Activity[]>() {
             @Override
             public void run() {
                 if (getStatusCode() != 200) {

@@ -30,10 +30,10 @@ public class RequestCache {
      * @param <T> Type of object inside request
      * @return Cached {@link HttpResponse} if any
      */
-    public <T> HttpResponse<T> retrieveFromCache(Request<T> request) {
+    public <T, I> HttpResponse<I> retrieveFromCache(Request<T> request) {
         for (CachedRequest cachedRequest : cachedRequests.get(request.getUrl())) {
             if (cachedRequest.getRequest().equals(request)) {
-                return ((CachedRequest<T>) cachedRequest).retrieveFromCache();
+                return ((CachedRequest<T, I>) cachedRequest).retrieveFromCache();
             }
         }
 
@@ -47,15 +47,15 @@ public class RequestCache {
      * @param ttl Cache's time to live
      * @param <T> Type of the object in the request and response
      */
-    public <T> void updateCache(Request<T> request, HttpResponse<T> response, int ttl) {
+    public <T, I> void updateCache(Request<T> request, HttpResponse<I> response, int ttl) {
         for (CachedRequest cachedRequest : cachedRequests.get(request.getUrl())) {
             if (cachedRequest.getRequest().equals(request)) {
-                ((CachedRequest<T>) cachedRequest).updateCache(response);
+                ((CachedRequest<T, I>) cachedRequest).updateCache(response);
                 return;
             }
         }
 
-        CachedRequest<T> cachedRequest = new CachedRequest<>(request, ttl);
+        CachedRequest<T, I> cachedRequest = new CachedRequest<>(request, ttl);
 
         cachedRequest.updateCache(response);
         cachedRequests.put(request.getUrl(), cachedRequest);

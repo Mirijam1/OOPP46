@@ -9,11 +9,11 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 @EqualsAndHashCode(exclude = {"staleAfter"})
-public class CachedRequest<T> {
+public class CachedRequest<T, I> {
     private @NonNull Request<T> request;
     private @NonNull int timeToLive;
     private long staleAfter;
-    private HttpResponse<T> cachedResponse;
+    private HttpResponse<I> cachedResponse;
 
     private boolean isStale() {
         return timeToLive != -1 && System.currentTimeMillis() > staleAfter;
@@ -24,7 +24,7 @@ public class CachedRequest<T> {
      * Will return null if the response is stale or there is no cached response.</p>
      * @return The cached {@link HttpResponse}, if any.
      */
-    protected HttpResponse<T> retrieveFromCache() {
+    protected HttpResponse<I> retrieveFromCache() {
         if (isStale()) {
             return null;
         }
@@ -37,7 +37,7 @@ public class CachedRequest<T> {
      * the cached response.</p>
      * @param response Cached {@link HttpResponse}.
      */
-    protected void updateCache(HttpResponse<T> response) {
+    protected void updateCache(HttpResponse<I> response) {
         this.cachedResponse = response;
         this.staleAfter = System.currentTimeMillis() + timeToLive * 1000;
     }

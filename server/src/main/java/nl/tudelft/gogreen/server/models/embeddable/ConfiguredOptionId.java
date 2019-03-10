@@ -2,6 +2,7 @@ package nl.tudelft.gogreen.server.models.embeddable;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
@@ -16,6 +17,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder(toBuilder = true)
 public class ConfiguredOptionId implements Serializable {
     @JsonBackReference
     @ManyToOne

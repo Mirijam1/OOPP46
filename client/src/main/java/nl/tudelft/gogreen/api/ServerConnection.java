@@ -59,9 +59,9 @@ public class ServerConnection {
      * @param callback {@link ServerCallback} which will be ran after the request returns
      * @param <T> Type of the object to map to
      */
-    protected static <T> void request(@NonNull Class<? extends T> clazz,
+    protected static <T, I> void request(@NonNull Class<I> clazz,
                                       @NonNull Request<T> request,
-                                      @NonNull ServerCallback<T> callback) {
+                                      @NonNull ServerCallback<T, I> callback) {
         request(clazz, request, callback, true, 5 * 60 * 60);
     }
 
@@ -72,17 +72,18 @@ public class ServerConnection {
      * @param callback {@link ServerCallback} which will be ran after the request returns
      * @param useCache Boolean indicating whether this request should use the cache
      * @param ttl Time to live of the cache in seconds, where -1 means 'until the program closes'
-     * @param <T> Type of the object to map to
+     * @param <T> Type of the object to send
+     * @param <I> Type of the object to map to
      */
-    protected static <T> void request(@NonNull Class<? extends T> clazz,
+    protected static <T, I> void request(@NonNull Class<I> clazz,
                                       @NonNull Request<T> request,
-                                      @NonNull ServerCallback<T> callback,
+                                      @NonNull ServerCallback<T, I> callback,
                                       @NonNull boolean useCache,
                                       @NonNull int ttl) {
         final RequestCache cache = RequestCache.getInstance();
 
         if (useCache) {
-            HttpResponse<T> cachedResponse = cache.retrieveFromCache(request);
+            HttpResponse<I> cachedResponse = cache.retrieveFromCache(request);
 
             if (cachedResponse != null) {
                 callback.result(cachedResponse.getBody(), cachedResponse, true, request);
@@ -91,9 +92,9 @@ public class ServerConnection {
             }
         }
 
-        request.buildHttpRequest().asObjectAsync(clazz, new Callback<T>() {
+        request.buildHttpRequest().asObjectAsync(clazz, new Callback<I>() {
             @Override
-            public void completed(HttpResponse<T> httpResponse) {
+            public void completed(HttpResponse<I> httpResponse) {
                 if (useCache) {
                     cache.updateCache(request, httpResponse, ttl);
                 }
@@ -136,17 +137,18 @@ public class ServerConnection {
      * @param useCache Boolean indicating whether this request should use the cache
      * @param ttl Time to live of the cache in seconds, where -1 means 'until the program closes'
      * @param <T> Type of the object to map to
+     * @param <I> Type of the object to map to
      * @param response Object that will be put into the {@link HttpResponse}, as if it was returned from the server.
      * @param responseStatusCode Status code that will be put into the {@link HttpResponse},
      *                           as if it was returned from the server.
      *                           Keep in mind that this parameter will not affect the status text field.
      */
-    protected static <T> void mockRequest(@NonNull Class<? extends T> clazz,
+    protected static <T, I> void mockRequest(@NonNull Class<I> clazz,
                                           @NonNull Request<T> request,
-                                          @NonNull ServerCallback<T> callback,
+                                          @NonNull ServerCallback<T, I> callback,
                                           @NonNull boolean useCache,
                                           @NonNull int ttl,
-                                          @NonNull T response,
+                                          @NonNull I response,
                                           int responseStatusCode) {
         // Replace with proper logger
         System.out.println(Thread.currentThread() + " => Creating mock request for '" + clazz.getName() + "' with settings ["
@@ -156,7 +158,7 @@ public class ServerConnection {
             + ", response=" + response
             + "]");
 
-        HttpResponse<T> httpResponse = null;
+        HttpResponse<I> httpResponse = null;
         try {
             httpResponse = new ObjenesisStd().getInstantiatorOf(HttpResponse.class).newInstance();
 
