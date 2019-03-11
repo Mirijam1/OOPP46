@@ -1,6 +1,13 @@
 package nl.tudelft.gogreen.shared;
 
 public class StatusCodes {
+    /**
+     * <p>Cannot be instantiated.</p>
+     */
+    private StatusCodes() {
+
+    }
+
     // Auth related
     public static final int AUTHENTICATED = 200;
     public static final int UNAUTHORIZED = 401;
