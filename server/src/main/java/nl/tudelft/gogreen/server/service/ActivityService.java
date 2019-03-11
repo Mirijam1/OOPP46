@@ -89,7 +89,13 @@ public class ActivityService implements IActivityService {
 
     @Override
     public Activity getActivity(Integer id) {
-        return activityRepository.findActivityById(id);
+        Activity activity = activityRepository.findActivityById(id);
+
+        if (activity == null) {
+            throw new NotFoundException();
+        }
+
+        return activity;
     }
 
     @Override
