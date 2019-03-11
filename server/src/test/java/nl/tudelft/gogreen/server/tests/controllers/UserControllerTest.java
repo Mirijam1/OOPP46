@@ -4,8 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,10 +35,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest {
     @Data
     @AllArgsConstructor
-    @RequiredArgsConstructor
     public class TestUser {
         private String username;
-        private @NonNull String password;
+        private String password;
     }
 
     private final String basisEndpoint = "/api/user/";
@@ -57,7 +54,7 @@ public class UserControllerTest {
     @Before
     public void setUp() throws JsonProcessingException {
         mappedUser = mapper.writeValueAsString(new TestUser("tim", "password"));
-        mapperUserPasswordOnly = mapper.writeValueAsString(new TestUser("password"));
+        mapperUserPasswordOnly = mapper.writeValueAsString(new TestUser(null, "password"));
     }
 
     // TODO: Maybe make these tests also check for the returned JSON
@@ -108,6 +105,52 @@ public class UserControllerTest {
             .andExpect(status().isOk());
     }
 
+    @Sql({"/data-h2.sql"})
+    @WithAnonymousUser
+    @Test
+    public void shouldReturnConflictWhenCreatingDuplicate() throws Exception {
+        mock.perform(put(basisEndpoint + "create")
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content(mapper.writeValueAsString(new TestUser("admin", "password"))))
+            .andExpect(status().isConflict());
+    }
+
+    @WithAnonymousUser
+    @Test
+    public void shouldReturnBadRequestWhenCreatingWithoutName() throws Exception {
+        mock.perform(put(basisEndpoint + "create")
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content(mapper.writeValueAsString(new TestUser(null, "password"))))
+            .andExpect(status().isBadRequest());
+    }
+
+    @WithAnonymousUser
+    @Test
+    public void shouldReturnBadRequestWhenCreatingWithoutPassword() throws Exception {
+        mock.perform(put(basisEndpoint + "create")
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content(mapper.writeValueAsString(new TestUser("tim", null))))
+            .andExpect(status().isBadRequest());
+    }
+
+    @WithAnonymousUser
+    @Test
+    public void shouldReturnBadRequestWhenCreatingWithBadName() throws Exception {
+        mock.perform(put(basisEndpoint + "create")
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content(mapper.writeValueAsString(new TestUser("t", "password"))))
+            .andExpect(status().isBadRequest());
+    }
+
+    @WithAnonymousUser
+    @Test
+    public void shouldReturnBadRequestWhenCreatingWithBadPassword() throws Exception {
+        mock.perform(put(basisEndpoint + "create")
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content(mapper.writeValueAsString(new TestUser("tim", "pw"))))
+            .andExpect(status().isBadRequest());
+    }
+
     @WithAnonymousUser
     @Test
     public void shouldReturnUnauthorizedWhenDeletingAnonymousUser() throws Exception {
@@ -140,5 +183,15 @@ public class UserControllerTest {
             .andExpect(status().isOk());
 
         //TODO: Add a check to check if the user was actually updated
+    }
+
+    @Sql({"/test/data-two-users.sql"})
+    @WithUserDetails(value = "admin", userDetailsServiceBeanName = "userDetailService")
+    @Test
+    public void shouldReturnConflictWhenUpdatingUserToDuplicateName() throws Exception {
+        mock.perform(patch(basisEndpoint + "update")
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content(mapper.writeValueAsString(new TestUser("test_user", "password"))))
+            .andExpect(status().isConflict());
     }
 }
