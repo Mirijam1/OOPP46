@@ -5,6 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @NoArgsConstructor
-@ResponseStatus(HttpStatus.CONFLICT)
-public class ConflictException extends RuntimeException {
+@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+public class InternalServerError extends RuntimeException {
 }

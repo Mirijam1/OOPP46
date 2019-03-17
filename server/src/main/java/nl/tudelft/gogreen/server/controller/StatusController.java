@@ -24,29 +24,32 @@ public class StatusController {
     }
 
     @RequestMapping(
-        path = "/test",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            path = "/test",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody Map<String, String> getStatus() {
+    public @ResponseBody
+    Map<String, String> getStatus() {
         return Collections.singletonMap("response", statusService.getStatus());
     }
 
     @RequestMapping(
-        path = "/restricted/test",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            path = "/restricted/test",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody Map<String, String> getRestrictedStatus() {
+    public @ResponseBody
+    Map<String, String> getRestrictedStatus() {
         return Collections.singletonMap("response", statusService.getRestrictedStatus());
     }
 
     @RequestMapping(
-        path = "/admin/test",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            path = "/admin/test",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody Map<String, String> getAdminStatus() {
+    public @ResponseBody
+    Map<String, String> getAdminStatus() {
         return Collections.singletonMap("response", statusService.getAdminStatus());
     }
 }

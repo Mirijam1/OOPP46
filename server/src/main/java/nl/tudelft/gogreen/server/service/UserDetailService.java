@@ -62,14 +62,14 @@ public class UserDetailService implements UserDetailsService, IUserService {
         authorities.add(authorityRepository.findByName("USER_AUTHORITY"));
 
         User user = User.builder()
-            .username(username)
-            .password(passwordEncoder.encode(password))
-            .enabled(true)
-            .id(UUID.randomUUID())
-            .authorities(authorities)
-            .locked(false)
-            .expired(false)
-            .build();
+                .username(username)
+                .password(passwordEncoder.encode(password))
+                .enabled(true)
+                .id(UUID.randomUUID())
+                .authorities(authorities)
+                .locked(false)
+                .expired(false)
+                .build();
 
         // Create profile
         profileService.createUserProfileForUser(user);

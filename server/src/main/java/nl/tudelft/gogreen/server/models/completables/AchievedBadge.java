@@ -1,30 +1,25 @@
-package nl.tudelft.gogreen.server.models.activity;
+package nl.tudelft.gogreen.server.models.completables;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import nl.tudelft.gogreen.server.models.activity.config.ConfiguredOption;
-import nl.tudelft.gogreen.server.models.completables.AchievedBadge;
-import nl.tudelft.gogreen.server.models.completables.Trigger;
+import lombok.ToString;
+import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.UUID;
 
 @Entity
@@ -32,8 +27,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-@Table(name = "COMPLETED_ACTIVITY")
-public class CompletedActivity {
+@Table(name = "ACHIEVED_BADGE")
+@EqualsAndHashCode(exclude = "activity")
+@ToString(exclude = "activity")
+public class AchievedBadge {
     @JsonIgnore
     @Id
     @Column(name = "ID", unique = true, updatable = false, nullable = false)
@@ -50,32 +47,32 @@ public class CompletedActivity {
     @JoinColumn(name = "PROFILE", referencedColumnName = "PROFILE_ID")
     private UserProfile profile;
 
-    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
+    @JsonView({nl.tudelft.gogreen.server.models.JsonView.Detailed.class,
+            nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class})
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "BADGE", referencedColumnName = "ID")
+    private Badge badge;
+
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
+    @JsonBackReference
+    @ManyToOne
     @JoinColumn(name = "ACTIVITY", referencedColumnName = "ID")
-    private Activity activity;
-
-    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
-    @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "activity", orphanRemoval = true, cascade = CascadeType.ALL)
-    private Collection<AchievedBadge> achievedBadges;
-
-    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
-    @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id.activity", orphanRemoval = true, cascade = CascadeType.ALL)
-    private Collection<ConfiguredOption> options;
+    private CompletedActivity activity;
 
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.Detailed.class,
             nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class})
-    @Column(name = "POINTS", nullable = false)
-    private Float points;
+    @Column(name = "DATE_TIME_ACHIEVED")
+    private LocalDateTime dateTimeAchieved;
 
-    @JsonView({nl.tudelft.gogreen.server.models.JsonView.Detailed.class,
-            nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class})
-    @Column(name = "DATE_TIME_COMPLETED")
-    private LocalDateTime dateTimeCompleted;
-
-    @JsonIgnore
-    @Transient
-    private Collection<Trigger> triggers;
+    /**
+     * <p>Returns a {@link nl.tudelft.gogreen.shared.models.Badge} instance of this badge.</p>
+     *
+     * @return A {@link nl.tudelft.gogreen.shared.models.Badge} instance
+     */
+    public nl.tudelft.gogreen.shared.models.Badge toSharedModel() {
+        return nl.tudelft.gogreen.shared.models.Badge.builder()
+                .achievedMessage(badge.getAchievedMessage())
+                .badgeName(badge.getBadgeName())
+                .externalId(externalId).build();
+    }
 }

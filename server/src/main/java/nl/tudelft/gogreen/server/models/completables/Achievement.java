@@ -1,4 +1,4 @@
-package nl.tudelft.gogreen.server.models;
+package nl.tudelft.gogreen.server.models.completables;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
