@@ -60,8 +60,8 @@ public class ServerConnection {
      * @param <T> Type of the object to map to
      */
     protected static <T, I> void request(@NonNull Class<I> clazz,
-                                      @NonNull Request<T> request,
-                                      @NonNull ServerCallback<T, I> callback) {
+                                         @NonNull Request<T> request,
+                                         @NonNull ServerCallback<T, I> callback) {
         request(clazz, request, callback, true, 5 * 60 * 60);
     }
 
@@ -76,10 +76,10 @@ public class ServerConnection {
      * @param <I> Type of the object to map to
      */
     protected static <T, I> void request(@NonNull Class<I> clazz,
-                                      @NonNull Request<T> request,
-                                      @NonNull ServerCallback<T, I> callback,
-                                      @NonNull boolean useCache,
-                                      @NonNull int ttl) {
+                                         @NonNull Request<T> request,
+                                         @NonNull ServerCallback<T, I> callback,
+                                         @NonNull boolean useCache,
+                                         @NonNull int ttl) {
         final RequestCache cache = RequestCache.getInstance();
 
         if (useCache) {
@@ -144,12 +144,12 @@ public class ServerConnection {
      *                           Keep in mind that this parameter will not affect the status text field.
      */
     protected static <T, I> void mockRequest(@NonNull Class<I> clazz,
-                                          @NonNull Request<T> request,
-                                          @NonNull ServerCallback<T, I> callback,
-                                          @NonNull boolean useCache,
-                                          @NonNull int ttl,
-                                          @NonNull I response,
-                                          int responseStatusCode) {
+                                             @NonNull Request<T> request,
+                                             @NonNull ServerCallback<T, I> callback,
+                                             @NonNull boolean useCache,
+                                             @NonNull int ttl,
+                                             @NonNull I response,
+                                             int responseStatusCode) {
         // Replace with proper logger
         System.out.println(Thread.currentThread() + " => Creating mock request for '" + clazz.getName() + "' with settings ["
             + "useCache=" + useCache
@@ -202,8 +202,8 @@ public class ServerConnection {
     }
 
     protected static <T> Request<T> buildRequestWithBody(@NonNull HttpMethod method,
-                                                           @NonNull String url,
-                                                           @NonNull T body) {
+                                                         @NonNull String url,
+                                                         @NonNull T body) {
         return new Request<>(method, url, null, body);
     }
 }
