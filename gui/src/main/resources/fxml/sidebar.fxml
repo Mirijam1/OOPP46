@@ -19,8 +19,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SidebarController">
@@ -49,7 +47,8 @@
 =======
         <VBox fx:id="sidebar" layoutX="0.0" layoutY="0.0" onMouseEntered="#hover" prefHeight="799.0" prefWidth="100.0">
             <children>
-                <Button fx:id="overview" cancelButton="false" defaultButton="false" mnemonicParsing="false" onAction="#overviewpage" prefHeight="100.0" prefWidth="100.0" textOverrun="CLIP">
+                <Button fx:id="overview" cancelButton="false" defaultButton="false" mnemonicParsing="false" onAction="#overviewpage" prefHeight="100.0" prefWidth="100.0" text="" textOverrun="CLIP">
+>>>>>>> dev
                     <graphic>
                         <ImageView fitHeight="26.000099999997474" fitWidth="26.000099999997474" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -61,7 +60,11 @@
                         <URL value="@../css/sidebar.css" />
                     </stylesheets>
                 </Button>
-                <JFXButton onAction="#newactivitypage" prefHeight="100.0" prefWidth="100.0" text=".">
+<<<<<<< HEAD
+                <Button fx:id="add" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="">
+=======
+                <Button fx:id="add" mnemonicParsing="false" onAction="#newactivitypage" prefHeight="100.0" prefWidth="100.0" text="">
+>>>>>>> dev
                     <graphic>
                         <ImageView fitHeight="26.000099999997474" fitWidth="26.000099999997474" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -69,15 +72,13 @@
                             </image>
                         </ImageView>
                     </graphic>
-                    <ripplerFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                            <stops>
-                                <Stop color="#0eeb0a" />
-                                <Stop color="WHITE" offset="1.0" />
-                            </stops>
-                        </LinearGradient>
-                    </ripplerFill>
-                </JFXButton>
+                    <stylesheets>
+                        <URL value="@../css/sidebar.css" />
+                    </stylesheets>
+                </Button>
+<<<<<<< HEAD
+                <Button fx:id="leaderboard" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="">
+=======
                 <Button fx:id="leaderboard" mnemonicParsing="false" onAction="#leaderboardpage" prefHeight="100.0" prefWidth="100.0" text="">
 >>>>>>> dev
                     <graphic>
@@ -91,7 +92,10 @@
                         <URL value="@../css/sidebar.css" />
                     </stylesheets>
                 </Button>
-                <JFXButton fx:id="btn1" onAction="#account" prefHeight="100.0" prefWidth="100.0" text="Account" />
+<<<<<<< HEAD
+                <Button fx:id="account" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="">
+=======
+            <JFXButton fx:id="btn1" onAction="#account" prefHeight="100.0" prefWidth="100.0" />
                 <Button fx:id="account" mnemonicParsing="false" onAction="#accountpage" prefHeight="100.0" prefWidth="100.0" text="">
 >>>>>>> dev
                     <graphic>
@@ -121,31 +125,36 @@
                         <URL value="@../css/sidebar.css" />
                     </stylesheets>
                 </Button>
-                <Label prefHeight="41.0" prefWidth="100.0" text="Working btns:" />
-                <Label layoutX="10.0" layoutY="610.0" prefHeight="31.0" prefWidth="100.0" text="Account&amp;+" />
             </children>
             <stylesheets>
                 <URL value="@../css/sidebar.css" />
             </stylesheets>
         </VBox>
-        <Pane id="subscene" fx:id="gridpane" layoutX="99.0" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #98fb98;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-                <fx:include fx:id="subscene" source="accountPage.fxml" />
-                <ImageView fitHeight="87.0" fitWidth="74.0" layoutX="1092.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../img/user.png" />
-                    </image>
-                </ImageView>
-                <Label layoutX="990.0" layoutY="51.0" text="User">
-                    <font>
-                        <Font name="Microsoft YaHei Light" size="25.0" />
-                    </font>
-                </Label>
-                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="965.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../img/logo.png" />
-                    </image>
-                </ImageView>
-            </children></Pane>
+<<<<<<< HEAD
+      <VBox fx:id="subscene" layoutX="106.0" layoutY="1.0" prefHeight="656.0" prefWidth="874.0">
+          <fx:include source="dashboard.fxml" />
+
+      </VBox>
+=======
+      <Pane id="subscene" fx:id="gridpane" layoutX="99.0" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #98fb98;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+             <fx:include source="dashboard.fxml" />
+            <ImageView fitHeight="87.0" fitWidth="74.0" layoutX="1092.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/user.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="990.0" layoutY="51.0" text="User">
+               <font>
+                  <Font name="Microsoft YaHei Light" size="25.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="965.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/logo.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+>>>>>>> dev
     </children>
 </AnchorPane>

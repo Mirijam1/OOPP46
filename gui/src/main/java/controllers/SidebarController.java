@@ -1,6 +1,12 @@
 package controllers;
 
-import com.jfoenix.controls.JFXButton;
+<<<<<<< HEAD
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+
+=======
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +27,7 @@ public class SidebarController {
     private Button overview;
 
     @FXML
-    private JFXButton add;
+    private Button add;
 
     @FXML
     private Button leaderboard;
@@ -33,7 +39,7 @@ public class SidebarController {
     private Button logout;
 
     @FXML
-    private AnchorPane subscene;
+    private VBox subscene;
 
     @FXML
 <<<<<<< HEAD
@@ -62,7 +68,7 @@ public class SidebarController {
 
     @FXML
     void logout(ActionEvent event) {
-        System.exit(0);
+
     }
 
     @FXML
