@@ -24,8 +24,9 @@ public class LoginController {
     void login(ActionEvent event) throws Exception {
         Parent root;
         try {
-<<<<<<< HEAD
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/dashboard.fxml"));
+            Parent root;
+
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/accountPage.fxml"));
             Stage stage = new Stage();
             stage.setTitle("GoGreen");
             stage.setScene(new Scene(root, 1280, 720));
