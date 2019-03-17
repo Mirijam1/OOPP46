@@ -38,11 +38,12 @@ public class UserController {
 
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class)
     @RequestMapping(
-        path = "/",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            path = "/",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody User getDetails(Authentication authentication) {
+    public @ResponseBody
+    User getDetails(Authentication authentication) {
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             throw new UnauthorizedException();
         }
@@ -51,12 +52,13 @@ public class UserController {
     }
 
     @RequestMapping(
-        path = "/create",
-        method = RequestMethod.PUT,
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            path = "/create",
+            method = RequestMethod.PUT,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody User createUser(@RequestBody User user, Authentication authentication) {
+    public @ResponseBody
+    User createUser(@RequestBody User user, Authentication authentication) {
         if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
             throw new ForbiddenException();
         }
@@ -64,9 +66,9 @@ public class UserController {
         // TODO: Add some password+name checks
 
         if (user.getUsername() == null
-            || user.getPassword() == null
-            || user.getUsername().trim().length() < 3
-            || user.getPassword().trim().length() < 5) {
+                || user.getPassword() == null
+                || user.getUsername().trim().length() < 3
+                || user.getPassword().trim().length() < 5) {
             throw new BadRequestException();
         }
 
@@ -78,11 +80,12 @@ public class UserController {
     }
 
     @RequestMapping(
-        path = "/delete",
-        method = RequestMethod.DELETE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            path = "/delete",
+            method = RequestMethod.DELETE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody Map<String, String> deleteUser(Authentication authentication) {
+    public @ResponseBody
+    Map<String, String> deleteUser(Authentication authentication) {
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             throw new UnauthorizedException();
         }
@@ -96,12 +99,13 @@ public class UserController {
     }
 
     @RequestMapping(
-        path = "/update",
-        method = RequestMethod.PATCH,
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            path = "/update",
+            method = RequestMethod.PATCH,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody User updateUser(@RequestBody User user, Authentication authentication) {
+    public @ResponseBody
+    User updateUser(@RequestBody User user, Authentication authentication) {
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             throw new UnauthorizedException();
         }
@@ -109,7 +113,7 @@ public class UserController {
         //TODO: Add password checks
 
         if ((user.getUsername() != null && user.getUsername().trim().length() < 3)
-            || (user.getPassword() != null && user.getPassword().trim().length() < 5)) {
+                || (user.getPassword() != null && user.getPassword().trim().length() < 5)) {
             throw new BadRequestException();
         }
 

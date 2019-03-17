@@ -23,9 +23,6 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.UUID;
-/*
-Very basic class, will be developed further
- */
 
 @Data
 @Entity
@@ -36,7 +33,7 @@ Very basic class, will be developed further
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements UserDetails, Serializable {
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class,
-        nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
+            nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
     @Id
     @Column(name = "USER_ID", nullable = false, unique = true, updatable = false)
     private UUID id;
@@ -50,46 +47,46 @@ public class User implements UserDetails, Serializable {
     private String password;
 
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class,
-        nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
+            nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
     @Column(name = "ACC_EXPIRED", nullable = false)
     private boolean expired;
 
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class,
-        nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
+            nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
     @Column(name = "ACC_LOCKED", nullable = false)
     private boolean locked;
 
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class,
-        nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
+            nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
     @Column(name = "ACC_ACTIVATED", nullable = false)
     private boolean enabled;
 
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class,
-        nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
+            nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
     @ManyToMany(fetch = FetchType.EAGER)
     @OrderBy
     @JoinTable(
-        name = "USER_AUTHORITIES",
-        joinColumns = @JoinColumn(
-            name = "USER_ID",
-            referencedColumnName = "USER_ID"
-        ),
-        inverseJoinColumns = @JoinColumn(
-            name = "AUTHORITY_ID",
-            referencedColumnName = "AID"
-        )
+            name = "USER_AUTHORITIES",
+            joinColumns = @JoinColumn(
+                    name = "USER_ID",
+                    referencedColumnName = "USER_ID"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "AUTHORITY_ID",
+                    referencedColumnName = "AID"
+            )
     )
     private Collection<Authority> authorities;
 
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class,
-        nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
+            nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
     @Override
     public boolean isAccountNonExpired() {
         return !this.isExpired();
     }
 
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class,
-        nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
+            nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
     @Override
     public boolean isAccountNonLocked() {
         return !this.isLocked();
@@ -99,7 +96,7 @@ public class User implements UserDetails, Serializable {
     Maybe implement this later, for now the credentials never expire
      */
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class,
-        nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
+            nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
     @Override
     public boolean isCredentialsNonExpired() {
         return true;

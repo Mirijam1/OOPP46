@@ -3,6 +3,7 @@ package nl.tudelft.gogreen.server.exceptions.handling;
 import nl.tudelft.gogreen.server.exceptions.BadRequestException;
 import nl.tudelft.gogreen.server.exceptions.ConflictException;
 import nl.tudelft.gogreen.server.exceptions.ForbiddenException;
+import nl.tudelft.gogreen.server.exceptions.InternalServerError;
 import nl.tudelft.gogreen.server.exceptions.NotFoundException;
 import nl.tudelft.gogreen.server.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,13 @@ public class ExceptionHandler {
     @org.springframework.web.bind.annotation.ExceptionHandler(ConflictException.class)
     public ResponseEntity<ServerError> handleConflict() {
         HttpStatus status = HttpStatus.CONFLICT;
+
+        return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(InternalServerError.class)
+    public ResponseEntity<ServerError> handleError() {
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 
         return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
     }

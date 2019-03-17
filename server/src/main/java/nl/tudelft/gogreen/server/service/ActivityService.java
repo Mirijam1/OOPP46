@@ -71,7 +71,7 @@ public class ActivityService implements IActivityService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public CompletedActivity buildCompletedActivity(SubmittedActivity submittedActivity,
                                                     UserProfile user) {
         Activity activity = activityRepository.findActivityById(submittedActivity.getActivityId());
@@ -82,36 +82,37 @@ public class ActivityService implements IActivityService {
         }
 
         CompletedActivity completedActivity = CompletedActivity.builder()
-            .id(UUID.randomUUID())
-            .externalId(UUID.randomUUID())
-            .activity(activity)
-            .dateTimeCompleted(LocalDateTime.now())
-            .profile(user).build();
+                .id(UUID.randomUUID())
+                .externalId(UUID.randomUUID())
+                .activity(activity)
+                .dateTimeCompleted(LocalDateTime.now())
+                .profile(user)
+                .triggers(activity.getTriggers()).build();
 
 
         if (submittedActivity.getOptions() != null) {
             if (activity.getOptions() == null
-                || activity.getOptions().size() != submittedActivity.getOptions().size()) {
+                    || activity.getOptions().size() != submittedActivity.getOptions().size()) {
                 throw new BadRequestException();
             }
 
             for (SubmittedActivityOption submittedActivityOption : submittedActivity.getOptions()) {
                 ActivityOption activityOption = activityOptionRepository
-                    .findActivityOptionById(submittedActivityOption.getOptionId());
+                        .findActivityOptionById(submittedActivityOption.getOptionId());
 
                 if (activityOption == null
-                    || !activityOption.getInputType().getValidator().isValid(submittedActivityOption.getValue())) {
+                        || !activityOption.getInputType().getValidator().isValid(submittedActivityOption.getValue())) {
                     throw new BadRequestException();
                 }
 
                 ConfiguredOptionId id = ConfiguredOptionId.builder()
-                    .option(activityOption)
-                    .activity(completedActivity).build();
+                        .option(activityOption)
+                        .activity(completedActivity).build();
 
                 ConfiguredOption option = ConfiguredOption.builder()
-                    .id(id)
-                    .inputType(activityOption.getInputType())
-                    .value(submittedActivityOption.getValue()).build();
+                        .id(id)
+                        .inputType(activityOption.getInputType())
+                        .value(submittedActivityOption.getValue()).build();
 
                 options.add(option);
             }

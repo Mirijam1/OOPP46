@@ -1,11 +1,13 @@
 package nl.tudelft.gogreen.server.service;
 
-import nl.tudelft.gogreen.server.models.Badge;
 import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
+import nl.tudelft.gogreen.server.models.completables.AchievedBadge;
+import nl.tudelft.gogreen.server.models.completables.Badge;
 import nl.tudelft.gogreen.server.models.user.User;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
 import nl.tudelft.gogreen.server.repository.ProfileRepository;
 import nl.tudelft.gogreen.server.repository.activity.CompletedActivityRepository;
+import nl.tudelft.gogreen.server.repository.completables.AchievedBadgeRepository;
 import nl.tudelft.gogreen.server.service.handlers.IAchievementCheckService;
 import nl.tudelft.gogreen.server.service.handlers.IBadgeCheckService;
 import nl.tudelft.gogreen.shared.models.SubmitResponse;
@@ -19,6 +21,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
@@ -30,18 +33,21 @@ public class ProfileService implements IProfileService {
     private final CompletedActivityRepository completedActivityRepository;
     private final IAchievementCheckService achievementCheckService;
     private final IBadgeCheckService badgeCheckService;
+    private final AchievedBadgeRepository achievedBadgeRepository;
 
     @Autowired
     public ProfileService(ProfileRepository profileRepository,
                           IActivityService activityService,
                           CompletedActivityRepository completedActivityRepository,
                           IAchievementCheckService achievementCheckService,
-                          IBadgeCheckService badgeCheckService) {
+                          IBadgeCheckService badgeCheckService,
+                          AchievedBadgeRepository achievedBadgeRepository) {
         this.profileRepository = profileRepository;
         this.activityService = activityService;
         this.completedActivityRepository = completedActivityRepository;
         this.achievementCheckService = achievementCheckService;
         this.badgeCheckService = badgeCheckService;
+        this.achievedBadgeRepository = achievedBadgeRepository;
     }
 
     @Override
@@ -55,10 +61,10 @@ public class ProfileService implements IProfileService {
         logger.info("Create user profile for user " + user.getUsername());
 
         UserProfile userProfile = UserProfile.builder()
-            .userID(user.getId())
-            .points(0F)
-            .uuid(UUID.randomUUID())
-            .build();
+                .userID(user.getId())
+                .points(0F)
+                .uuid(UUID.randomUUID())
+                .build();
 
         profileRepository.save(userProfile);
         return userProfile;
@@ -87,21 +93,34 @@ public class ProfileService implements IProfileService {
         CompletedActivity activity = activityService.buildCompletedActivity(submittedActivity, profile);
 
         //TODO: Badge and achievement triggers
-
         completedActivityRepository.save(activity);
 
         profile.setPoints(profile.getPoints() + activity.getPoints());
-        profileRepository.save(profile);
 
         SubmitResponse submitResponse = SubmitResponse.builder()
-            .response("Ok")
-            .points(activity.getPoints())
-            .updatedPoints(profile.getPoints())
-            .externalId(activity.getExternalId()).build();
+                .response("Ok")
+                .points(activity.getPoints())
+                .updatedPoints(profile.getPoints())
+                .externalId(activity.getExternalId())
+                .badges(new ArrayList<>()).build();
 
         // Put through badge and achievement service
-        badgeCheckService.checkBadge(activity, profile, submitResponse);
+        Collection<AchievedBadge> achievedBadges = badgeCheckService
+                .checkBadge(activity, profile, activity.getTriggers());
         achievementCheckService.checkAchievements(activity, profile, submitResponse);
+
+        // Add badges + achievements
+        achievedBadges.forEach(badge -> {
+            addBadge(profile, badge);
+            submitResponse.getBadges().add(badge.toSharedModel());
+            achievedBadgeRepository.save(badge);
+        });
+
+        // Set badges + achievements
+        activity.setAchievedBadges(achievedBadges);
+
+        completedActivityRepository.save(activity);
+        profileRepository.save(profile);
 
         return submitResponse;
     }
@@ -112,7 +131,7 @@ public class ProfileService implements IProfileService {
         UserProfile profile = profileRepository.findUserProfileByUserID(user.getId());
 
         return completedActivityRepository
-            .findCompletedActivitiesByProfileOrderByDateTimeCompletedDesc(profile, PageRequest.of(0, limit));
+                .findCompletedActivitiesByProfileOrderByDateTimeCompletedDesc(profile, PageRequest.of(0, limit));
     }
 
     @Override
@@ -120,7 +139,7 @@ public class ProfileService implements IProfileService {
     public CompletedActivity getCompletedActivityDetailed(User user, UUID externalId) {
         UserProfile profile = profileRepository.findUserProfileByUserID(user.getId());
         CompletedActivity activity = completedActivityRepository
-            .findCompletedActivityByProfileAndExternalId(profile, externalId);
+                .findCompletedActivityByProfileAndExternalId(profile, externalId);
 
         if (activity != null) {
             Hibernate.initialize(activity.getOptions());
@@ -129,5 +148,19 @@ public class ProfileService implements IProfileService {
         }
 
         return null;
+    }
+
+    @Override
+    @Transactional
+    public void addBadge(UserProfile user, AchievedBadge badge) {
+        user.getBadges().add(badge);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<AchievedBadge> getAchievedBadges(User user) {
+        UserProfile profile = profileRepository.findUserProfileByUserID(user.getId());
+
+        return achievedBadgeRepository.findAchievedBadgesByProfileOrderByDateTimeAchievedDesc(profile);
     }
 }
