@@ -21,37 +21,8 @@
             <artifactId>client</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.mashape.unirest</groupId>-->
-            <!--<artifactId>unirest-java</artifactId>-->
-            <!--<version>1.4.9</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.httpcomponents</groupId>-->
-            <!--<artifactId>httpclient</artifactId>-->
-            <!--<version>4.3.6</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.httpcomponents</groupId>-->
-            <!--<artifactId>httpasyncclient</artifactId>-->
-            <!--<version>4.0.2</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.httpcomponents</groupId>-->
-            <!--<artifactId>httpmime</artifactId>-->
-            <!--<version>4.3.6</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.json</groupId>-->
-            <!--<artifactId>json</artifactId>-->
-            <!--<version>20140107</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>com.fasterxml.jackson.core</groupId>-->
-            <!--<artifactId>jackson-databind</artifactId>-->
-            <!--<version>2.9.8</version>-->
-        <!--</dependency>-->
     </dependencies>
+
     <!-- Properties -->
     <properties>
         <!-- Main class -->
@@ -88,7 +59,8 @@
                         <configuration>
                             <transformers>
                                 <!-- add Main-Class to manifest file -->
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>${gui.main.class}</mainClass>
                                 </transformer>
                             </transformers>

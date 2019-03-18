@@ -1,10 +1,11 @@
 package nl.tudelft.gogreen.api.servermodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,14 +14,6 @@ import lombok.*;
 public class Activity {
     private Integer id;
     private String activityName;
+    private String description;
     private Category category;
-
-    public String getcatName(){
-        return this.category.getcategoryName();
-    }
-
-    @Override
-    public String toString(){
-        return "id "+id+"\nactivityName: "+activityName+"\npoints:";
-    }
 }

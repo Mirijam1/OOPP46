@@ -25,12 +25,12 @@ public class UserDetailService implements UserDetailsService, IUserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthorityRepository authorityRepository;
-    private final ProfileService profileService;
+    private final IProfileService profileService;
 
     @Autowired
     public UserDetailService(UserRepository userRepository,
                              PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository,
-                             ProfileService profileService) {
+                             IProfileService profileService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
@@ -41,7 +41,7 @@ public class UserDetailService implements UserDetailsService, IUserService {
     @Transactional(readOnly = true)
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         logger.info("Looking for user with name: " + username);
-        User user = this.userRepository.findByUsername(username);
+        User user = this.userRepository.findUserByUsername(username);
 
         // Return user if found
         if (user != null) {
@@ -62,14 +62,14 @@ public class UserDetailService implements UserDetailsService, IUserService {
         authorities.add(authorityRepository.findByName("USER_AUTHORITY"));
 
         User user = User.builder()
-            .username(username)
-            .password(passwordEncoder.encode(password))
-            .enabled(true)
-            .id(UUID.randomUUID())
-            .authorities(authorities)
-            .locked(false)
-            .expired(false)
-            .build();
+                .username(username)
+                .password(passwordEncoder.encode(password))
+                .enabled(true)
+                .id(UUID.randomUUID())
+                .authorities(authorities)
+                .locked(false)
+                .expired(false)
+                .build();
 
         // Create profile
         profileService.createUserProfileForUser(user);
