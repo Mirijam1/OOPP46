@@ -10,7 +10,19 @@ public class EndPoints {
     public static final String LOGIN = "login";
     public static final String LOGOUT = "logout";
 
+    //HttpMethod put
+    public static final String CREATEUSER = "api/user/create";
+    //PATCH  - user,authentication token
+    public static final String UPDATEUSER = "api/user/update";
+
     // PROFILE ENDPOINTS
+    public static final String GETPOINTS = "api/profile/";
+
+    public static final String GETUSERACTIVITIES = "api/profile/activities/";
+    public static final String GETSPECIFICACTIVITY = "api/profile/activities/{externalID}";
+
+    public static final String GETBADGES = "api/profile/badges";
+
 
     // ACTIVITY ENDPOINTS
     public static final String ALL_CATEGORIES = "api/categories/";
