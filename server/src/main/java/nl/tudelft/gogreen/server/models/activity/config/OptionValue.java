@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "OPTION_VALUE")
-public class OptionValue {
+class OptionValue {
     @EmbeddedId
     private OptionId optionId;
 

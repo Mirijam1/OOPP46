@@ -3,10 +3,19 @@
     -fx-background-size: cover;
 }
 .button{
-    -fx-background-color: #C5F0C0;
-    -fx-border-color: #FFFFFF;
+    -fx-background-color: #32CD32;
+    -fx-border-width: 2px;
+    -fx-border-color: #98FB98;
 }
 
 #sidebar {
-    -fx-background-color: #C5F0C0;
+    -fx-background-color: #98FB98;
+}
+
+#accountpane {
+    -fx-background-color: #32CD32;
+}
+
+.combo-box-popup .list-view {
+    -fx-font-size : 20pt;
 }

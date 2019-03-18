@@ -4,9 +4,12 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import nl.tudelft.gogreen.server.models.activity.Activity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -24,6 +27,8 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "ACTIVITY_OPTION")
+@EqualsAndHashCode(exclude = "activity")
+@ToString(exclude = "activity")
 public class ActivityOption {
     @Id
     @Column(name = "ID", unique = true, nullable = false, updatable = false)
@@ -37,7 +42,7 @@ public class ActivityOption {
     private InputType inputType;
 
     @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "optionId.option", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "optionId.option", orphanRemoval = true, cascade = CascadeType.ALL)
     private Collection<OptionValue> options;
 
     @JsonBackReference

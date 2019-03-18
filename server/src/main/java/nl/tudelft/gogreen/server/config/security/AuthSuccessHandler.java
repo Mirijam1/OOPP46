@@ -1,7 +1,9 @@
 package nl.tudelft.gogreen.server.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import nl.tudelft.gogreen.server.exceptions.handling.ServerError;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -14,8 +16,6 @@ import org.springframework.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
@@ -33,15 +33,13 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(
-        HttpServletRequest request,
-        HttpServletResponse response,
-        Authentication authentication) throws IOException {
-        Map<String, String> map = new HashMap<>();
-        map.put("response", "SUCCESS");
+            HttpServletRequest request,
+            HttpServletResponse response,
+            Authentication authentication) throws IOException {
+        HttpStatus status = HttpStatus.OK;
+        final String result = mapper.writeValueAsString(new ServerError(status.getReasonPhrase())); // Error: success
 
-        String result = mapper.writeValueAsString(map);
-
-        response.setStatus(HttpServletResponse.SC_OK);
+        response.setStatus(status.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(result);
@@ -49,7 +47,7 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         // Copied logic from parents, just changed 301 -> 200
 
         SavedRequest savedRequest
-            = requestCache.getRequest(request, response);
+                = requestCache.getRequest(request, response);
 
         if (savedRequest == null) {
             clearAuthenticationAttributes(request);
@@ -58,7 +56,7 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
         String targetUrlParam = getTargetUrlParameter();
         if (isAlwaysUseDefaultTargetUrl()
-            || (targetUrlParam != null && StringUtils.hasText(request.getParameter(targetUrlParam)))) {
+                || (targetUrlParam != null && StringUtils.hasText(request.getParameter(targetUrlParam)))) {
             requestCache.removeRequest(request, response);
             clearAuthenticationAttributes(request);
             return;

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="240.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConfirmationController">
+   <children>
+      <Label fx:id="content" layoutX="61.0" layoutY="106.0" text="Are you sure you want to add these?">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="confirmation" layoutX="14.0" layoutY="35.0" text="Confirmation" textFill="#867f7f">
+         <font>
+            <Font name="Candara Bold" size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="confirm" layoutX="107.0" layoutY="166.0" onAction="#confirmButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="CONFIRM">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancel" layoutX="289.0" layoutY="166.0" onAction="#exit" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="CANCEL">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="15.0" />
+         </font>
+      </Button>
+      <Line endX="350.0" layoutX="109.0" layoutY="86.0" startX="-100.0" stroke="#9e9999" />
+      <ImageView fx:id="image" fitHeight="57.0" fitWidth="53.0" layoutX="407.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/confirmation.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
