@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.web.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/overview.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OverviewController">
    <children>
-      <Text fx:id="overview" layoutX="294.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overview of CO2 tracker" wrappingWidth="843.1953125">
+      <Text layoutX="306.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overview of CO2 tracker" wrappingWidth="667.1953125">
          <font>
             <Font name="Microsoft YaHei Light" size="60.0" />
          </font>
@@ -30,48 +27,40 @@
             </LinearGradient>
          </fill>
       </Text>
-      <Label fx:id="history" layoutX="226.0" layoutY="327.0" text="History of activities">
-         <font>
-            <Font name="Microsoft YaHei Light" size="25.0" />
-         </font>
-      </Label>
-<<<<<<< HEAD
-      <Label fx:id="suggustions" layoutX="745.0" layoutY="327.0" text="Suggestions">
-=======
-      <Label fx:id="suggestions" layoutX="745.0" layoutY="327.0" text="Suggestions">
->>>>>>> dev
-         <font>
-            <Font name="Microsoft YaHei Light" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="1152.0" layoutY="28.0" prefHeight="20.0" prefWidth="40.0" text="User" />
-      <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="1213.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/user.png"/>
-         </image>
-      </ImageView>
-      <Text fx:id="CO2Saved" layoutX="388.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount of CO2 Saved:">
+      <Text layoutX="408.0" layoutY="198.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount of CO2 Saved:">
          <font>
             <Font name="Microsoft YaHei Light" size="30.0" />
          </font>
       </Text>
-      <Label fx:id="amount" layoutX="740.0" layoutY="189.0" text="&lt;amount&gt;">
+      <Text layoutX="70.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="History of Activities">
+         <font>
+            <Font name="Microsoft YaHei Light" size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="1074.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suggestions">
+         <font>
+            <Font name="Microsoft YaHei Light" size="25.0" />
+         </font>
+      </Text>
+      <Label fx:id="username" layoutX="1180.0" layoutY="29.0" prefHeight="20.0" prefWidth="40.0" text="User" />
+      <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="1220.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/user.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="amount" layoutX="728.0" layoutY="165.0" text="000 Points">
          <font>
             <Font name="Microsoft YaHei Light" size="30.0" />
          </font>
       </Label>
-      <ScrollPane fx:id="historyPane" layoutX="224.0" layoutY="360.0" prefHeight="300.0" prefWidth="400.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
-<<<<<<< HEAD
-      <ScrollPane fx:id="suggestiongsPane" layoutX="745.0" layoutY="360.0" prefHeight="300.0" prefWidth="400.0">
-=======
-      <ScrollPane fx:id="suggestionsPane" layoutX="745.0" layoutY="360.0" prefHeight="300.0" prefWidth="400.0">
->>>>>>> dev
+      <ScrollPane fx:id="histPane" layoutX="227.0" layoutY="266.0" prefHeight="380.0" prefWidth="550.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="70.0">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+            <VBox fx:id="histVBox" prefHeight="200.0" prefWidth="548.0" />
+         </content>
+      </ScrollPane>
+      <ScrollPane fx:id="suggPane" layoutX="745.0" layoutY="360.0" prefHeight="380.0" prefWidth="550.0" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="70.0">
+         <content>
+            <VBox fx:id="suggVBox" prefHeight="200.0" prefWidth="548.0" />
          </content>
       </ScrollPane>
    </children>

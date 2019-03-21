@@ -19,5 +19,4 @@ public class StatusCodes {
     // Submit related
     public static final int MISSING_FIELDS = 400;
     public static final int ALREADY_EXISTS = 409;
->>>>>>> dev
 }

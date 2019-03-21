@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="240.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ErrorController">
+   <children>
+      <Label fx:id="error" layoutX="55.0" layoutY="24.0" text="ERROR" textFill="#868484">
+         <font>
+            <Font name="Candara Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="content1" layoutX="139.0" layoutY="97.0" text="Something went wrong. ">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="20.0" />
+         </font>
+      </Label>
+      <Line fx:id="line" endX="350.0" layoutX="109.0" layoutY="86.0" startX="-100.0" stroke="#9e9999" />
+      <Label fx:id="content2" layoutX="157.0" layoutY="126.0" text="Please try again later.">
+         <font>
+            <Font name="Microsoft JhengHei Light" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="goback" layoutX="200.0" layoutY="166.0" onAction="#exit" mnemonicParsing="false" text="GO BACK" />
+      <ImageView fx:id="image" fitHeight="57.0" fitWidth="53.0" layoutX="407.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/error.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

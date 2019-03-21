@@ -1,10 +1,5 @@
 package nl.tudelft.gogreen.server.models.activity.config;
 
-<<<<<<< HEAD
-public enum InputType {
-    FLOAT, BOOLEAN, SELECT
-}
-=======
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.validator.routines.FloatValidator;
 
@@ -31,4 +26,3 @@ public enum InputType {
         return validator;
     }
 }
->>>>>>> dev

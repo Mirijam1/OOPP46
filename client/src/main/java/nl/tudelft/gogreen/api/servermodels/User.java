@@ -1,10 +1,7 @@
 package nl.tudelft.gogreen.api.servermodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
@@ -14,8 +11,10 @@ import lombok.NoArgsConstructor;
 public class User {
     private String name;
     private String password;
-<<<<<<< HEAD
-=======
     private Float points;
->>>>>>> dev
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
 }

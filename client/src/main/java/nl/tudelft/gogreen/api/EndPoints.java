@@ -10,13 +10,20 @@ public class EndPoints {
     public static final String LOGIN = "login";
     public static final String LOGOUT = "logout";
 
-    // PROFILE ENDPOINTS
+    //HttpMethod put
+    public static final String CREATEUSER = "api/user/create";
+    //PATCH  - user,authentication token
+    public static final String UPDATEUSER = "api/user/update";
 
-<<<<<<< HEAD
-    //MODEL ENDPOINTS
-    public static final String ACTIVITY = "api/activity/activities";
-    public static final String CATEGORY = "api/category/";
-=======
+    // PROFILE ENDPOINTS
+    public static final String GETPOINTS = "api/profile/";
+
+    public static final String GETUSERACTIVITIES = "api/profile/activities/";
+    public static final String GETSPECIFICACTIVITY = "api/profile/activities/{externalID}";
+
+    public static final String GETBADGES = "api/profile/badges";
+
+
     // ACTIVITY ENDPOINTS
     public static final String ALL_CATEGORIES = "api/categories/";
     public static final String FIND_CATEGORY = "api/categories/{var}";
@@ -24,6 +31,11 @@ public class EndPoints {
 
     public static final String ACTIVITY = "api/activities/";
     public static final String FIND_ACTIVITIES_FROM_CATEGORY = "api/activities/category/{var}";
->>>>>>> dev
+
+    //
+    public static final String CREATE = "api/user/create";
+    public static final String UPDATE = "api/user/update";
+    public static final String DELETE = "api/user/delete";
+
 
 }

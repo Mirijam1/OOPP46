@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Collection;
 import java.util.UUID;
 
 @Data
@@ -16,5 +17,6 @@ public class SubmitResponse {
     private UUID externalId;
     private Float points;
     private Float updatedPoints;
+    private Collection<Badge> badges;
     // TODO: Add badges and everything
 }

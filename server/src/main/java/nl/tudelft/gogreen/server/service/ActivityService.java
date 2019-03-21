@@ -1,33 +1,5 @@
 package nl.tudelft.gogreen.server.service;
 
-<<<<<<< HEAD
-import nl.tudelft.gogreen.server.models.activity.Activity;
-import nl.tudelft.gogreen.server.repository.ActivityRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-
-@Component
-@Service
-public class ActivityService {
-    private final ActivityRepository activityRepository;
-
-    @Autowired
-    public ActivityService(ActivityRepository activityRepository) {
-        this.activityRepository = activityRepository;
-    }
-
-    public List<Activity> getAllActivities() {
-        return new ArrayList<>(activityRepository.findAll());
-    }
-
-    public Activity getActivity(Integer id) {
-        return activityRepository.findById(id).get();
-
-=======
 import nl.tudelft.gogreen.server.exceptions.BadRequestException;
 import nl.tudelft.gogreen.server.exceptions.NotFoundException;
 import nl.tudelft.gogreen.server.models.activity.Activity;
@@ -99,7 +71,7 @@ public class ActivityService implements IActivityService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public CompletedActivity buildCompletedActivity(SubmittedActivity submittedActivity,
                                                     UserProfile user) {
         Activity activity = activityRepository.findActivityById(submittedActivity.getActivityId());
@@ -110,36 +82,37 @@ public class ActivityService implements IActivityService {
         }
 
         CompletedActivity completedActivity = CompletedActivity.builder()
-            .id(UUID.randomUUID())
-            .externalId(UUID.randomUUID())
-            .activity(activity)
-            .dateTimeCompleted(LocalDateTime.now())
-            .profile(user).build();
+                .id(UUID.randomUUID())
+                .externalId(UUID.randomUUID())
+                .activity(activity)
+                .dateTimeCompleted(LocalDateTime.now())
+                .profile(user)
+                .triggers(activity.getTriggers()).build();
 
 
         if (submittedActivity.getOptions() != null) {
             if (activity.getOptions() == null
-                || activity.getOptions().size() != submittedActivity.getOptions().size()) {
+                    || activity.getOptions().size() != submittedActivity.getOptions().size()) {
                 throw new BadRequestException();
             }
 
             for (SubmittedActivityOption submittedActivityOption : submittedActivity.getOptions()) {
                 ActivityOption activityOption = activityOptionRepository
-                    .findActivityOptionById(submittedActivityOption.getOptionId());
+                        .findActivityOptionById(submittedActivityOption.getOptionId());
 
                 if (activityOption == null
-                    || !activityOption.getInputType().getValidator().isValid(submittedActivityOption.getValue())) {
+                        || !activityOption.getInputType().getValidator().isValid(submittedActivityOption.getValue())) {
                     throw new BadRequestException();
                 }
 
                 ConfiguredOptionId id = ConfiguredOptionId.builder()
-                    .option(activityOption)
-                    .activity(completedActivity).build();
+                        .option(activityOption)
+                        .activity(completedActivity).build();
 
                 ConfiguredOption option = ConfiguredOption.builder()
-                    .id(id)
-                    .inputType(activityOption.getInputType())
-                    .value(submittedActivityOption.getValue()).build();
+                        .id(id)
+                        .inputType(activityOption.getInputType())
+                        .value(submittedActivityOption.getValue()).build();
 
                 options.add(option);
             }
@@ -153,6 +126,5 @@ public class ActivityService implements IActivityService {
         completedActivity.setPoints(carbonService.fetchPoints(completedActivity));
 
         return completedActivity;
->>>>>>> dev
     }
 }

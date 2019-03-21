@@ -53,10 +53,6 @@ public class UserControllerTest {
 
     @Before
     public void setUp() throws JsonProcessingException {
-<<<<<<< HEAD
-        mappedUser = mapper.writeValueAsString(new TestUser("tim", "pw"));
-        mapperUserPasswordOnly = mapper.writeValueAsString(new TestUser("pw"));
-=======
         mappedUser = mapper.writeValueAsString(new TestUser("tim", "password"));
         mapperUserPasswordOnly = mapper.writeValueAsString(new TestUser(null, "password"));
     }

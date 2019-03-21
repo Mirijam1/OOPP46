@@ -1,30 +1,32 @@
 package nl.tudelft.gogreen.server.models.activity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-<<<<<<< HEAD
-=======
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
->>>>>>> dev
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import nl.tudelft.gogreen.server.models.activity.config.ActivityOption;
+import nl.tudelft.gogreen.server.models.completables.Trigger;
 
-<<<<<<< HEAD
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-=======
-import javax.persistence.*;
->>>>>>> dev
 import java.util.Collection;
 
 @Data
@@ -33,10 +35,9 @@ import java.util.Collection;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Table(name = "ACTIVITY")
-<<<<<<< HEAD
-=======
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
->>>>>>> dev
+@EqualsAndHashCode(exclude = "category")
+@ToString(exclude = "category")
 public class Activity {
     @Id
     @Column(name = "ID", nullable = false, unique = true, updatable = false)
@@ -49,16 +50,19 @@ public class Activity {
     private String description;
 
     @JsonBackReference
-<<<<<<< HEAD
-    @ManyToOne(fetch = FetchType.EAGER)
-=======
     @ManyToOne
->>>>>>> dev
     @JoinColumn(name = "CATEGORY", referencedColumnName = "ID")
     private Category category;
 
     @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id", orphanRemoval = true, cascade = CascadeType.ALL)
     private Collection<ActivityOption> options;
+
+    @JsonIgnore
+    @ElementCollection(targetClass = Trigger.class)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TRIGGER")
+    @JoinTable(name = "TRIGGERS", joinColumns = @JoinColumn(name = "ID"))
+    private Collection<Trigger> triggers;
 }
 

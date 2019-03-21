@@ -2,10 +2,7 @@ package nl.tudelft.gogreen.server.tests.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.tudelft.gogreen.server.config.security.AuthSuccessHandler;
-<<<<<<< HEAD
-=======
 import nl.tudelft.gogreen.server.exceptions.handling.ServerError;
->>>>>>> dev
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,10 +11,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-<<<<<<< HEAD
-=======
 import org.springframework.http.HttpStatus;
->>>>>>> dev
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
@@ -27,14 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-<<<<<<< HEAD
-import java.util.Map;
-
-import static org.junit.Assert.assertTrue;
-=======
 
 import static org.junit.Assert.assertEquals;
->>>>>>> dev
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
@@ -83,11 +71,7 @@ public class AuthSuccessHandlerTest {
 
     @Test
     public void shouldReturnWhenNoCache() throws IOException {
-<<<<<<< HEAD
-        ArgumentCaptor<Map> captor = ArgumentCaptor.forClass(Map.class);
-=======
         ArgumentCaptor<ServerError> captor = ArgumentCaptor.forClass(ServerError.class);
->>>>>>> dev
 
         // Return null from cache
         when(cache.getRequest(any(), any())).thenReturn(null);
@@ -103,20 +87,12 @@ public class AuthSuccessHandlerTest {
 
         // Verify
         verify(mapper).writeValueAsString(captor.capture());
-<<<<<<< HEAD
-        assertTrue(captor.getValue().containsValue("SUCCESS"));
-=======
         assertEquals(captor.getValue().getResponse(), HttpStatus.OK.getReasonPhrase());
->>>>>>> dev
     }
 
     @Test
     public void shouldRemoveWhenUsingDefaultTargetUrl() throws Exception {
-<<<<<<< HEAD
-        ArgumentCaptor<Map> captor = ArgumentCaptor.forClass(Map.class);
-=======
         ArgumentCaptor<ServerError> captor = ArgumentCaptor.forClass(ServerError.class);
->>>>>>> dev
         SavedRequest savedRequest = mock(SavedRequest.class);
 
         // Return mock request
@@ -139,10 +115,6 @@ public class AuthSuccessHandlerTest {
 
         // Verify
         verify(mapper).writeValueAsString(captor.capture());
-<<<<<<< HEAD
-        assertTrue(captor.getValue().containsValue("SUCCESS"));
-=======
         assertEquals(captor.getValue().getResponse(), HttpStatus.OK.getReasonPhrase());
->>>>>>> dev
     }
 }

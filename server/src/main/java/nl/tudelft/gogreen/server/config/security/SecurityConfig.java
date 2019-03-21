@@ -66,34 +66,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
-            .exceptionHandling()
-            .authenticationEntryPoint(entryPoint)
-            .accessDeniedHandler(entryDenied)
-            .and()
-            .authorizeRequests()
-<<<<<<< HEAD
-=======
-            .antMatchers("/api/profile/**").access("hasAnyAuthority('USER_AUTHORITY')")
->>>>>>> dev
-            .antMatchers("/api/restricted/**").access("hasAnyAuthority('USER_AUTHORITY')")
-            .antMatchers("/api/status/restricted/**").access("hasAnyAuthority('USER_AUTHORITY')")
-            .antMatchers("/api/admin/**").access("hasAnyAuthority('ADMIN_AUTHORITY')")
-            .antMatchers("/api/status/admin/**").access("hasAnyAuthority('ADMIN_AUTHORITY')")
-            .and()
-            .formLogin()
-            .successHandler(authSuccessHandler)
-            .failureHandler(authFailureHandler)
-            .and()
-            .logout()
-            .logoutSuccessUrl("/login");
+                .csrf().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(entryPoint)
+                .accessDeniedHandler(entryDenied)
+                .and()
+                .authorizeRequests()
+                .antMatchers("/api/profile/**").access("hasAnyAuthority('USER_AUTHORITY')")
+                .antMatchers("/api/restricted/**").access("hasAnyAuthority('USER_AUTHORITY')")
+                .antMatchers("/api/status/restricted/**").access("hasAnyAuthority('USER_AUTHORITY')")
+                .antMatchers("/api/admin/**").access("hasAnyAuthority('ADMIN_AUTHORITY')")
+                .antMatchers("/api/status/admin/**").access("hasAnyAuthority('ADMIN_AUTHORITY')")
+                .and()
+                .formLogin()
+                .successHandler(authSuccessHandler)
+                .failureHandler(authFailureHandler)
+                .and()
+                .logout()
+                .logoutSuccessUrl("/login");
 
         // TODO: Make this dependent on profile
         http.headers().frameOptions().sameOrigin();
 
         http.sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-            .maximumSessions(1)
-            .expiredUrl("/login");
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                .maximumSessions(1)
+                .expiredUrl("/login");
     }
 }

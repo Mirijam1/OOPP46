@@ -1,10 +1,5 @@
 package nl.tudelft.gogreen.server.controller;
 
-<<<<<<< HEAD
-import nl.tudelft.gogreen.server.exceptions.ForbiddenException;
-import nl.tudelft.gogreen.server.exceptions.UnauthorizedException;
-import nl.tudelft.gogreen.server.models.user.User;
-=======
 import com.fasterxml.jackson.annotation.JsonView;
 import nl.tudelft.gogreen.server.exceptions.BadRequestException;
 import nl.tudelft.gogreen.server.exceptions.ConflictException;
@@ -12,7 +7,6 @@ import nl.tudelft.gogreen.server.exceptions.ForbiddenException;
 import nl.tudelft.gogreen.server.exceptions.UnauthorizedException;
 import nl.tudelft.gogreen.server.models.user.User;
 import nl.tudelft.gogreen.server.repository.UserRepository;
->>>>>>> dev
 import nl.tudelft.gogreen.server.service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,14 +28,6 @@ import java.util.Map;
 @RequestMapping("/api/user")
 public class UserController {
     private final UserDetailService userService;
-<<<<<<< HEAD
-
-    @Autowired
-    public UserController(UserDetailService userService) {
-        this.userService = userService;
-    }
-
-=======
     private final UserRepository userRepository;
 
     @Autowired
@@ -51,18 +37,13 @@ public class UserController {
     }
 
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class)
->>>>>>> dev
     @RequestMapping(
-        path = "/",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            path = "/",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-<<<<<<< HEAD
     public @ResponseBody
     User getDetails(Authentication authentication) {
-=======
-    public @ResponseBody User getDetails(Authentication authentication) {
->>>>>>> dev
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             throw new UnauthorizedException();
         }
@@ -71,29 +52,24 @@ public class UserController {
     }
 
     @RequestMapping(
-        path = "/create",
-        method = RequestMethod.PUT,
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            path = "/create",
+            method = RequestMethod.PUT,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-<<<<<<< HEAD
     public @ResponseBody
     User createUser(@RequestBody User user, Authentication authentication) {
-=======
-    public @ResponseBody User createUser(@RequestBody User user, Authentication authentication) {
->>>>>>> dev
         if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
             throw new ForbiddenException();
         }
 
         // TODO: Add some password+name checks
-<<<<<<< HEAD
-=======
 
-        if (user.getUsername() == null
-            || user.getPassword() == null
-            || user.getUsername().trim().length() < 3
-            || user.getPassword().trim().length() < 5) {
+        if (user == null
+                || user.getUsername() == null
+                || user.getPassword() == null
+                || user.getUsername().trim().length() < 3
+                || user.getPassword().trim().length() < 5) {
             throw new BadRequestException();
         }
 
@@ -101,21 +77,16 @@ public class UserController {
             throw new ConflictException();
         }
 
->>>>>>> dev
         return userService.createUser(user.getUsername(), user.getPassword());
     }
 
     @RequestMapping(
-        path = "/delete",
-        method = RequestMethod.DELETE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            path = "/delete",
+            method = RequestMethod.DELETE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-<<<<<<< HEAD
     public @ResponseBody
     Map<String, String> deleteUser(Authentication authentication) {
-=======
-    public @ResponseBody Map<String, String> deleteUser(Authentication authentication) {
->>>>>>> dev
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             throw new UnauthorizedException();
         }
@@ -129,28 +100,22 @@ public class UserController {
     }
 
     @RequestMapping(
-        path = "/update",
-        method = RequestMethod.PATCH,
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+            path = "/update",
+            method = RequestMethod.PATCH,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-<<<<<<< HEAD
     public @ResponseBody
     User updateUser(@RequestBody User user, Authentication authentication) {
-=======
-    public @ResponseBody User updateUser(@RequestBody User user, Authentication authentication) {
->>>>>>> dev
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             throw new UnauthorizedException();
         }
 
-<<<<<<< HEAD
-        //TODO: Add checks
-=======
         //TODO: Add password checks
 
-        if ((user.getUsername() != null && user.getUsername().trim().length() < 3)
-            || (user.getPassword() != null && user.getPassword().trim().length() < 5)) {
+        if (user == null
+                || (user.getUsername() != null && user.getUsername().trim().length() < 3)
+                || (user.getPassword() != null && user.getPassword().trim().length() < 5)) {
             throw new BadRequestException();
         }
 
@@ -158,7 +123,6 @@ public class UserController {
             throw new ConflictException();
         }
 
->>>>>>> dev
         User loadedUser = (User) authentication.getPrincipal();
 
         return userService.updateUser(user, loadedUser);
