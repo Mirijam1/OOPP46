@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -39,6 +40,8 @@ public class DashboardController {
 
     @FXML
     private JFXHamburger hamburger;
+    @FXML
+    private Button submit;
 
     @FXML
     private JFXDrawer drawer;
@@ -64,7 +67,7 @@ public class DashboardController {
 
                 // Replace this later by a real logger
                 System.out.println("API call returned" + (isCached() ? " (cached)" : "")
-                    + ", result: " + Arrays.toString(getResult()));
+                        + ", result: " + Arrays.toString(getResult()));
 
                 List<Category> categories = Arrays.stream(getResult()).collect(Collectors.toList());
 
@@ -121,7 +124,7 @@ public class DashboardController {
     }
 
     public void submitButton(ActionEvent event) throws Exception {
-        if (activityBox.getSelectionModel().isEmpty() || categoryBox.getSelectionModel().isEmpty()){
+        if (activityBox.getSelectionModel().isEmpty() || categoryBox.getSelectionModel().isEmpty()) {
             try {
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/informationPopup.fxml"));
                 Stage stage = new Stage();
@@ -135,7 +138,7 @@ public class DashboardController {
                 e.printStackTrace();
             }
             System.out.println("info");
-        }else{
+        } else {
             try {
                 Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/confirmationPopup.fxml"));
                 Stage stage = new Stage();
