@@ -1,0 +1,12 @@
+#AnchorPane {
+    -fx-background-image: url('../img/submitbg.jpg');
+    -fx-background-size: cover;
+}
+
+.jfx-combo-box {
+    -fx-prompt-text-fill: #EFF0EB;
+}
+
+.jfx-combo-box .cell:selected{
+    -fx-text-fill: #85b84c;
+}
