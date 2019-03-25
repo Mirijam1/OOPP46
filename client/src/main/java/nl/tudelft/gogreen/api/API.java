@@ -91,7 +91,7 @@ public class API {
         String url = buildUrl(EndPoints.LOGIN);
         Map<String, Object> credentials = new HashMap<>();
 
-        credentials.put("username", user.getName());
+        credentials.put("username", user.getUsername());
         credentials.put("password", user.getPassword());
 
         Request<Object> request = ServerConnection.buildRequestWithFields(HttpMethod.POST, url, credentials);
@@ -167,7 +167,7 @@ public class API {
 
         Request<User> body = ServerConnection
                 .buildRequestWithBody(HttpMethod.PUT, url, user);
-
+        System.out.println(user);
         ServerConnection.request(User.class, body, callback);
     }
 
