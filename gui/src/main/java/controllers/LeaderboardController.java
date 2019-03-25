@@ -30,20 +30,20 @@ public class LeaderboardController {
         //List<Entries> list = retrievePoints();
         //An entry should be a username and the amount of points of that user
 
-//        int[] list = {50, 40, 30, 10};
-//        String user = "User";
-//
-//        xAxis.setLabel("Points");
-//        xAxis.setTickLabelRotation(90);
-//        yAxis.setLabel("Name");
-//
-//        XYChart.Series entries = new XYChart.Series();
-//
-//        for (int i = 0 ; i < list.length; i++) {
-//            entries.getData().add(new XYChart.Data(list[i], user + i));
-//        }
-//
-//        bc.getData().add(entries);
+        int[] list = {50, 40, 30, 10};
+        String user = "User";
+
+        xAxis.setLabel("Points");
+        xAxis.setTickLabelRotation(90);
+        yAxis.setLabel("Name");
+
+        XYChart.Series entries = new XYChart.Series();
+
+        for (int i = 0 ; i < list.length; i++) {
+            entries.getData().add(new XYChart.Data(list[i], user + i));
+        }
+
+        bc.getData().add(entries);
     }
 
 

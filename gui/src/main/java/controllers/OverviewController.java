@@ -8,16 +8,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
-import nl.tudelft.gogreen.api.servermodels.BasicResponse;
+import nl.tudelft.gogreen.api.servermodels.CompletedActivity;
 import nl.tudelft.gogreen.api.servermodels.User;
 
 public class OverviewController {
 
     @FXML
     private AnchorPane anchor;
-
-    @FXML
-    private Label username;
 
     @FXML
     private Label amount;
@@ -39,6 +36,13 @@ public class OverviewController {
     @FXML
     public void initialize() {
         initUser();
+        API.retrieveCompletedActivities(new ServerCallback<Object, CompletedActivity[]>() {
+            @Override
+            public void run() {
+                CompletedActivity[] result = getResult();
+                initHistory(result);
+            }
+        });
     }
 
     private void initUser() {
@@ -50,36 +54,47 @@ public class OverviewController {
                     System.out.println("error");
                 } else {
                     user = getResult();
-                    username.setText(user.getName());
                     amount.setText(user.getPoints().toString() + " Points");
-                    initHistory();
                     initSuggestions();
                 }
             }
         });
     }
 
-    private void initHistory() {
+    private void initHistory(CompletedActivity[] list) {
         histPane.setFitToWidth(true);
+        boolean activityadded = false;
         //An api method for retrieving previous activity data from the user
-        String[] activityHistory = {"Added a veggie meal",
-                "Took 2 or 3 less whiffs of air per day",
-                "Started floating instead of walking, less movement = less CO2"};
+//        String[] activityHistory = {"Added a veggie meal",
+//                "Took 2 or 3 less whiffs of air per day",
+//                "Started floating instead of walking, less movement = less CO2"};
 
-        for (int i = 0; i < activityHistory.length; i++) {
-            Label historyText = new Label(activityHistory[i]);
-            Pane historyPane = new Pane();
+        for (int i = 0; i < list.length; i++) {
+            System.out.println(list[i]);
+            if (list[i] != null) {
+                if (list[i].getActivity()!= null) {
+                    activityadded = true;
+                    Label activityTitle = new Label(list[i].getActivity().getActivityName());
+                    Label activityDesc = new Label(list[i].getActivity().getDescription());
+                    Pane historyPane = new Pane();
 
-            if (i % 2 == 1) {
-                historyPane.setStyle("-fx-background-color: lightgrey;");
-            } else {
-                historyPane.setStyle("-fx-background-color: white;");
+                    if (i % 2 == 1) {
+                        historyPane.setStyle("-fx-background-color: lightgrey;");
+                    } else {
+                        historyPane.setStyle("-fx-background-color: white;");
+                    }
+                    historyPane.setPrefSize(548, 120);
+                    histVBox.setPrefHeight(120 * (i + 1));
+
+                    historyPane.getChildren().add(activityTitle);
+                    historyPane.getChildren().add(activityDesc);
+                    histVBox.getChildren().add(historyPane);
+                }
             }
-            historyPane.setPrefSize(548, 120);
-            histVBox.setPrefHeight(120 * (i + 1));
-
-            historyPane.getChildren().add(historyText);
-            histVBox.getChildren().add(historyPane);
+        }
+        //System.out.println(activityadded);
+        if (!activityadded) {
+            histVBox.getChildren().add(new Label("No activities added"));
         }
     }
 

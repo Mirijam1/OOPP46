@@ -4,15 +4,11 @@
     /*-fx-background-color: #EFF0EB;*/
 }
 
-#signupbtn {
+.button {
     -fx-background-color: #EFF0EB;
 
 }
 
-#loginbtn {
-    -fx-background-color: #EFF0EB;
-
-}
 
 #Pane {
     /*-fx-background-color: #E7ECD8;*/

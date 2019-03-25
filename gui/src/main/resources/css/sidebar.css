@@ -8,6 +8,14 @@
     -fx-border-color: #98FB98;
 }
 
+.smallbutton{
+    -fx-border-width: 0px;
+}
+
+.smallbutton:hover {
+    -fx-background-color: #20AF20;
+}
+
 #sidebar {
     -fx-background-color: #98FB98;
 }
