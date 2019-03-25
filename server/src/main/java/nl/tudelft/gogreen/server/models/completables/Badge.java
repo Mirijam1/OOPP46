@@ -9,11 +9,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -37,4 +42,11 @@ public class Badge {
     @Enumerated(EnumType.STRING)
     @Column(name = "TRIGGER", nullable = false)
     private Trigger trigger;
+
+    @JsonIgnore
+    @ElementCollection(targetClass = Trigger.class, fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TRIGGER")
+    @JoinTable(name = "TRIGGERS_COMPLETE", joinColumns = @JoinColumn(name = "ID"))
+    private Collection<Trigger> triggers;
 }

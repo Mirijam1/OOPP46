@@ -12,4 +12,9 @@ public interface IBadgeCheckService {
     Collection<AchievedBadge> checkBadge(CompletedActivity completedActivity,
                                          UserProfile userProfile,
                                          Collection<Trigger> triggers);
+
+    Collection<AchievedBadge> addBadgesAndTriggers(CompletedActivity completedActivity,
+                                                   UserProfile userProfile,
+                                                   Trigger trigger,
+                                                   Collection<Trigger> triggers);
 }

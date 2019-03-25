@@ -1,11 +1,15 @@
 package nl.tudelft.gogreen.server.service;
 
+import nl.tudelft.gogreen.server.exceptions.InternalServerError;
 import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
+import nl.tudelft.gogreen.server.models.completables.ProgressingAchievement;
 import nl.tudelft.gogreen.server.models.completables.AchievedBadge;
+import nl.tudelft.gogreen.server.models.completables.Trigger;
 import nl.tudelft.gogreen.server.models.user.User;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
 import nl.tudelft.gogreen.server.repository.ProfileRepository;
 import nl.tudelft.gogreen.server.repository.activity.CompletedActivityRepository;
+import nl.tudelft.gogreen.server.repository.completables.ProgressingAchievementRepository;
 import nl.tudelft.gogreen.server.repository.completables.AchievedBadgeRepository;
 import nl.tudelft.gogreen.server.service.handlers.IAchievementCheckService;
 import nl.tudelft.gogreen.server.service.handlers.IBadgeCheckService;
@@ -21,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -32,6 +37,7 @@ public class ProfileService implements IProfileService {
     private final IAchievementCheckService achievementCheckService;
     private final IBadgeCheckService badgeCheckService;
     private final AchievedBadgeRepository achievedBadgeRepository;
+    private final ProgressingAchievementRepository progressingAchievementRepository;
 
     @Autowired
     public ProfileService(ProfileRepository profileRepository,
@@ -39,13 +45,15 @@ public class ProfileService implements IProfileService {
                           CompletedActivityRepository completedActivityRepository,
                           IAchievementCheckService achievementCheckService,
                           IBadgeCheckService badgeCheckService,
-                          AchievedBadgeRepository achievedBadgeRepository) {
+                          AchievedBadgeRepository achievedBadgeRepository,
+                          ProgressingAchievementRepository progressingAchievementRepository) {
         this.profileRepository = profileRepository;
         this.activityService = activityService;
         this.completedActivityRepository = completedActivityRepository;
         this.achievementCheckService = achievementCheckService;
         this.badgeCheckService = badgeCheckService;
         this.achievedBadgeRepository = achievedBadgeRepository;
+        this.progressingAchievementRepository = progressingAchievementRepository;
     }
 
     @Override
@@ -85,7 +93,6 @@ public class ProfileService implements IProfileService {
         UserProfile profile = profileRepository.findUserProfileByUserID(user.getId());
         CompletedActivity activity = activityService.buildCompletedActivity(submittedActivity, profile);
 
-        //TODO: Badge and achievement triggers
         completedActivityRepository.save(activity);
 
         profile.setPoints(profile.getPoints() + activity.getPoints());
@@ -95,18 +102,34 @@ public class ProfileService implements IProfileService {
                 .points(activity.getPoints())
                 .updatedPoints(profile.getPoints())
                 .externalId(activity.getExternalId())
-                .badges(new ArrayList<>()).build();
+                .badges(new ArrayList<>())
+                .achievements(new ArrayList<>())
+                .build();
+
+        Collection<Trigger> triggers = activity.getTriggers();
 
         // Put through badge and achievement service
         Collection<AchievedBadge> achievedBadges = badgeCheckService
-                .checkBadge(activity, profile, activity.getTriggers());
-        achievementCheckService.checkAchievements(activity, profile, submitResponse);
+                .checkBadge(activity, profile, triggers);
+        Set<UUID> progressingAchievements = achievementCheckService
+                .checkAchievements(activity, profile, triggers);
 
         // Add badges + achievements
         achievedBadges.forEach(badge -> {
             addBadge(profile, badge);
             submitResponse.getBadges().add(badge.toSharedModel());
             achievedBadgeRepository.save(badge);
+        });
+
+        profileRepository.save(profile);
+
+        progressingAchievements.forEach(uuid -> {
+            ProgressingAchievement progressingAchievement = progressingAchievementRepository
+                    .findProgressingAchievementById(uuid);
+
+            activity.getProgressingAchievements().add(progressingAchievement);
+            addAchievement(profile, progressingAchievement);
+            submitResponse.getAchievements().add(progressingAchievement.toSharedModel());
         });
 
         // Set badges + achievements
@@ -123,6 +146,10 @@ public class ProfileService implements IProfileService {
     public Collection<CompletedActivity> getCompletedActivities(User user, Integer limit) {
         UserProfile profile = profileRepository.findUserProfileByUserID(user.getId());
 
+        if (profile == null) {
+            throw new InternalServerError();
+        }
+
         return completedActivityRepository
                 .findCompletedActivitiesByProfileOrderByDateTimeCompletedDesc(profile, PageRequest.of(0, limit));
     }
@@ -131,10 +158,9 @@ public class ProfileService implements IProfileService {
     @Transactional(readOnly = true)
     public CompletedActivity getCompletedActivityDetailed(User user, UUID externalId) {
         UserProfile profile = profileRepository.findUserProfileByUserID(user.getId());
-        CompletedActivity activity = completedActivityRepository
-                .findCompletedActivityByProfileAndExternalId(profile, externalId);
 
-        return activity;
+        return completedActivityRepository
+                .findCompletedActivityByProfileAndExternalId(profile, externalId);
     }
 
     @Override
@@ -144,10 +170,42 @@ public class ProfileService implements IProfileService {
     }
 
     @Override
+    @Transactional
+    public void addAchievement(UserProfile user, ProgressingAchievement achievement) {
+        user.getAchievements().remove(achievement);
+        user.getAchievements().add(achievement);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public Collection<AchievedBadge> getAchievedBadges(User user) {
         UserProfile profile = profileRepository.findUserProfileByUserID(user.getId());
 
+        if (profile == null) {
+            throw new InternalServerError();
+        }
+
         return achievedBadgeRepository.findAchievedBadgesByProfileOrderByDateTimeAchievedDesc(profile);
+    }
+
+    @Override
+    public Collection<ProgressingAchievement> getAchievedAchievements(User user) {
+        return getProgressingAchievements(user, true);
+    }
+
+    @Override
+    public Collection<ProgressingAchievement> getProgressingAchievements(User user) {
+        return getProgressingAchievements(user, false);
+    }
+
+    private Collection<ProgressingAchievement> getProgressingAchievements(User user, Boolean completed) {
+        UserProfile profile = profileRepository.findUserProfileByUserID(user.getId());
+
+        if (profile == null) {
+            throw new InternalServerError();
+        }
+
+        return progressingAchievementRepository
+                .findProgressingAchievementByProfileAndCompletedOrderByDateTimeAchievedDesc(profile, completed);
     }
 }

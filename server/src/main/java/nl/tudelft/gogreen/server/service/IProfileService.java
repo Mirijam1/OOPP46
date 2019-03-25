@@ -1,8 +1,8 @@
 package nl.tudelft.gogreen.server.service;
 
 import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
+import nl.tudelft.gogreen.server.models.completables.ProgressingAchievement;
 import nl.tudelft.gogreen.server.models.completables.AchievedBadge;
-import nl.tudelft.gogreen.server.models.completables.Badge;
 import nl.tudelft.gogreen.server.models.user.User;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
 import nl.tudelft.gogreen.shared.models.SubmitResponse;
@@ -24,5 +24,11 @@ public interface IProfileService {
 
     void addBadge(UserProfile user, AchievedBadge badge);
 
+    void addAchievement(UserProfile user, ProgressingAchievement achievement);
+
     Collection<AchievedBadge> getAchievedBadges(User user);
+
+    Collection<ProgressingAchievement> getAchievedAchievements(User user);
+
+    Collection<ProgressingAchievement> getProgressingAchievements(User user);
 }

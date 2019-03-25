@@ -36,4 +36,8 @@ public enum Trigger {
 
     //  --[[ Activity: Use bike instead of bus ]]--
     PLANTED_TREE,
+
+
+    // Badge triggers
+    ACHIEVED_BADGE,
 }
