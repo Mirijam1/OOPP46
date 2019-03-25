@@ -1,4 +1,4 @@
-package nl.tudelft.gogreen.api;
+package nl.tudelft.gogreen.shared;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

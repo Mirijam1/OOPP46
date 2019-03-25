@@ -1,12 +1,17 @@
 package nl.tudelft.gogreen.server.repository;
 
 import nl.tudelft.gogreen.server.models.user.UserProfile;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 public interface ProfileRepository extends JpaRepository<UserProfile, UUID> {
-    UserProfile findUserProfileByUserID(UUID userID);
+    UserProfile findUserProfileByUserId(UUID userID);
 
-    UserProfile findOneUserProfileByUuid(UUID uuid);
+    List<UserProfile> findUserProfilesByPointsGreaterThanEqualOrderByPointsDesc(Float points, Pageable pageable);
+
+    List<UserProfile> findUserProfilesByIdInOrIdOrderByPointsDesc(Collection<UUID> ids, UUID id, Pageable pageable);
 }

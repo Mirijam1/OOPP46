@@ -7,8 +7,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import nl.tudelft.gogreen.server.models.activity.config.ConfiguredOption;
+import nl.tudelft.gogreen.server.models.completables.ProgressingAchievement;
 import nl.tudelft.gogreen.server.models.completables.AchievedBadge;
 import nl.tudelft.gogreen.server.models.completables.Trigger;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
@@ -33,6 +36,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Table(name = "COMPLETED_ACTIVITY")
+@EqualsAndHashCode(exclude = "profile")
+@ToString(exclude = "profile")
 public class CompletedActivity {
     @JsonIgnore
     @Id
@@ -47,10 +52,11 @@ public class CompletedActivity {
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "PROFILE", referencedColumnName = "PROFILE_ID")
+    @JoinColumn(name = "PROFILE", referencedColumnName = "ID")
     private UserProfile profile;
 
-    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
+    @JsonView({nl.tudelft.gogreen.server.models.JsonView.Detailed.class,
+            nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ACTIVITY", referencedColumnName = "ID")
     private Activity activity;
@@ -59,6 +65,11 @@ public class CompletedActivity {
     @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "activity", orphanRemoval = true, cascade = CascadeType.ALL)
     private Collection<AchievedBadge> achievedBadges;
+
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "activity", orphanRemoval = true, cascade = CascadeType.ALL)
+    private Collection<ProgressingAchievement> progressingAchievements;
 
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     @JsonManagedReference

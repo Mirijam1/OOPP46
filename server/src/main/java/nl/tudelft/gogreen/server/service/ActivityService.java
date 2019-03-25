@@ -87,7 +87,10 @@ public class ActivityService implements IActivityService {
                 .activity(activity)
                 .dateTimeCompleted(LocalDateTime.now())
                 .profile(user)
-                .triggers(activity.getTriggers()).build();
+                .achievedBadges(new ArrayList<>())
+                .progressingAchievements(new ArrayList<>())
+                .triggers(new ArrayList<>(activity.getTriggers()))
+                .build();
 
 
         if (submittedActivity.getOptions() != null) {

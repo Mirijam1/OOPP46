@@ -51,17 +51,17 @@ public class LoginController {
         usernamemessage.setText("");
         pwdmessage.setText("");
 
-        if (userfield.getText().length() < 3 && (passfield.getText().length() < 3)) {
+        if (userfield.getText().length() < 3 && (passfield.getText().length() < 5)) {
             System.out.println("no username and password");
             usernamemessage.setText("Please enter username");
             pwdmessage.setText("Please enter password");
             changeStyleError(passfield);
             changeStyleError(userfield);
-        } else if (userfield.getText().length() < 3 && passfield.getText().length() >= 3) {
+        } else if (userfield.getText().length() < 3 && passfield.getText().length() >= 5) {
             System.out.println("no valid username");
             usernamemessage.setText("Please enter username");
             changeStyleError(userfield);
-        } else if (userfield.getText().length() >= 3 && passfield.getText().length() < 3) {
+        } else if (userfield.getText().length() >= 3 && passfield.getText().length() < 5) {
             System.out.println("no valid password");
             pwdmessage.setText("Please enter password");
             changeStyleError(passfield);
@@ -139,7 +139,7 @@ public class LoginController {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/SignUpScreen.fxml"));
             Stage stage = new Stage();
             stage.setTitle("GOGREEN - Sign Up");
-            stage.setScene(new Scene(root, 1280, 720));
+            stage.setScene(new Scene(root, 600, 400));
             stage.show();
             // do what you have to do
             current.close();

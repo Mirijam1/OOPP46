@@ -19,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -27,10 +28,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-@Table(name = "ACHIEVED_BADGE")
-@EqualsAndHashCode(exclude = {"activity", "profile"})
+@Table(name = "PROGRESSING_ACHIEVEMENT", uniqueConstraints = @UniqueConstraint(columnNames = {"profile", "achievement"}))
+@EqualsAndHashCode(exclude = {"activity", "progress", "completed", "dateTimeAchieved", "activity", "profile"})
 @ToString(exclude = {"activity", "profile"})
-public class AchievedBadge {
+public class ProgressingAchievement {
     @JsonIgnore
     @Id
     @Column(name = "ID", unique = true, updatable = false, nullable = false)
@@ -41,6 +42,12 @@ public class AchievedBadge {
     @Column(name = "EXTERNAL_ID", updatable = false, nullable = false)
     private UUID externalId;
 
+    @Column(name = "PROGRESS", nullable = false)
+    private Integer progress;
+
+    @Column(name = "COMPLETED", nullable = false)
+    private Boolean completed;
+
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     @JsonBackReference
     @ManyToOne
@@ -50,8 +57,8 @@ public class AchievedBadge {
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.Detailed.class,
             nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "BADGE", referencedColumnName = "ID")
-    private Badge badge;
+    @JoinColumn(name = "ACHIEVEMENT", referencedColumnName = "ID")
+    private Achievement achievement;
 
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     @JsonBackReference
@@ -65,14 +72,18 @@ public class AchievedBadge {
     private LocalDateTime dateTimeAchieved;
 
     /**
-     * <p>Returns a {@link nl.tudelft.gogreen.shared.models.Badge} instance of this badge.</p>
+     * <p>Returns a {@link nl.tudelft.gogreen.shared.models.Achievement} instance of this achievement.</p>
      *
-     * @return A {@link nl.tudelft.gogreen.shared.models.Badge} instance
+     * @return A {@link nl.tudelft.gogreen.shared.models.Achievement} instance
      */
-    public nl.tudelft.gogreen.shared.models.Badge toSharedModel() {
-        return nl.tudelft.gogreen.shared.models.Badge.builder()
-                .achievedMessage(badge.getAchievedMessage())
-                .badgeName(badge.getBadgeName())
+    public nl.tudelft.gogreen.shared.models.Achievement toSharedModel() {
+        return nl.tudelft.gogreen.shared.models.Achievement.builder()
+                .achievedMessage(achievement.getAchievedMessage())
+                .achievementName(achievement.getBadgeName())
+                .completed(completed)
+                .progress(progress)
+                .description(achievement.getDescription())
+                .requiredProgress(achievement.getRequiredTriggers())
                 .externalId(externalId).build();
     }
 }

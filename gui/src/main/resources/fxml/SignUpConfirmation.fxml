@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="240.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpConfirmationController">
+        <children>
+            <Text fill="#7b7b7b" layoutX="63.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your account has been succesfully created!" textAlignment="CENTER" wrappingWidth="344.681640625">
+                <font>
+                    <Font name="Microsoft YaHei Light" size="24.0" />
+                </font>
+            </Text>
+            <Button fx:id="signupbtn" layoutX="170.0" layoutY="170.0" mnemonicParsing="false" onAction="#gotologin" prefHeight="38.0" prefWidth="160.0" stylesheets="@../css/signupconfirmationpopup.css" text="Sign in" textFill="#7b7b7b">
+                <font>
+                    <Font name="Microsoft YaHei Light" size="18.0" />
+                </font>
+            </Button>
+            <ImageView fitHeight="74.0" fitWidth="122.0" layoutX="401.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../img/logo.png" />
+                </image>
+            </ImageView>
+        </children>
+</AnchorPane>

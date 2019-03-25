@@ -1,5 +1,6 @@
 package nl.tudelft.gogreen.server.service.handlers;
 
+import nl.tudelft.gogreen.server.exceptions.InternalServerError;
 import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
 import nl.tudelft.gogreen.server.models.completables.AchievedBadge;
 import nl.tudelft.gogreen.server.models.completables.Badge;
@@ -29,9 +30,35 @@ public class BadgeCheckService implements IBadgeCheckService {
     public Collection<AchievedBadge> checkBadge(CompletedActivity completedActivity,
                                                 UserProfile userProfile,
                                                 Collection<Trigger> triggers) {
-        addSpecialBadges(completedActivity, userProfile, triggers);
+        //addSpecialBadges(completedActivity, userProfile, triggers);
 
-        Collection<Badge> badges = badgeRepository.findBadgesByTriggerIn(triggers);
+        Collection<AchievedBadge> achievedBadges = new ArrayList<>();
+        ArrayList<Trigger> workingTriggers = new ArrayList<>(triggers);
+        int loopGuard = 250000;
+
+        while (!workingTriggers.isEmpty() && loopGuard != 0) {
+            Trigger currentTrigger = workingTriggers.remove(workingTriggers.size() - 1);
+
+            achievedBadges.addAll(addBadgesAndTriggers(completedActivity, userProfile, currentTrigger, triggers));
+
+            loopGuard -= 1;
+        }
+
+        if (loopGuard == 0) {
+            // If this happened there is a circular reference between triggers, which should be fixed
+            throw new InternalServerError();
+        }
+
+        return achievedBadges;
+    }
+
+    @Override
+    @Transactional
+    public Collection<AchievedBadge> addBadgesAndTriggers(CompletedActivity completedActivity,
+                                                           UserProfile userProfile,
+                                                           Trigger trigger,
+                                                           Collection<Trigger> triggers) {
+        Collection<Badge> badges = badgeRepository.findBadgesByTrigger(trigger);
         Collection<AchievedBadge> achievedBadges = new ArrayList<>();
 
         for (Badge badge : badges) {
@@ -45,6 +72,7 @@ public class BadgeCheckService implements IBadgeCheckService {
                     .build();
 
             achievedBadges.add(achievedBadge);
+            triggers.addAll(badge.getTriggers());
         }
 
         return achievedBadges;
