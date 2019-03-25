@@ -71,10 +71,8 @@ public class UserDetailService implements UserDetailsService, IUserService {
                 .expired(false)
                 .build();
 
-        // Create profile
-        profileService.createUserProfileForUser(user);
-
         logger.info("Saving created user '" + user.getUsername() + "' with ID '" + user.getId() + "'");
+        user.setProfile(profileService.createUserProfileForUser(user));
         return userRepository.save(user);
     }
 

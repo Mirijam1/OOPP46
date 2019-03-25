@@ -44,7 +44,7 @@ public class AchievedBadge {
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "PROFILE", referencedColumnName = "PROFILE_ID")
+    @JoinColumn(name = "PROFILE", referencedColumnName = "ID")
     private UserProfile profile;
 
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.Detailed.class,

@@ -73,6 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/profile/**").access("hasAnyAuthority('USER_AUTHORITY')")
+                .antMatchers("/api/social/**").access("hasAnyAuthority('USER_AUTHORITY')")
                 .antMatchers("/api/restricted/**").access("hasAnyAuthority('USER_AUTHORITY')")
                 .antMatchers("/api/status/restricted/**").access("hasAnyAuthority('USER_AUTHORITY')")
                 .antMatchers("/api/admin/**").access("hasAnyAuthority('ADMIN_AUTHORITY')")
@@ -83,7 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(authFailureHandler)
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login");
+                .logoutSuccessUrl("/");
 
         // TODO: Make this dependent on profile
         http.headers().frameOptions().sameOrigin();

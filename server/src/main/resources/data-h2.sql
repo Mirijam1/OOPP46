@@ -2,11 +2,20 @@
 INSERT INTO AUTHORITY (AID, NAME) VALUES ('0', 'USER_AUTHORITY');
 INSERT INTO AUTHORITY (AID, NAME) VALUES ('1', 'ADMIN_AUTHORITY');
 
--- Inserting base user
+-- Inserting base users
+--  User: admin
+--  Password: password
 INSERT INTO USER_TABLE (USER_ID, ACC_ACTIVATED, ACC_EXPIRED, ACC_LOCKED, PASSWORD, NAME) VALUES ('054597382efa45f5b3cfebcdb16d6cd4', 'true', 'false', 'false', '$2a$10$67OBfdBphsEdLr7hlD2XDOA1USyt5jCqJMmMUiByemWtRrbKObFfi', 'admin');
-INSERT INTO USER_PROFILE (PROFILE_ID, USER_ID, POINTS) VALUES ('056573882efa45f5b3cfebcdb16d1cd4', '054597382efa45f5b3cfebcdb16d6cd4', '0');
+INSERT INTO USER_PROFILE (ID, USER, POINTS) VALUES ('056573882efa45f5b3cfebcdb16d1cd4', '054597382efa45f5b3cfebcdb16d6cd4', '0');
 INSERT INTO USER_AUTHORITIES (USER_ID, AUTHORITY_ID) VALUES ('054597382efa45f5b3cfebcdb16d6cd4', '0');
 INSERT INTO USER_AUTHORITIES (USER_ID, AUTHORITY_ID) VALUES ('054597382efa45f5b3cfebcdb16d6cd4', '1');
+
+--  User: gogreenuser
+--  Password: password
+INSERT INTO USER_TABLE (USER_ID, ACC_ACTIVATED, ACC_EXPIRED, ACC_LOCKED, PASSWORD, NAME) VALUES ('674597382efa45f5b3cfebcdb16d6cd4', 'true', 'false', 'false', '$2a$10$67OBfdBphsEdLr7hlD2XDOA1USyt5jCqJMmMUiByemWtRrbKObFfi', 'gogreenuser');
+INSERT INTO USER_PROFILE (ID, USER, POINTS) VALUES ('676573882efa45f5b3cfebcdb16d1cd4', '674597382efa45f5b3cfebcdb16d6cd4', '0');
+INSERT INTO USER_AUTHORITIES (USER_ID, AUTHORITY_ID) VALUES ('674597382efa45f5b3cfebcdb16d6cd4', '0');
+
 
 -- Inserting categories
 INSERT INTO CATEGORY (ID, NAME, DESCRIPTION) VALUES ('0', 'Food', 'Food items'), ('1', 'Transport', 'Transportation'), ('2', 'Energy', 'Energy items'), ('3', 'Misc', 'Other items');

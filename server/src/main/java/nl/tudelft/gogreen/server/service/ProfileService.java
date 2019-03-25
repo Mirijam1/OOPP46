@@ -2,19 +2,21 @@ package nl.tudelft.gogreen.server.service;
 
 import nl.tudelft.gogreen.server.exceptions.InternalServerError;
 import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
-import nl.tudelft.gogreen.server.models.completables.ProgressingAchievement;
 import nl.tudelft.gogreen.server.models.completables.AchievedBadge;
+import nl.tudelft.gogreen.server.models.completables.ProgressingAchievement;
 import nl.tudelft.gogreen.server.models.completables.Trigger;
 import nl.tudelft.gogreen.server.models.user.User;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
 import nl.tudelft.gogreen.server.repository.ProfileRepository;
 import nl.tudelft.gogreen.server.repository.activity.CompletedActivityRepository;
-import nl.tudelft.gogreen.server.repository.completables.ProgressingAchievementRepository;
 import nl.tudelft.gogreen.server.repository.completables.AchievedBadgeRepository;
+import nl.tudelft.gogreen.server.repository.completables.ProgressingAchievementRepository;
+import nl.tudelft.gogreen.server.repository.social.FriendshipConnectionRepository;
 import nl.tudelft.gogreen.server.service.handlers.IAchievementCheckService;
 import nl.tudelft.gogreen.server.service.handlers.IBadgeCheckService;
 import nl.tudelft.gogreen.shared.models.SubmitResponse;
 import nl.tudelft.gogreen.shared.models.SubmittedActivity;
+import nl.tudelft.gogreen.shared.models.social.Friendship;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,7 @@ public class ProfileService implements IProfileService {
     private final IAchievementCheckService achievementCheckService;
     private final IBadgeCheckService badgeCheckService;
     private final AchievedBadgeRepository achievedBadgeRepository;
+    private final FriendshipConnectionRepository friendshipConnectionRepository;
     private final ProgressingAchievementRepository progressingAchievementRepository;
 
     @Autowired
@@ -46,6 +49,7 @@ public class ProfileService implements IProfileService {
                           IAchievementCheckService achievementCheckService,
                           IBadgeCheckService badgeCheckService,
                           AchievedBadgeRepository achievedBadgeRepository,
+                          FriendshipConnectionRepository friendshipConnectionRepository,
                           ProgressingAchievementRepository progressingAchievementRepository) {
         this.profileRepository = profileRepository;
         this.activityService = activityService;
@@ -54,28 +58,26 @@ public class ProfileService implements IProfileService {
         this.badgeCheckService = badgeCheckService;
         this.achievedBadgeRepository = achievedBadgeRepository;
         this.progressingAchievementRepository = progressingAchievementRepository;
+        this.friendshipConnectionRepository = friendshipConnectionRepository;
     }
 
     @Override
     public UserProfile createUserProfileForUser(User user) {
         logger.info("Create user profile for user " + user.getUsername());
 
-        UserProfile userProfile = UserProfile.builder()
-                .userID(user.getId())
+        return UserProfile.builder()
+                .user(user)
                 .points(0F)
                 .badges(new ArrayList<>())
-                .uuid(UUID.randomUUID())
+                .id(UUID.randomUUID())
                 .build();
-
-        profileRepository.save(userProfile);
-        return userProfile;
     }
 
     @Override
     @Transactional(readOnly = true)
     public UserProfile getUserProfile(User user) {
         logger.info("Looking for profile of user '" + user.getUsername() + "' with ID '" + user.getId() + "'");
-        UserProfile profile = profileRepository.findUserProfileByUserID(user.getId());
+        UserProfile profile = profileRepository.findUserProfileByUserId(user.getId());
 
         if (profile != null) {
             logger.info("Found profile for user '" + user.getUsername() + "' with ID '" + user.getId() + "'");
@@ -90,7 +92,7 @@ public class ProfileService implements IProfileService {
     @Override
     @Transactional
     public SubmitResponse submitActivity(SubmittedActivity submittedActivity, User user) {
-        UserProfile profile = profileRepository.findUserProfileByUserID(user.getId());
+        UserProfile profile = profileRepository.findUserProfileByUserId(user.getId());
         CompletedActivity activity = activityService.buildCompletedActivity(submittedActivity, profile);
 
         completedActivityRepository.save(activity);
@@ -144,7 +146,7 @@ public class ProfileService implements IProfileService {
     @Override
     @Transactional(readOnly = true)
     public Collection<CompletedActivity> getCompletedActivities(User user, Integer limit) {
-        UserProfile profile = profileRepository.findUserProfileByUserID(user.getId());
+        UserProfile profile = profileRepository.findUserProfileByUserId(user.getId());
 
         if (profile == null) {
             throw new InternalServerError();
@@ -157,7 +159,7 @@ public class ProfileService implements IProfileService {
     @Override
     @Transactional(readOnly = true)
     public CompletedActivity getCompletedActivityDetailed(User user, UUID externalId) {
-        UserProfile profile = profileRepository.findUserProfileByUserID(user.getId());
+        UserProfile profile = profileRepository.findUserProfileByUserId(user.getId());
 
         return completedActivityRepository
                 .findCompletedActivityByProfileAndExternalId(profile, externalId);
@@ -179,13 +181,46 @@ public class ProfileService implements IProfileService {
     @Override
     @Transactional(readOnly = true)
     public Collection<AchievedBadge> getAchievedBadges(User user) {
-        UserProfile profile = profileRepository.findUserProfileByUserID(user.getId());
+        UserProfile profile = profileRepository.findUserProfileByUserId(user.getId());
 
         if (profile == null) {
             throw new InternalServerError();
         }
 
         return achievedBadgeRepository.findAchievedBadgesByProfileOrderByDateTimeAchievedDesc(profile);
+    }
+
+    @Override
+    public Collection<Friendship> getFriends(User user) {
+        UserProfile profile = profileRepository.findUserProfileByUserId(user.getId());
+        Collection<Friendship> result = new ArrayList<>();
+
+        friendshipConnectionRepository.findFriendshipConnectionsByStartUserAndAccepted(profile, true)
+                .forEach(connection -> result.add(connection.toSharedModel(false)));
+        friendshipConnectionRepository.findFriendshipConnectionsByInvitedUserAndAccepted(profile, true)
+                .forEach(connection -> result.add(connection.toSharedModel(true)));
+
+        return result;
+    }
+
+    @Override
+    public Collection<Friendship> getPendingFriends(User user) {
+        UserProfile profile = profileRepository.findUserProfileByUserId(user.getId());
+        Collection<Friendship> result = new ArrayList<>();
+
+        friendshipConnectionRepository.findFriendshipConnectionsByStartUserAndAccepted(profile, false)
+                .forEach(connection -> result.add(connection.toSharedModel(false)));
+        return result;
+    }
+
+    @Override
+    public Collection<Friendship> getInvitingFriends(User user) {
+        UserProfile profile = profileRepository.findUserProfileByUserId(user.getId());
+        Collection<Friendship> result = new ArrayList<>();
+
+        friendshipConnectionRepository.findFriendshipConnectionsByInvitedUserAndAccepted(profile, false)
+                .forEach(connection -> result.add(connection.toSharedModel(true)));
+        return result;
     }
 
     @Override
@@ -199,7 +234,7 @@ public class ProfileService implements IProfileService {
     }
 
     private Collection<ProgressingAchievement> getProgressingAchievements(User user, Boolean completed) {
-        UserProfile profile = profileRepository.findUserProfileByUserID(user.getId());
+        UserProfile profile = profileRepository.findUserProfileByUserId(user.getId());
 
         if (profile == null) {
             throw new InternalServerError();
