@@ -7,6 +7,7 @@ import nl.tudelft.gogreen.server.models.user.User;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
 import nl.tudelft.gogreen.shared.models.SubmitResponse;
 import nl.tudelft.gogreen.shared.models.SubmittedActivity;
+import nl.tudelft.gogreen.shared.models.social.Friendship;
 
 import java.util.Collection;
 import java.util.UUID;
@@ -31,4 +32,10 @@ public interface IProfileService {
     Collection<ProgressingAchievement> getAchievedAchievements(User user);
 
     Collection<ProgressingAchievement> getProgressingAchievements(User user);
+
+    Collection<Friendship> getFriends(User user);
+
+    Collection<Friendship> getPendingFriends(User user);
+
+    Collection<Friendship> getInvitingFriends(User user);
 }

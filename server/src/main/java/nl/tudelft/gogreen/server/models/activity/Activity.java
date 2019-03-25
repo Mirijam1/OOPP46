@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,21 +40,28 @@ import java.util.Collection;
 @EqualsAndHashCode(exclude = "category")
 @ToString(exclude = "category")
 public class Activity {
+    @JsonView({nl.tudelft.gogreen.server.models.JsonView.Detailed.class,
+            nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class})
     @Id
     @Column(name = "ID", nullable = false, unique = true, updatable = false)
     private Integer id;
 
+    @JsonView({nl.tudelft.gogreen.server.models.JsonView.Detailed.class,
+            nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class})
     @Column(name = "NAME", nullable = false, unique = true)
     private String activityName;
 
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     @Column(name = "DESCRIPTION", nullable = false)
     private String description;
 
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "CATEGORY", referencedColumnName = "ID")
     private Category category;
 
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "id", orphanRemoval = true, cascade = CascadeType.ALL)
     private Collection<ActivityOption> options;
