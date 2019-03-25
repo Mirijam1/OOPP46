@@ -1,4 +1,4 @@
-package nl.tudelft.gogreen.api;
+package nl.tudelft.gogreen.api.servermodels;
 
 public class EndPoints {
     // STATUS ENDPOINTS
@@ -20,7 +20,7 @@ public class EndPoints {
     public static final String GETUSERINFO = "api/user/";
 
     public static final String GETUSERACTIVITIES = "api/profile/activities/";
-    public static final String GETSPECIFICACTIVITY = "api/profile/activities/{externalID}";
+
 
     public static final String GETBADGES = "api/profile/badges";
 

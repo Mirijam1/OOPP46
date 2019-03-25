@@ -15,9 +15,9 @@ import java.util.UUID;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CompletedActivity {
+public class CompletedActivityServer {
     private UUID externalId;
-    private Activity activity;
+    private ActivitySmall activitysmall;
     private Float points;
     private @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     LocalDateTime dateTimeCompleted;
