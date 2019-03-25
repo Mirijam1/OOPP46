@@ -37,7 +37,7 @@ public class API {
         }
     }
 
-    private static String buildUrl(String endPoint) {
+    public static String buildUrl(String endPoint) {
         return locationUrl + endPoint;
     }
 
@@ -157,6 +157,16 @@ public class API {
                 new User("TestUser", "123", 130f),
                 200);
     }
+    public static void retrieveFakeCo2(ServerCallback<Object, BasicResponse> callback) {
+        Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, "/api/user");
+        ServerConnection.mockRequest(BasicResponse.class,
+            request,
+            callback,
+            false,
+            -1,
+            new BasicResponse("0.4"),200);
+    }
+
 
     public static void createUser(ServerCallback<User, User> callback, User user) {
         //Check if this is correct
@@ -188,6 +198,7 @@ public class API {
 
         ServerConnection.request(UserServer.class, body, callback, true, -1);
     }
+
 
 //    public static void deleteUser(ServerCallback<Object, Map<String, String>> callback) {
 //        String url = buildUrl(EndPoints.DELETE);
