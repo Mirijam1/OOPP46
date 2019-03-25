@@ -10,33 +10,60 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #EEFFF2#EEFFF2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/submit.css"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.DashboardController">
     <children>
-        <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="233.0" layoutY="69.0" prefHeight="67.0" prefWidth="544.0" text="DASHBOARD" textFill="#7b7b7b">
+        <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="72.0" layoutY="64.0" prefHeight="51.0"
+               prefWidth="471.0" text="Submit a new activity" textFill="#eff0eb">
             <font>
-                <Font name="Microsoft YaHei Light" size="48.0" />
+                <Font name="Microsoft YaHei Light" size="36.0"/>
             </font>
         </Label>
-      <Label layoutX="226.0" layoutY="266.0" prefHeight="45.0" prefWidth="170.0" text="Category" textFill="#7a7a7a">
-         <font>
-            <Font name="Microsoft YaHei Light" size="24.0" />
-         </font></Label>
-      <JFXComboBox fx:id="categoryBox" focusColor="#6b6b6b" layoutX="401.0" layoutY="273.0" onAction="#onCategoryChange" prefHeight="25.0" prefWidth="227.0" promptText="Category" unFocusColor="#7b7b7b" />
-      <JFXComboBox fx:id="activityBox" focusColor="#6b6b6b" layoutX="401.0" layoutY="341.0" prefHeight="25.0" prefWidth="227.0" promptText="Activity" unFocusColor="#7b7b7b" />
-      <Label fx:id="userid1" layoutX="226.0" layoutY="334.0" prefHeight="45.0" prefWidth="156.0" text="Activity" textFill="#7b7b7b">
-         <font>
-            <Font name="Microsoft YaHei Light" size="24.0" />
-         </font>
-      </Label>
-      <JFXHamburger fx:id="hamburger" layoutX="13.0" layoutY="28.0" />
-      <Label fx:id="category" layoutX="369.0" layoutY="201.0" text="cat" visible="false">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="sumbmit" layoutX="396.0" layoutY="426.0" mnemonicParsing="false" onAction="#submitButton" prefHeight="52.0" prefWidth="227.0" stylesheets="@../css/button.css" text="Submit" textFill="#7b7b7b">
-         <font>
-            <Font size="14.0" />
-         </font></Button>
+        <Label fx:id="category" layoutX="369.0" layoutY="201.0" text="cat" visible="false">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+        <Separator layoutX="138.0" layoutY="105.0" opacity="0.2" prefHeight="20.0" prefWidth="1000.0"/>
+        <Separator layoutX="140.0" layoutY="448.0" opacity="0.2" prefHeight="20.0" prefWidth="1000.0"/>
+        <GridPane id="ComboBox" layoutX="138.0" layoutY="140.0" prefHeight="337.0" prefWidth="745.0"
+                  stylesheets="@../css/submit.css">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="367.0" minWidth="10.0" prefWidth="175.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="606.0" minWidth="10.0" prefWidth="570.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="155.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="176.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label prefHeight="45.0" prefWidth="170.0" text="Category" textFill="#eff0eb">
+                    <font>
+                        <Font name="Microsoft YaHei Light" size="30.0"/>
+                    </font>
+                </Label>
+                <JFXComboBox id="categoryBox" fx:id="categoryBox" focusColor="#85b84c" onAction="#onCategoryChange"
+                             prefHeight="31.0" prefWidth="240.0" promptText="Category" stylesheets="@../css/submit.css"
+                             unFocusColor="#eff0eb" GridPane.columnIndex="1"/>
+                <Label prefHeight="45.0" prefWidth="156.0" text="Activity" textFill="#eff0eb" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="Microsoft YaHei Light" size="30.0"/>
+                    </font>
+                </Label>
+                <JFXComboBox fx:id="activityBox" focusColor="#85b84c" prefHeight="25.0" prefWidth="240.0"
+                             promptText="Activity" unFocusColor="#eff0eb" GridPane.columnIndex="1"
+                             GridPane.rowIndex="1"/>
+                <Button fx:id="submit" mnemonicParsing="false" onAction="#submitButton" prefHeight="45.0"
+                        prefWidth="170.0" style="-fx-background-radius: 15;" text="Submit" GridPane.columnIndex="1"
+                        GridPane.rowIndex="2">
+                    <font>
+                        <Font name="Microsoft YaHei Light" size="24.0"/>
+                    </font>
+                </Button>
+            </children>
+        </GridPane>
     </children>
 </AnchorPane>

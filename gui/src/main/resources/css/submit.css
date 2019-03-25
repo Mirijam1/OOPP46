@@ -7,6 +7,6 @@
     -fx-prompt-text-fill: #EFF0EB;
 }
 
-.jfx-combo-box .cell:selected{
+.jfx-combo-box .cell:selected {
     -fx-text-fill: #85b84c;
 }
