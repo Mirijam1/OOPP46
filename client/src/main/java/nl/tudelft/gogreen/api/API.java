@@ -132,7 +132,7 @@ public class API {
         Request<Object> body = ServerConnection
                 .buildSimpleRequest(HttpMethod.GET, url);
 
-        ServerConnection.request(CompletedActivityServer[].class, body, callback, true, 15);
+        ServerConnection.request(CompletedActivityServer[].class, body, callback, false, 0);
     }
 
     public static void retrieveActivityList(ServerCallback<Object, Activity[]> callback, String category) {

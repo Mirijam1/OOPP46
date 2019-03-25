@@ -1,9 +1,15 @@
 package nl.tudelft.gogreen.client;
 
+import javafx.application.Platform;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
-import nl.tudelft.gogreen.api.servermodels.*;
+import nl.tudelft.gogreen.api.servermodels.BasicResponse;
+import nl.tudelft.gogreen.api.servermodels.CompletedActivityServer;
+import nl.tudelft.gogreen.api.servermodels.GUICompletedActivities;
+import nl.tudelft.gogreen.api.servermodels.User;
 import nl.tudelft.gogreen.shared.Shared;
+import nl.tudelft.gogreen.shared.models.SubmitResponse;
+import nl.tudelft.gogreen.shared.models.SubmittedActivity;
 import nl.tudelft.gogreen.shared.models.UserServer;
 
 import java.util.ArrayList;
@@ -40,7 +46,7 @@ public class Client {
             public void run() {
                 System.out.println("Logged in");
 
-                API.retrieveUser( new ServerCallback<Object, UserServer>() {
+                API.retrieveUser(new ServerCallback<Object, UserServer>() {
                     @Override
                     public void run() {
                         System.out.println(getResult().getUsername());
@@ -74,11 +80,21 @@ public class Client {
             @Override
             public void run() {
                 System.out.println("Logged in");
+                API.submitActivity(new ServerCallback<SubmittedActivity, SubmitResponse>() {
+                    @Override
+                    public void run() {
+                        System.out.println("Submitted activity!");
+                        System.out.println(getResult().getExternalId());
+                        System.out.println(getResult().getPoints());
+                        System.out.println(getResult().getUpdatedPoints());
+                        System.out.println(getResult().getResponse());
+                    }
+                }, SubmittedActivity.builder().activityId(1).build());
                 API.retrieveCompletedActivities(new ServerCallback<Object, CompletedActivityServer[]>() {
                     @Override
                     public void run() {
                         for (CompletedActivityServer activity : getResult()) {
-                            a.add(new GUICompletedActivities(activity.getActivitysmall().getActivityName(), activity.getPoints().toString()) );
+                            a.add(new GUICompletedActivities(activity.getActivity().getActivityName(), activity.getPoints().toString()));
                         }
                         finalActivities(a);
                     }
@@ -132,16 +148,17 @@ public class Client {
 //        }, new User("admin","password",0F));
 //    }
 
-    private static List<GUICompletedActivities> finalActivities(List<GUICompletedActivities> array){
-        for(GUICompletedActivities a : array){
-            System.out.println(a.getActivityname());
-            System.out.println(a.getPoints());
-        }
-        return array;
+    private static void finalActivities(List<GUICompletedActivities> array) {
+        Platform.runLater(() -> {
+            for (GUICompletedActivities a : array) {
+                System.out.println(a.getActivityname());
+                System.out.println(a.getPoints());
+            }
+        });
+
     }
-
-
 }
+
 
 //    public static void doSomething(BasicResponse basicResponse) {
 //        Platform.runLater(() -> {

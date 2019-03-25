@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
 import nl.tudelft.gogreen.shared.LocalDateTimeDeserializer;
+import nl.tudelft.gogreen.shared.models.SubmittedActivity;
 
 import java.util.UUID;
 
