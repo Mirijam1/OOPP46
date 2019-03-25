@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
+import nl.tudelft.gogreen.server.models.completables.ProgressingAchievement;
 import nl.tudelft.gogreen.server.models.completables.AchievedBadge;
 
 import javax.persistence.CascadeType;
@@ -51,4 +52,9 @@ public class UserProfile implements Serializable {
     @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "profile", orphanRemoval = true, cascade = CascadeType.ALL)
     private Collection<AchievedBadge> badges;
+
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "profile", orphanRemoval = true, cascade = CascadeType.ALL)
+    private Collection<ProgressingAchievement> achievements;
 }

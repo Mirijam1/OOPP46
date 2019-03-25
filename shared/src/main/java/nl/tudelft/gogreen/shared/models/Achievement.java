@@ -5,18 +5,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Collection;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class SubmitResponse {
-    private String response;
+public class Achievement {
     private UUID externalId;
-    private Float points;
-    private Float updatedPoints;
-    private Collection<Badge> badges;
-    private Collection<Achievement> achievements;
+    private String achievementName;
+    private String achievedMessage;
+    private String description;
+    private Integer progress;
+    private Integer requiredProgress;
+    private Boolean completed;
 }

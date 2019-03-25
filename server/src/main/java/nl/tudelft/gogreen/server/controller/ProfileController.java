@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import nl.tudelft.gogreen.server.exceptions.NotFoundException;
 import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
 import nl.tudelft.gogreen.server.models.completables.AchievedBadge;
+import nl.tudelft.gogreen.server.models.completables.ProgressingAchievement;
 import nl.tudelft.gogreen.server.models.user.User;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
 import nl.tudelft.gogreen.server.service.IProfileService;
@@ -93,5 +94,23 @@ public class ProfileController {
     public @ResponseBody
     Collection<AchievedBadge> getAchievedBadges(Authentication authentication) {
         return profileService.getAchievedBadges((User) authentication.getPrincipal());
+    }
+
+    @RequestMapping(path = "/achievements", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
+    public @ResponseBody
+    Collection<ProgressingAchievement> getAchievedAchievements(Authentication authentication) {
+        return profileService.getAchievedAchievements((User) authentication.getPrincipal());
+    }
+
+    @RequestMapping(path = "/achievements/progressing",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
+    public @ResponseBody
+    Collection<ProgressingAchievement> getProgressingAchievements(Authentication authentication) {
+        return profileService.getProgressingAchievements((User) authentication.getPrincipal());
     }
 }
