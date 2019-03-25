@@ -2,7 +2,6 @@ package controllers;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -38,8 +37,6 @@ public class DashboardController {
     @FXML
     private JFXComboBox<Activity> activityBox;
 
-    @FXML
-    private JFXHamburger hamburger;
     @FXML
     private Button submit;
 
