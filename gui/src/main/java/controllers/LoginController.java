@@ -96,7 +96,7 @@ public class LoginController {
                                 }
                                 Stage stage = new Stage();
                                 stage.setTitle("GOGREEN - overview");
-                                stage.setScene(new Scene(root, 1280, 720));
+                                stage.setScene(new Scene(root, 1380, 720));
                                 stage.show();
 
                                 // do what you have to do

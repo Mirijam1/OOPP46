@@ -6,8 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import nl.tudelft.gogreen.api.API;
@@ -36,17 +36,18 @@ public class AccountPageController {
     private JFXTextField userForm;
 
     @FXML
-    private ScrollPane badgePane;
+    private GridPane badgePane;
 
     private User user;
 
-    boolean userNameChanged = false;
+    private boolean userNameChanged = false;
 
     public void initialize() {
         modDataButton.setVisible(false);
         modDataButton.setDisable(true);
 
         updateUserValues();
+        initBadges();
     }
 
     @FXML
@@ -100,7 +101,7 @@ public class AccountPageController {
             @Override
             public void run() {
                 if (getStatusCode() != 200) {
-                    System.out.println("error");
+                    System.out.println("Error");
                 } else {
                     user = getResult();
                     userTitle.setText(user.getName() + "'s Account");
@@ -109,5 +110,25 @@ public class AccountPageController {
                 }
             }
         });
+    }
+
+    private void initBadges() {
+        String[] badgelist = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+
+        int badgeAmount = badgelist.length;
+        int counter = 0;
+        int rows = (badgeAmount / 4) + 1;
+
+        for (int i = 0; i < rows; i++) {
+            badgePane.addRow(i + 1);
+
+            for (int j = 0; j < 4; j++) {
+                badgePane.add(new Label(badgelist[counter]), j, i);
+                if (counter == badgeAmount - 1) {
+                    break;
+                }
+                counter++;
+            }
+        }
     }
 }
