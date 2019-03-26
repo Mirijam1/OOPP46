@@ -3,11 +3,9 @@ package nl.tudelft.gogreen.client;
 import javafx.application.Platform;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
-import nl.tudelft.gogreen.api.servermodels.BasicResponse;
-import nl.tudelft.gogreen.api.servermodels.CompletedActivityServer;
-import nl.tudelft.gogreen.api.servermodels.GUICompletedActivities;
-import nl.tudelft.gogreen.api.servermodels.User;
+import nl.tudelft.gogreen.api.servermodels.*;
 import nl.tudelft.gogreen.shared.Shared;
+import nl.tudelft.gogreen.shared.models.Badge;
 import nl.tudelft.gogreen.shared.models.SubmitResponse;
 import nl.tudelft.gogreen.shared.models.SubmittedActivity;
 import nl.tudelft.gogreen.shared.models.UserServer;
@@ -18,6 +16,7 @@ import java.util.List;
 public class Client {
     //   static List<UUID> CompletedActivitiesID = new ArrayList<UUID>();
     static List<GUICompletedActivities> a = new ArrayList<>();
+    static List<Badge> Badges = new ArrayList<>();
 //    static List<Badge> Badges = new ArrayList<>();
     /* Just ignore this for now */
     /*
@@ -31,7 +30,7 @@ public class Client {
         System.out.println("Hello, world!");
         System.out.println(Shared.getTestString());
 
-        API.prepareAPI(true);
+        API.prepareAPI(false);
 
 //        API.requestFakeStatus(new ServerCallback<Object, BasicResponse>() {
 //            @Override
@@ -40,28 +39,33 @@ public class Client {
 //            }
 //        });
 
-        //Get username
+        //Get user-profile
         API.attemptAuthentication(new ServerCallback<Object, BasicResponse>() {
             @Override
             public void run() {
                 System.out.println("Logged in");
 
-                API.retrieveUser(new ServerCallback<Object, UserServer>() {
+                API.retrieveUserProfile(new ServerCallback<Object, UserServer>() {
                     @Override
                     public void run() {
-                        System.out.println(getResult().getUsername());
+                        System.out.println(getResult().getUser().getUsername());
+                        System.out.println(getResult().getPoints());
+                    }
+                });
+                //retrieve badges
+
+                API.retrieveAchievedBadges(new ServerCallback<Object, AchievedBadge[]>() {
+                    @Override
+                    public void run() {
+                        for (AchievedBadge badge : getResult()) {
+                            Badges.add(badge.getBadge());
+                        }
+
                     }
                 });
             }
         }, new User("admin", "password", 0F));
 
-        //get points
-//        API.retrieveUserPoints( new ServerCallback<Object, BasicResponse>() {
-//            @Override
-//            public void run() {
-//                System.out.println(getResult().toString());
-//            }
-//        });
 //
 //        // Example
 //        API.retrieveFakeCo2(new ServerCallback<Object, BasicResponse>() {
@@ -103,19 +107,6 @@ public class Client {
         }, new User("admin", "password", 0F));
 
 
-//retrieve badges
-//        API.retrieveAchievedBadges(new ServerCallback<Object, AchievedBadge[]>() {
-//            @Override
-//            public void run() {
-//                for (AchievedBadge badge : getResult()) {
-//                    Badges.add(badge.getBadge());
-//                }
-//
-//            }
-//        });
-
-//                System.out.println(SubmittedActivity.builder().activityId(1).build().toString());
-//
 //                API.submitActivity(new ServerCallback<SubmittedActivity, SubmitResponse>() {
 //                    @Override
 //                    public void run() {
