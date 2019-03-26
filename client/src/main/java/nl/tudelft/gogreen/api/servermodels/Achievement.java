@@ -5,20 +5,17 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
 import nl.tudelft.gogreen.shared.LocalDateTimeDeserializer;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class CompletedActivity {
-    private UUID externalId;
-    private Activity activity;
-    private Float points;
-    private @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    LocalDateTime dateTimeCompleted;
+public class Achievement {
+        private UUID id;
+        private @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+        LocalDateTimeDeserializer localDateTimeDeserializer;
+
 }

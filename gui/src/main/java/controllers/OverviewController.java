@@ -8,7 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
-import nl.tudelft.gogreen.api.servermodels.CompletedActivity;
+import nl.tudelft.gogreen.api.servermodels.CompletedActivityServer;
 import nl.tudelft.gogreen.api.servermodels.User;
 
 public class OverviewController {
@@ -36,10 +36,10 @@ public class OverviewController {
     @FXML
     public void initialize() {
         initUser();
-        API.retrieveCompletedActivities(new ServerCallback<Object, CompletedActivity[]>() {
+        API.retrieveCompletedActivities(new ServerCallback<Object, CompletedActivityServer[]>() {
             @Override
             public void run() {
-                CompletedActivity[] result = getResult();
+                CompletedActivityServer[] result = getResult();
                 initHistory(result);
             }
         });
@@ -61,7 +61,7 @@ public class OverviewController {
         });
     }
 
-    private void initHistory(CompletedActivity[] list) {
+    private void initHistory(CompletedActivityServer[] list) {
         histPane.setFitToWidth(true);
         boolean activityadded = false;
         //An api method for retrieving previous activity data from the user
@@ -72,10 +72,10 @@ public class OverviewController {
         for (int i = 0; i < list.length; i++) {
             System.out.println(list[i]);
             if (list[i] != null) {
-                if (list[i].getActivity()!= null) {
+                if (list[i].getActivity() != null) {
                     activityadded = true;
                     Label activityTitle = new Label(list[i].getActivity().getActivityName());
-                    Label activityDesc = new Label(list[i].getActivity().getDescription());
+                    Label activityDesc = new Label(list[i].getActivity().getId().toString());
                     Pane historyPane = new Pane();
 
                     if (i % 2 == 1) {
@@ -83,6 +83,7 @@ public class OverviewController {
                     } else {
                         historyPane.setStyle("-fx-background-color: white;");
                     }
+
                     historyPane.setPrefSize(548, 120);
                     histVBox.setPrefHeight(120 * (i + 1));
 

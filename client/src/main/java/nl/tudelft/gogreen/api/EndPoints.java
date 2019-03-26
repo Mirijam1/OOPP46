@@ -17,6 +17,7 @@ public class EndPoints {
 
     // PROFILE ENDPOINTS
     public static final String GETPOINTS = "api/profile/";
+    public static final String GETUSERINFO = "api/user/";
 
     public static final String GETUSERACTIVITIES = "api/profile/activities/";
     public static final String GETSPECIFICACTIVITY = "api/profile/activities/{externalID}";

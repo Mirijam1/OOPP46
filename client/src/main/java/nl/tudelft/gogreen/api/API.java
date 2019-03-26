@@ -1,14 +1,11 @@
 package nl.tudelft.gogreen.api;
 
 import com.mashape.unirest.http.HttpMethod;
-import nl.tudelft.gogreen.api.servermodels.Activity;
-import nl.tudelft.gogreen.api.servermodels.BasicResponse;
-import nl.tudelft.gogreen.api.servermodels.Category;
-import nl.tudelft.gogreen.api.servermodels.CompletedActivity;
-import nl.tudelft.gogreen.api.servermodels.User;
+import nl.tudelft.gogreen.api.servermodels.*;
 import nl.tudelft.gogreen.cache.Request;
 import nl.tudelft.gogreen.shared.models.SubmitResponse;
 import nl.tudelft.gogreen.shared.models.SubmittedActivity;
+import nl.tudelft.gogreen.shared.models.UserServer;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -40,7 +37,7 @@ public class API {
         }
     }
 
-    private static String buildUrl(String endPoint) {
+    public static String buildUrl(String endPoint) {
         return locationUrl + endPoint;
     }
 
@@ -126,8 +123,8 @@ public class API {
         ServerConnection.request(Category[].class, body, callback, true, -1);
     }
 
-    public static void retrieveCompletedActivities(ServerCallback<Object, CompletedActivity[]> callback) {
-        String url = buildUrl("api/profile/activities");
+    public static void retrieveCompletedActivities(ServerCallback<Object, CompletedActivityServer[]> callback) {
+        String url = buildUrl(EndPoints.GETUSERACTIVITIES);
 
         // Replace with real logger later
         System.out.println("Endpoint url:" + url);
@@ -135,7 +132,7 @@ public class API {
         Request<Object> body = ServerConnection
                 .buildSimpleRequest(HttpMethod.GET, url);
 
-        ServerConnection.request(CompletedActivity[].class, body, callback, true, 15);
+        ServerConnection.request(CompletedActivityServer[].class, body, callback, false, 0);
     }
 
     public static void retrieveActivityList(ServerCallback<Object, Activity[]> callback, String category) {
@@ -160,6 +157,16 @@ public class API {
                 new User("TestUser", "123", 130f),
                 200);
     }
+    public static void retrieveFakeCo2(ServerCallback<Object, BasicResponse> callback) {
+        Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, "/api/user");
+        ServerConnection.mockRequest(BasicResponse.class,
+            request,
+            callback,
+            false,
+            -1,
+            new BasicResponse("0.4"),200);
+    }
+
 
     public static void createUser(ServerCallback<User, User> callback, User user) {
         //Check if this is correct
@@ -179,6 +186,19 @@ public class API {
 
         ServerConnection.request(User.class, body, callback);
     }
+
+    public static void retrieveUser(ServerCallback<Object, UserServer> callback) {
+        String url = buildUrl(EndPoints.GETUSERINFO);
+
+        // Replace with real logger later
+        System.out.println("Endpoint url:" + url);
+
+        Request<Object> body = ServerConnection
+            .buildSimpleRequest(HttpMethod.GET, url);
+
+        ServerConnection.request(UserServer.class, body, callback, true, -1);
+    }
+
 
 //    public static void deleteUser(ServerCallback<Object, Map<String, String>> callback) {
 //        String url = buildUrl(EndPoints.DELETE);
