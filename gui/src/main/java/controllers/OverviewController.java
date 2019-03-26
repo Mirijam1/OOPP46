@@ -8,7 +8,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
-import nl.tudelft.gogreen.api.servermodels.CompletedActivity;
 import nl.tudelft.gogreen.api.servermodels.CompletedActivityServer;
 import nl.tudelft.gogreen.api.servermodels.User;
 
@@ -73,10 +72,10 @@ public class OverviewController {
         for (int i = 0; i < list.length; i++) {
             System.out.println(list[i]);
             if (list[i] != null) {
-                if (list[i].getActivitysmall()!= null) {
+                if (list[i].getActivity() != null) {
                     activityadded = true;
-                    Label activityTitle = new Label(list[i].getActivitysmall().getActivityName());
-                    Label activityDesc = new Label(list[i].getActivitysmall().getId().toString());
+                    Label activityTitle = new Label(list[i].getActivity().getActivityName());
+                    Label activityDesc = new Label(list[i].getActivity().getId().toString());
                     Pane historyPane = new Pane();
 
                     if (i % 2 == 1) {
@@ -84,6 +83,7 @@ public class OverviewController {
                     } else {
                         historyPane.setStyle("-fx-background-color: white;");
                     }
+
                     historyPane.setPrefSize(548, 120);
                     histVBox.setPrefHeight(120 * (i + 1));
 

@@ -44,7 +44,7 @@ public class UserProfile implements Serializable {
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class,
             nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
     @OneToOne
-    @JoinColumn(name = "USER")
+    @JoinColumn(name = "USER_REF")
     private User user;
 
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.Detailed.class,
