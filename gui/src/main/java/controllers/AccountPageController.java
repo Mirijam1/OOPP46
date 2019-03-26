@@ -123,7 +123,12 @@ public class AccountPageController {
             badgePane.addRow(i + 1);
 
             for (int j = 0; j < 4; j++) {
-                badgePane.add(new Label(badgelist[counter]), j, i);
+                //badgePane.add(new Label(badgelist[counter]), j, i);
+
+
+                //add gui to badge
+
+
                 if (counter == badgeAmount - 1) {
                     break;
                 }
