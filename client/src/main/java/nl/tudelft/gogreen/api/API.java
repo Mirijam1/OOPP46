@@ -187,8 +187,8 @@ public class API {
         ServerConnection.request(User.class, body, callback);
     }
 
-    public static void retrieveUser(ServerCallback<Object, UserServer> callback) {
-        String url = buildUrl(EndPoints.GETUSERINFO);
+    public static void retrieveUserProfile(ServerCallback<Object, UserServer> callback) {
+        String url = buildUrl(EndPoints.GETPROFILE);
 
         // Replace with real logger later
         System.out.println("Endpoint url:" + url);
@@ -197,6 +197,13 @@ public class API {
             .buildSimpleRequest(HttpMethod.GET, url);
 
         ServerConnection.request(UserServer.class, body, callback, true, -1);
+    }
+    public static void retrieveAchievedBadges(ServerCallback<Object, AchievedBadge[]> callback) {
+        String url = buildUrl(EndPoints.GETBADGES) ;
+        Request<Object> body = ServerConnection
+            .buildSimpleRequest(HttpMethod.GET, url);
+
+        ServerConnection.request(AchievedBadge[].class, body, callback, true, 0);
     }
 
 
