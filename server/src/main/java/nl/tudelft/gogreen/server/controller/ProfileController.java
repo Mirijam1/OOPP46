@@ -11,7 +11,6 @@ import nl.tudelft.gogreen.server.service.IProfileService;
 import nl.tudelft.gogreen.shared.models.SubmitResponse;
 import nl.tudelft.gogreen.shared.models.SubmittedActivity;
 import nl.tudelft.gogreen.shared.models.social.Friendship;
-import nl.tudelft.gogreen.shared.models.social.SocialUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -65,7 +64,7 @@ public class ProfileController {
                                                          @RequestParam(value = "limit",
                                                                  required = false)
                                                                  Integer limit) {
-        if (limit == null) {
+        if (limit == null || limit <= 0) {
             limit = 25;
         }
 

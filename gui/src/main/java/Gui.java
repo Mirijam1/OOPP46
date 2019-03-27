@@ -5,12 +5,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nl.tudelft.gogreen.api.API;
-import nl.tudelft.gogreen.api.ServerCallback;
-import nl.tudelft.gogreen.api.servermodels.BasicResponse;
-import nl.tudelft.gogreen.api.servermodels.CompletedActivity;
-import nl.tudelft.gogreen.api.servermodels.User;
-import nl.tudelft.gogreen.shared.models.SubmitResponse;
-import nl.tudelft.gogreen.shared.models.SubmittedActivity;
 
 public class Gui extends Application {
 

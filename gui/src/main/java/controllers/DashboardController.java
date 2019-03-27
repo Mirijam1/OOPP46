@@ -18,8 +18,8 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
-import nl.tudelft.gogreen.api.servermodels.Activity;
-import nl.tudelft.gogreen.api.servermodels.Category;
+import nl.tudelft.gogreen.shared.models.Activity;
+import nl.tudelft.gogreen.shared.models.Category;
 
 import java.io.IOException;
 import java.util.Arrays;

@@ -40,31 +40,31 @@ public class Client {
 //        });
 
         //Get user-profile
-        API.attemptAuthentication(new ServerCallback<Object, BasicResponse>() {
-            @Override
-            public void run() {
-                System.out.println("Logged in");
-
-                API.retrieveUserProfile(new ServerCallback<Object, UserServer>() {
-                    @Override
-                    public void run() {
-                        System.out.println(getResult().getUser().getUsername());
-                        System.out.println(getResult().getPoints());
-                    }
-                });
-                //retrieve badges
-
-                API.retrieveAchievedBadges(new ServerCallback<Object, AchievedBadge[]>() {
-                    @Override
-                    public void run() {
-                        for (AchievedBadge badge : getResult()) {
-                            Badges.add(badge.getBadge());
-                        }
-
-                    }
-                });
-            }
-        }, new User("admin", "password", 0F));
+//        API.attemptAuthentication(new ServerCallback<Object, BasicResponse>() {
+//            @Override
+//            public void run() {
+//                System.out.println("Logged in");
+//
+//                API.retrieveUserProfile(new ServerCallback<Object, UserServer>() {
+//                    @Override
+//                    public void run() {
+//                        System.out.println(getResult().getUser().getUsername());
+//                        System.out.println(getResult().getPoints());
+//                    }
+//                });
+//                //retrieve badges
+//
+//                API.retrieveAchievedBadges(new ServerCallback<Object, AchievedBadge[]>() {
+//                    @Override
+//                    public void run() {
+//                        for (AchievedBadge badge : getResult()) {
+//                            Badges.add(badge.getBadge());
+//                        }
+//
+//                    }
+//                });
+//            }
+//        }, new User("admin", "password", 0F));
 
 //
 //        // Example

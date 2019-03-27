@@ -60,7 +60,7 @@ public class LeaderboardController {
                                                  @RequestParam(value = "limit",
                                                          required = false)
                                                          Integer limit) {
-        if (limit == null) {
+        if (limit == null || limit <= 0) {
             limit = 25;
         }
 

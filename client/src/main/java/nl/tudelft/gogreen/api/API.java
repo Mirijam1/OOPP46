@@ -1,8 +1,13 @@
 package nl.tudelft.gogreen.api;
 
 import com.mashape.unirest.http.HttpMethod;
-import nl.tudelft.gogreen.api.servermodels.*;
+import nl.tudelft.gogreen.api.servermodels.AchievedBadge;
+import nl.tudelft.gogreen.api.servermodels.BasicResponse;
+import nl.tudelft.gogreen.api.servermodels.CompletedActivityServer;
+import nl.tudelft.gogreen.api.servermodels.User;
 import nl.tudelft.gogreen.cache.Request;
+import nl.tudelft.gogreen.shared.models.Activity;
+import nl.tudelft.gogreen.shared.models.Category;
 import nl.tudelft.gogreen.shared.models.SubmitResponse;
 import nl.tudelft.gogreen.shared.models.SubmittedActivity;
 import nl.tudelft.gogreen.shared.models.UserServer;
@@ -70,12 +75,12 @@ public class API {
         Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, "/api/fake/url");
 
         ServerConnection.mockRequest(BasicResponse.class,
-            request,
-            callback,
-            true,
-            15,
-            new BasicResponse("Fake response from server"),
-            200);
+                request,
+                callback,
+                true,
+                15,
+                new BasicResponse("Fake response from server"),
+                200);
     }
 
     /**
@@ -105,7 +110,7 @@ public class API {
     public static void submitActivity(ServerCallback<SubmittedActivity, SubmitResponse> callback,
                                       SubmittedActivity activity) {
         Request<SubmittedActivity> request = ServerConnection
-            .buildRequestWithBody(HttpMethod.PUT, buildUrl(EndPoints.SUBMIT_ACTIVITY), activity);
+                .buildRequestWithBody(HttpMethod.PUT, buildUrl(EndPoints.SUBMIT_ACTIVITY), activity);
 
         ServerConnection.request(SubmitResponse.class, request, callback, false, -1);
     }
@@ -124,7 +129,7 @@ public class API {
     }
 
     public static void retrieveCompletedActivities(ServerCallback<Object, CompletedActivityServer[]> callback) {
-        String url = buildUrl(EndPoints.GETUSERACTIVITIES);
+        String url = buildUrl(EndPoints.GET_USER_ACTIVITIES);
 
         // Replace with real logger later
         System.out.println("Endpoint url:" + url);
@@ -142,7 +147,7 @@ public class API {
         System.out.println("Endpoint url:" + url);
 
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
         ServerConnection.request(Activity[].class, body, callback, true, -1);
     }
 
@@ -157,20 +162,21 @@ public class API {
                 new User("TestUser", "123", 130f),
                 200);
     }
+
     public static void retrieveFakeCo2(ServerCallback<Object, BasicResponse> callback) {
         Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, "/api/user");
         ServerConnection.mockRequest(BasicResponse.class,
-            request,
-            callback,
-            false,
-            -1,
-            new BasicResponse("0.4"),200);
+                request,
+                callback,
+                false,
+                -1,
+                new BasicResponse("0.4"), 200);
     }
 
 
     public static void createUser(ServerCallback<User, User> callback, User user) {
         //Check if this is correct
-        String url = buildUrl(EndPoints.CREATE);
+        String url = buildUrl(EndPoints.CREATE_USER);
 
         Request<User> body = ServerConnection
                 .buildRequestWithBody(HttpMethod.PUT, url, user);
@@ -179,7 +185,7 @@ public class API {
     }
 
     public static void updateUser(ServerCallback<User, User> callback, User user) {
-        String url = buildUrl(EndPoints.UPDATE);
+        String url = buildUrl(EndPoints.UPDATE_USER);
 
         Request<User> body = ServerConnection
                 .buildRequestWithBody(HttpMethod.PUT, url, user);
@@ -187,21 +193,22 @@ public class API {
         ServerConnection.request(User.class, body, callback);
     }
 
-    public static void retrieveUserProfile(ServerCallback<Object, UserServer> callback) {
-        String url = buildUrl(EndPoints.GETPROFILE);
+    public static void retrieveUser(ServerCallback<Object, UserServer> callback) {
+        String url = buildUrl(EndPoints.GET_USER_INFO);
 
         // Replace with real logger later
         System.out.println("Endpoint url:" + url);
 
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
 
         ServerConnection.request(UserServer.class, body, callback, true, -1);
     }
+
     public static void retrieveAchievedBadges(ServerCallback<Object, AchievedBadge[]> callback) {
-        String url = buildUrl(EndPoints.GETBADGES) ;
+        String url = buildUrl(EndPoints.GET_BADGES);
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
 
         ServerConnection.request(AchievedBadge[].class, body, callback, true, 0);
     }
