@@ -2,23 +2,31 @@ package nl.tudelft.gogreen.server.service;
 
 import nl.tudelft.gogreen.server.exceptions.BadRequestException;
 import nl.tudelft.gogreen.server.exceptions.handling.ServerError;
+import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
 import nl.tudelft.gogreen.server.models.social.FriendshipConnection;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
+import nl.tudelft.gogreen.server.repository.activity.CompletedActivityRepository;
 import nl.tudelft.gogreen.server.repository.social.FriendshipConnectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.UUID;
 
 @Service
 public class SocialService implements ISocialService {
     private final FriendshipConnectionRepository friendshipConnectionRepository;
+    private final CompletedActivityRepository completedActivityRepository;
 
     @Autowired
-    public SocialService(FriendshipConnectionRepository friendshipConnectionRepository) {
+    public SocialService(FriendshipConnectionRepository friendshipConnectionRepository,
+                         CompletedActivityRepository completedActivityRepository) {
         this.friendshipConnectionRepository = friendshipConnectionRepository;
+        this.completedActivityRepository = completedActivityRepository;
     }
 
     @Override
@@ -44,6 +52,29 @@ public class SocialService implements ISocialService {
         }
 
         return new ServerError("Ok");
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<CompletedActivity> findFriendActivities(UserProfile user,
+                                                              Integer limit,
+                                                              Boolean includeSelf) {
+        Collection<UserProfile> profiles = new ArrayList<>();
+
+        if (includeSelf) {
+            profiles.add(user);
+        }
+
+        user.getFriendsAsInitiator().stream().filter(FriendshipConnection::getAccepted)
+                .forEach(connection -> profiles.add(connection.getInvitedUser()));
+        user.getFriendsAsInvitedUser().stream().filter(FriendshipConnection::getAccepted)
+                .forEach(connection -> profiles.add(connection.getStartUser()));
+
+        Collection<CompletedActivity> activities = completedActivityRepository
+                .findCompletedActivitiesByProfileInOrderByDateTimeCompletedDesc(profiles, PageRequest.of(0, limit));
+        activities.forEach(activity -> activity.setUsername(activity.getProfile().getUser().getUsername()));
+
+        return activities;
     }
 
     @Transactional

@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import nl.tudelft.gogreen.shared.LocalDateTimeDeserializer;
+import nl.tudelft.gogreen.shared.models.Activity;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

@@ -1,5 +1,6 @@
 package nl.tudelft.gogreen.server.service;
 
+import nl.tudelft.gogreen.server.models.social.FriendshipConnection;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
 import nl.tudelft.gogreen.server.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,17 +32,11 @@ public class LeaderboardService implements ILeaderboardService {
     public Collection<UserProfile> getFriendLeaderBoard(UserProfile profile, int limit) {
         Collection<UUID> friends = new ArrayList<>();
 
-        profile.getFriendsAsInitiator().forEach(connection -> {
-            if (connection.getAccepted()) {
-                friends.add(connection.getInvitedUser().getId());
-            }
-        });
+        profile.getFriendsAsInitiator().stream().filter(FriendshipConnection::getAccepted)
+                .forEach(connection -> friends.add(connection.getInvitedUser().getId()));
 
-        profile.getFriendsAsInvitedUser().forEach(connection -> {
-            if (connection.getAccepted()) {
-                friends.add(connection.getStartUser().getId());
-            }
-        });
+        profile.getFriendsAsInvitedUser().stream().filter(FriendshipConnection::getAccepted)
+                .forEach(connection -> friends.add(connection.getStartUser().getId()));
 
         return profileRepository.findUserProfilesByIdInOrIdOrderByPointsDesc(friends,
                 profile.getId(),

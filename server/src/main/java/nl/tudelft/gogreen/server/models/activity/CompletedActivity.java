@@ -55,6 +55,11 @@ public class CompletedActivity {
     @JoinColumn(name = "PROFILE", referencedColumnName = "ID")
     private UserProfile profile;
 
+    @Transient
+    @JsonView({nl.tudelft.gogreen.server.models.JsonView.Detailed.class,
+            nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class})
+    private String username;
+
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.Detailed.class,
             nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class})
     @ManyToOne(fetch = FetchType.LAZY)

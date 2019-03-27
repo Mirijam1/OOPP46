@@ -1,4 +1,4 @@
-package nl.tudelft.gogreen.api.servermodels;
+package nl.tudelft.gogreen.shared.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -11,9 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Activity {
-    private Integer id;
-    private String activityName;
+public class Category {
+    private String id;
+    private String categoryName;
     private String description;
-    private Category category;
 }
