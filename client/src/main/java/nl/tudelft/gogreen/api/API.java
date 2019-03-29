@@ -11,6 +11,7 @@ import nl.tudelft.gogreen.shared.models.Category;
 import nl.tudelft.gogreen.shared.models.SubmitResponse;
 import nl.tudelft.gogreen.shared.models.SubmittedActivity;
 import nl.tudelft.gogreen.shared.models.UserServer;
+import nl.tudelft.gogreen.shared.models.social.Friendship;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -211,6 +212,20 @@ public class API {
                 .buildSimpleRequest(HttpMethod.GET, url);
 
         ServerConnection.request(AchievedBadge[].class, body, callback, true, 0);
+    }
+
+    public static void retrieveFriendsLeaderboard(ServerCallback<Object, UserServer[]> callback) {
+        String url = buildUrl(EndPoints.GET_FRIEND_LEADERBOARD);
+        Request<Object> body = ServerConnection
+                .buildSimpleRequest(HttpMethod.GET, url);
+        ServerConnection.request(UserServer[].class, body, callback, true, 0);
+    }
+
+    public static void retrieveGlobalLeaderboard(ServerCallback<Object, UserServer[]> callback){
+        String url = buildUrl(EndPoints.GET_GLOBAL_LEADERBOARD);
+        Request<Object> body = ServerConnection
+                .buildSimpleRequest(HttpMethod.GET, url);
+        ServerConnection.request(UserServer[].class, body, callback, true, 0);
     }
 
 
