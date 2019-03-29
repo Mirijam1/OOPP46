@@ -3,12 +3,14 @@ package nl.tudelft.gogreen.client;
 import javafx.application.Platform;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
-import nl.tudelft.gogreen.api.servermodels.*;
+import nl.tudelft.gogreen.api.servermodels.BasicResponse;
+import nl.tudelft.gogreen.api.servermodels.CompletedActivityServer;
+import nl.tudelft.gogreen.api.servermodels.GUICompletedActivities;
+import nl.tudelft.gogreen.api.servermodels.User;
 import nl.tudelft.gogreen.shared.Shared;
 import nl.tudelft.gogreen.shared.models.Badge;
 import nl.tudelft.gogreen.shared.models.SubmitResponse;
 import nl.tudelft.gogreen.shared.models.SubmittedActivity;
-import nl.tudelft.gogreen.shared.models.UserServer;
 
 import java.util.ArrayList;
 import java.util.List;
