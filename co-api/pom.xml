@@ -22,6 +22,7 @@
         <!-- Versions -->
         <org.apache.maven.plugins-version>3.0.0-M3</org.apache.maven.plugins-version>
         <io.rest-assured-version>3.3.0</io.rest-assured-version>
+        <com.mashape.unirest-version>1.4.9</com.mashape.unirest-version>
     </properties>
 
     <!-- Dependencies -->
@@ -34,6 +35,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -84,6 +86,21 @@
             <groupId>org.powermock</groupId>
             <artifactId>powermock-module-junit4</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.mashape.unirest</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>${com.mashape.unirest-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>2.9.7</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
