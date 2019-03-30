@@ -1,69 +1,143 @@
 package controllers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import nl.tudelft.gogreen.api.API;
+import nl.tudelft.gogreen.api.ServerCallback;
+import nl.tudelft.gogreen.api.servermodels.CompletedActivityServer;
+import nl.tudelft.gogreen.api.servermodels.User;
+import nl.tudelft.gogreen.shared.models.UserServer;
+import javafx.scene.layout.VBox;
 
 public class LeaderboardController {
 
-    @FXML
-    AnchorPane Anchor;
 
     @FXML
-    BarChart<Number, String> bc;
+    private AnchorPane AnchorPane;
 
     @FXML
-    NumberAxis xAxis;
-    @FXML
-    CategoryAxis yAxis;
+    private ScrollPane FriendsScroll;
 
+    @FXML
+    private VBox FriendsVbox;
+
+    @FXML
+    private ScrollPane GlobalScroll;
+
+    @FXML
+    private VBox GlobalVbox;
+
+
+    @FXML
     public void initialize() {
-        initChart();
+        API.retrieveFriendsLeaderboard(new ServerCallback<Object, UserServer[]>() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> initFriendsLeaderboard(getResult()));
+            }
+        });
+        API.retrieveGlobalLeaderboard(new ServerCallback<Object, UserServer[]>() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> initGlobalLeaderboard(getResult()));
+            }
+        });
     }
 
-    private void initChart() {
+    public void initGlobalLeaderboard(UserServer[] users) {
 
-        //get list with points from db in desc order, for now a made up list
-        //List<Entries> list = retrievePoints();
-        //An entry should be a username and the amount of points of that user
+        GlobalScroll.setFitToWidth(true);
+        GlobalVbox.setSpacing(6);
+        GlobalVbox.setTranslateX(3);
+        GlobalVbox.setTranslateY(2);
 
-        int[] list = {50, 40, 30, 10};
-        String user = "User";
+        for (int i = 0; i < users.length; i++) {
+            if (users[i].getUser().getName() != null) {
+                Label user = new Label(users[i].getUser().getName());
+                Label points = new Label(users[i].getPoints().toString());
+                points.setTranslateX(400.00);
+                points.setTranslateY(20.00);
+                user.setTranslateY(20);
 
-        xAxis.setLabel("Points");
-        xAxis.setTickLabelRotation(90);
-        yAxis.setLabel("Name");
+                user.setTranslateX(60);
+                Pane UserEntry = new Pane();
 
-        XYChart.Series entries = new XYChart.Series();
+                UserEntry.setPrefSize(492, 60);
+                UserEntry.setMaxWidth(492);
+                UserEntry.setMaxHeight(60);
 
-        for (int i = 0 ; i < list.length; i++) {
-            entries.getData().add(new XYChart.Data(list[i], user + i));
+                if (i % 2 == 1) {
+                    UserEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #EFEFEF;" +
+                            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
+                } else {
+                    UserEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #FFFFFF;" +
+                            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
+                }
+                GlobalVbox.setPrefHeight(66 * (i + 1));
+
+                Label rank = new Label(Integer.toString(i+1)+".");
+                rank.setTranslateY(20);
+                rank.setTranslateX(30);
+                UserEntry.getChildren().addAll(rank, user, points);
+
+                GlobalVbox.getChildren().add(UserEntry);
+            }
+            if (i>10) break;
         }
+    }
 
-        bc.getData().add(entries);
+
+    public void initFriendsLeaderboard(UserServer[] friends) {
+
+        FriendsScroll.setFitToWidth(true);
+        FriendsVbox.setSpacing(6);
+        FriendsVbox.setTranslateX(3);
+        FriendsVbox.setTranslateY(2);
+
+
+        for (int i = 0; i < friends.length; i++) {
+            if (friends[i].getUser().getName() != null) {
+                Label user = new Label(friends[i].getUser().getName());
+                Label points = new Label(friends[i].getPoints().toString());
+                points.setTranslateX(400.00);
+                points.setTranslateY(20.00);
+                user.setTranslateY(20);
+
+                user.setTranslateX(60);
+                Pane FriendEntry = new Pane();
+
+                FriendEntry.setPrefSize(492, 60);
+                FriendEntry.setMaxWidth(492);
+                FriendEntry.setMaxHeight(60);
+
+                if (i % 2 == 1) {
+                    FriendEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #EFEFEF;" +
+                            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
+                } else {
+                    FriendEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #FFFFFF;" +
+                            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
+                }
+                FriendsVbox.setPrefHeight(66 * (i + 1));
+
+                Label rank = new Label(Integer.toString(i+1)+".");
+                rank.setTranslateY(20);
+                rank.setTranslateX(30);
+                FriendEntry.getChildren().addAll(rank, user, points);
+
+                FriendsVbox.getChildren().add(FriendEntry);
+            }
+        }
     }
 
 
 
-//    //Temporary main method
-//    Stage primaryStage;
-//
-//    @Override
-//    public void start(Stage primaryStage) throws Exception {
-//        this.primaryStage = primaryStage;
-//        primaryStage.setTitle("GoGreen");
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource("fxml/leaderboard.fxml"));
-//
-//        AnchorPane pane = loader.load();
-//        primaryStage.setScene(new Scene(pane));
-//        primaryStage.show();
-//    }
-//
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
 }
