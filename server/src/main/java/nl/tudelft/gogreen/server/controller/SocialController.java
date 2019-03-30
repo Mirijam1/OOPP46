@@ -12,7 +12,9 @@ import nl.tudelft.gogreen.server.models.user.User;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
 import nl.tudelft.gogreen.server.repository.ProfileRepository;
 import nl.tudelft.gogreen.server.repository.UserRepository;
+import nl.tudelft.gogreen.server.service.IProfileService;
 import nl.tudelft.gogreen.server.service.ISocialService;
+import nl.tudelft.gogreen.server.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.print.attribute.standard.Media;
 import java.util.Collection;
 
 @RestController
@@ -34,14 +37,17 @@ public class SocialController {
     private final UserRepository userRepository;
     private final ProfileRepository profileRepository;
     private final ISocialService socialService;
+    private final IProfileService profileService;
 
     @Autowired
     public SocialController(ISocialService socialService,
                             UserRepository userRepository,
-                            ProfileRepository profileRepository) {
+                            ProfileRepository profileRepository,
+                            IProfileService profileService) {
         this.socialService = socialService;
         this.userRepository = userRepository;
         this.profileRepository = profileRepository;
+        this.profileService = profileService;
     }
 
     @RequestMapping(path = "/friends/add/{name}",
@@ -64,14 +70,8 @@ public class SocialController {
             throw new NotFoundException();
         }
 
-        UserProfile userProfile = profileRepository.findUserProfileByUserId(user.getId());
-        UserProfile targetProfile = profileRepository.findUserProfileByUserId(target.getId());
-
-        if (userProfile == null || targetProfile == null) {
-            throw new BadRequestException();
-        }
-
-        return socialService.addFriend(userProfile, targetProfile);
+        return socialService.addFriend(profileRepository.findUserProfileByUserId(user.getId()),
+                profileRepository.findUserProfileByUserId(target.getId()));
     }
 
     @RequestMapping(path = "/friends/delete/{name}",
@@ -83,19 +83,19 @@ public class SocialController {
     ServerError deleteFriend(@PathVariable String name,
                              Authentication authentication) {
         User user = (User) authentication.getPrincipal();
+
+        if (name.equals(user.getUsername())) {
+            throw new BadRequestException();
+        }
+
         User target = userRepository.findUserByUsername(name);
 
         if (target == null) {
             throw new NotFoundException();
         }
 
-        UserProfile userProfile = profileRepository.findUserProfileByUserId(user.getId());
-        UserProfile targetProfile = profileRepository.findUserProfileByUserId(target.getId());
-
-        if (userProfile == null || targetProfile == null) {
-            throw new BadRequestException();
-        }
-        return socialService.deleteFriend(userProfile, targetProfile);
+        return socialService.deleteFriend(profileRepository.findUserProfileByUserId(user.getId()),
+                profileRepository.findUserProfileByUserId(target.getId()));
     }
 
     @RequestMapping(path = "/friends/activities",
@@ -123,12 +123,26 @@ public class SocialController {
             throw new UnauthorizedException();
         }
 
-        UserProfile profile = profileRepository.findUserProfileByUserId(((User) authentication.getPrincipal()).getId());
+        return socialService.findFriendActivities(profileRepository
+                .findUserProfileByUserId(((User) authentication.getPrincipal()).getId()), limit, self);
+    }
 
-        if (profile == null) {
-            throw new InternalServerError();
+    @RequestMapping(path = "/user/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class)
+    public @ResponseBody UserProfile getUser(@PathVariable("username") String username) {
+        if (username == null) {
+            throw new BadRequestException();
         }
 
-        return socialService.findFriendActivities(profile, limit, self);
+        User user = userRepository.findUserByUsername(username);
+
+        if (user == null) {
+            throw new NotFoundException();
+        }
+
+        //TODO: Hidden profile
+
+        return profileService.getUserProfile(user);
     }
 }

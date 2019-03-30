@@ -69,6 +69,10 @@ public class ProfileService implements IProfileService {
                 .user(user)
                 .points(0F)
                 .badges(new ArrayList<>())
+                .achievements(new ArrayList<>())
+                .friendsAsInitiator(new ArrayList<>())
+                .friendsAsInvitedUser(new ArrayList<>())
+                .activities(new ArrayList<>())
                 .id(UUID.randomUUID())
                 .build();
     }
@@ -85,7 +89,6 @@ public class ProfileService implements IProfileService {
         }
 
         logger.warn("Could not find a profile for user '" + user.getUsername() + "' with ID '" + user.getId() + "'");
-        // TODO: Misleading exception, make a better one later
         throw new UsernameNotFoundException("No profile found for user " + user.getUsername());
     }
 
@@ -148,10 +151,6 @@ public class ProfileService implements IProfileService {
     public Collection<CompletedActivity> getCompletedActivities(User user, Integer limit) {
         UserProfile profile = profileRepository.findUserProfileByUserId(user.getId());
 
-        if (profile == null) {
-            throw new InternalServerError();
-        }
-
         return completedActivityRepository
                 .findCompletedActivitiesByProfileOrderByDateTimeCompletedDesc(profile, PageRequest.of(0, limit));
     }
@@ -182,10 +181,6 @@ public class ProfileService implements IProfileService {
     @Transactional(readOnly = true)
     public Collection<AchievedBadge> getAchievedBadges(User user) {
         UserProfile profile = profileRepository.findUserProfileByUserId(user.getId());
-
-        if (profile == null) {
-            throw new InternalServerError();
-        }
 
         return achievedBadgeRepository.findAchievedBadgesByProfileOrderByDateTimeAchievedDesc(profile);
     }
@@ -235,10 +230,6 @@ public class ProfileService implements IProfileService {
 
     private Collection<ProgressingAchievement> getProgressingAchievements(User user, Boolean completed) {
         UserProfile profile = profileRepository.findUserProfileByUserId(user.getId());
-
-        if (profile == null) {
-            throw new InternalServerError();
-        }
 
         return progressingAchievementRepository
                 .findProgressingAchievementByProfileAndCompletedOrderByDateTimeAchievedDesc(profile, completed);

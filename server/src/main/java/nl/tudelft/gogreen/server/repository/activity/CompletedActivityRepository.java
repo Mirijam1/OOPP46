@@ -15,9 +15,9 @@ public interface CompletedActivityRepository extends JpaRepository<CompletedActi
 
     CompletedActivity findCompletedActivityByProfileAndExternalId(UserProfile profile, UUID externalId);
 
-    CompletedActivity findCompletedActivityById(UUID id);
-
     List<CompletedActivity> findCompletedActivitiesByProfileInOrderByDateTimeCompletedDesc(
             Collection<UserProfile> profiles,
             Pageable pageable);
+
+    CompletedActivity findCompletedActivityByExternalId(UUID id);
 }
