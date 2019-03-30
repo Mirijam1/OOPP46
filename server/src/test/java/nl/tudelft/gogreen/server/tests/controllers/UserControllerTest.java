@@ -8,12 +8,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -31,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@ActiveProfiles("tests")
 public class UserControllerTest {
     @Data
     @AllArgsConstructor
@@ -57,22 +60,24 @@ public class UserControllerTest {
         mapperUserPasswordOnly = mapper.writeValueAsString(new TestUser(null, "password"));
     }
 
-    // TODO: Maybe make these tests also check for the returned JSON
-
     @WithAnonymousUser
     @Test
     public void shouldGetUnauthorizedWhenGettingDetails() throws Exception {
         mock.perform(get(basisEndpoint).contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isUnauthorized());
     }
 
-    @Sql(value = {"/data-h2.sql"})
     @WithUserDetails(value = "admin", userDetailsServiceBeanName = "userDetailService")
     @Test
     public void shouldReturnDetailsWhenGettingDetailsAsUser() throws Exception {
         mock.perform(get(basisEndpoint).contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk());
     }
 
-    @Sql({"/data-h2.sql"})
+    @WithUserDetails(value = "gogreenuser", userDetailsServiceBeanName = "userDetailService")
+    @Test
+    public void shouldDeleteAndLogoutUserWhenDeletingAsUser() throws Exception {
+        mock.perform(delete(basisEndpoint + "delete").contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk());
+    }
+
     @WithAnonymousUser
     @Test
     public void shouldReturnUnauthenticatedWhenLoggingInWithBadCredentials() throws Exception {
@@ -86,7 +91,6 @@ public class UserControllerTest {
             .andExpect(status().isUnauthorized());
     }
 
-    @Sql({"/data-h2.sql"})
     @WithUserDetails(value = "admin", userDetailsServiceBeanName = "userDetailService")
     @Test
     public void shouldReturnForbiddenWhenCreatingUserAsUser() throws Exception {
@@ -105,13 +109,12 @@ public class UserControllerTest {
             .andExpect(status().isOk());
     }
 
-    @Sql({"/data-h2.sql"})
     @WithAnonymousUser
     @Test
     public void shouldReturnConflictWhenCreatingDuplicate() throws Exception {
         mock.perform(put(basisEndpoint + "create")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
-            .content(mapper.writeValueAsString(new TestUser("admin", "password"))))
+            .content(mapper.writeValueAsString(new TestUser("gogreenuser", "password"))))
             .andExpect(status().isConflict());
     }
 
@@ -157,13 +160,6 @@ public class UserControllerTest {
         mock.perform(delete(basisEndpoint + "delete").contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isUnauthorized());
     }
 
-    @Sql({"/data-h2.sql"})
-    @WithUserDetails(value = "admin", userDetailsServiceBeanName = "userDetailService")
-    @Test
-    public void shouldDeleteAndLogoutUserWhenDeletingAsUser() throws Exception {
-        mock.perform(delete(basisEndpoint + "delete").contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk());
-    }
-
     @WithAnonymousUser
     @Test
     public void shouldReturnUnauthorizedWhenUpdatingAnonymousUser() throws Exception {
@@ -173,16 +169,22 @@ public class UserControllerTest {
             .andExpect(status().isUnauthorized());
     }
 
-    @Sql({"/data-h2.sql"})
     @WithUserDetails(value = "admin", userDetailsServiceBeanName = "userDetailService")
     @Test
     public void shouldUpdateUserWhenUpdatingAsUser() throws Exception {
-         mock.perform(patch(basisEndpoint + "update")
+        mock.perform(patch(basisEndpoint + "update")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(mappedUser))
-            .andExpect(status().isOk());
+                .content(mapper.writeValueAsString(new TestUser("admin2", "password12345"))))
+                .andExpect(status().isOk());
+    }
 
-        //TODO: Add a check to check if the user was actually updated
+    @WithUserDetails(value = "gogreenuser", userDetailsServiceBeanName = "userDetailService")
+    @Test
+    public void shouldUpdateUserWhenUpdatingAsUserWhenNoChanges() throws Exception {
+        mock.perform(patch(basisEndpoint + "update")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(mapper.writeValueAsString(new TestUser(null, null))))
+                .andExpect(status().isOk());
     }
 
     @Sql({"/test/data-two-users.sql"})

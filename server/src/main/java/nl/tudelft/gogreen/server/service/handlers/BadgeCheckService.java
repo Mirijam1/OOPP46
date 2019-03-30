@@ -30,16 +30,20 @@ public class BadgeCheckService implements IBadgeCheckService {
     public Collection<AchievedBadge> checkBadge(CompletedActivity completedActivity,
                                                 UserProfile userProfile,
                                                 Collection<Trigger> triggers) {
-        //addSpecialBadges(completedActivity, userProfile, triggers);
+        addSpecialBadges(completedActivity, userProfile, triggers);
 
         Collection<AchievedBadge> achievedBadges = new ArrayList<>();
         ArrayList<Trigger> workingTriggers = new ArrayList<>(triggers);
-        int loopGuard = 250000;
+        int loopGuard = 1000; // 1000 triggers per achievement should be more than enough as upper limit
 
         while (!workingTriggers.isEmpty() && loopGuard != 0) {
             Trigger currentTrigger = workingTriggers.remove(workingTriggers.size() - 1);
 
-            achievedBadges.addAll(addBadgesAndTriggers(completedActivity, userProfile, currentTrigger, triggers));
+            achievedBadges.addAll(addBadgesAndTriggers(completedActivity,
+                    userProfile,
+                    currentTrigger,
+                    triggers,
+                    workingTriggers));
 
             loopGuard -= 1;
         }
@@ -55,9 +59,10 @@ public class BadgeCheckService implements IBadgeCheckService {
     @Override
     @Transactional
     public Collection<AchievedBadge> addBadgesAndTriggers(CompletedActivity completedActivity,
-                                                           UserProfile userProfile,
-                                                           Trigger trigger,
-                                                           Collection<Trigger> triggers) {
+                                                          UserProfile userProfile,
+                                                          Trigger trigger,
+                                                          Collection<Trigger> triggers,
+                                                          Collection<Trigger> workingTriggers) {
         Collection<Badge> badges = badgeRepository.findBadgesByTrigger(trigger);
         Collection<AchievedBadge> achievedBadges = new ArrayList<>();
 
@@ -73,6 +78,7 @@ public class BadgeCheckService implements IBadgeCheckService {
 
             achievedBadges.add(achievedBadge);
             triggers.addAll(badge.getTriggers());
+            workingTriggers.addAll(badge.getTriggers());
         }
 
         return achievedBadges;
@@ -81,6 +87,9 @@ public class BadgeCheckService implements IBadgeCheckService {
     private void addSpecialBadges(CompletedActivity completedActivity,
                                   UserProfile userProfile,
                                   Collection<Trigger> triggers) {
-        //TODO: Add stuff like points gained etc
+        //TODO: Add cooler stuff for better achievements
+        for (float points = completedActivity.getPoints(); points > 0; points -= 1) {
+            triggers.add(Trigger.GAINED_POINT);
+        }
     }
 }

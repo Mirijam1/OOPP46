@@ -16,6 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -106,6 +107,99 @@ public class AuthSuccessHandlerTest {
 
         // Configure methods of spy
         PowerMockito.doReturn(true).when(handler, "isAlwaysUseDefaultTargetUrl");
+
+        // Suppress remove call
+        suppress(method(HttpSessionRequestCache.class, "removeRequest"));
+
+        // Call
+        handler.onAuthenticationSuccess(request, response, authentication);
+
+        // Verify
+        verify(mapper).writeValueAsString(captor.capture());
+        assertEquals(captor.getValue().getResponse(), HttpStatus.OK.getReasonPhrase());
+    }
+
+    @Test
+    public void shouldRemoveWhenTargetParamIsNotNull() throws Exception {
+        ArgumentCaptor<ServerError> captor = ArgumentCaptor.forClass(ServerError.class);
+        SavedRequest savedRequest = mock(SavedRequest.class);
+
+        // Return mock request
+        when(cache.getRequest(request, response)).thenReturn(savedRequest);
+
+        // Create handler spy
+        AuthSuccessHandler handler = spy(new AuthSuccessHandler(mapper));
+
+        // Set cache
+        handler.injectCache(cache);
+
+        // Configure request
+        when(request.getParameter("string")).thenReturn("another string");
+
+        // Configure methods of spy
+        PowerMockito.doReturn(false).when(handler, "isAlwaysUseDefaultTargetUrl");
+        PowerMockito.doReturn("string").when(handler, "getTargetUrlParameter");
+
+        // Suppress remove call
+        suppress(method(HttpSessionRequestCache.class, "removeRequest"));
+
+        // Call
+        handler.onAuthenticationSuccess(request, response, authentication);
+
+        // Verify
+        verify(mapper).writeValueAsString(captor.capture());
+        assertEquals(captor.getValue().getResponse(), HttpStatus.OK.getReasonPhrase());
+    }
+
+    @Test
+    public void shouldNotRemoveWhenTargetParamIsNull() throws Exception {
+        ArgumentCaptor<ServerError> captor = ArgumentCaptor.forClass(ServerError.class);
+        SavedRequest savedRequest = mock(SavedRequest.class);
+
+        // Return mock request
+        when(cache.getRequest(request, response)).thenReturn(savedRequest);
+
+        // Create handler spy
+        AuthSuccessHandler handler = spy(new AuthSuccessHandler(mapper));
+
+        // Set cache
+        handler.injectCache(cache);
+
+        // Configure methods of spy
+        PowerMockito.doReturn(false).when(handler, "isAlwaysUseDefaultTargetUrl");
+        PowerMockito.doReturn(null).when(handler, "getTargetUrlParameter");
+
+        // Suppress remove call
+        suppress(method(HttpSessionRequestCache.class, "removeRequest"));
+
+        // Call
+        handler.onAuthenticationSuccess(request, response, authentication);
+
+        // Verify
+        verify(mapper).writeValueAsString(captor.capture());
+        assertEquals(captor.getValue().getResponse(), HttpStatus.OK.getReasonPhrase());
+    }
+
+    @Test
+    public void shouldNotRemoveWhenParamHasNoText() throws Exception {
+        ArgumentCaptor<ServerError> captor = ArgumentCaptor.forClass(ServerError.class);
+        SavedRequest savedRequest = mock(SavedRequest.class);
+
+        // Return mock request
+        when(cache.getRequest(request, response)).thenReturn(savedRequest);
+
+        // Create handler spy
+        AuthSuccessHandler handler = spy(new AuthSuccessHandler(mapper));
+
+        // Set cache
+        handler.injectCache(cache);
+
+        // Configure request
+        when(request.getParameter(null)).thenReturn("another string");
+
+        // Configure methods of spy
+        PowerMockito.doReturn(false).when(handler, "isAlwaysUseDefaultTargetUrl");
+        PowerMockito.doReturn("string").when(handler, "getTargetUrlParameter");
 
         // Suppress remove call
         suppress(method(HttpSessionRequestCache.class, "removeRequest"));

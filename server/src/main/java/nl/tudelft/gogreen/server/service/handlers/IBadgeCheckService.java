@@ -16,5 +16,6 @@ public interface IBadgeCheckService {
     Collection<AchievedBadge> addBadgesAndTriggers(CompletedActivity completedActivity,
                                                    UserProfile userProfile,
                                                    Trigger trigger,
-                                                   Collection<Trigger> triggers);
+                                                   Collection<Trigger> triggers,
+                                                   Collection<Trigger> workingTriggers);
 }

@@ -28,7 +28,7 @@ public class Achievement {
     private Integer id;
 
     @Column(name = "NAME", nullable = false, unique = true)
-    private String badgeName;
+    private String achievementName;
 
     @Column(name = "MESSAGE", nullable = false)
     private String achievedMessage;

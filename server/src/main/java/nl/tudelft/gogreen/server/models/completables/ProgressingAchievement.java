@@ -79,7 +79,7 @@ public class ProgressingAchievement {
     public nl.tudelft.gogreen.shared.models.Achievement toSharedModel() {
         return nl.tudelft.gogreen.shared.models.Achievement.builder()
                 .achievedMessage(achievement.getAchievedMessage())
-                .achievementName(achievement.getBadgeName())
+                .achievementName(achievement.getAchievementName())
                 .completed(completed)
                 .progress(progress)
                 .description(achievement.getDescription())

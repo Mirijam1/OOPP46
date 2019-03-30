@@ -73,6 +73,7 @@ public class UserDetailService implements UserDetailsService, IUserService {
 
         logger.info("Saving created user '" + user.getUsername() + "' with ID '" + user.getId() + "'");
         user.setProfile(profileService.createUserProfileForUser(user));
+
         return userRepository.save(user);
     }
 
@@ -95,7 +96,9 @@ public class UserDetailService implements UserDetailsService, IUserService {
     @Override
     @Transactional
     public void removeUser(User user) {
-        logger.info("Deleting created user '" + user.getUsername() + "' with ID '" + user.getId() + "'");
-        userRepository.delete(user);
+        if (user != null) {
+            logger.info("Deleting created user '" + user.getUsername() + "' with ID '" + user.getId() + "'");
+            userRepository.delete(user);
+        }
     }
 }
