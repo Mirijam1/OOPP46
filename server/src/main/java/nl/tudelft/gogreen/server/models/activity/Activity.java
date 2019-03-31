@@ -55,6 +55,9 @@ public class Activity {
     @Column(name = "DESCRIPTION", nullable = false)
     private String description;
 
+    @Column(name = "INTERNAL_NAME", nullable = false)
+    private String internalAPIName;
+
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     @JsonBackReference
     @ManyToOne
@@ -63,7 +66,7 @@ public class Activity {
 
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "activity", orphanRemoval = true, cascade = CascadeType.ALL)
     private Collection<ActivityOption> options;
 
     @JsonIgnore

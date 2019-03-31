@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class Vegmeal {
-    private String date;
+    private String start_date;
     private String end_date;
     private double intensity;
     private Integer size;
@@ -19,16 +19,16 @@ public class Vegmeal {
     private String key;
 
     public static void main(String[] args) throws Exception {
-        Vegmeal a = new Vegmeal("2019-03-29", 400);
+        Vegmeal a = new Vegmeal("2019-03-29", 1, 400);
         System.out.println(XtoJson(a));
     }
 
     //Eat a veg meal
-    public Vegmeal(@JsonProperty("start_date") String date, Integer size) {
-        this.date = date;
+    public Vegmeal(@JsonProperty("date") String start_date, Integer amount, Integer cal) {
+        this.start_date = start_date;
         this.intensity = 4.36;
-        this.end_date = LocalDate.parse(date).plusDays(1).toString();
-        this.size = size;
+        this.end_date = LocalDate.parse(start_date).plusDays(1).toString();
+        this.size = amount * cal;
         this.vegetables_share += 0.1;
         this.key = "key";
     }

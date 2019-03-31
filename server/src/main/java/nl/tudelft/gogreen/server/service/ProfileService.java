@@ -1,6 +1,5 @@
 package nl.tudelft.gogreen.server.service;
 
-import nl.tudelft.gogreen.server.exceptions.InternalServerError;
 import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
 import nl.tudelft.gogreen.server.models.completables.AchievedBadge;
 import nl.tudelft.gogreen.server.models.completables.ProgressingAchievement;

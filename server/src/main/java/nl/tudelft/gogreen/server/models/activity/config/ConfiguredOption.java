@@ -11,6 +11,8 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,4 +31,8 @@ public class ConfiguredOption {
 
     @Column(name = "VALUE", nullable = false, updatable = false)
     private String value;
+
+    @ManyToOne
+    @JoinColumn(name = "ACTIVITY_OPTION", referencedColumnName = "ID")
+    private ActivityOption activityOption;
 }

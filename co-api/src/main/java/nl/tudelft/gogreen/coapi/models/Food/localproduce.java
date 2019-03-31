@@ -7,11 +7,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 public class localproduce {
-    private String date;
+    private String end_date;
+    private String start_date;
     private double proximity;
     private double intensity;
     private double size;
@@ -22,9 +24,10 @@ public class localproduce {
         System.out.println(XtoJson(a));
     }
 
-    @JsonCreator
-    public localproduce(@JsonProperty("end_date") String date) {
-        this.date = date;
+     @JsonCreator
+    public localproduce(@JsonProperty("date") String start_date) {
+        this.start_date = start_date;
+        this.end_date = LocalDate.parse(start_date).plusDays(30).toString();
         this.intensity = 0.1;
         this.proximity = 1;
         this.size = 2500;
