@@ -13,6 +13,9 @@ public class Endpoints {
 
     //ENERGY ENDPOINTS
     public static final String energyActivity = "residences.json";
+    public static final String electricityActivity = "electricity_uses.json";
+    //MISC ENDPOINTS
+    public static final String lodgingActivity = "lodging.json";
 
     //API ENDPOINTS
     public static final String Vegmeal = "/co-api/food/vegmeal";
@@ -22,6 +25,9 @@ public class Endpoints {
     public static final String TrainInsteadOfCar = "/co-api/transport/train";
     public static final String LowerTemperature = "/co-api/utilities/lowertemp";
     public static final String InstallSolarPanel = "/co-api/utilities/solarpanels";
+    public static final String LEDLights = "/co-api/utilities/LED";
+    public static final String PlantingTrees = "/co-api/misc/plant-trees";
+    public static final String CarbonFriendlyHotel = "/co-api/misc/green-hotel";
 
 
 }

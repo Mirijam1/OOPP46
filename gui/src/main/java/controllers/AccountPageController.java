@@ -43,7 +43,7 @@ public class AccountPageController {
     private Float points;
 
     private boolean userNameChanged = false;
-    
+
     public void initialize() {
         modDataButton.setVisible(false);
         modDataButton.setDisable(true);
@@ -71,7 +71,7 @@ public class AccountPageController {
         if (!userNameChanged) {
             modDataButton.setVisible(true);
             FadeTransition fadeTransition
-                    = new FadeTransition(Duration.millis(500), modDataButton);
+                = new FadeTransition(Duration.millis(500), modDataButton);
             fadeTransition.setFromValue(0.0);
             fadeTransition.setToValue(1.0);
             fadeTransition.play();

@@ -23,7 +23,7 @@ public class EndPoints {
     public static final String GET_PROGRESSING_ACHIEVEMENTS = "api/profile/achievements/progressing"; // GET
     public static final String GET_FRIENDS = "api/profile/friends"; // GET
     public static final String GET_PENDING_SENT_FRIEND_INVITES = "api/profile/friends/pending"; // GET
-    public static final String GET_RECEIVED_RIEND_INVITES = "api/profile/friends/invites"; // GET
+    public static final String GET_RECEIVED_FRIEND_INVITES = "api/profile/friends/invites"; // GET
 
     // SOCIAL ENDPOINTS
     public static final String ADD_FRIEND_BY_NAME = "api/social/friends/add/{var}"; // PUT
