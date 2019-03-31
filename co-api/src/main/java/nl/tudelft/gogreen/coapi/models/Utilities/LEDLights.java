@@ -1,4 +1,4 @@
-package nl.tudelft.gogreen.coapi.models.Food;
+package nl.tudelft.gogreen.coapi.models.Utilities;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,29 +10,25 @@ import java.io.IOException;
 
 @Getter
 @Setter
-public class localproduce {
-    private String date;
-    private double proximity;
-    private double intensity;
-    private double size;
+public class LEDLights {
+    private Integer bulbsReplaced;
+    private String country;
     private String key;
 
     public static void main(String[] args) throws Exception {
-        localproduce a = new localproduce("2019-03-29");
+        LEDLights a = new LEDLights(2);
         System.out.println(XtoJson(a));
     }
 
-    @JsonCreator
-    public localproduce(@JsonProperty("end_date") String date) {
-        this.date = date;
-        this.intensity = 0.1;
-        this.proximity = 1;
-        this.size = 2500;
+    public LEDLights(@JsonProperty("energy") Integer bulbsReplaced) {
+        this.bulbsReplaced = bulbsReplaced;
+        this.country = "NL";
         this.key = "key";
     }
 
-    public static String XtoJson(localproduce a) throws IOException {
+    public static String XtoJson(LEDLights a) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(a);
     }
+
 }

@@ -4,8 +4,11 @@ import nl.tudelft.gogreen.coapi.API;
 import nl.tudelft.gogreen.coapi.config.Endpoints;
 import nl.tudelft.gogreen.coapi.models.Food.Vegmeal;
 import nl.tudelft.gogreen.coapi.models.Food.localproduce;
+import nl.tudelft.gogreen.coapi.models.Misc.GreenHotel;
+import nl.tudelft.gogreen.coapi.models.Misc.PlantTrees;
 import nl.tudelft.gogreen.coapi.models.Transportation.Transport;
 import nl.tudelft.gogreen.coapi.models.Transportation.train;
+import nl.tudelft.gogreen.coapi.models.Utilities.LEDLights;
 import nl.tudelft.gogreen.coapi.models.Utilities.LowerTemp;
 import nl.tudelft.gogreen.coapi.models.Utilities.SolarPanels;
 import org.json.JSONObject;
@@ -40,7 +43,7 @@ public class APIservice {
         url = API.buildURL(Endpoints.foodActivity);
         entity = new HttpEntity<>(Vegmeal.XtoJson(meal), headers);
         ResponseEntity<String> result = restTemplate.postForEntity(url, entity, String.class);
-        if(result.getStatusCode()!= HttpStatus.OK){
+        if (result.getStatusCode() != HttpStatus.OK) {
             return 20;
         }
         return getPoints(result.getBody());
@@ -51,7 +54,7 @@ public class APIservice {
         url = API.buildURL(Endpoints.foodActivity);
         entity = new HttpEntity<>(localproduce.XtoJson(local), headers);
         ResponseEntity<String> result = restTemplate.postForEntity(url, entity, String.class);
-        if(result.getStatusCode()!= HttpStatus.OK){
+        if (result.getStatusCode() != HttpStatus.OK) {
             return 200;
         }
         return getPoints(result.getBody());
@@ -63,8 +66,8 @@ public class APIservice {
         url = API.buildURL(Endpoints.trainActivity);
         entity = new HttpEntity<>(train.XtoJson(trainjourney), headers);
         ResponseEntity<String> result = restTemplate.postForEntity(url, entity, String.class);
-        if(result.getStatusCode()!= HttpStatus.OK){
-            return 2.5*(trainjourney.getDistance());
+        if (result.getStatusCode() != HttpStatus.OK) {
+            return 2.5 * (trainjourney.getDistance());
         }
         Double trainCO2 = getPoints(result.getBody());
         Double carCO2 = car(new Transport(trainjourney.getDate(), trainjourney.getDistance()));
@@ -76,8 +79,8 @@ public class APIservice {
         url = API.buildURL(Endpoints.carActivity);
         entity = new HttpEntity<>(Transport.XtoJson(carjourney), headers);
         ResponseEntity<String> result = restTemplate.postForEntity(url, entity, String.class);
-        if(result.getStatusCode()!= HttpStatus.OK){
-            return 3*carjourney.getDistance();
+        if (result.getStatusCode() != HttpStatus.OK) {
+            return 3 * carjourney.getDistance();
         }
         return getPoints(result.getBody());
     }
@@ -87,8 +90,8 @@ public class APIservice {
         url = API.buildURL(Endpoints.busActivity);
         entity = new HttpEntity<>(Transport.XtoJson(busjourney), headers);
         ResponseEntity<String> result = restTemplate.postForEntity(url, entity, String.class);
-        if(result.getStatusCode()!= HttpStatus.OK){
-            return 1.5*busjourney.getDistance();
+        if (result.getStatusCode() != HttpStatus.OK) {
+            return 1.5 * busjourney.getDistance();
         }
         Double busCO2 = getPoints(result.getBody());
         Double carCO2 = car(busjourney);
@@ -100,8 +103,8 @@ public class APIservice {
         url = API.buildURL(Endpoints.energyActivity);
         entity = new HttpEntity<>(LowerTemp.XtoJson(lowtemp), headers);
         ResponseEntity<String> result = restTemplate.postForEntity(url, entity, String.class);
-        if(result.getStatusCode()!= HttpStatus.OK){
-            return 50*lowtemp.getDegrees();
+        if (result.getStatusCode() != HttpStatus.OK) {
+            return 50 * lowtemp.getDegrees();
         }
         double res = getPoints(result.getBody()) / 100;
         return res;
@@ -113,12 +116,44 @@ public class APIservice {
         url = API.buildURL(Endpoints.energyActivity);
         entity = new HttpEntity<>(SolarPanels.XtoJson(solarPanels), headers);
         ResponseEntity<String> result = restTemplate.postForEntity(url, entity, String.class);
-        if(result.getStatusCode()!= HttpStatus.OK){
+        if (result.getStatusCode() != HttpStatus.OK) {
             return 1700;
         }
         double res = getPoints(result.getBody()) / 10;
         return res;
     }
+
+    @RequestMapping(value = "/utilities/LED", method = RequestMethod.POST)
+    private double ledlights(@RequestBody LEDLights ledLights) throws Exception {
+        url = API.buildURL(Endpoints.electricityActivity);
+        entity = new HttpEntity<>(LEDLights.XtoJson(ledLights), headers);
+        ResponseEntity<String> result = restTemplate.postForEntity(url, entity, String.class);
+        if (result.getStatusCode() != HttpStatus.OK) {
+            return 20 * ledLights.getBulbsReplaced();
+        }
+        double res = getPoints(result.getBody()) / 10;
+        return res;
+    }
+
+    @RequestMapping(value = "/misc/green-hotel", method = RequestMethod.POST)
+    private double greenhotel(@RequestBody GreenHotel greenHotel) throws Exception {
+        url = API.buildURL(Endpoints.lodgingActivity);
+        entity = new HttpEntity<>(GreenHotel.XtoJson(greenHotel), headers);
+        ResponseEntity<String> result = restTemplate.postForEntity(url, entity, String.class);
+        if (result.getStatusCode() != HttpStatus.OK) {
+            return 25 * greenHotel.getNights();
+        }
+        double res = getPoints(result.getBody()) / 10;
+        return res;
+    }
+
+
+    @RequestMapping(value = "/misc/plant-trees", method = RequestMethod.POST)
+    private double plantTrees(@RequestBody PlantTrees trees) throws Exception {
+        double treeCO2 = trees.getTrees() * 21.77; //each tree consumes 48LBS online research
+        return treeCO2;
+    }
+
 
     private double getPoints(String result) {
         JSONObject json = new JSONObject(result);

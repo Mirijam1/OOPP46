@@ -1,0 +1,26 @@
+Food:
+vegmeal - date, size(calories)
+default value is 20 points, more meals can be (no.of meals * size)
+
+localproduce - date
+gives points from 01-01-2019 upto (date) value.
+
+
+Transportation:
+train - date, distance
+Transport class (class used for bus&car) - date, distance
+
+Utilities:
+LowerTemp - residents, degrees
+SolarPanels - residents
+LEDLights - bulbsReplaced
+
+Misc:
+Plant Trees - Trees(int)
+(Carbon Friendly) Green Hotel - nights (int)
+
+
+
+
+
+

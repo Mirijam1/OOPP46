@@ -1,5 +1,6 @@
 package nl.tudelft.gogreen.coapi.models.Food;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class Vegmeal {
-    private String start_date;
+    private String date;
     private String end_date;
     private double intensity;
     private Integer size;
@@ -23,10 +24,10 @@ public class Vegmeal {
     }
 
     //Eat a veg meal
-    public Vegmeal(String start_date, Integer size) {
-        this.start_date = start_date;
+    public Vegmeal(@JsonProperty("start_date") String date, Integer size) {
+        this.date = date;
         this.intensity = 4.36;
-        this.end_date = LocalDate.parse(start_date).plusDays(1).toString();
+        this.end_date = LocalDate.parse(date).plusDays(1).toString();
         this.size = size;
         this.vegetables_share += 0.1;
         this.key = "key";
