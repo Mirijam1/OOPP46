@@ -91,7 +91,7 @@ public class SidebarController {
 
     @FXML
     void friendspage(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/leaderboard.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/friends.fxml"));
         subscene.getChildren().setAll(pane);
     }
 
@@ -102,9 +102,7 @@ public class SidebarController {
     }
 
     @FXML
-    void logout(ActionEvent event) {
-        System.exit(0);
-    }
+    void logout(ActionEvent event) { System.exit(0); }
 
     @FXML
     void buttonhover(MouseEvent event) {

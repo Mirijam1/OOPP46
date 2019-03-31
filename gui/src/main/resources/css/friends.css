@@ -2,10 +2,6 @@
     -fx-background-color: transparent;
 }
 
-#FriendsScroll {
-    -fx-background-color: transparent;
-}
-
-#GlobalScroll {
+#FRlistScroll {
     -fx-background-color: transparent;
 }
