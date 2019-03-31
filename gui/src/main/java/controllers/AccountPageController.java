@@ -2,6 +2,7 @@ package controllers;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,8 +13,8 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
-import nl.tudelft.gogreen.api.servermodels.BasicResponse;
-import nl.tudelft.gogreen.api.servermodels.User;
+import nl.tudelft.gogreen.shared.models.User;
+import nl.tudelft.gogreen.shared.models.UserServer;
 
 public class AccountPageController {
 
@@ -39,14 +40,26 @@ public class AccountPageController {
     private GridPane badgePane;
 
     private User user;
+    private Float points;
 
     private boolean userNameChanged = false;
-
+    
     public void initialize() {
         modDataButton.setVisible(false);
         modDataButton.setDisable(true);
 
-        updateUserValues();
+        API.retrieveUserProfile(new ServerCallback<Object, UserServer>() {
+            @Override
+            public void run() {
+                if (getStatusCode() != 200) {
+                    System.out.println("Error");
+                } else {
+                    user = getResult().getUser();
+                    points = getResult().getPoints();
+                    Platform.runLater(() -> updateUserValues());
+                }
+            }
+        });
         initBadges();
     }
 
@@ -77,39 +90,37 @@ public class AccountPageController {
             errorMsg.setTextFill(Color.RED);
             errorMsg.setText("Same username");
         } else {
-            //API.updateUser();
-            API.requestFakeStatus(new ServerCallback<Object, BasicResponse>() {
-
+            System.out.println("new username: " + newUserName + " and password: " + user.getPassword());
+            API.updateUser(new ServerCallback<nl.tudelft.gogreen.api.servermodels.User, nl.tudelft.gogreen.api.servermodels.User>() {
                 @Override
                 public void run() {
-                    if (getStatusCode() != 200) {
-                        errorMsg.setTextFill(Color.RED);
-                        errorMsg.setText("Error while changing username. Statuscode:" + getStatusCode());
-                    } else {
-                        errorMsg.setTextFill(Color.GREEN);
-                        errorMsg.setText("Username succesfully changed");
-                        updateUserValues();
-                    }
+                    Platform.runLater(() -> {
+                        if (getStatusCode() != 200) {
+                            errorMsg.setTextFill(Color.RED);
+                            errorMsg.setText("Error while changing username. Statuscode:" + getStatusCode());
+                        } else {
+                            errorMsg.setTextFill(Color.GREEN);
+                            errorMsg.setText("Username succesfully changed");
+                            user.setUsername(getResult().getUsername());
+                            updateUserValues();
+                        }
+                    });
                 }
-            });
+            }, new nl.tudelft.gogreen.api.servermodels.User(newUserName, user.getPassword()));
         }
         userForm.setText("");
     }
 
     private void updateUserValues() {
-        API.retrieveFakeUser(new ServerCallback<Object, User>() {
-            @Override
-            public void run() {
-                if (getStatusCode() != 200) {
-                    System.out.println("Error");
-                } else {
-                    user = getResult();
-                    userTitle.setText(user.getName() + "'s Account");
-                    userForm.setPromptText(user.getName());
-                    co2Savings.setText(user.getPoints().toString() + " Points");
-                }
-            }
-        });
+        String pointText = " Points";
+
+        if (points <= 1f) {
+            pointText = " Point";
+        }
+
+        userTitle.setText(user.getName() + "'s Account");
+        userForm.setPromptText(user.getName());
+        co2Savings.setText(points.toString() + pointText);
     }
 
     private void initBadges() {
@@ -123,7 +134,12 @@ public class AccountPageController {
             badgePane.addRow(i + 1);
 
             for (int j = 0; j < 4; j++) {
-                badgePane.add(new Label(badgelist[counter]), j, i);
+                //badgePane.add(new Label(badgelist[counter]), j, i);
+
+
+                //add gui to badge
+
+
                 if (counter == badgeAmount - 1) {
                     break;
                 }

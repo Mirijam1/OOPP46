@@ -1,6 +1,12 @@
-#anchor {
-    -fx-background-color: linear-gradient(to top left,#cdfd9e,#98FB98);
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
 }
 
-/*rgb(144,238,144) 	#90EE90 lightgreen*/
-/*rgb(152,251,152) #98FB98 palegreen 86e486*/
+#histPane {
+    -fx-background-color: transparent;
+}
+
+#suggPane {
+    -fx-background-color: transparent;
+}
+

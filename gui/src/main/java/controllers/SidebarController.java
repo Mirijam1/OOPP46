@@ -4,14 +4,13 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import nl.tudelft.gogreen.api.API;
-import nl.tudelft.gogreen.api.ServerCallback;
-import nl.tudelft.gogreen.api.servermodels.User;
+import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.io.IOException;
 
 public class SidebarController {
@@ -32,64 +31,50 @@ public class SidebarController {
     private JFXButton leaderboard;
 
     @FXML
+    private JFXButton friends;
+
+    @FXML
     private JFXButton account;
 
     @FXML
     private JFXButton logout;
 
-    @FXML
-    private Label userLabel;
-
-    @FXML
-    private AnchorPane subscene;
-
-    private User user;
-
-    @FXML
-    public void initialize() {
-        initializeUser();
-        userLabel.setText(user.getName());
-    }
-
-    private void initializeUser() {
-        API.retrieveFakeUser(new ServerCallback<Object, User>() {
-
-            @Override
-            public void run() {
-                if (getStatusCode() != 200) {
-                    System.out.println("Error");
-                } else {
-                    user = getResult();
-                }
-            }
-        });
-    }
-
-    @FXML
-    void accountpage(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/accountPage.fxml"));
-        subscene.getChildren().setAll(pane);
-    }
-
-    @FXML
-    void account(ActionEvent event) {
-
-    }
-
 //    @FXML
-//    void hover(ActionEvent event) {
-//
-//    }
+//    public Label userLabel;
 
     @FXML
-    void leaderboardpage(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/leaderboard.fxml"));
+    private Pane subscene;
+
+    private Background BACKGROUND = new Background(new BackgroundImage(new Image("img/gogreenbg.jpg", 1280, 720, true, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+
+//    private User user;
+
+    private boolean isGamified = false;
+    private boolean isPaused = false;
+    private MediaPlayer mediaPlayer;
+
+    @FXML
+    public void initialize() throws IOException {
+//        API.retrieveUserProfile(new ServerCallback<Object, UserServer>() {
+//            @Override
+//            public void run() {
+//                if (getStatusCode() != 200) {
+//                    System.out.println("Error");
+//                } else {
+//                    user = getResult().getUser();
+//                    Platform.runLater(() -> userLabel.setText(user.getUsername()));
+//                }
+//            }
+//        });
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/trackerScreen.fxml"));
         subscene.getChildren().setAll(pane);
+        subscene.setBackground(BACKGROUND);
     }
 
     @FXML
-    void logout(ActionEvent event) {
-        System.exit(0);
+    void overviewpage(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/trackerScreen.fxml"));
+        subscene.getChildren().setAll(pane);
     }
 
     @FXML
@@ -99,9 +84,26 @@ public class SidebarController {
     }
 
     @FXML
-    void overviewpage(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/trackerScreen.fxml"));
+    void leaderboardpage(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/leaderboard.fxml"));
         subscene.getChildren().setAll(pane);
+    }
+
+    @FXML
+    void friendspage(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/leaderboard.fxml"));
+        subscene.getChildren().setAll(pane);
+    }
+
+    @FXML
+    void accountpage(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/accountPage.fxml"));
+        subscene.getChildren().setAll(pane);
+    }
+
+    @FXML
+    void logout(ActionEvent event) {
+        System.exit(0);
     }
 
     @FXML
@@ -118,6 +120,9 @@ public class SidebarController {
             case "leaderboard":
                 button.setText("Leaderboard");
                 break;
+            case "friends":
+                button.setText("Friends");
+                break;
             case "account":
                 button.setText("Account");
                 break;
@@ -133,14 +138,22 @@ public class SidebarController {
         button.setText("");
     }
 
-    public void sansify(ActionEvent actionEvent) {
-
-    }
-
-    @FXML
-    void gotoaccount(MouseEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/accountPage.fxml"));
-        subscene.getChildren().setAll(pane);
-
+    public void gamify(ActionEvent actionEvent) {
+        if (!isGamified) {
+            isGamified = true;
+            BACKGROUND = new Background(new BackgroundImage(new Image("img/gamifybg.jpg", 1280, 720, true, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+            subscene.setBackground(BACKGROUND);
+            Media sound = new Media(new File("gui/src/main/resources/media/C418 - Minecraft.mp3").toURI().toString());
+            mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.play();
+        } else {
+            if (isPaused) {
+                mediaPlayer.play();
+                isPaused = false;
+            } else {
+                mediaPlayer.pause();
+                isPaused = true;
+            }
+        }
     }
 }
