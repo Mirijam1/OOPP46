@@ -6,12 +6,7 @@ import nl.tudelft.gogreen.api.servermodels.BasicResponse;
 import nl.tudelft.gogreen.api.servermodels.CompletedActivityServer;
 import nl.tudelft.gogreen.api.servermodels.User;
 import nl.tudelft.gogreen.cache.Request;
-import nl.tudelft.gogreen.shared.models.Activity;
-import nl.tudelft.gogreen.shared.models.Category;
-import nl.tudelft.gogreen.shared.models.SubmitResponse;
-import nl.tudelft.gogreen.shared.models.SubmittedActivity;
-import nl.tudelft.gogreen.shared.models.UserServer;
-import nl.tudelft.gogreen.shared.models.social.Friendship;
+import nl.tudelft.gogreen.shared.models.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -189,7 +184,7 @@ public class API {
         String url = buildUrl(EndPoints.UPDATE_USER);
 
         Request<User> body = ServerConnection
-                .buildRequestWithBody(HttpMethod.PUT, url, user);
+                .buildRequestWithBody(HttpMethod.PATCH, url, user);
 
         ServerConnection.request(User.class, body, callback);
     }
@@ -204,6 +199,15 @@ public class API {
                 .buildSimpleRequest(HttpMethod.GET, url);
 
         ServerConnection.request(UserServer.class, body, callback, true, -1);
+    }
+
+    public static void retrieveUserProfile(ServerCallback<Object, UserServer> callback) {
+        String url = buildUrl(EndPoints.GET_PROFILE);
+
+        Request<Object> body = ServerConnection
+                .buildSimpleRequest(HttpMethod.GET, url);
+
+        ServerConnection.request(UserServer.class, body, callback, false, -1);
     }
 
     public static void retrieveAchievedBadges(ServerCallback<Object, AchievedBadge[]> callback) {

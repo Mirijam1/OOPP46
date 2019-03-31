@@ -10,63 +10,69 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.*?>
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #EEFFF2;" stylesheets="@../css/account.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AccountPageController">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AccountPageController">
     <children>
-        <Label fx:id="userTitle" alignment="TOP_CENTER" layoutX="384.0" layoutY="51.0" prefHeight="67.0" prefWidth="512.0" text="&lt;Username&gt;'s Account" textFill="#7b7b7b" AnchorPane.topAnchor="50.0">
+        <Label fx:id="userTitle" alignment="TOP_CENTER" layoutX="384.0" layoutY="51.0" prefHeight="67.0"
+               prefWidth="512.0" text="&lt;Username&gt;'s Account" AnchorPane.topAnchor="50.0">
             <font>
-                <Font name="Microsoft YaHei Light" size="48.0" />
+                <Font name="Microsoft YaHei Light" size="48.0"/>
             </font>
         </Label>
-        <Label fx:id="co2Savings" layoutX="321.0" layoutY="359.0" text="&lt;CO2 Savings&gt;" textFill="#7b7b7b">
+        <Label fx:id="co2Savings" layoutX="321.0" layoutY="359.0" text="&lt;CO2 Savings&gt;">
             <font>
-                <Font name="Microsoft YaHei Light" size="24.0" />
+                <Font name="Microsoft YaHei Light" size="24.0"/>
             </font>
         </Label>
-        <Line endX="37.0" endY="-50.0" fill="#9e9e9e" layoutX="603.0" layoutY="247.0" startX="37.0" startY="429.0" stroke="#036400" />
+        <Line endX="37.0" endY="-50.0" fill="#9e9e9e" layoutX="603.0" layoutY="247.0" startX="37.0" startY="429.0"
+              stroke="#036400"/>
         <ScrollPane layoutX="696.0" layoutY="209.0" prefHeight="437.0" prefWidth="540.0">
             <GridPane fx:id="badgePane">
 
             </GridPane>
         </ScrollPane>
-      <Text fill="#7b7b7b" layoutX="293.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Account">
-         <font>
-            <Font name="Microsoft YaHei Light" size="24.0" />
-         </font>
-      </Text>
-      <Text fill="#7b7b7b" layoutX="197.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
-         <font>
-            <Font name="Microsoft YaHei Light" size="24.0" />
-         </font>
-      </Text>
-      <Text fill="#7b7b7b" layoutX="913.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Badges">
-         <font>
-            <Font name="Microsoft YaHei Light" size="24.0" />
-         </font>
-      </Text>
-      <Text fill="#7b7b7b" layoutX="170.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Savings:">
-         <font>
-            <Font name="Microsoft YaHei Light" size="24.0" />
-         </font>
-      </Text>
-      <JFXTextField fx:id="userForm" focusColor="#036400" layoutX="321.0" layoutY="305.0" onKeyReleased="#checkSubmittable" prefHeight="39.0" prefWidth="157.0" unFocusColor="#7b7b7b">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </JFXTextField>
-      <JFXButton fx:id="modDataButton" layoutX="485.0" layoutY="309.0" onAction="#editUsername" text="Edit Username" textFill="#7b7b7b">
-         <ripplerFill>
-            <LinearGradient>
-               <stops>
-                  <Stop color="#31e145" />
-                  <Stop color="#64ffe5" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </ripplerFill>
-      </JFXButton>
-      <Label fx:id="errorMsg" layoutX="321.0" layoutY="280.0" textFill="RED">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </Label>
+        <Text layoutX="293.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Account">
+            <font>
+                <Font name="Microsoft YaHei Light" size="24.0"/>
+            </font>
+        </Text>
+        <Text layoutX="197.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
+            <font>
+                <Font name="Microsoft YaHei Light" size="24.0"/>
+            </font>
+        </Text>
+        <Text layoutX="913.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Badges">
+            <font>
+                <Font name="Microsoft YaHei Light" size="24.0"/>
+            </font>
+        </Text>
+        <Text layoutX="170.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Savings:">
+            <font>
+                <Font name="Microsoft YaHei Light" size="24.0"/>
+            </font>
+        </Text>
+        <JFXTextField fx:id="userForm" focusColor="#036400" layoutX="321.0" layoutY="305.0"
+                      onKeyReleased="#checkSubmittable" prefHeight="39.0" prefWidth="157.0" unFocusColor="#7b7b7b">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </JFXTextField>
+        <JFXButton fx:id="modDataButton" layoutX="485.0" layoutY="309.0" onAction="#editUsername" text="Edit Username"
+                   textFill="#7b7b7b">
+            <ripplerFill>
+                <LinearGradient>
+                    <stops>
+                        <Stop color="#31e145"/>
+                        <Stop color="#64ffe5" offset="1.0"/>
+                    </stops>
+                </LinearGradient>
+            </ripplerFill>
+        </JFXButton>
+        <Label fx:id="errorMsg" layoutX="321.0" layoutY="280.0" textFill="RED">
+            <font>
+                <Font size="12.0"/>
+            </font>
+        </Label>
     </children>
 </AnchorPane>

@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -29,6 +30,9 @@ import java.util.stream.Collectors;
 public class DashboardController {
 
     @FXML
+    private AnchorPane anchor;
+
+    @FXML
     private Label userId;
 
     @FXML
@@ -42,8 +46,10 @@ public class DashboardController {
 
     @FXML
     private JFXDrawer drawer;
+
     @FXML
     private VBox sidebarbox;
+
     @FXML
     private Pane gridpane;
 
