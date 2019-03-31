@@ -18,10 +18,20 @@
             <Font name="Microsoft YaHei Light" size="24.0" />
          </font>
       </Text>
-      <ScrollPane fx:id="FRlistScroll" layoutX="150.0" layoutY="270.0" prefHeight="400.0" prefWidth="980.0">
+      <ScrollPane fx:id="FRlistScroll" layoutX="150.0" layoutY="270.0" prefHeight="405.0" prefWidth="501.0">
          <content>
-            <VBox fx:id="FRlistVbox" prefHeight="400.0" prefWidth="500.0" />
+            <VBox fx:id="friendlist" prefHeight="400.0" prefWidth="500.0" />
          </content>
       </ScrollPane>
+      <ScrollPane fx:id="FRlistScroll1" layoutX="749.0" layoutY="271.0" prefHeight="405.0" prefWidth="501.0">
+         <content>
+            <VBox fx:id="FriendOverview" prefHeight="400.0" prefWidth="500.0" />
+         </content>
+      </ScrollPane>
+      <Text layoutX="848.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Friend Overview" wrappingWidth="264.657470703125">
+         <font>
+            <Font name="Microsoft YaHei Light" size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

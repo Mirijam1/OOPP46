@@ -67,6 +67,7 @@ public class SidebarController {
 //            }
 //        });
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/trackerScreen.fxml"));
+
         subscene.getChildren().setAll(pane);
         subscene.setBackground(BACKGROUND);
     }
@@ -102,7 +103,9 @@ public class SidebarController {
     }
 
     @FXML
-    void logout(ActionEvent event) { System.exit(0); }
+    void logout(ActionEvent event) {
+        System.exit(0);
+    }
 
     @FXML
     void buttonhover(MouseEvent event) {
