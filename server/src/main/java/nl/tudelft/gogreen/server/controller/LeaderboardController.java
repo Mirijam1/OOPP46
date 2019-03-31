@@ -70,10 +70,6 @@ public class LeaderboardController {
 
         UserProfile profile = profileRepository.findUserProfileByUserId(((User) authentication.getPrincipal()).getId());
 
-        if (profile == null) {
-            throw new InternalServerError();
-        }
-
         return leaderboardService.getFriendLeaderBoard(profile, limit);
     }
 }

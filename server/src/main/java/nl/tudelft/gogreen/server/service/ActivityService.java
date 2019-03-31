@@ -56,6 +56,10 @@ public class ActivityService implements IActivityService {
     public Collection<ActivityOption> getActivityOptions(Integer activityId) {
         Activity activity = activityRepository.findActivityById(activityId);
 
+        if (activity == null) {
+            throw new NotFoundException();
+        }
+
         return activityOptionRepository.findActivityOptionsByActivity(activity);
     }
 
@@ -93,8 +97,8 @@ public class ActivityService implements IActivityService {
                 .build();
 
 
-        if (submittedActivity.getOptions() != null) {
-            if (activity.getOptions() == null
+        if (activity.getOptions() != null) {
+            if (submittedActivity.getOptions() == null
                     || activity.getOptions().size() != submittedActivity.getOptions().size()) {
                 throw new BadRequestException();
             }
@@ -125,7 +129,6 @@ public class ActivityService implements IActivityService {
         completedActivity.setOptions(options);
 
         // Fetch and set points
-        //TODO: Use CO2 API and maybe async
         completedActivity.setPoints(carbonService.fetchPoints(completedActivity));
 
         return completedActivity;

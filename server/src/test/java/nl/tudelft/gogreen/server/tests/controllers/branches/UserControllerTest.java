@@ -62,7 +62,14 @@ public class UserControllerTest {
     public void shouldThrowForbiddenWhenCreatingAsLoggedInUser() {
         exception.expect(ForbiddenException.class);
 
-        userController.createUser(null, Mockito.mock(Authentication.class));
+        userController.createUser(null, new UsernamePasswordAuthenticationToken(null, null));
+    }
+
+    @Test
+    public void shouldThrowBadRequestWhenCreatingWithNoUser() {
+        exception.expect(BadRequestException.class);
+
+        userController.createUser(null, new AnonymousAuthenticationToken("s", user, authorities));
     }
 
     @Test
