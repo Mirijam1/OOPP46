@@ -18,61 +18,75 @@ INSERT INTO USER_AUTHORITIES (USER_ID, AUTHORITY_ID) VALUES ('674597382efa45f5b3
 
 
 -- Inserting categories
-INSERT INTO CATEGORY (ID, NAME, DESCRIPTION) VALUES ('0', 'Food', 'Food items'), ('1', 'Transport', 'Transportation'), ('2', 'Energy', 'Energy items'), ('3', 'Misc', 'Other items');
+INSERT INTO CATEGORY (ID, NAME, DESCRIPTION) VALUES ('0', 'Food', 'Food items'), ('1', 'Transport', 'Transportation'), ('2', 'Utilities', 'Utility items'), ('3', 'Misc', 'Other items');
 
 -- Inserting activities
 -- Category: Food (0)
 --   Activity: Eating vegetarian meal (0)
-INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, CATEGORY) VALUES (0, 'Vegetarian meal', 'Eat a vegetarian meal', 0);
+--     Options: 0, 7
+INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, INTERNAL_NAME, CATEGORY) VALUES (0, 'Vegetarian meal', 'Eat a vegetarian meal', 'vegmeal', 0);
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (0, 'SUBMITTED_ACTIVITY');
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (0, 'COMPLETED_FOOD_ACTIVITY');
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (0, 'ATE_VEGETARIAN_MEAL');
-INSERT INTO ACTIVITY_OPTION (ID, DESCRIPTION, INPUT_TYPE, ACTIVITY) VALUES (0, 'Amount of meals', 'FLOAT', 0);
+INSERT INTO ACTIVITY_OPTION (ID, DESCRIPTION, INPUT_TYPE, INTERNAL_NAME, ACTIVITY) VALUES (0, 'Amount of meals', 'FLOAT', 'amount', 0), (7, 'Amount of calories', 'FLOAT', 'cal', 0);
 
 --   Activity: Buy local produce (3)
-INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, CATEGORY) VALUES (3, 'Local produce', 'Buy local produce', 0);
+--     Options: null
+INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, INTERNAL_NAME, CATEGORY) VALUES (3, 'Local produce', 'Buy local produce', 'localproduce', 0);
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (3, 'SUBMITTED_ACTIVITY');
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (3, 'COMPLETED_FOOD_ACTIVITY');
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (3, 'BOUGHT_LOCAL_PRODUCE');
-INSERT INTO ACTIVITY_OPTION (ID, DESCRIPTION, INPUT_TYPE, ACTIVITY) VALUES (3, 'Kilograms of local produce bought', 'FLOAT', 3);
 
 -- Category: Transport (1)
 --   Activity: Use your bike instead of the bus (1)
-INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, CATEGORY) VALUES (1, 'Biking', 'Use your bike instead of the bus', 1);
+--     Options: 1
+INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, INTERNAL_NAME, CATEGORY) VALUES (1, 'Biking', 'Use your bike instead of the bus', 'bike', 1);
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (1, 'SUBMITTED_ACTIVITY');
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (1, 'COMPLETED_TRANSPORT_ACTIVITY');
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (1, 'USED_BIKE_INSTEAD_BUS');
-INSERT INTO ACTIVITY_OPTION (ID, DESCRIPTION, INPUT_TYPE, ACTIVITY) VALUES (1, 'Kilometers biked', 'FLOAT', 1);
+INSERT INTO ACTIVITY_OPTION (ID, DESCRIPTION, INPUT_TYPE, INTERNAL_NAME, ACTIVITY) VALUES (1, 'Kilometers biked', 'FLOAT', 'distance', 1);
 
---   Activity: Use public transport instead of your car (4)
-INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, CATEGORY) VALUES (4, 'Public transport', 'Use public transport instead of your car', 1);
+--   Activity: Use bus instead of your car (4)
+--     Options: 4
+INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, INTERNAL_NAME, CATEGORY) VALUES (4, 'Using the bus', 'Use the bus instead of your car', 'bus', 1);
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (4, 'SUBMITTED_ACTIVITY');
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (4, 'COMPLETED_TRANSPORT_ACTIVITY');
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (4, 'USED_PT_INSTEAD_OF_CAR');
-INSERT INTO ACTIVITY_OPTION (ID, DESCRIPTION, INPUT_TYPE, ACTIVITY) VALUES (4, 'Kilometers travelled', 'FLOAT', 4);
+INSERT INTO ACTIVITY_OPTION (ID, DESCRIPTION, INPUT_TYPE, INTERNAL_NAME, ACTIVITY) VALUES (4, 'Kilometers travelled', 'FLOAT', 'distance', 4);
 
--- Category: Energy (2)
+--   Activity: Use train instead of your car (7)
+--     Options: 8
+INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, INTERNAL_NAME, CATEGORY) VALUES (7, 'Using the train', 'Use the train instead of your car', 'train', 1);
+INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (7, 'SUBMITTED_ACTIVITY');
+INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (7, 'COMPLETED_TRANSPORT_ACTIVITY');
+INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (7, 'USED_PT_INSTEAD_OF_CAR');
+INSERT INTO ACTIVITY_OPTION (ID, DESCRIPTION, INPUT_TYPE, INTERNAL_NAME, ACTIVITY) VALUES (8, 'Kilometers travelled', 'FLOAT', 'distance', 7);
+
+-- Category: Utilities (2)
 --   Activity: Lower the temperature of your home (5)
-INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, CATEGORY) VALUES (5, 'Lower temperature', 'Lower the temperature of your home', 2);
+--     Options: 5, 9
+INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, INTERNAL_NAME, CATEGORY) VALUES (5, 'Lower temperature', 'Lower the temperature of your home', 'lowertemp', 2);
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (5, 'SUBMITTED_ACTIVITY');
-INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (5, 'COMPLETED_ENERGY_ACTIVITY');
+INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (5, 'COMPLETED_UTILITIES_ACTIVITY');
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (5, 'LOWERED_TEMP');
-INSERT INTO ACTIVITY_OPTION (ID, DESCRIPTION, INPUT_TYPE, ACTIVITY) VALUES (5, 'Degrees Celsius dropped', 'FLOAT', 5);
+INSERT INTO ACTIVITY_OPTION (ID, DESCRIPTION, INPUT_TYPE, INTERNAL_NAME, ACTIVITY) VALUES (5, 'Degrees Celsius dropped', 'FLOAT', 'degrees', 5), (9, 'Amount of residents', 'FLOAT', 'residents', 5);
 
 --   Activity: Install solar panels (6)
-INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, CATEGORY) VALUES (6, 'Solar panels', 'Install solar panels', 2);
+--     Options: 6, 10
+INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, INTERNAL_NAME, CATEGORY) VALUES (6, 'Solar panels', 'Install solar panels', 'solarpanels', 2);
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (6, 'SUBMITTED_ACTIVITY');
-INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (6, 'COMPLETED_ENERGY_ACTIVITY');
+INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (6, 'COMPLETED_UTILITIES_ACTIVITY');
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (6, 'INSTALLED_SOLAR_PANELS');
-INSERT INTO ACTIVITY_OPTION (ID, DESCRIPTION, INPUT_TYPE, ACTIVITY) VALUES (6, 'Solar panels installed', 'FLOAT', 6);
+INSERT INTO ACTIVITY_OPTION (ID, DESCRIPTION, INPUT_TYPE, INTERNAL_NAME, ACTIVITY) VALUES (6, 'Solar panels installed', 'FLOAT', 'panels', 6), (10, 'Amount of residents', 'FLOAT', 'residents', 6);
 
 -- Category: Misc (3)
 --   Activity: Plant a tree in your garden (2)
-INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, CATEGORY) VALUES (2, 'Tree planting', 'Plant a tree in your garden', 3);
+--     Options: 2
+INSERT INTO ACTIVITY (ID, NAME, DESCRIPTION, INTERNAL_NAME, CATEGORY) VALUES (2, 'Tree planting', 'Plant a tree in your garden', 'plant-trees', 3);
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (2, 'SUBMITTED_ACTIVITY');
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (2, 'COMPLETED_MISC_ACTIVITY');
 INSERT INTO TRIGGERS (ID, TRIGGER) VALUES (2, 'PLANTED_TREE');
-INSERT INTO ACTIVITY_OPTION (ID, DESCRIPTION, INPUT_TYPE, ACTIVITY) VALUES (2, 'Trees planted', 'FLOAT', 2);
+INSERT INTO ACTIVITY_OPTION (ID, DESCRIPTION, INPUT_TYPE, INTERNAL_NAME, ACTIVITY) VALUES (2, 'Trees planted', 'FLOAT', 'trees', 2);
 
 -- Inserting badges
 INSERT INTO BADGE (ID, NAME, MESSAGE, TRIGGER) VALUES (0, 'Completed activity', 'You completed an activity!', 'SUBMITTED_ACTIVITY');

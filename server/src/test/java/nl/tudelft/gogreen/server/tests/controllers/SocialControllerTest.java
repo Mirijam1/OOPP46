@@ -108,6 +108,7 @@ public class SocialControllerTest {
         // Create some (30) activities for user 7
         Collection<SubmittedActivityOption> options = new ArrayList<>();
         options.add(new SubmittedActivityOption(0, "1"));
+        options.add(new SubmittedActivityOption(7, "1"));
 
         SubmittedActivity submittedActivity = SubmittedActivity.builder().activityId(0).options(options).build();
 

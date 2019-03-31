@@ -119,7 +119,9 @@ public class ActivityService implements IActivityService {
                 ConfiguredOption option = ConfiguredOption.builder()
                         .id(id)
                         .inputType(activityOption.getInputType())
-                        .value(submittedActivityOption.getValue()).build();
+                        .activityOption(activityOption)
+                        .value(submittedActivityOption.getValue())
+                        .build();
 
                 options.add(option);
             }

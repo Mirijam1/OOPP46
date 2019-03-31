@@ -37,6 +37,9 @@ public class ActivityOption {
     @Column(name = "DESCRIPTION", nullable = false)
     private String description;
 
+    @Column(name = "INTERNAL_NAME", nullable = false)
+    private String internalAPIName;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "INPUT_TYPE", nullable = false)
     private InputType inputType;

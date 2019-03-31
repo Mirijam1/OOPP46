@@ -67,6 +67,7 @@ public class ProfileControllerActivitiesTest {
     public void setUp() {
         Collection<SubmittedActivityOption> options = new ArrayList<>();
         options.add(new SubmittedActivityOption(0, "1"));
+        options.add(new SubmittedActivityOption(7, "1"));
 
         SubmittedActivity submittedActivity = SubmittedActivity.builder().activityId(0).options(options).build();
 
@@ -144,6 +145,7 @@ public class ProfileControllerActivitiesTest {
     public void shouldCreateAndReturnActivityWhenSubmitting() throws Exception {
         Collection<SubmittedActivityOption> options = new ArrayList<>();
         options.add(new SubmittedActivityOption(0, "42"));
+        options.add(new SubmittedActivityOption(7, "42"));
         SubmittedActivity submittedActivity = SubmittedActivity.builder().activityId(0).options(options).build();
         final SubmitResponse[] response = new SubmitResponse[1];
 
@@ -194,6 +196,7 @@ public class ProfileControllerActivitiesTest {
     public void shouldReturnBadRequestWhenSubmittingTooManyOptions() throws Exception {
         Collection<SubmittedActivityOption> options = new ArrayList<>();
         options.add(new SubmittedActivityOption(0, "42"));
+        options.add(new SubmittedActivityOption(0, "123"));
         options.add(new SubmittedActivityOption(0, "123"));
         SubmittedActivity submittedActivity = SubmittedActivity.builder().activityId(0).options(options).build();
 
