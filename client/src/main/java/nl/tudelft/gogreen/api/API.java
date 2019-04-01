@@ -3,7 +3,6 @@ package nl.tudelft.gogreen.api;
 import com.mashape.unirest.http.HttpMethod;
 import nl.tudelft.gogreen.api.servermodels.AchievedBadge;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
-import nl.tudelft.gogreen.api.servermodels.CompletedActivityServer;
 import nl.tudelft.gogreen.api.servermodels.User;
 import nl.tudelft.gogreen.cache.Request;
 import nl.tudelft.gogreen.shared.models.*;
@@ -125,7 +124,7 @@ public class API {
         ServerConnection.request(Category[].class, body, callback, true, -1);
     }
 
-    public static void retrieveCompletedActivities(ServerCallback<Object, CompletedActivityServer[]> callback) {
+    public static void retrieveCompletedActivities(ServerCallback<Object, CompletedActivity[]> callback) {
         String url = buildUrl(EndPoints.GET_USER_ACTIVITIES);
 
         // Replace with real logger later
@@ -134,7 +133,7 @@ public class API {
         Request<Object> body = ServerConnection
             .buildSimpleRequest(HttpMethod.GET, url);
 
-        ServerConnection.request(CompletedActivityServer[].class, body, callback, false, 0);
+        ServerConnection.request(CompletedActivity[].class, body, callback, false, 0);
     }
 
     public static void retrieveActivityList(ServerCallback<Object, Activity[]> callback, String category) {

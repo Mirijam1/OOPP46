@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
-import nl.tudelft.gogreen.api.servermodels.CompletedActivityServer;
+import nl.tudelft.gogreen.shared.models.CompletedActivity;
 import nl.tudelft.gogreen.shared.models.User;
 import nl.tudelft.gogreen.shared.models.UserServer;
 
@@ -52,7 +52,7 @@ public class OverviewController {
                 }
             }
         });
-        API.retrieveCompletedActivities(new ServerCallback<Object, CompletedActivityServer[]>() {
+        API.retrieveCompletedActivities(new ServerCallback<Object, CompletedActivity[]>() {
             @Override
             public void run() {
                 if (getStatusCode() != 200) {
@@ -78,7 +78,7 @@ public class OverviewController {
         amount.setText("Amount of CO2 Saved: " + points.toString() + pointText);
     }
 
-    private void initHistory(CompletedActivityServer[] list) {
+    private void initHistory(CompletedActivity[] list) {
         boolean activityadded = false;
         Color textColor = Color.web("#7b7b7b");
 

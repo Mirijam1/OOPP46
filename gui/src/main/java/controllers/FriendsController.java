@@ -83,6 +83,9 @@ public class FriendsController {
         for (int i = 0; i < friendactivities.length; i++) {
             if (friendactivities[i].getActivity() != null) {
                 Label Activity = new Label(friendactivities[i].getActivity().getActivityName());
+                Label user = new Label(friendactivities[i].getUsername());
+                user.setTranslateX(400.00);
+                user.setTranslateY(20.00);
                 Activity.setTranslateY(20);
 
                 Activity.setTranslateX(60);
@@ -104,7 +107,7 @@ public class FriendsController {
                 Label activityID = new Label(Integer.toString(i + 1) + ".");
                 activityID.setTranslateY(20);
                 activityID.setTranslateX(30);
-                OverviewEntry.getChildren().addAll(activityID, Activity);
+                OverviewEntry.getChildren().addAll(activityID, Activity,user);
 
                 FriendOverview.getChildren().add(OverviewEntry);
             }

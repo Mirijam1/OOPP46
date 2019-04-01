@@ -4,11 +4,11 @@ import javafx.application.Platform;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
-import nl.tudelft.gogreen.api.servermodels.CompletedActivityServer;
 import nl.tudelft.gogreen.api.servermodels.GUICompletedActivities;
 import nl.tudelft.gogreen.api.servermodels.User;
 import nl.tudelft.gogreen.shared.Shared;
 import nl.tudelft.gogreen.shared.models.Badge;
+import nl.tudelft.gogreen.shared.models.CompletedActivity;
 import nl.tudelft.gogreen.shared.models.SubmitResponse;
 import nl.tudelft.gogreen.shared.models.SubmittedActivity;
 
@@ -96,10 +96,10 @@ public class Client {
                         System.out.println(getResult().getResponse());
                     }
                 }, SubmittedActivity.builder().activityId(1).build());
-                API.retrieveCompletedActivities(new ServerCallback<Object, CompletedActivityServer[]>() {
+                API.retrieveCompletedActivities(new ServerCallback<Object, CompletedActivity[]>() {
                     @Override
                     public void run() {
-                        for (CompletedActivityServer activity : getResult()) {
+                        for (CompletedActivity activity : getResult()) {
                             a.add(new GUICompletedActivities(activity.getActivity().getActivityName(), activity.getPoints().toString()));
                         }
                         finalActivities(a);
