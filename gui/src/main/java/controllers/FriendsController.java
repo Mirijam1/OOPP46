@@ -51,8 +51,6 @@ public class FriendsController {
             if (friends[i].getFriend() != null) {
                 Label user = new Label(friends[i].getFriend().getUsername());
                 user.setTranslateY(20);
-                user.setStyle("-fx-text-fill: #FFFFFF");
-
                 user.setTranslateX(60);
                 Pane FriendEntry = new Pane();
 
@@ -64,7 +62,6 @@ public class FriendsController {
                 friendlist.setPrefHeight(66 * (i + 1));
 
                 Label rank = new Label(Integer.toString(i + 1) + ".");
-                rank.setStyle("-fx-text-fill: #FFFFFF");
 
                 rank.setTranslateY(20);
                 rank.setTranslateX(30);

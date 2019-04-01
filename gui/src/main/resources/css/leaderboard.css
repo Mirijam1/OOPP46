@@ -9,3 +9,7 @@
 #GlobalScroll {
     -fx-background-color: transparent;
 }
+
+.label {
+    -fx-text-fill: #FFFFFF;
+}

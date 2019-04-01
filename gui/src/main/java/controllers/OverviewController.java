@@ -93,7 +93,6 @@ public class OverviewController {
                     activityadded = true;
 
                     Label activityTitle = new Label(list[i].getActivity().getActivityName());
-                    activityTitle.setStyle("-fx-text-fill: #FFFFFF");
 
                     activityTitle.setStyle("-fx-font-weight: bold");
                     activityTitle.setTranslateX(60);
@@ -110,7 +109,6 @@ public class OverviewController {
                     activityDesc.setTranslateX(60);
 
                     Label activityPoints = new Label();
-                    activityPoints.setStyle("-fx-text-fill: #FFFFFF");
 
                     Float points = list[i].getPoints();
                     String pointText = " Points";
@@ -157,7 +155,6 @@ public class OverviewController {
 
         for (int i = 0; i < suggestions.length; i++) {
             Label suggestionText = new Label(suggestions[i]);
-            suggestionText.setStyle("-fx-text-fill: #FFFFFF");
 
             suggestionText.setTranslateX(60);
             Pane suggestion = new Pane();
@@ -166,8 +163,7 @@ public class OverviewController {
             suggestion.setMaxWidth(542);
             suggestion.setMaxHeight(120);
 
-            suggVBox.setStyle("-fx-background-radius: 50 50 50 50; -fx-background-color: rgba(0, 0, 0, 0.62);"
-                + "-fx-text-fill: #FFFFFF;");
+            suggVBox.setStyle("-fx-background-radius: 50 50 50 50; -fx-background-color: rgba(0, 0, 0, 0.62);");
             suggVBox.setPrefHeight(126 * (i + 1));
 
             suggestion.getChildren().add(suggestionText);

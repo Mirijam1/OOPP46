@@ -57,9 +57,7 @@ public class LeaderboardController {
         for (int i = 0; i < users.length; i++) {
             if (users[i].getUser().getName() != null) {
                 Label user = new Label(users[i].getUser().getName());
-                user.setStyle("-fx-text-fill: #FFFFFF");
                 Label points = new Label(users[i].getPoints().toString());
-                points.setStyle("-fx-text-fill: #FFFFFF");
                 points.setTranslateX(400.00);
                 points.setTranslateY(20.00);
                 user.setTranslateY(20);
@@ -77,8 +75,6 @@ public class LeaderboardController {
                 GlobalVbox.setPrefHeight(66 * (i + 1));
 
                 Label rank = new Label(Integer.toString(i+1)+".");
-                rank.setStyle("-fx-text-fill: #FFFFFF");
-
                 rank.setTranslateY(20);
                 rank.setTranslateX(30);
                 UserEntry.getChildren().addAll(rank, user, points);
@@ -101,11 +97,7 @@ public class LeaderboardController {
         for (int i = 0; i < friends.length; i++) {
             if (friends[i].getUser().getName() != null) {
                 Label user = new Label(friends[i].getUser().getName());
-                user.setStyle("-fx-text-fill: #FFFFFF");
-
                 Label points = new Label(friends[i].getPoints().toString());
-                points.setStyle("-fx-text-fill: #FFFFFF");
-
 
                 points.setTranslateX(400.00);
                 points.setTranslateY(20.00);
@@ -125,8 +117,6 @@ public class LeaderboardController {
                 FriendsVbox.setPrefHeight(66 * (i + 1));
 
                 Label rank = new Label(Integer.toString(i+1)+".");
-                rank.setStyle("-fx-text-fill: #FFFFFF");
-
                 rank.setTranslateY(20);
                 rank.setTranslateX(30);
                 FriendEntry.getChildren().addAll(rank, user, points);
