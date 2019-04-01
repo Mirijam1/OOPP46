@@ -8,8 +8,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
+import nl.tudelft.gogreen.shared.models.Activity;
 import nl.tudelft.gogreen.shared.models.CompletedActivity;
 import nl.tudelft.gogreen.shared.models.social.Friendship;
+
+import java.text.DecimalFormat;
 
 
 public class FriendsController {
@@ -82,34 +85,31 @@ public class FriendsController {
 
         for (int i = 0; i < friendactivities.length; i++) {
             if (friendactivities[i].getActivity() != null) {
-                Label Activity = new Label(friendactivities[i].getActivity().getActivityName());
-                Label user = new Label(friendactivities[i].getUsername());
-                user.setTranslateX(400.00);
-                user.setTranslateY(20.00);
-                Activity.setTranslateY(20);
+                CompletedActivity completedActivity = friendactivities[i];
+                String points = new DecimalFormat("0.0#").format(completedActivity.getPoints());
+                Label activity = new Label(String.format("%2$s completed '%3$s' (%1$s points)",
+                        points, completedActivity.getUsername(), completedActivity.getActivity().getActivityName()));
+                activity.setTranslateY(20);
 
-                Activity.setTranslateX(60);
-                Pane OverviewEntry = new Pane();
+                activity.setTranslateX(60);
+                Pane overviewEntry = new Pane();
 
-                OverviewEntry.setPrefSize(492, 60);
-                OverviewEntry.setMaxWidth(492);
-                OverviewEntry.setMaxHeight(60);
+                overviewEntry.setPrefSize(492, 60);
+                overviewEntry.setMaxWidth(492);
+                overviewEntry.setMaxHeight(60);
 
                 if (i % 2 == 1) {
-                    OverviewEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #EFEFEF;" +
-                        "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
+                    overviewEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #EFEFEF;"
+                            + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
                 } else {
-                    OverviewEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #FFFFFF;" +
-                        "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
+                    overviewEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #FFFFFF;"
+                            + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
                 }
                 FriendOverview.setPrefHeight(66 * (i + 1));
 
-                Label activityID = new Label(Integer.toString(i + 1) + ".");
-                activityID.setTranslateY(20);
-                activityID.setTranslateX(30);
-                OverviewEntry.getChildren().addAll(activityID, Activity,user);
+                overviewEntry.getChildren().add(activity);
 
-                FriendOverview.getChildren().add(OverviewEntry);
+                FriendOverview.getChildren().add(overviewEntry);
             }
         }
     }

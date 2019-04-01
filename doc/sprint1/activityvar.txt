@@ -1,0 +1,36 @@
+- (activity)
+(optionvariables)
+
+Category: Food
+-Eat a veg meal id 1
+	Date (end_date)
+	Calories (size)	default=400
+
+Buy local produce id 2
+	Date (end_date)
+
+Category: Transport
+-Bike instead of car id 1
+date  (end_date)
+distance (distance)
+
+-Using public transport instead of car
+
+-Train instead of car id 2
+    date 	(date)
+	distance	(distance)
+	(country=NL)
+
+-Bus instead of car id 3
+distance	(distance)
+
+Category: Energy
+
+-Low temperature id 1
+(residents) (default=3)
+(degrees)   (default=4)
+(green_electricity=0.4)
+
+-Solar Panels id 2
+(residents) (default=3)
+(green_electricity=1)

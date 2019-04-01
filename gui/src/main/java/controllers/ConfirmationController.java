@@ -6,6 +6,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import nl.tudelft.gogreen.api.API;
+import nl.tudelft.gogreen.api.ServerCallback;
+import nl.tudelft.gogreen.shared.models.SubmitResponse;
+import nl.tudelft.gogreen.shared.models.SubmittedActivity;
+import nl.tudelft.gogreen.shared.models.SubmittedActivityOption;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class ConfirmationController {
 
@@ -26,7 +34,19 @@ public class ConfirmationController {
 
 
     public void confirmButton(ActionEvent event) {
-        System.out.println("add activity");
+        Collection<SubmittedActivityOption> options =
+                new ArrayList<>();
+
+        options.add(new SubmittedActivityOption(0, "4"));
+        SubmittedActivity activity =
+                SubmittedActivity.builder().activityId(0).options(options).build();
+
+        API.submitActivity(new ServerCallback<SubmittedActivity, SubmitResponse>() {
+            @Override
+            public void run() {
+                System.out.println(getResult().getExternalId());
+            }
+        }, activity);
     }
 
     public void exit(ActionEvent event) {

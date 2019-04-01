@@ -99,9 +99,8 @@ public class OverviewController {
                     Label activityDesc = new Label();
                     String description = list[i].getActivity().getDescription();
 
-
                     if (description == null) {
-                        activityDesc.setText("No Description");
+                        activityDesc.setText("No description");
                     } else {
                         activityDesc.setText(description);
                     }

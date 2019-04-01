@@ -51,7 +51,8 @@ public class Activity {
     @Column(name = "NAME", nullable = false, unique = true)
     private String activityName;
 
-    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
+    @JsonView({nl.tudelft.gogreen.server.models.JsonView.Detailed.class,
+            nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class})
     @Column(name = "DESCRIPTION", nullable = false)
     private String description;
 

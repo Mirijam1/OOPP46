@@ -1,7 +1,72 @@
-.jfx-combo-box {
-    -fx-prompt-text-fill: #EFF0EB;
+/* Set background */
+#AnchorPane {
+    -fx-background-image: url('../img/firewatch.jpg');
+    -fx-background-size: cover;
 }
 
+/* Styling the combo box default text*/
+.jfx-combo-box {
+    -fx-prompt-text-fill: #eff0eb;
+}
+
+/* Styling the combo box selected text */
 .jfx-combo-box .cell:selected {
-    -fx-text-fill: #85b84c;
+    -fx-text-fill: #009688;
+}
+
+.jfx-slider {
+    -fx-background-color: transparent;
+}
+
+/* Styling the slider track */
+.jfx-slider .track {
+    -fx-background-color: #eff0eb;
+}
+
+/* Styling the slider thumb */
+.jfx-slider .thumb {
+    -fx-background-color: #009688;
+}
+
+/* Styling the filled track */
+.jfx-slider .colored-track {
+    -fx-background-color: #009688;
+}
+
+/* Styling the animated thumb */
+.jfx-slider .animated-thumb {
+    -fx-background-color: white;
+}
+
+/* Styling the slider value text inside animated thumb */
+.jfx-slider .slider-value {
+    -fx-fill: black;
+    -fx-stroke: black;
+}
+
+.jfx-date-picker .text-field {
+    -fx-prompt-text-fill: #eff0eb;
+    -fx-text-fill: #009688;
+}
+
+.jfx-text-field {
+    -fx-text-fill: #009688;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-opacity: 0;
+}
+
+.scroll-pane > .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-opacity: 0;
+}
+
+#optionPane {
+    -fx-background-color: transparent;
 }
