@@ -7,6 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
 import nl.tudelft.gogreen.shared.models.UserServer;
@@ -29,6 +30,15 @@ public class LeaderboardController {
 
     @FXML
     private VBox GlobalVbox;
+
+    @FXML
+    private Text leaderboardlabel;
+
+    @FXML
+    private Text friendslabel;
+
+    @FXML
+    private Text globallabel;
 
 
     @FXML

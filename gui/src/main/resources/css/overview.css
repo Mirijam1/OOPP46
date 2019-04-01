@@ -14,3 +14,8 @@
     -fx-text-fill: #FFFFFF;
 }
 
+#amount, #userWelcome {
+    -fx-text-fill: #000000;
+}
+
+
