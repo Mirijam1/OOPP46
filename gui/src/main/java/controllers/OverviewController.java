@@ -124,13 +124,9 @@ public class OverviewController {
                     entryVBox.setPadding(new Insets(10,0,0,0));
                     entryVBox.setSpacing(3);
 
-                    if (i % 2 == 1) {
-                        entryVBox.setStyle("-fx-background-radius: 60 60 60 60; -fx-background-color: #EFEFEF;" +
-                                "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
-                    } else {
-                        entryVBox.setStyle("-fx-background-radius: 60 60 60 60; -fx-background-color: #FFFFFF;" +
-                                "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
-                    }
+
+                    entryVBox.setStyle("-fx-background-radius: 50 50 50 50; -fx-background-color: rgba(0, 0, 0, 0.62);");
+
                     histVBox.setPrefHeight(126 * (i + 1));
 
                     entryVBox.getChildren().addAll(activityTitle,activityDesc,activityPoints);
@@ -163,13 +159,7 @@ public class OverviewController {
             suggestion.setMaxWidth(542);
             suggestion.setMaxHeight(120);
 
-            if (i % 2 == 1) {
-                suggestion.setStyle("-fx-background-radius: 60 60 60 60; -fx-background-color: #EFEFEF;" +
-                        "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
-            } else {
-                suggestion.setStyle("-fx-background-radius: 60 60 60 60; -fx-background-color: #FFFFFF;" +
-                        "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
-            }
+            suggVBox.setStyle("-fx-background-radius: 50 50 50 50; -fx-background-color: rgba(0, 0, 0, 0.62);");
             suggVBox.setPrefHeight(126 * (i + 1));
 
             suggestion.getChildren().add(suggestionText);

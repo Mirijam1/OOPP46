@@ -59,13 +59,7 @@ public class FriendsController {
                 FriendEntry.setMaxWidth(492);
                 FriendEntry.setMaxHeight(60);
 
-                if (i % 2 == 1) {
-                    FriendEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #EFEFEF;" +
-                        "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
-                } else {
-                    FriendEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #FFFFFF;" +
-                        "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
-                }
+                FriendEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: rgba(0, 0, 0, 0.62);");
                 friendlist.setPrefHeight(66 * (i + 1));
 
                 Label rank = new Label(Integer.toString(i + 1) + ".");
@@ -98,13 +92,7 @@ public class FriendsController {
                 overviewEntry.setMaxWidth(492);
                 overviewEntry.setMaxHeight(60);
 
-                if (i % 2 == 1) {
-                    overviewEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #EFEFEF;"
-                            + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
-                } else {
-                    overviewEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #FFFFFF;"
-                            + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
-                }
+                overviewEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: rgba(0, 0, 0, 0.62);");
                 FriendOverview.setPrefHeight(66 * (i + 1));
 
                 overviewEntry.getChildren().add(activity);

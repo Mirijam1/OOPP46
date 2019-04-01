@@ -68,13 +68,9 @@ public class LeaderboardController {
                 UserEntry.setMaxWidth(492);
                 UserEntry.setMaxHeight(60);
 
-                if (i % 2 == 1) {
-                    UserEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #EFEFEF;" +
-                            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
-                } else {
-                    UserEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #FFFFFF;" +
-                            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
-                }
+
+                UserEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: rgba(0, 0, 0, 0.62);");
+
                 GlobalVbox.setPrefHeight(66 * (i + 1));
 
                 Label rank = new Label(Integer.toString(i+1)+".");
@@ -101,6 +97,7 @@ public class LeaderboardController {
             if (friends[i].getUser().getName() != null) {
                 Label user = new Label(friends[i].getUser().getName());
                 Label points = new Label(friends[i].getPoints().toString());
+
                 points.setTranslateX(400.00);
                 points.setTranslateY(20.00);
                 user.setTranslateY(20);
@@ -112,13 +109,10 @@ public class LeaderboardController {
                 FriendEntry.setMaxWidth(492);
                 FriendEntry.setMaxHeight(60);
 
-                if (i % 2 == 1) {
-                    FriendEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #EFEFEF;" +
-                            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
-                } else {
-                    FriendEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: #FFFFFF;" +
-                            "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
-                }
+
+                FriendEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: rgba(0, 0, 0, 0.62);"
+                        + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);");
+
                 FriendsVbox.setPrefHeight(66 * (i + 1));
 
                 Label rank = new Label(Integer.toString(i+1)+".");
