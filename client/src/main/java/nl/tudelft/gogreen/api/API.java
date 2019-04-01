@@ -243,11 +243,11 @@ public class API {
         ServerConnection.request(Friendship[].class, body, callback, true, 0);
     }
 
-    public static void addFriend(ServerCallback<Object, Friendship[]> callback, String username) {
-        String url = buildUrl(EndPoints.ADD_FRIEND_BY_NAME).replace("{var}", username);
+    public static void addFriend(ServerCallback<Object, Friendship> callback, String username) {
+        String url = buildUrl(EndPoints.ADD_FRIEND_BY_NAME, username);
         Request<Object> body = ServerConnection
             .buildSimpleRequest(HttpMethod.PUT, url);
-        ServerConnection.request(Friendship[].class, body, callback, true, 0);
+        ServerConnection.request(Friendship.class, body, callback, true, 0);
     }
 
     public static void retrievePendingReceivedFriendRequests(ServerCallback<Object, Friendship[]> callback) {
@@ -258,12 +258,11 @@ public class API {
     }
 
     public static void searchUserProfiles(ServerCallback<Object, UserServer> callback, String username) {
-        String url = buildUrl(EndPoints.SEARCH_USER_PROFILE).replace("{var}", username);
+        String url = buildUrl(EndPoints.SEARCH_USER_PROFILE, username);
         Request<Object> body = ServerConnection
             .buildSimpleRequest(HttpMethod.GET, url);
         ServerConnection.request(UserServer.class, body, callback, true, 0);
     }
-
 
     public static void retrievePendingSentFriendRequests(ServerCallback<Object, Friendship[]> callback) {
         String url = buildUrl(EndPoints.GET_PENDING_SENT_FRIEND_INVITES);

@@ -248,7 +248,7 @@ public class APITest {
 
     @Test
     public void addFriend() {
-        API.addFriend(new ServerCallback<Object, Friendship[]>() {
+        API.addFriend(new ServerCallback<Object, Friendship>() {
             @Override
             public void run() {
                 assertTrue(getResult() != null);

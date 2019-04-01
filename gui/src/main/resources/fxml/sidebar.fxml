@@ -165,7 +165,7 @@
                                 </LinearGradient>
                             </ripplerFill>
                         </JFXButton>
-                        <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="48.0" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" prefHeight="32.0" prefWidth="32.0" styleClass="smallbutton" text="">
+                        <JFXButton alignment="CENTER" onAction="#addfriendpage" contentDisplay="CENTER" layoutX="48.0" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" prefHeight="32.0" prefWidth="32.0" styleClass="smallbutton" text="">
                             <graphic>
                                 <ImageView fitHeight="16" fitWidth="16" pickOnBounds="true" preserveRatio="true">
                                     <image>

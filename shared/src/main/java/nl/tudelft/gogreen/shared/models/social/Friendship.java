@@ -1,12 +1,8 @@
 package nl.tudelft.gogreen.shared.models.social;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import nl.tudelft.gogreen.shared.LocalDateTimeDeserializer;
 
 import java.time.LocalDateTime;
@@ -18,6 +14,7 @@ import java.util.UUID;
 @Builder(toBuilder = true)
 @EqualsAndHashCode(exclude = {"friend"})
 @ToString(exclude = "friend")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Friendship {
     private UUID externalId;
     private SocialUser friend;
