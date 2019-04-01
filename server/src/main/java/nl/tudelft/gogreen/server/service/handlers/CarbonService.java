@@ -12,20 +12,24 @@ import nl.tudelft.gogreen.server.models.activity.config.InputType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Collection;
 
 @Service
 public class CarbonService implements ICarbonService {
+    private final Environment environment;
     private final Logger logger = LoggerFactory.getLogger(CarbonService.class);
 
     private final ObjectMapper mapper;
 
     @Autowired
-    public CarbonService(ObjectMapper mapper) {
+    public CarbonService(ObjectMapper mapper, Environment environment) {
         this.mapper = mapper;
+        this.environment = environment;
     }
 
     @Override
@@ -55,6 +59,13 @@ public class CarbonService implements ICarbonService {
 
         try {
             logger.info("Sending request to internal API: " + requestNode);
+
+            // Check if test env, skip connection
+            if (Arrays.asList(environment.getActiveProfiles()).contains("tests")) {
+                logger.info("Detecting test environment, skipping request to carbon API!");
+                return 20F;
+            }
+
             return this.getRemotePoints(requestNode, completedActivity).floatValue();
         } catch (UnirestException e) {
             logger.error("Could not fetch points from internal API, returning 20 points! Cause: " + e.getCause());
