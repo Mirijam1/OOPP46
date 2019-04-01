@@ -5,7 +5,6 @@ import nl.tudelft.gogreen.api.EndPoints;
 import nl.tudelft.gogreen.api.ServerCallback;
 import nl.tudelft.gogreen.api.servermodels.AchievedBadge;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
-import nl.tudelft.gogreen.api.servermodels.CompletedActivityServer;
 import nl.tudelft.gogreen.api.servermodels.User;
 import nl.tudelft.gogreen.shared.StatusCodes;
 import nl.tudelft.gogreen.shared.models.*;
@@ -144,7 +143,7 @@ public class APITest {
         API.attemptAuthentication(new ServerCallback<Object, BasicResponse>() {
             @Override
             public void run() {
-                API.retrieveCompletedActivities(new ServerCallback<Object, CompletedActivityServer[]>() {
+                API.retrieveCompletedActivities(new ServerCallback<Object, CompletedActivity[]>() {
                     @Override
                     public void run() {
                         assertTrue(getResult() != null);

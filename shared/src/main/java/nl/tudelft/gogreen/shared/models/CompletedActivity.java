@@ -22,6 +22,7 @@ import java.util.UUID;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CompletedActivity {
     private UUID externalId;
+    private String username;
     private Activity activity;
     private Float points;
     private @JsonDeserialize(using = LocalDateTimeDeserializer.class) LocalDateTime dateTimeCompleted;
