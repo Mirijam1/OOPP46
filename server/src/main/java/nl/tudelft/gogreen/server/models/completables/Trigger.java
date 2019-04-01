@@ -31,8 +31,8 @@ public enum Trigger {
     //  --[[ Activity: Use public transport instead of your car ]]--
     USED_PT_INSTEAD_OF_CAR,
 
-    // -----{ Category: Energy (2) ]-----
-    COMPLETED_ENERGY_ACTIVITY,
+    // -----{ Category: Utilities (2) ]-----
+    COMPLETED_UTILITIES_ACTIVITY,
 
     //  --[[ Activity: Lower the temperature of your home ]]--
     LOWERED_TEMP,

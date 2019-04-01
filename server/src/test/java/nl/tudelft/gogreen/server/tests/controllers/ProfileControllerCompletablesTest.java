@@ -67,6 +67,7 @@ public class ProfileControllerCompletablesTest {
         inserted = true;
         Collection<SubmittedActivityOption> options = new ArrayList<>();
         options.add(new SubmittedActivityOption(0, "1"));
+        options.add(new SubmittedActivityOption(7, "1"));
 
         SubmittedActivity submittedActivity = SubmittedActivity.builder().activityId(0).options(options).build();
         SubmitResponse submitResponse = profileService.submitActivity(submittedActivity, userRepository.findUserByUsername("gogreenuser"));

@@ -1,8 +1,3 @@
-#AnchorPane {
-    -fx-background-image: url('../img/submitbg.jpg');
-    -fx-background-size: cover;
-}
-
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
 }
@@ -13,5 +8,4 @@
 
 #GlobalScroll {
     -fx-background-color: transparent;
-
 }
