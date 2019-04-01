@@ -11,6 +11,7 @@ import java.io.IOException;
 @Getter
 @Setter
 public class LEDLights {
+    private Integer energy;
     private Integer bulbsReplaced;
     private String country;
     private String key;
@@ -21,7 +22,7 @@ public class LEDLights {
     }
 
     public LEDLights(@JsonProperty("energy") Integer bulbsReplaced) {
-        this.bulbsReplaced = bulbsReplaced;
+        this.energy = bulbsReplaced;
         this.country = "NL";
         this.key = "key";
     }

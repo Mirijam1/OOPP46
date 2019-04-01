@@ -132,7 +132,7 @@ public class APIservice {
         if (result.getStatusCode() != HttpStatus.OK) {
             return 20 * ledLights.getBulbsReplaced();
         }
-        double res = getPoints(result.getBody()) / 10;
+        double res = getPoints(result.getBody()) * 10;
         return res;
     }
 

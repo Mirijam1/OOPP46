@@ -15,7 +15,7 @@ public class Endpoints {
     public static final String energyActivity = "residences.json";
     public static final String electricityActivity = "electricity_uses.json";
     //MISC ENDPOINTS
-    public static final String lodgingActivity = "lodging.json";
+    public static final String lodgingActivity = "lodgings.json";
 
     //API ENDPOINTS
     public static final String Vegmeal = "/co-api/food/vegmeal";
