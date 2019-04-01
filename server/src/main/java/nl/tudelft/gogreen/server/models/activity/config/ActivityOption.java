@@ -40,6 +40,15 @@ public class ActivityOption {
     @Column(name = "INTERNAL_NAME", nullable = false)
     private String internalAPIName;
 
+    @Column(name = "MAX_VALUE", nullable = false)
+    private Integer maxValue;
+
+    @Column(name = "MIN_VALUE", nullable = false)
+    private Integer minValue;
+
+    @Column(name = "DEFAULT_VALUE", nullable = false)
+    private String defaultValue;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "INPUT_TYPE", nullable = false)
     private InputType inputType;

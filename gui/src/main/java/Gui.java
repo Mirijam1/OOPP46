@@ -19,24 +19,9 @@ public class Gui extends Application {
         close it in your IDE). To stop the threads just call API.closeAPI() when the program should exit.
          */
 
-//        API.attemptAuthentication(new ServerCallback<Object, BasicResponse>() {
-//            @Override
-//            public void run() {
-//                API.retrieveCompletedActivities(new ServerCallback<Object, CompletedActivity[]>() {
-//                    @Override
-//                    public void run() {
-//                        for (CompletedActivity activity : getResult()) {
-//                            System.out.print(activity.getExternalId() + " -> ");
-//                            System.out.println(activity.getDateTimeCompleted().getDayOfWeek().name());
-//                        }
-//                    }
-//                });
-//            }
-//        }, new User("admin", "password", 0F));
-
-
         // Continue start
         Parent root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
+        //  primaryStage.getIcons().add(new Image("img/logo.png"));
         primaryStage.getIcons().add(new Image("img/leaficon.png"));
         primaryStage.setTitle("GoGreen");
         primaryStage.setScene(new Scene(root, 600, 400));

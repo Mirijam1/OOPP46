@@ -11,7 +11,6 @@ import java.io.IOException;
 @Setter
 
 public class GreenHotel {
-    @JsonProperty("room_nights")
     private Integer nights;
     private String key;
 
@@ -20,7 +19,7 @@ public class GreenHotel {
         System.out.println(XtoJson(a));
     }
 
-    public GreenHotel(Integer nights) {
+    public GreenHotel(@JsonProperty("room_nights") Integer nights) {
         this.nights = nights;
         this.key = "key";
     }

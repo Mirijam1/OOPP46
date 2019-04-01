@@ -42,8 +42,8 @@ public class API {
         return locationUrl + endPoint;
     }
 
-    private static String buildUrl(String endPoint, String variable) {
-        return locationUrl + endPoint.replace("{var}", variable);
+    private static String buildUrl(String endPoint, Object variable) {
+        return locationUrl + endPoint.replace("{var}", variable + "");
     }
 
     /**
@@ -169,6 +169,12 @@ public class API {
             new BasicResponse("0.4"), 200);
     }
 
+    public static void retrieveActivityById(ServerCallback<Object, Activity> callback, Integer id) {
+        Request<Object> request = ServerConnection
+                .buildSimpleRequest(HttpMethod.GET, buildUrl(EndPoints.FIND_ACTIVITY_BY_ID, id));
+
+        ServerConnection.request(Activity.class, request, callback, true, -1);
+    }
 
     public static void createUser(ServerCallback<User, User> callback, User user) {
         //Check if this is correct

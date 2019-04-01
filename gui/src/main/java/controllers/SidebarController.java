@@ -12,6 +12,7 @@ import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class SidebarController {
 
@@ -150,7 +151,13 @@ public class SidebarController {
             isGamified = true;
             BACKGROUND = new Background(new BackgroundImage(new Image("img/gamifybg.jpg", 1280, 720, true, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
             subscene.setBackground(BACKGROUND);
-            Media sound = new Media(new File("gui/src/main/resources/media/C418 - Minecraft.mp3").toURI().toString());
+            URL url = getClass().getClassLoader().getResource("media/C418 - Minecraft.wav");
+
+            if (url == null) {
+                return;
+            }
+
+            Media sound = new Media(url.toExternalForm());
             mediaPlayer = new MediaPlayer(sound);
             mediaPlayer.play();
         } else {

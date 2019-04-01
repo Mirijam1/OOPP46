@@ -35,7 +35,7 @@ public class CarbonService implements ICarbonService {
 
         // Add date
         LocalDateTime dateTime = completedActivity.getDateTimeCompleted();
-        String formattedDate = String.format("%1$d-%2$02d-%3$d",
+        String formattedDate = String.format("%1$d-%2$02d-%3$02d",
                 dateTime.getYear(),
                 dateTime.getMonthValue(),
                 dateTime.getDayOfMonth());

@@ -131,7 +131,7 @@ public class APITest {
         API.retrieveActivityList(new ServerCallback<Object, Activity[]>() {
             @Override
             public void run() {
-                List<Activity> activitiesReal = Arrays.asList(new Activity(0, "Vegetarian Meal", "Eating a veg meal", null));
+                List<Activity> activitiesReal = Arrays.asList(new Activity(0, "Vegetarian Meal", "Eating a veg meal", null, null));
                 List<Activity> activities = Arrays.stream(getResult()).collect(Collectors.toList());
                 assertEquals(activitiesReal, activities);
             }
