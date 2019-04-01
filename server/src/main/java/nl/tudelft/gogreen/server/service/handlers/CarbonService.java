@@ -12,6 +12,7 @@ import nl.tudelft.gogreen.server.models.activity.config.InputType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,9 @@ public class CarbonService implements ICarbonService {
     private final Logger logger = LoggerFactory.getLogger(CarbonService.class);
 
     private final ObjectMapper mapper;
+
+    @Value("${co.api.url}")
+    private String coApiUrl;
 
     @Autowired
     public CarbonService(ObjectMapper mapper, Environment environment) {
@@ -76,9 +80,10 @@ public class CarbonService implements ICarbonService {
 
     @Override
     public Double getRemotePoints(JsonNode requestNode, CompletedActivity activity) throws UnirestException {
-        String url = String.format("http://localhost:8080/co-api/%1$s/%2$s",
+        String url = String.format("%3$sco-api/%1$s/%2$s",
                 activity.getActivity().getCategory().getCategoryName().toLowerCase(),
-                activity.getActivity().getInternalAPIName());
+                activity.getActivity().getInternalAPIName(),
+                coApiUrl);
         HttpResponse<Double> response = Unirest.post(url)
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
