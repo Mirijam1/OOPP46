@@ -26,10 +26,9 @@ public class Vegmeal {
     //Eat a veg meal
     public Vegmeal(@JsonProperty("date") String start_date, Integer amount, Integer cal) {
         this.start_date = start_date;
-        this.intensity = 4.36;
+        this.intensity = 4;
         this.end_date = LocalDate.parse(start_date).plusDays(1).toString();
         this.size = amount * cal;
-        this.vegetables_share += 0.1;
         this.key = "key";
     }
 

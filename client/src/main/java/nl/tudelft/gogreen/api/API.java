@@ -42,7 +42,7 @@ public class API {
         return locationUrl + endPoint;
     }
 
-    private static String buildUrl(String endPoint, Object variable) {
+    public static String buildUrl(String endPoint, Object variable) {
         return locationUrl + endPoint.replace("{var}", variable + "");
     }
 

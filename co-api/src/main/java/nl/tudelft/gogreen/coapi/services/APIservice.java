@@ -16,13 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import java.text.DecimalFormat;
 
 @RestController
 @RequestMapping("co-api")
@@ -45,7 +46,7 @@ public class APIservice {
         entity = new HttpEntity<>(Vegmeal.XtoJson(meal), headers);
         ResponseEntity<String> result = restTemplate.postForEntity(url, entity, String.class);
         if (result.getStatusCode() != HttpStatus.OK) {
-            return 20;
+            return 20 * meal.getSize()/300;
         }
         return getPoints(result.getBody());
     }
@@ -152,15 +153,21 @@ public class APIservice {
     @RequestMapping(value = "/misc/plant-trees", method = RequestMethod.POST)
     private double plantTrees(@RequestBody PlantTrees trees) throws Exception {
         double treeCO2 = trees.getTrees() * 21.77; //each tree consumes 48LBS online research
-        return treeCO2;
+        return round(treeCO2);
     }
 
 
     private double getPoints(String result) {
         JSONObject json = new JSONObject(result);
         Double val = json.getJSONObject("decisions").getJSONObject("carbon").getJSONObject("object").getDouble("value");
-        return val * 10;
+        Double points = round(val);
+        return points;
     }
 
-
+    private double round(Double val) {
+        DecimalFormat df = new DecimalFormat("0.00");
+        Double points = Double.valueOf(df.format(val));
+        System.out.println(points);
+        return points * 10;
+    }
 }

@@ -44,6 +44,18 @@ public class APITest {
 
 
     @Test
+    public void testcheckUrlTrue() {
+        API.prepareAPI(true);
+        assertEquals("https://localhost:8088/login", API.buildUrl(EndPoints.LOGIN));
+        API.closeAPI();
+    }
+
+    @Test
+    public void testcheckVarUrl() {
+        assertEquals("https://oopp.timanema.net/api/profile/activities/vegmeal", API.buildUrl(EndPoints.GET_SPECIFIC_ACTIVITY, "vegmeal"));
+    }
+
+    @Test
     public void testCheckRequestStatus() {
         API.requestStatus(new ServerCallback<Object, BasicResponse>() {
             @Override
@@ -140,18 +152,33 @@ public class APITest {
 
     @Test
     public void testRetrieveCompletedActivities() {
-        API.attemptAuthentication(new ServerCallback<Object, BasicResponse>() {
+        API.retrieveCompletedActivities(new ServerCallback<Object, CompletedActivity[]>() {
             @Override
             public void run() {
-                API.retrieveCompletedActivities(new ServerCallback<Object, CompletedActivity[]>() {
-                    @Override
-                    public void run() {
-                        assertTrue(getResult() != null);
-                    }
-                });
+                assertTrue(getRequest() != null);
+                assertTrue(getResult() != null);
             }
-        }, new User("admin", "password", (float) 0));
+        });
+    }
 
+    @Test
+    public void testRetrieveActivityById() {
+        API.retrieveActivityById(new ServerCallback<Object, Activity>() {
+            @Override
+            public void run() {
+                assertTrue(getResult() != null);
+            }
+        }, 1);
+    }
+
+    @Test
+    public void testRetrieveUserProfile() {
+        API.retrieveUserProfile(new ServerCallback<Object, UserServer>() {
+            @Override
+            public void run() {
+                assertTrue(getResult() != null);
+            }
+        });
     }
 
     @Test
@@ -197,21 +224,30 @@ public class APITest {
     }
 
     @Test
-    public void testRetrieveAchievedBadges() {
-
-
+    public void testRetrieveUser() {
         API.attemptAuthentication(new ServerCallback<Object, BasicResponse>() {
             @Override
             public void run() {
                 System.out.println("Logged in");
-                API.retrieveAchievedBadges(new ServerCallback<Object, AchievedBadge[]>() {
+                API.retrieveUser(new ServerCallback<Object, UserServer>() {
                     @Override
                     public void run() {
-                        assertTrue(getResult() != null);
+                        assertEquals("testuser", getResult().getUser());
                     }
                 });
             }
-        }, new User("admin", "password", 0F));
+        }, new User("testuser", "pass", 0F));
+    }
+
+    @Test
+    public void testRetrieveAchievedBadges() {
+        API.retrieveAchievedBadges(new ServerCallback<Object, AchievedBadge[]>() {
+            @Override
+            public void run() {
+                assertTrue(getResponse() != null);
+                assertTrue(getResult() != null);
+            }
+        });
     }
 
 
