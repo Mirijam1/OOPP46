@@ -11,7 +11,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Control;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -43,8 +47,6 @@ public class DashboardController {
 
     @FXML
     private Label userId;
-    @FXML
-    private Pane bgPaneSlider;
 
     @FXML
     private JFXComboBox<Category> categoryBox;
@@ -105,7 +107,6 @@ public class DashboardController {
         Platform.runLater(() -> {
             categoryBox.setConverter(new CatNameStringConverter());
             categoryBox.setItems(FXCollections.observableArrayList(catlist));
-            hideBgPaneSlider();
         });
     }
 
@@ -114,7 +115,6 @@ public class DashboardController {
         progress.setProgress(0.25);
         category.setText(categoryBox.getValue().getCategoryName());
         loadActivityList();
-        hideBgPaneSlider();
     }
 
     private void loadActivityList() {
@@ -239,10 +239,11 @@ public class DashboardController {
         });
     }
 
-    public void submitButton(ActionEvent event) throws Exception {
+    public void submitButton(ActionEvent event) {
         if (activityBox.getSelectionModel().isEmpty() || categoryBox.getSelectionModel().isEmpty()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/informationPopup.fxml"));
             try {
-                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/informationPopup.fxml"));
+                Parent root = loader.load();
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setTitle("information");
@@ -321,9 +322,4 @@ public class DashboardController {
             return null;
         }
     }
-
-    private void hideBgPaneSlider() {
-        bgPaneSlider.setVisible(false);
-    }
-
 }

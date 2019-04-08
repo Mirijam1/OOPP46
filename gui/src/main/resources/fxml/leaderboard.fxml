@@ -5,32 +5,31 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 <AnchorPane fx:id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/leaderboard.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LeaderboardController">
    <children>
-      <Text fx:id="leaderboardlabel" layoutX="501.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaderboard">
+      <Text layoutX="501.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaderboard">
          <font>
             <Font name="Microsoft YaHei Light" size="48.0" />
          </font>
       </Text>
-      <Text fx:id="friendslabel" layoutX="302.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Friends">
+      <Text layoutX="253.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You and Friends">
          <font>
             <Font name="Microsoft YaHei Light" size="24.0" />
          </font>
       </Text>
-      <Text fx:id="globallabel" layoutX="899.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Global">
+      <Text layoutX="899.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Global">
          <font>
             <Font name="Microsoft YaHei Light" size="24.0" />
          </font>
       </Text>
-      <ScrollPane fx:id="FriendsScroll" layoutX="91.0" layoutY="271.0" prefHeight="400.0" prefWidth="500.0">
+      <ScrollPane fx:id="friendsScroll" layoutX="91.0" layoutY="271.0" prefHeight="400.0" prefWidth="500.0">
          <content>
-            <VBox fx:id="FriendsVbox" prefHeight="400.0" prefWidth="498.0" />
+            <VBox fx:id="friendsVbox" prefHeight="400.0" prefWidth="498.0" />
          </content>
       </ScrollPane>
-      <ScrollPane fx:id="GlobalScroll" layoutX="684.0" layoutY="271.0" prefHeight="400.0" prefWidth="500.0">
+      <ScrollPane fx:id="globalScroll" layoutX="684.0" layoutY="271.0" prefHeight="400.0" prefWidth="500.0">
          <content>
-            <VBox fx:id="GlobalVbox" prefHeight="400.0" prefWidth="498.0" />
+            <VBox fx:id="globalVbox" prefHeight="400.0" prefWidth="498.0" />
          </content>
       </ScrollPane>
    </children>
