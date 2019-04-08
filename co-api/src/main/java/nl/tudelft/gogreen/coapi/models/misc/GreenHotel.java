@@ -1,5 +1,6 @@
-package nl.tudelft.gogreen.coapi.models.Misc;
+package nl.tudelft.gogreen.coapi.models.misc;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
@@ -11,21 +12,20 @@ import java.io.IOException;
 @Setter
 
 public class GreenHotel {
+    @JsonProperty("room_nights")
     private Integer nights;
     private String key;
 
-    public static void main(String[] args) throws Exception {
-        GreenHotel a = new GreenHotel(3);
-        System.out.println(XtoJson(a));
-    }
 
+
+    @JsonCreator
     public GreenHotel(@JsonProperty("room_nights") Integer nights) {
         this.nights = nights;
         this.key = "key";
     }
 
-    public static String XtoJson(GreenHotel a) throws IOException {
+    public static String jsonmaker(GreenHotel activity) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(a);
+        return mapper.writeValueAsString(activity);
     }
 }

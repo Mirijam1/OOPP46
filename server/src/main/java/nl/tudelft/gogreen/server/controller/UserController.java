@@ -42,6 +42,11 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
+    /**
+     * get user details.
+     * @param authentication authtoken for logged in user.
+     * @return
+     */
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class)
     @RequestMapping(
             path = "/",
@@ -57,6 +62,12 @@ public class UserController {
         return (User) authentication.getPrincipal();
     }
 
+    /**
+     * create user with params.
+     * @param user user details
+     * @param authentication authtoken
+     * @return
+     */
     @RequestMapping(
             path = "/create",
             method = RequestMethod.PUT,
@@ -91,6 +102,11 @@ public class UserController {
         return createdUser;
     }
 
+    /**
+     * delete user.
+     * @param authentication authtoken
+     * @return
+     */
     @RequestMapping(
             path = "/delete",
             method = RequestMethod.DELETE,
@@ -110,6 +126,12 @@ public class UserController {
         return Collections.singletonMap("response", "DELETED");
     }
 
+    /**
+     * update user.
+     * @param user user details.
+     * @param authentication authtoken.
+     * @return
+     */
     @RequestMapping(
             path = "/update",
             method = RequestMethod.PATCH,

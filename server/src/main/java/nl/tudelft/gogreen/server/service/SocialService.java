@@ -77,6 +77,12 @@ public class SocialService implements ISocialService {
         return activities;
     }
 
+    /**
+     * buildConnection between two users accepting friendship.
+     * @param profile current user
+     * @param target target user.
+     * @return
+     */
     @Transactional
     public FriendshipConnection buildConnection(UserProfile profile, UserProfile target) {
         FriendshipConnection connection = friendshipConnectionRepository
@@ -97,6 +103,12 @@ public class SocialService implements ISocialService {
         return acceptInvitation(connectionAsInvite);
     }
 
+    /**
+     *  buildNewConnection between two users.
+     * @param profile current user.
+     * @param target target user.
+     * @return
+     */
     @Transactional
     public FriendshipConnection buildNewConnection(UserProfile profile, UserProfile target) {
         FriendshipConnection connection = FriendshipConnection
@@ -112,6 +124,11 @@ public class SocialService implements ISocialService {
         return friendshipConnectionRepository.save(connection);
     }
 
+    /**
+     * accept user invitations.
+     * @param friendshipConnection connection betwee two users.
+     * @return
+     */
     @Transactional
     public FriendshipConnection acceptInvitation(FriendshipConnection friendshipConnection) {
         friendshipConnection.setAccepted(true);

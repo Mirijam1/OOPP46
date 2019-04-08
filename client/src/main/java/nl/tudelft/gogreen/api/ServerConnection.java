@@ -71,7 +71,9 @@ public class ServerConnection {
      * @param request  {@link Request} to make
      * @param callback {@link ServerCallback} which will be ran after the request returns
      * @param <T>      Type of the object to map to
+     * @param <I>      Type of the object to map to
      */
+
     protected static <T, I> void request(@NonNull Class<I> clazz,
                                          @NonNull Request<T> request,
                                          @NonNull ServerCallback<T, I> callback) {
@@ -153,7 +155,8 @@ public class ServerConnection {
      * @param ttl                Time to live of the cache in seconds, where -1 means 'until the program closes'
      * @param <T>                Type of the object to map to
      * @param <I>                Type of the object to map to
-     * @param response           Object that will be put into the {@link HttpResponse}, as if it was returned from the server.
+     * @param response           Object that will be put into the
+     * {@link HttpResponse}, as if it was returned from the server.
      * @param responseStatusCode Status code that will be put into the {@link HttpResponse},
      *                           as if it was returned from the server.
      *                           Keep in mind that this parameter will not affect the status text field.
@@ -166,7 +169,8 @@ public class ServerConnection {
                                              @NonNull I response,
                                              int responseStatusCode) {
         // Replace with proper logger
-        System.out.println(Thread.currentThread() + " => Creating mock request for '" + clazz.getName() + "' with settings ["
+        System.out.println(Thread.currentThread() + " => Creating mock request for '"
+                + clazz.getName() + "' with settings ["
                 + "useCache=" + useCache
                 + ", ttl=" + ttl
                 + ", request=" + request

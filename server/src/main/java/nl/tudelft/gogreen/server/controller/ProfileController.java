@@ -56,6 +56,12 @@ public class ProfileController {
         return profileService.submitActivity(submittedActivity, (User) authentication.getPrincipal());
     }
 
+    /**
+     * return user's completed activities based on auth token.
+     * @param authentication - auth token
+     * @param limit - limit entries
+     * @return
+     */
     @RequestMapping(path = "/activities", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class)
@@ -71,6 +77,12 @@ public class ProfileController {
         return profileService.getCompletedActivities((User) authentication.getPrincipal(), limit);
     }
 
+    /**
+     * get Completed Activity Detailed.
+     * @param externalId - externalID
+     * @param authentication - authToken
+     * @return
+     */
     @RequestMapping(path = "/activities/{externalId}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)

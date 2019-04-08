@@ -41,6 +41,18 @@ public class ProfileService implements IProfileService {
     private final FriendshipConnectionRepository friendshipConnectionRepository;
     private final ProgressingAchievementRepository progressingAchievementRepository;
 
+    /**
+     * instantiates profileService.
+     * @param profileRepository profileRepository
+     * @param activityService activityService
+     * @param completedActivityRepository completedActivityRepository
+     * @param achievementCheckService achievementCheckService
+     * @param badgeCheckService badgeCheckService
+     * @param achievedBadgeRepository achievedBadgeRepository
+     * @param friendshipConnectionRepository friendshipConnectionRepository
+     * @param progressingAchievementRepository progressAchievementRepository
+     */
+
     @Autowired
     public ProfileService(ProfileRepository profileRepository,
                           IActivityService activityService,

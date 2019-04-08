@@ -116,6 +116,7 @@ public class APITest {
 
     @Test
     public void testSubmitActivity() {
+        testAttemptAdminAuthentication();
         API.submitActivity(new ServerCallback<SubmittedActivity, SubmitResponse>() {
             @Override
             public void run() {
@@ -127,10 +128,11 @@ public class APITest {
 
     @Test
     public void testRetrieveCategoryList() {
+        testAttemptAdminAuthentication();
         API.retrieveCategoryList(new ServerCallback<Object, Category[]>() {
             @Override
             public void run() {
-                List<Category> categoriesReal = Arrays.asList(new Category("1", "Food", "Food items"), new Category("2", "Transport", "Transportation"), new Category("3", "Energy", "Energy items"), new Category("4", "Misc", "Other items"));
+                List<Category> categoriesReal = Arrays.asList(new Category("1", "food", "food items"), new Category("2", "Transport", "transportation"), new Category("3", "Energy", "Energy items"), new Category("4", "misc", "Other items"));
                 List<Category> categories = Arrays.stream(getResult()).collect(Collectors.toList());
                 assertEquals(categoriesReal, categories);
             }
@@ -139,6 +141,7 @@ public class APITest {
 
     @Test
     public void testRetrieveActivityList() {
+        testAttemptAdminAuthentication();
         API.retrieveActivityList(new ServerCallback<Object, Activity[]>() {
             @Override
             public void run() {
@@ -146,11 +149,12 @@ public class APITest {
                 List<Activity> activities = Arrays.stream(getResult()).collect(Collectors.toList());
                 assertEquals(activitiesReal, activities);
             }
-        }, "Food");
+        }, "food");
     }
 
     @Test
     public void testRetrieveCompletedActivities() {
+        testAttemptAdminAuthentication();
         API.retrieveCompletedActivities(new ServerCallback<Object, CompletedActivity[]>() {
             @Override
             public void run() {
@@ -162,6 +166,7 @@ public class APITest {
 
     @Test
     public void testRetrieveActivityById() {
+        testAttemptAdminAuthentication();
         API.retrieveActivityById(new ServerCallback<Object, Activity>() {
             @Override
             public void run() {
@@ -172,6 +177,7 @@ public class APITest {
 
     @Test
     public void testRetrieveUserProfile() {
+        testAttemptAdminAuthentication();
         API.retrieveUserProfile(new ServerCallback<Object, UserServer>() {
             @Override
             public void run() {
@@ -232,6 +238,7 @@ public class APITest {
                     @Override
                     public void run() {
                         assertEquals("testuser", getResult().getUser());
+                        assertEquals("0F",getResult().getPoints());
                     }
                 });
             }
@@ -240,6 +247,7 @@ public class APITest {
 
     @Test
     public void testRetrieveAchievedBadges() {
+        testAttemptAdminAuthentication();
         API.retrieveAchievedBadges(new ServerCallback<Object, AchievedBadge[]>() {
             @Override
             public void run() {
@@ -252,6 +260,7 @@ public class APITest {
 
     @Test
     public void testRetrieveGlobalLeaderboard() {
+        testAttemptAdminAuthentication();
         API.retrieveGlobalLeaderboard(new ServerCallback<Object, UserServer[]>() {
             @Override
             public void run() {
@@ -262,6 +271,7 @@ public class APITest {
 
     @Test
     public void testRetrieveFriendsLeaderboard() {
+        testAttemptAdminAuthentication();
         API.retrieveFriendsLeaderboard(new ServerCallback<Object, UserServer[]>() {
             @Override
             public void run() {
@@ -272,6 +282,7 @@ public class APITest {
 
     @Test
     public void retrieveFriends() {
+        testAttemptAdminAuthentication();
         API.retrieveFriends(new ServerCallback<Object, Friendship[]>() {
             @Override
             public void run() {
@@ -282,6 +293,7 @@ public class APITest {
 
     @Test
     public void addFriend() {
+        testAttemptAdminAuthentication();
         API.addFriend(new ServerCallback<Object, Friendship>() {
             @Override
             public void run() {
@@ -292,6 +304,7 @@ public class APITest {
 
     @Test
     public void retrievePendingReceivedFriendRequests() {
+        testAttemptAdminAuthentication();
         API.retrievePendingReceivedFriendRequests(new ServerCallback<Object, Friendship[]>() {
             @Override
             public void run() {
@@ -302,6 +315,7 @@ public class APITest {
 
     @Test
     public void searchUserProfiles() {
+        testAttemptAdminAuthentication();
         API.searchUserProfiles(new ServerCallback<Object, UserServer>() {
             @Override
             public void run() {
@@ -312,6 +326,7 @@ public class APITest {
 
     @Test
     public void retrievePendingSentFriendRequests() {
+        testAttemptAdminAuthentication();
         API.retrievePendingSentFriendRequests(new ServerCallback<Object, Friendship[]>() {
             @Override
             public void run() {
@@ -322,6 +337,7 @@ public class APITest {
 
     @Test
     public void retrieveFriendActivities() {
+        testAttemptAdminAuthentication();
         API.retrieveFriendActivities(new ServerCallback<Object, CompletedActivity[]>() {
             @Override
             public void run() {

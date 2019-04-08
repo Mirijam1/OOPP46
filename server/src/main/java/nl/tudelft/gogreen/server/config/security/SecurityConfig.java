@@ -30,6 +30,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final AuthSuccessHandler authSuccessHandler;
     private final AuthFailureHandler authFailureHandler;
 
+    /**
+     * instantiates SecurityConfig.
+     * @param userDetailsService userDetailsService
+     * @param dataSource dataSource
+     * @param passwordEncoder passwordEncoder
+     * @param entryPoint entryPoint
+     * @param entryDenied entryDenied
+     * @param authSuccessHandler authSuccessHandler
+     * @param authFailureHandler authFailureHandler
+     */
     @Autowired
     public SecurityConfig(UserDetailsService userDetailsService,
                           DataSource dataSource,

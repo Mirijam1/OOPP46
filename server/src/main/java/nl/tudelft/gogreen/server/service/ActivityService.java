@@ -32,6 +32,13 @@ public class ActivityService implements IActivityService {
     private final ICategoryService categoryService;
     private final ICarbonService carbonService;
 
+    /**
+     * instantiates ActivityService as an Autowired Bean.
+     * @param activityRepository - instance of activityRepository
+     * @param categoryService - instance of categoryService
+     * @param activityOptionRepository - instance of activityOptionRepository
+     * @param carbonService - instance of carbonService
+     */
     @Autowired
     public ActivityService(ActivityRepository activityRepository,
                            ICategoryService categoryService,

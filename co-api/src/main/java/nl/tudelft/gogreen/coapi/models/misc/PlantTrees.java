@@ -1,4 +1,4 @@
-package nl.tudelft.gogreen.coapi.models.Misc;
+package nl.tudelft.gogreen.coapi.models.misc;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,8 +14,6 @@ public class PlantTrees {
 
     private String key;
 
-    public static void main(String[] args) throws Exception {
-    }
 
     @JsonCreator
     public PlantTrees(Integer trees) {
@@ -23,8 +21,8 @@ public class PlantTrees {
         this.key = "key";
     }
 
-    public static String XtoJson(PlantTrees a) throws IOException {
+    public static String jsonmaker(PlantTrees activity) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(a);
+        return mapper.writeValueAsString(activity);
     }
 }

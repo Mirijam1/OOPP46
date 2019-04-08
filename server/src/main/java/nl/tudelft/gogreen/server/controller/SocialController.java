@@ -2,7 +2,6 @@ package nl.tudelft.gogreen.server.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import nl.tudelft.gogreen.server.exceptions.BadRequestException;
-import nl.tudelft.gogreen.server.exceptions.InternalServerError;
 import nl.tudelft.gogreen.server.exceptions.NotFoundException;
 import nl.tudelft.gogreen.server.exceptions.UnauthorizedException;
 import nl.tudelft.gogreen.server.exceptions.handling.ServerError;
@@ -14,7 +13,6 @@ import nl.tudelft.gogreen.server.repository.ProfileRepository;
 import nl.tudelft.gogreen.server.repository.UserRepository;
 import nl.tudelft.gogreen.server.service.IProfileService;
 import nl.tudelft.gogreen.server.service.ISocialService;
-import nl.tudelft.gogreen.server.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,7 +26,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.print.attribute.standard.Media;
 import java.util.Collection;
 
 @RestController
@@ -39,6 +36,13 @@ public class SocialController {
     private final ISocialService socialService;
     private final IProfileService profileService;
 
+    /**
+     * instantiates SocialController.
+     * @param socialService socialService
+     * @param userRepository userRepository
+     * @param profileRepository profileRepository
+     * @param profileService profileService
+     */
     @Autowired
     public SocialController(ISocialService socialService,
                             UserRepository userRepository,
@@ -50,6 +54,12 @@ public class SocialController {
         this.profileService = profileService;
     }
 
+    /**
+     * method to add friends server-side.
+     * @param name username of friend to add.
+     * @param authentication authtoken of logged in user.
+     * @return
+     */
     @RequestMapping(path = "/friends/add/{name}",
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -74,6 +84,12 @@ public class SocialController {
                 profileRepository.findUserProfileByUserId(target.getId()));
     }
 
+    /**
+     * delete friend.
+     * @param name username of friend to delete
+     * @param authentication authtoken of logged in user.
+     * @return
+     */
     @RequestMapping(path = "/friends/delete/{name}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -98,6 +114,12 @@ public class SocialController {
                 profileRepository.findUserProfileByUserId(target.getId()));
     }
 
+    /**
+     * get friends activities.
+     *
+     * @param authentication authtoken of logged in user.
+     * @return
+     */
     @RequestMapping(path = "/friends/activities",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -127,6 +149,11 @@ public class SocialController {
                 .findUserProfileByUserId(((User) authentication.getPrincipal()).getId()), limit, self);
     }
 
+    /**
+     * get user from repository.
+     * @param username username of user to find
+     * @return
+     */
     @RequestMapping(path = "/user/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class)
