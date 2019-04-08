@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
@@ -137,11 +138,11 @@
                         <Insets left="2.0" top="2.0" />
                     </VBox.margin>
                     <children>
-                        <!--<Label fx:id="userLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="63.0" prefHeight="19.0" prefWidth="96.0" text="&lt;User&gt;" textAlignment="CENTER" textFill="WHITE">-->
-                            <!--<font>-->
-                                <!--<Font size="13.0" />-->
-                            <!--</font>-->
-                        <!--</Label>-->
+                        <Label fx:id="userLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="63.0" prefHeight="19.0" prefWidth="96.0" text="&lt;User&gt;" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Label>
                         <Text fill="WHITE" layoutX="11.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GoGreen">
                             <font>
                                 <Font name="Microsoft YaHei Light" size="18.0" />
@@ -165,7 +166,7 @@
                                 </LinearGradient>
                             </ripplerFill>
                         </JFXButton>
-                        <JFXButton alignment="CENTER" onAction="#addfriendpage" contentDisplay="CENTER" layoutX="48.0" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" prefHeight="32.0" prefWidth="32.0" styleClass="smallbutton" text="">
+                        <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="48.0" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" onAction="#addfriendpage" prefHeight="32.0" prefWidth="32.0" styleClass="smallbutton" text="">
                             <graphic>
                                 <ImageView fitHeight="16" fitWidth="16" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -207,6 +208,9 @@
             </stylesheets>
         </VBox>
         <Pane fx:id="subscene" layoutX="100.0" prefHeight="720.0" prefWidth="1280.0" />
+        <Pane layoutX="100.0" layoutY="720.0">
+            <fx:include fx:id="addFriendPane" source="addfriend.fxml"/>
+        </Pane>
             <!--<children>-->
                 <!--&lt;!&ndash;<fx:include fx:id="subscene" source="trackerScreen.fxml" />&ndash;&gt;-->
                 <!--&lt;!&ndash;<ImageView fitHeight="49.0" fitWidth="44.0" layoutX="1224.0" layoutY="22.0" onMouseClicked="#gotoaccount" pickOnBounds="true" preserveRatio="true">&ndash;&gt;-->

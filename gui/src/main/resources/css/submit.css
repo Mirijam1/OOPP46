@@ -1,8 +1,10 @@
 /* Set background */
+/*
 #AnchorPane {
-    -fx-background-image: url('../img/firewatch.jpg');
-    -fx-background-size: cover;
+     -fx-background-image: url('../img/firewatch.jpg');
+     -fx-background-size: cover;
 }
+*/
 
 /* Styling the combo box default text*/
 .jfx-combo-box {

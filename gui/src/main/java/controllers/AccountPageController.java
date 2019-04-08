@@ -126,6 +126,7 @@ public class AccountPageController {
         }
         userTitle.setText(user.getName() + "'s Account");
         userForm.setPromptText(user.getName());
+        SidebarController.controller.userLabel.setText(user.getName());
         co2Savings.setText(points.toString() + pointText);
     }
 

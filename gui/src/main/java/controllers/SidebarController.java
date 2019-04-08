@@ -1,21 +1,31 @@
 package controllers;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
+import nl.tudelft.gogreen.api.API;
+import nl.tudelft.gogreen.api.ServerCallback;
+import nl.tudelft.gogreen.shared.models.UserServer;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
-public class SidebarController {
+public class SidebarController implements Initializable {
 
     @FXML
     private AnchorPane anchor;
@@ -41,73 +51,105 @@ public class SidebarController {
     @FXML
     private JFXButton logout;
 
-//    @FXML
-//    public Label userLabel;
+    @FXML
+    private Pane addFriendPane;
+
+    @FXML
+    public Label userLabel;
+
+    protected static SidebarController controller;
 
     @FXML
     private Pane subscene;
 
     private Background BACKGROUND = new Background(new BackgroundImage(new Image("img/gogreenbg.jpg", 1280, 720, true, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
 
-//    private User user;
-
     private boolean isGamified = false;
     private boolean isPaused = false;
+    private boolean isExtended = false;
     private MediaPlayer mediaPlayer;
 
     @FXML
-    public void initialize() throws IOException {
-//        API.retrieveUserProfile(new ServerCallback<Object, UserServer>() {
-//            @Override
-//            public void run() {
-//                if (getStatusCode() != 200) {
-//                    System.out.println("Error");
-//                } else {
-//                    user = getResult().getUser();
-//                    Platform.runLater(() -> userLabel.setText(user.getUsername()));
-//                }
-//            }
-//        });
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/trackerScreen.fxml"));
+    public void initialize(URL location, ResourceBundle resources) {
+        API.retrieveUserProfile(new ServerCallback<Object, UserServer>() {
+            @Override
+            public void run() {
+                if (getStatusCode() != 200) {
+                    System.out.println("Error");
+                } else {
+                    Platform.runLater(() -> userLabel.setText(getResult().getUser().getUsername()));
+                }
+            }
+        });
 
+        AnchorPane pane = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/trackerScreen.fxml"));
+        try {
+            pane = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         subscene.getChildren().setAll(pane);
         subscene.setBackground(BACKGROUND);
     }
 
     @FXML
     void overviewpage(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/trackerScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/trackerScreen.fxml"));
+        AnchorPane pane = loader.load();
         subscene.getChildren().setAll(pane);
     }
 
     @FXML
     void newactivitypage(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/dashboard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/dashboard.fxml"));
+        AnchorPane pane = loader.load();
         subscene.getChildren().setAll(pane);
     }
 
     @FXML
     void leaderboardpage(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/leaderboard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/leaderboard.fxml"));
+        AnchorPane pane = loader.load();
         subscene.getChildren().setAll(pane);
     }
 
     @FXML
     void friendspage(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/friends.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/friends.fxml"));
+        AnchorPane pane = loader.load();
         subscene.getChildren().setAll(pane);
     }
 
     @FXML
     void accountpage(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/accountPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/accountPage.fxml"));
+        AnchorPane pane = loader.load();
         subscene.getChildren().setAll(pane);
     }
 
     @FXML
-    void addfriendpage(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/addfriend.fxml"));
-        subscene.getChildren().setAll(pane);
+    void addfriendpage(ActionEvent event) {
+        if (!isExtended) {
+            addFriendPane.translateYProperty().set(0);
+
+            Timeline timeline = new Timeline();
+            KeyValue kv = new KeyValue(addFriendPane.translateYProperty(), -addFriendPane.getPrefHeight(), Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.millis(200), kv);
+            timeline.getKeyFrames().add(kf);
+            timeline.play();
+
+            isExtended = true;
+        } else {
+            addFriendPane.translateYProperty().set(-addFriendPane.getPrefHeight());
+
+            Timeline timeline = new Timeline();
+            KeyValue kv = new KeyValue(addFriendPane.translateYProperty(), 0, Interpolator.EASE_OUT);
+            KeyFrame kf = new KeyFrame(Duration.millis(200), kv);
+            timeline.getKeyFrames().add(kf);
+            timeline.play();
+            isExtended = false;
+        }
     }
 
     @FXML

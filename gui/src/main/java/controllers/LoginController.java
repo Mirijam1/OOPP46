@@ -42,9 +42,8 @@ public class LoginController {
     @FXML
     private Label usernamemessage;
 
-
     @FXML
-    void login(ActionEvent event) throws Exception {
+    void login(ActionEvent event) {
         passfield.setStyle("-fx-border-color: none ; -fx-border-width: 2px ;");
         userfield.setStyle("-fx-border-color: none ; -fx-border-width: 2px ;");
         usernamemessage.setText("");
@@ -86,10 +85,13 @@ public class LoginController {
                             @Override
                             public void run() {
                                 Parent root = null;
+                                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/sidebar.fxml"));
+
                                 // get a handle to the stage
                                 Stage current = (Stage) loginbtn.getScene().getWindow();
                                 try {
-                                    root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/sidebar.fxml"));
+                                    root = loader.load();
+
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -100,31 +102,27 @@ public class LoginController {
                                 stage.show();
 
                                 // do what you have to do
+                                SidebarController.controller = loader.getController();
+                                current.close();
+
                                 stage.setOnCloseRequest(e -> System.exit(0));
                             }
                         });
                     } else {
                         System.out.println("Invalid username or password");
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                pwdmessage.setText("Invalid username or password");
-
-                            }
-                        });
+                        Platform.runLater(() -> pwdmessage.setText("Invalid username or password"));
                     }
                 }
             }, new User(userfield.getText(), passfield.getText()));
         }
     }
 
-    public void changeStyleError(TextField field) {
+    private void changeStyleError(TextField field) {
         field.setStyle("-fx-border-color: red ; -fx-border-width: 2px ; -fx-border-radius: 5px;");
     }
 
-
     @FXML
-    public void handle(KeyEvent event) throws Exception {
+    public void handle(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             ActionEvent ae = new ActionEvent();
             login(ae);
@@ -132,11 +130,12 @@ public class LoginController {
     }
 
     @FXML
-    void signUp(ActionEvent event) throws Exception {
+    void signUp(ActionEvent event) {
         try {
             Parent root;
             Stage current = (Stage) loginbtn.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/SignUpScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/SignUpScreen.fxml"));
+            root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("GOGREEN - Sign Up");
             stage.getIcons().add(new Image("img/leaficon.png"));
@@ -148,8 +147,6 @@ public class LoginController {
             e.printStackTrace();
         }
     }
-
-
 }
 
 

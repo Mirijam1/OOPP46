@@ -6,7 +6,8 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import nl.tudelft.gogreen.api.API;
@@ -26,7 +27,7 @@ public class AddFriendController {
     private JFXTextField searchField;
 
     @FXML
-    private Button searchResult;
+    private ScrollPane addFriendScroll;
 
     @FXML
     private VBox addFriendVBox;
@@ -36,6 +37,7 @@ public class AddFriendController {
 
     @FXML
     void exit(ActionEvent event) {
+        SidebarController.controller.addfriendpage(new ActionEvent());
     }
 
     @FXML
@@ -54,7 +56,7 @@ public class AddFriendController {
                     System.out.println(getStatusCode());
                 } else {
                     System.out.println(getResult());
-                    Platform.runLater(() -> createButton(getResult()));
+                    Platform.runLater(() -> createEntry(getResult()));
                 }
             }
         }, searchUserName);
@@ -62,9 +64,31 @@ public class AddFriendController {
 //        searchField.setText("");
     }
 
-    private void createButton(UserServer user) {
-        searchResult.setText(user.getUser().getUsername());
-        searchResult.setOnAction(addFriend(user));
+    private void createEntry(UserServer userServer) {
+        int entryHeight = 92;
+        addFriendScroll.setFitToWidth(true);
+        addFriendVBox.setSpacing(6);
+        addFriendVBox.setTranslateX(3);
+        addFriendVBox.setTranslateY(2);
+
+        Label userLabel = new Label(userServer.getUser().getName());
+        userLabel.setTranslateX(30);
+        userLabel.setTranslateY(14);
+
+        JFXButton addButton = new JFXButton("Add");
+        addButton.setStyle("-fx-background-color: #228B22; -fx-text-fill: #FFFFFF;");
+        addButton.setOnAction(addFriend(userServer));
+        addButton.setTranslateX(215);
+        addButton.setTranslateY(9);
+
+        Pane entryPane = new Pane();
+        entryPane.setPrefSize(292, 50);
+        entryPane.setMaxWidth(292);
+        entryPane.setStyle("-fx-background-radius: 25; -fx-background-color: rgba(0, 0, 0, 0.50);");
+
+        entryPane.getChildren().addAll(userLabel, addButton);
+        addFriendVBox.setPrefHeight((entryHeight + 6));
+        addFriendVBox.getChildren().add(entryPane);
     }
 
     private EventHandler<ActionEvent> addFriend(UserServer user) {

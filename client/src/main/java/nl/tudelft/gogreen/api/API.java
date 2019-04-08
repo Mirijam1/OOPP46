@@ -191,7 +191,7 @@ public class API {
         String url = buildUrl(EndPoints.UPDATE_USER);
 
         Request<User> body = ServerConnection
-            .buildRequestWithBody(HttpMethod.PUT, url, user);
+            .buildRequestWithBody(HttpMethod.PATCH, url, user);
 
         ServerConnection.request(User.class, body, callback);
     }
@@ -285,14 +285,5 @@ public class API {
     }
 
 
-
-
-//    public static void deleteUser(ServerCallback<Object, Map<String, String>> callback) {
-//        String url = buildUrl(EndPoints.DELETE);
-//
-//        Request<Object> body = ServerConnection.buildSimpleRequest(HttpMethod.DELETE, url);
-//
-//        ServerConnection.request(Map.class, body, callback);
-//    }
 }
 

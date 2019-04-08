@@ -6,40 +6,27 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
+import javafx.scene.layout.VBox;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
 import nl.tudelft.gogreen.shared.models.UserServer;
-import javafx.scene.layout.VBox;
 
 public class LeaderboardController {
-
 
     @FXML
     private AnchorPane AnchorPane;
 
     @FXML
-    private ScrollPane FriendsScroll;
+    private ScrollPane friendsScroll;
 
     @FXML
-    private VBox FriendsVbox;
+    private VBox friendsVbox;
 
     @FXML
-    private ScrollPane GlobalScroll;
+    private ScrollPane globalScroll;
 
     @FXML
-    private VBox GlobalVbox;
-
-    @FXML
-    private Text leaderboardlabel;
-
-    @FXML
-    private Text friendslabel;
-
-    @FXML
-    private Text globallabel;
-
+    private VBox globalVbox;
 
     @FXML
     public void initialize() {
@@ -57,85 +44,69 @@ public class LeaderboardController {
         });
     }
 
-    public void initGlobalLeaderboard(UserServer[] users) {
-
-        GlobalScroll.setFitToWidth(true);
-        GlobalVbox.setSpacing(6);
-        GlobalVbox.setTranslateX(3);
-        GlobalVbox.setTranslateY(2);
+    private void initGlobalLeaderboard(UserServer[] users) {
+        globalScroll.setFitToWidth(true);
+        globalVbox.setSpacing(6);
+        globalVbox.setTranslateX(3);
+        globalVbox.setTranslateY(2);
 
         for (int i = 0; i < users.length; i++) {
             if (users[i].getUser().getName() != null) {
                 Label user = new Label(users[i].getUser().getName());
-                Label points = new Label(users[i].getPoints().toString());
-                points.setTranslateX(400.00);
-                points.setTranslateY(20.00);
+                user.setTranslateX(60);
                 user.setTranslateY(20);
 
-                user.setTranslateX(60);
-                Pane UserEntry = new Pane();
+                Label points = new Label(users[i].getPoints() + " Points");
+                points.setTranslateX(350.00);
+                points.setTranslateY(20.00);
 
+                Label rank = new Label((i+1) + ".");
+                rank.setTranslateY(20);
+                rank.setTranslateX(30);
+
+                Pane UserEntry = new Pane();
                 UserEntry.setPrefSize(492, 60);
                 UserEntry.setMaxWidth(492);
                 UserEntry.setMaxHeight(60);
+                UserEntry.setStyle("-fx-background-radius: 30; -fx-background-color: rgba(0, 0, 0, 0.50);");
 
-
-                UserEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: rgba(0, 0, 0, 0.62);");
-
-                GlobalVbox.setPrefHeight(66 * (i + 1));
-
-                Label rank = new Label(Integer.toString(i+1)+".");
-                rank.setTranslateY(20);
-                rank.setTranslateX(30);
                 UserEntry.getChildren().addAll(rank, user, points);
-
-                GlobalVbox.getChildren().add(UserEntry);
+                globalVbox.setPrefHeight(66 * (i + 1));
+                globalVbox.getChildren().add(UserEntry);
             }
-            if (i>10) break;
         }
     }
 
-
-    public void initFriendsLeaderboard(UserServer[] friends) {
-
-        FriendsScroll.setFitToWidth(true);
-        FriendsVbox.setSpacing(6);
-        FriendsVbox.setTranslateX(3);
-        FriendsVbox.setTranslateY(2);
-
+    private void initFriendsLeaderboard(UserServer[] friends) {
+        friendsScroll.setFitToWidth(true);
+        friendsVbox.setSpacing(6);
+        friendsVbox.setTranslateX(3);
+        friendsVbox.setTranslateY(2);
 
         for (int i = 0; i < friends.length; i++) {
             if (friends[i].getUser().getName() != null) {
                 Label user = new Label(friends[i].getUser().getName());
-                Label points = new Label(friends[i].getPoints().toString());
-
-                points.setTranslateX(400.00);
-                points.setTranslateY(20.00);
+                user.setTranslateX(60);
                 user.setTranslateY(20);
 
-                user.setTranslateX(60);
-                Pane FriendEntry = new Pane();
+                Label points = new Label(friends[i].getPoints() + " Points");
+                points.setTranslateX(350.00);
+                points.setTranslateY(20.00);
 
-                FriendEntry.setPrefSize(492, 60);
-                FriendEntry.setMaxWidth(492);
-                FriendEntry.setMaxHeight(60);
-
-
-                FriendEntry.setStyle("-fx-background-radius: 30 30 30 30; -fx-background-color: rgba(0, 0, 0, 0.62);"
-                        + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0); -fx-text-fill: #FFFFFF;");
-
-                FriendsVbox.setPrefHeight(66 * (i + 1));
-
-                Label rank = new Label(Integer.toString(i+1)+".");
+                Label rank = new Label((i+1)+".");
                 rank.setTranslateY(20);
                 rank.setTranslateX(30);
-                FriendEntry.getChildren().addAll(rank, user, points);
 
-                FriendsVbox.getChildren().add(FriendEntry);
+                Pane friendEntry = new Pane();
+                friendEntry.setPrefSize(492, 60);
+                friendEntry.setMaxWidth(492);
+                friendEntry.setMaxHeight(60);
+                friendEntry.setStyle("-fx-background-radius: 30; -fx-background-color: rgba(0, 0, 0, 0.50);");
+
+                friendEntry.getChildren().addAll(rank, user, points);
+                friendsVbox.setPrefHeight(66 * (i + 1));
+                friendsVbox.getChildren().add(friendEntry);
             }
         }
     }
-
-
-
 }
