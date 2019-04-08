@@ -42,6 +42,8 @@ public class UserDetailService implements UserDetailsService, IUserService {
      * @param passwordEncoder passwordEncoder.
      * @param authorityRepository authorityRepository.
      * @param profileService profileService.
+     * @param verificationTokenService verificationTokenService.
+     * @param mailService mailService.
      */
     @Autowired
     public UserDetailService(UserRepository userRepository,

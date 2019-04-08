@@ -41,7 +41,7 @@ public class ProfileController {
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class)
     public @ResponseBody
-    UserProfile getUserProfile(Authentication authentication) {
+        UserProfile getUserProfile(Authentication authentication) {
         return profileService.getUserProfile((User) authentication.getPrincipal());
     }
 
@@ -51,7 +51,7 @@ public class ProfileController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody
-    SubmitResponse submitActivity(@RequestBody SubmittedActivity submittedActivity,
+        SubmitResponse submitActivity(@RequestBody SubmittedActivity submittedActivity,
                                   Authentication authentication) {
         return profileService.submitActivity(submittedActivity, (User) authentication.getPrincipal());
     }
@@ -60,13 +60,13 @@ public class ProfileController {
      * return user's completed activities based on auth token.
      * @param authentication - auth token
      * @param limit - limit entries
-     * @return
+     * @return Collection of CompletedActivity
      */
     @RequestMapping(path = "/activities", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class)
     public @ResponseBody
-    Collection<CompletedActivity> getCompletedActivities(Authentication authentication,
+        Collection<CompletedActivity> getCompletedActivities(Authentication authentication,
                                                          @RequestParam(value = "limit",
                                                                  required = false)
                                                                  Integer limit) {
@@ -81,7 +81,7 @@ public class ProfileController {
      * get Completed Activity Detailed.
      * @param externalId - externalID
      * @param authentication - authToken
-     * @return
+     * @return CompletedActivity
      */
     @RequestMapping(path = "/activities/{externalId}",
             method = RequestMethod.GET,
@@ -89,7 +89,7 @@ public class ProfileController {
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     public @ResponseBody
-    CompletedActivity getCompletedActivity(@PathVariable UUID externalId,
+        CompletedActivity getCompletedActivity(@PathVariable UUID externalId,
                                            Authentication authentication) {
         CompletedActivity completedActivity = profileService
                 .getCompletedActivityDetailed((User) authentication.getPrincipal(), externalId);
@@ -105,7 +105,7 @@ public class ProfileController {
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     public @ResponseBody
-    Collection<AchievedBadge> getAchievedBadges(Authentication authentication) {
+        Collection<AchievedBadge> getAchievedBadges(Authentication authentication) {
         return profileService.getAchievedBadges((User) authentication.getPrincipal());
     }
 
@@ -113,7 +113,7 @@ public class ProfileController {
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     public @ResponseBody
-    Collection<Friendship> getFriends(Authentication authentication) {
+        Collection<Friendship> getFriends(Authentication authentication) {
         return profileService.getFriends((User) authentication.getPrincipal());
     }
 
@@ -121,7 +121,7 @@ public class ProfileController {
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     public @ResponseBody
-    Collection<Friendship> getPendingFriends(Authentication authentication) {
+        Collection<Friendship> getPendingFriends(Authentication authentication) {
         return profileService.getPendingFriends((User) authentication.getPrincipal());
     }
 
@@ -129,7 +129,7 @@ public class ProfileController {
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     public @ResponseBody
-    Collection<Friendship> getInvitingFriends(Authentication authentication) {
+        Collection<Friendship> getInvitingFriends(Authentication authentication) {
         return profileService.getInvitingFriends((User) authentication.getPrincipal());
     }
 
@@ -137,7 +137,7 @@ public class ProfileController {
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     public @ResponseBody
-    Collection<ProgressingAchievement> getAchievedAchievements(Authentication authentication) {
+        Collection<ProgressingAchievement> getAchievedAchievements(Authentication authentication) {
         return profileService.getAchievedAchievements((User) authentication.getPrincipal());
     }
 
@@ -147,7 +147,7 @@ public class ProfileController {
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     public @ResponseBody
-    Collection<ProgressingAchievement> getProgressingAchievements(Authentication authentication) {
+        Collection<ProgressingAchievement> getProgressingAchievements(Authentication authentication) {
         return profileService.getProgressingAchievements((User) authentication.getPrincipal());
     }
 }

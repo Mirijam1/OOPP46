@@ -45,7 +45,7 @@ public class UserController {
     /**
      * get user details.
      * @param authentication authtoken for logged in user.
-     * @return
+     * @return User
      */
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class)
     @RequestMapping(
@@ -54,7 +54,7 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody
-    User getDetails(Authentication authentication) {
+        User getDetails(Authentication authentication) {
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             throw new UnauthorizedException();
         }
@@ -66,7 +66,7 @@ public class UserController {
      * create user with params.
      * @param user user details
      * @param authentication authtoken
-     * @return
+     * @return User
      */
     @RequestMapping(
             path = "/create",
@@ -75,7 +75,7 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody
-    User createUser(@RequestBody User user, Authentication authentication) {
+        User createUser(@RequestBody User user, Authentication authentication) {
         if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
             throw new ForbiddenException();
         }
@@ -105,7 +105,7 @@ public class UserController {
     /**
      * delete user.
      * @param authentication authtoken
-     * @return
+     * @return Map
      */
     @RequestMapping(
             path = "/delete",
@@ -113,7 +113,7 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody
-    Map<String, String> deleteUser(Authentication authentication) {
+        Map<String, String> deleteUser(Authentication authentication) {
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             throw new UnauthorizedException();
         }
@@ -130,7 +130,7 @@ public class UserController {
      * update user.
      * @param user user details.
      * @param authentication authtoken.
-     * @return
+     * @return User
      */
     @RequestMapping(
             path = "/update",
@@ -139,7 +139,7 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody
-    User updateUser(@RequestBody User user, Authentication authentication) {
+        User updateUser(@RequestBody User user, Authentication authentication) {
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             throw new UnauthorizedException();
         }
@@ -161,12 +161,18 @@ public class UserController {
         return userService.updateUser(user, loadedUser);
     }
 
+    /**
+     * verify user by authtoken.
+     * @param externalId externalID of user.
+     * @param token authtoken
+     * @return BasicResponse
+     */
     @RequestMapping(path = "/verify/{externalId}",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody
-    BasicResponse verifyUser(@PathVariable UUID externalId, @RequestParam("token") Integer token) {
+        BasicResponse verifyUser(@PathVariable UUID externalId, @RequestParam("token") Integer token) {
         User user = userRepository.findUserByExternalId(externalId);
 
         if (user == null) {

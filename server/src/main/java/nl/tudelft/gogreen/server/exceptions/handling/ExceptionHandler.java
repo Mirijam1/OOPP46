@@ -79,6 +79,10 @@ public class ExceptionHandler {
         return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
     }
 
+    /**
+     * Handle ServiceUnavailable.
+     * @return ServerError
+     */
     @org.springframework.web.bind.annotation.ExceptionHandler(ServiceUnavailable.class)
     public ResponseEntity<ServerError> handleServiceUnavailable() {
         HttpStatus status = HttpStatus.SERVICE_UNAVAILABLE;

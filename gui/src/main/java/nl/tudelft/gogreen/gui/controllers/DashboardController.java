@@ -8,7 +8,13 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Control;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -20,9 +26,19 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
-import nl.tudelft.gogreen.shared.models.*;
+import nl.tudelft.gogreen.shared.models.Activity;
+import nl.tudelft.gogreen.shared.models.ActivityOption;
+import nl.tudelft.gogreen.shared.models.Category;
+import nl.tudelft.gogreen.shared.models.SubmitResponse;
+import nl.tudelft.gogreen.shared.models.SubmittedActivity;
+import nl.tudelft.gogreen.shared.models.SubmittedActivityOption;
+import nl.tudelft.gogreen.shared.models.UserServer;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DashboardController {

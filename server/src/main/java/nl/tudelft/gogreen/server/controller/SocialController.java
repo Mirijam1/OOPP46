@@ -58,7 +58,7 @@ public class SocialController {
      * method to add friends server-side.
      * @param name username of friend to add.
      * @param authentication authtoken of logged in user.
-     * @return
+     * @return FriendshipConnection
      */
     @RequestMapping(path = "/friends/add/{name}",
             method = RequestMethod.PUT,
@@ -66,7 +66,7 @@ public class SocialController {
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     public @ResponseBody
-    FriendshipConnection addFriend(@PathVariable String name,
+        FriendshipConnection addFriend(@PathVariable String name,
                                    Authentication authentication) {
         User user = (User) authentication.getPrincipal();
 
@@ -88,7 +88,7 @@ public class SocialController {
      * delete friend.
      * @param name username of friend to delete
      * @param authentication authtoken of logged in user.
-     * @return
+     * @return ServerError
      */
     @RequestMapping(path = "/friends/delete/{name}",
             method = RequestMethod.DELETE,
@@ -96,7 +96,7 @@ public class SocialController {
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     public @ResponseBody
-    ServerError deleteFriend(@PathVariable String name,
+        ServerError deleteFriend(@PathVariable String name,
                              Authentication authentication) {
         User user = (User) authentication.getPrincipal();
 
@@ -115,10 +115,11 @@ public class SocialController {
     }
 
     /**
-     * get friends activities.
-     *
-     * @param authentication authtoken of logged in user.
-     * @return
+     *  get friends activities.
+     * @param authentication authentication authtoken of logged in user.
+     * @param limit number of entries
+     * @param self check if self
+     * @return Collection of CompletedActivity
      */
     @RequestMapping(path = "/friends/activities",
             method = RequestMethod.GET,
@@ -126,7 +127,7 @@ public class SocialController {
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class)
     public @ResponseBody
-    Collection<CompletedActivity> getFriendActivities(Authentication authentication,
+        Collection<CompletedActivity> getFriendActivities(Authentication authentication,
                                                        @RequestParam(value = "limit",
                                                          required = false)
                                                          Integer limit,
@@ -152,7 +153,7 @@ public class SocialController {
     /**
      * get user from repository.
      * @param username username of user to find
-     * @return
+     * @return UserProfile
      */
     @RequestMapping(path = "/user/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)

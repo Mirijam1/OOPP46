@@ -6,7 +6,6 @@ import nl.tudelft.gogreen.coapi.models.food.Vegmeal;
 import nl.tudelft.gogreen.coapi.models.misc.GreenHotel;
 import nl.tudelft.gogreen.coapi.models.transportation.Train;
 import nl.tudelft.gogreen.coapi.models.transportation.Transport;
-import nl.tudelft.gogreen.coapi.models.utilities.LEDLights;
 import nl.tudelft.gogreen.coapi.models.utilities.LowerTemp;
 import nl.tudelft.gogreen.coapi.models.utilities.SolarPanels;
 import org.junit.Test;
@@ -50,7 +49,7 @@ public class APIfallbackTest {
         Double result = api.vegmeal(veg);
         Double epsilon = 0.01;
 
-        // float bad
+        // float correction
         assertTrue(result >= result - epsilon && result <= result + epsilon);
     }
 
@@ -68,7 +67,6 @@ public class APIfallbackTest {
         Double result = api.localproduce(local);
         Double epsilon = 0.01;
 
-        // float bad
         assertTrue(result >= result - epsilon && result <= result + epsilon);
     }
 
@@ -86,7 +84,6 @@ public class APIfallbackTest {
         Double result = api.carjourney(car);
         Double epsilon = 0.01;
 
-        // float bad
         assertTrue(result >= result - epsilon && result <= result + epsilon);
     }
 
@@ -104,7 +101,6 @@ public class APIfallbackTest {
         Double result = api.busjourney(car);
         Double epsilon = 0.01;
 
-        // float bad
         assertTrue(result >= result - epsilon && result <= result + epsilon);
     }
 
@@ -122,7 +118,6 @@ public class APIfallbackTest {
         Double result = api.trainjourney(car);
         Double epsilon = 0.01;
 
-        // float bad
         assertTrue(result >= result - epsilon && result <= result + epsilon);
     }
 
@@ -140,7 +135,6 @@ public class APIfallbackTest {
         Double result = api.lowtemp(lowTemp);
         Double epsilon = 0.01;
 
-        // float bad
         assertTrue(result >= result - epsilon && result <= result + epsilon);
     }
 
@@ -159,7 +153,6 @@ public class APIfallbackTest {
         Double result = api.solar(solar);
         Double epsilon = 0.01;
 
-        // float bad
         assertTrue(result >= result - epsilon && result <= result + epsilon);
     }
 
@@ -176,8 +169,6 @@ public class APIfallbackTest {
 
         Double result = api.greenhotel(greenHotel);
         Double epsilon = 0.01;
-
-        // float bad
         assertTrue(result >= result - epsilon && result <= result + epsilon);
     }
 
