@@ -5,13 +5,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,6 +25,9 @@ public class Server {
         SpringApplication.run(Server.class);
     }
 
+    /**
+     * initialize Unirest.
+     */
     @PostConstruct
     public static void initUnirest() {
         com.fasterxml.jackson.databind.ObjectMapper mapper =
@@ -62,11 +60,19 @@ public class Server {
         });
     }
 
+    /**
+     * Encrypts password.
+     * @return encryptedPassword
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
     }
 
+    /**
+     * instantiate jackson2JsonObjectMapper.
+     * @return objectmapper
+     */
     @Bean
     public ObjectMapper jackson2JsonObjectMapper() {
         ObjectMapper mapper = new ObjectMapper();

@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 public class ErrorController implements org.springframework.boot.web.servlet.error.ErrorController {
     private final String errorPath = "/error";
 
+    /**
+     * Generates ServerError based on bad request.
+     * @param request - request sent to server
+     * @return error
+     */
     @RequestMapping(errorPath)
     public ServerError error(HttpServletRequest request) {
         int status = Integer.parseInt(request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE) + "");

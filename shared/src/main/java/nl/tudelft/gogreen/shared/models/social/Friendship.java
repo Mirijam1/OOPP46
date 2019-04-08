@@ -2,7 +2,12 @@ package nl.tudelft.gogreen.shared.models.social;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import nl.tudelft.gogreen.shared.LocalDateTimeDeserializer;
 
 import java.time.LocalDateTime;
@@ -19,7 +24,10 @@ public class Friendship {
     private UUID externalId;
     private SocialUser friend;
     private Boolean accepted;
-    private @JsonDeserialize(using = LocalDateTimeDeserializer.class) LocalDateTime invited;
-    private @JsonDeserialize(using = LocalDateTimeDeserializer.class) LocalDateTime acceptedAt;
-    private @JsonDeserialize(using = LocalDateTimeDeserializer.class) LocalDateTime friendShipStarted;
+    private @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+        LocalDateTime invited;
+    private @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+        LocalDateTime acceptedAt;
+    private @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+        LocalDateTime friendShipStarted;
 }

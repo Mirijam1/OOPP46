@@ -61,7 +61,7 @@ public class AddFriendController {
             }
         }, searchUserName);
 
-//        searchField.setText("");
+        //        searchField.setText("");
     }
 
     private void createEntry(UserServer userServer) {

@@ -13,12 +13,20 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 
 @ControllerAdvice
 public class ExceptionHandler {
+    /**
+     * Handling Unauthorized Requests.
+     * @return ServerError
+     */
     @org.springframework.web.bind.annotation.ExceptionHandler(UnauthorizedException.class)
     public ResponseEntity<ServerError> handleUnauthorized() {
         HttpStatus status = HttpStatus.UNAUTHORIZED;
 
         return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
     }
+    /**
+     * Handling Forbidden Exceptions.
+     * @return ServerError
+     */
 
     @org.springframework.web.bind.annotation.ExceptionHandler(ForbiddenException.class)
     public ResponseEntity<ServerError> handleForbidden() {
@@ -26,6 +34,10 @@ public class ExceptionHandler {
 
         return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
     }
+    /**
+     * Handling NotFound Exceptions.
+     * @return ServerError
+     */
 
     @org.springframework.web.bind.annotation.ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ServerError> handleNotFound() {
@@ -34,6 +46,10 @@ public class ExceptionHandler {
         return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
     }
 
+    /**
+     * Handle bad requests.
+     * @return ServerError
+     */
     @org.springframework.web.bind.annotation.ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ServerError> handleBadRequest() {
         HttpStatus status = HttpStatus.BAD_REQUEST;
@@ -41,6 +57,10 @@ public class ExceptionHandler {
         return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
     }
 
+    /**
+     * Handle conflicts exception.
+     * @return ServerError
+     */
     @org.springframework.web.bind.annotation.ExceptionHandler(ConflictException.class)
     public ResponseEntity<ServerError> handleConflict() {
         HttpStatus status = HttpStatus.CONFLICT;
@@ -48,6 +68,10 @@ public class ExceptionHandler {
         return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
     }
 
+    /**
+     * Handle Errors.
+     * @return ServerError
+     */
     @org.springframework.web.bind.annotation.ExceptionHandler(InternalServerError.class)
     public ResponseEntity<ServerError> handleError() {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;

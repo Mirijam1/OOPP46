@@ -28,6 +28,7 @@ public class RequestCache {
      * <p>Returns the saved {@link HttpResponse} for the given {@link Request}, if any.</p>
      * @param request The {@link Request} to retrieve from cache
      * @param <T> Type of object inside request
+     * @param <I> Type of object mapped
      * @return Cached {@link HttpResponse} if any
      */
     public <T, I> HttpResponse<I> retrieveFromCache(Request<T> request) {

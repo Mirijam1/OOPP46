@@ -1,4 +1,4 @@
-package nl.tudelft.gogreen.coapi.models.Transportation;
+package nl.tudelft.gogreen.coapi.models.transportation;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,11 +14,12 @@ public class Transport {
     private Integer distance;
     private String key;
 
-    public static void main(String[] args) throws Exception {
-        Transport a = new Transport("2019-03-2019", 500);
-        System.out.println(XtoJson(a));
-    }
 
+    /**
+     * constructor for bus/car journey.
+     * @param date date travelled.
+     * @param distance distance travelled.
+     */
     @JsonCreator
     //Same params for both car and bus
     public Transport(String date, Integer distance) {
@@ -27,8 +28,8 @@ public class Transport {
         this.key = "key";
     }
 
-    public static String XtoJson(Transport a) throws IOException {
+    public static String jsonmaker(Transport activity) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(a);
+        return mapper.writeValueAsString(activity);
     }
 }

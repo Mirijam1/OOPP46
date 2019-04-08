@@ -28,7 +28,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-@Table(name = "PROGRESSING_ACHIEVEMENT", uniqueConstraints = @UniqueConstraint(columnNames = {"profile", "achievement"}))
+@Table(name = "PROGRESSING_ACHIEVEMENT",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"profile", "achievement"}))
 @EqualsAndHashCode(exclude = {"activity", "progress", "completed", "dateTimeAchieved", "activity", "profile"})
 @ToString(exclude = {"activity", "profile"})
 public class ProgressingAchievement {

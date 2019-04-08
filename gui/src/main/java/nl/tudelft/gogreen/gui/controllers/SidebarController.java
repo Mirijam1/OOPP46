@@ -13,7 +13,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -62,7 +69,11 @@ public class SidebarController implements Initializable {
     @FXML
     private Pane subscene;
 
-    private Background BACKGROUND = new Background(new BackgroundImage(new Image("img/gogreenbg.jpg", 1280, 720, true, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+    private Background BACKGROUND =
+            new Background(new BackgroundImage(new Image("img/gogreenbg.jpg",
+                    1280, 720, true, true),
+                    BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                    BackgroundSize.DEFAULT));
 
     private boolean isGamified = false;
     private boolean isPaused = false;
@@ -179,6 +190,8 @@ public class SidebarController implements Initializable {
                 break;
             case "logout":
                 button.setText("Logout");
+                break;
+            default:
                 break;
         }
     }

@@ -1,7 +1,6 @@
 package nl.tudelft.gogreen.server.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import nl.tudelft.gogreen.server.exceptions.InternalServerError;
 import nl.tudelft.gogreen.server.exceptions.UnauthorizedException;
 import nl.tudelft.gogreen.server.models.user.User;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
@@ -34,6 +33,12 @@ public class LeaderboardController {
         this.profileRepository = profileRepository;
     }
 
+    /**
+     * retrieve global leaderboard.
+     * @param limit no of entries
+     * @return
+     */
+
     @RequestMapping(path = "/global",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -49,6 +54,13 @@ public class LeaderboardController {
 
         return leaderboardService.getGlobalLeaderBoard(limit);
     }
+
+    /**
+     *  get user's friends leaderboard.
+     * @param authentication token of logged in user
+     * @param limit no of entries
+     * @return
+     */
 
     @RequestMapping(path = "/friends",
             method = RequestMethod.GET,

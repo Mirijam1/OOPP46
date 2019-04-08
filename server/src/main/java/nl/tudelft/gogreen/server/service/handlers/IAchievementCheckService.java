@@ -1,7 +1,6 @@
 package nl.tudelft.gogreen.server.service.handlers;
 
 import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
-import nl.tudelft.gogreen.server.models.completables.ProgressingAchievement;
 import nl.tudelft.gogreen.server.models.completables.Trigger;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
 

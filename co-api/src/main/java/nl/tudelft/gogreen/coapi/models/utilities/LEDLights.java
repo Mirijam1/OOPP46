@@ -1,6 +1,5 @@
-package nl.tudelft.gogreen.coapi.models.Utilities;
+package nl.tudelft.gogreen.coapi.models.utilities;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
@@ -16,20 +15,19 @@ public class LEDLights {
     private String country;
     private String key;
 
-    public static void main(String[] args) throws Exception {
-        LEDLights a = new LEDLights(2);
-        System.out.println(XtoJson(a));
-    }
-
+    /**
+     * constructors for LEDLights activities.
+     * @param bulbsReplaced number of bulbs replaced.
+     */
     public LEDLights(@JsonProperty("energy") Integer bulbsReplaced) {
         this.energy = bulbsReplaced;
         this.country = "NL";
         this.key = "key";
     }
 
-    public static String XtoJson(LEDLights a) throws IOException {
+    public static String jsonmaker(LEDLights activity) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(a);
+        return mapper.writeValueAsString(activity);
     }
 
 }

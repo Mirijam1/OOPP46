@@ -2,7 +2,12 @@ package nl.tudelft.gogreen.api.servermodels;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import nl.tudelft.gogreen.api.LocalDateTimeDeserializer;
 import nl.tudelft.gogreen.shared.models.Activity;
 
@@ -20,10 +25,10 @@ public class CompletedActivity {
     private UUID externalId;
     private Float points;
     private @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    LocalDateTime dateTimeCompleted;
+        LocalDateTime dateTimeCompleted;
     private Activity activity;
 
-    public String getActivityDescription(){
+    public String getActivityDescription() {
         return this.activity.getDescription();
     }
 }
