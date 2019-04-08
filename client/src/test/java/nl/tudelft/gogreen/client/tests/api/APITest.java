@@ -46,7 +46,7 @@ public class APITest {
     @Test
     public void testcheckUrlTrue() {
         API.prepareAPI(true);
-        assertEquals("https://localhost:8088/login", API.buildUrl(EndPoints.LOGIN));
+        assertEquals("http://localhost:8088/login", API.buildUrl(EndPoints.LOGIN));
         API.closeAPI();
     }
 

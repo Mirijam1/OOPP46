@@ -28,7 +28,7 @@
       </Text>
       <ScrollPane fx:id="histPane" layoutX="227.0" layoutY="266.0" prefHeight="380.0" prefWidth="550.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="70.0">
          <content>
-            <VBox fx:id="histVBox" prefHeight="200.0" prefWidth="548.0" />
+            <VBox fx:id="histVBox" prefHeight="200.0" prefWidth="548.0"/>
          </content>
       </ScrollPane>
       <ScrollPane fx:id="suggPane" layoutX="745.0" layoutY="360.0" prefHeight="380.0" prefWidth="550.0" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="70.0">
