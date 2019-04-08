@@ -74,15 +74,10 @@ public class OverviewController {
     private void initUser(UserServer userServer) {
         User user = userServer.getUser();
         points = userServer.getPoints();
-        String pointText = " Points";
-
-        if (points <= 1f) {
-            pointText = " Point";
-        }
 
         userWelcome.setText("Welcome " + user.getUsername());
         amount.setTextFill(Color.WHITE);
-        amount.setText("Amount of CO2 Saved: " + points.toString() + pointText);
+        amount.setText("Amount of CO2 Saved: " + points + " Points");
     }
 
     private void initActivityHistory(CompletedActivity[] list) {

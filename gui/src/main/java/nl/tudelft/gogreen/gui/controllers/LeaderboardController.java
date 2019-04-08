@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import nl.tudelft.gogreen.api.API;
@@ -52,8 +51,8 @@ public class LeaderboardController {
                 user.setTranslateX(60);
                 user.setTranslateY(20);
 
-                Label points = new Label(users[i].getPoints().toString());
-                points.setTranslateX(400.00);
+                Label points = new Label(users[i].getPoints() + " Points");
+                points.setTranslateX(350.00);
                 points.setTranslateY(20.00);
 
                 Label rank = new Label((i+1) + ".");
