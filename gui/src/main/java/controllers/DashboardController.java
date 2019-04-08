@@ -7,15 +7,10 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -25,19 +20,9 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
-import nl.tudelft.gogreen.shared.models.Activity;
-import nl.tudelft.gogreen.shared.models.ActivityOption;
-import nl.tudelft.gogreen.shared.models.Category;
-import nl.tudelft.gogreen.shared.models.SubmitResponse;
-import nl.tudelft.gogreen.shared.models.SubmittedActivity;
-import nl.tudelft.gogreen.shared.models.SubmittedActivityOption;
-import nl.tudelft.gogreen.shared.models.UserServer;
+import nl.tudelft.gogreen.shared.models.*;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class DashboardController {
@@ -239,27 +224,15 @@ public class DashboardController {
         });
     }
 
-    public void submitButton(ActionEvent event) {
+    public void submitButton(ActionEvent event) throws Exception {
         if (activityBox.getSelectionModel().isEmpty() || categoryBox.getSelectionModel().isEmpty()) {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/informationPopup.fxml"));
-            try {
-                Parent root = loader.load();
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setTitle("information");
-                stage.setScene(new Scene(root));
-                stage.setResizable(false);
-                stage.show();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            System.out.println("info");
+            noInformationPopUp();
         } else {
-            submitActivity();
+            confirmationPopUp();
         }
     }
 
+    @FXML
     private void submitActivity() {
         int id = activityBox.getSelectionModel().getSelectedItem().getId();
         Collection<SubmittedActivityOption> options = new ArrayList<>();
@@ -321,5 +294,69 @@ public class DashboardController {
         public Activity fromString(String string) {
             return null;
         }
+    }
+
+    private void noInformationPopUp() throws Exception {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText("Information");
+        alert.setContentText("Please don't leave the box(es) empty!");
+        ImageView image = new ImageView("img/information.png");
+        Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+        okButton.setText("OK");
+        popup(image, alert);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            alert.close();
+        }
+    }
+
+
+    private void confirmationPopUp() throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Confirmation");
+        alert.setContentText("Are you sure you want to submit this activity?");
+        Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+        okButton.setText("CONFIRM");
+        Button cancelButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL);
+        cancelButton.setText("CANCEL");
+        ImageView image = new ImageView("img/confirmation.png");
+        popup(image, alert);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            submitActivity();
+            congratulationsPopup();
+        } else {
+            alert.close();
+        }
+
+    }
+
+
+    private void congratulationsPopup() throws Exception {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Congratulations");
+        alert.setHeaderText("Congratulations");
+        alert.setContentText("You added an activity successfully!");
+        ImageView image = new ImageView("img/congratulation.png");
+        Button okBnt = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+        okBnt.setText("GO BACK");
+        popup(image, alert);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            alert.close();
+        }
+    }
+
+    private void popup(ImageView imageView, Alert alert) {
+        imageView.setFitHeight(57.0);
+        imageView.setFitWidth(53.0);
+        alert.getDialogPane().setGraphic(imageView);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("img/leaficon.png"));
+
+        alert.initModality(Modality.APPLICATION_MODAL);
     }
 }
