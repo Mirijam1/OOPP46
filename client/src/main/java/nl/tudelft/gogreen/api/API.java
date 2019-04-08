@@ -160,7 +160,8 @@ public class API {
     }
 
     public static void retrieveFakeCo2(ServerCallback<Object, BasicResponse> callback) {
-        Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, "/api/user");
+        Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, "/api/profile");
+
         ServerConnection.mockRequest(BasicResponse.class,
             request,
             callback,

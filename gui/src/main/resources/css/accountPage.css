@@ -1,0 +1,5 @@
+/* Set background */
+#AnchorPane {
+    -fx-background-image: url('../img/gogreenbg.jpg');
+    -fx-background-size: cover;
+}
