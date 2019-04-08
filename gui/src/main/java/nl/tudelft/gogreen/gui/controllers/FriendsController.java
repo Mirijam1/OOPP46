@@ -91,25 +91,41 @@ public class FriendsController {
         activityScroll.setFitToWidth(true);
         FriendOverview.setSpacing(6);
 
-        for (int i = 0; i < friendActivities.length; i++) {
-            if (friendActivities[i].getActivity() != null) {
-                CompletedActivity completedActivity = friendActivities[i];
-                String points = new DecimalFormat("0.0#").format(completedActivity.getPoints());
-                Label activity = new Label(String.format("%2$s completed '%3$s' (%1$s points)",
-                        points, completedActivity.getUsername(), completedActivity.getActivity().getActivityName()));
-                activity.setTranslateY(20);
-                activity.setTranslateX(60);
+        if (friendActivities.length > 0) {
+            for (int i = 0; i < friendActivities.length; i++) {
+                if (friendActivities[i].getActivity() != null) {
+                    CompletedActivity completedActivity = friendActivities[i];
+                    String points = new DecimalFormat("0.0#").format(completedActivity.getPoints());
+                    Label activity = new Label(String.format("%2$s completed '%3$s' (%1$s points)",
+                            points, completedActivity.getUsername(), completedActivity.getActivity().getActivityName()));
+                    activity.setTranslateY(20);
+                    activity.setTranslateX(60);
 
-                Pane overviewEntry = new Pane();
-                overviewEntry.setPrefSize(492, 60);
-                overviewEntry.setMaxWidth(492);
-                overviewEntry.setMaxHeight(60);
-                overviewEntry.setStyle("-fx-background-radius: 30; -fx-background-color: rgba(0, 0, 0, 0.50);");
-                FriendOverview.setPrefHeight(66 * (i + 1));
+                    Pane overviewEntry = new Pane();
+                    overviewEntry.setPrefSize(492, 60);
+                    overviewEntry.setMaxWidth(492);
+                    overviewEntry.setMaxHeight(60);
+                    overviewEntry.setStyle("-fx-background-radius: 30; -fx-background-color: rgba(0, 0, 0, 0.50);");
+                    FriendOverview.setPrefHeight(66 * (i + 1));
 
-                overviewEntry.getChildren().add(activity);
-                FriendOverview.getChildren().add(overviewEntry);
+                    overviewEntry.getChildren().add(activity);
+                    FriendOverview.getChildren().add(overviewEntry);
+                }
             }
+        } else {
+            Label text = new Label("No activities found.");
+            text.setTranslateY(20);
+            text.setTranslateX(60);
+
+            Pane noActivityEntry = new Pane();
+            noActivityEntry.setPrefSize(492, 60);
+            noActivityEntry.setMaxWidth(492);
+            noActivityEntry.setMaxHeight(60);
+            noActivityEntry.setStyle("-fx-background-radius: 30; -fx-background-color: rgba(0, 0, 0, 0.50);");
+            noActivityEntry.getChildren().add(text);
+
+            FriendOverview.setPrefHeight(66);
+            FriendOverview.getChildren().add(noActivityEntry);
         }
     }
 }
