@@ -58,11 +58,11 @@ public class ProfileControllerFriendTest {
         }
 
         userDetailService.removeUser(userRepository.findUserByUsername("gogreenuser"));
-        userDetailService.createUser("gogreenuser", "password");
-        userDetailService.createUser("user_profileControllerFriend", "password");
+        userDetailService.completeVerification(userDetailService.createUser("gogreenuser", "password", null));
+        userDetailService.completeVerification(userDetailService.createUser("user_profileControllerFriend", "password", null));
         userDetailService.removeUser(userRepository.findUserByUsername("admin"));
-        userDetailService.createUser("admin", "password");
-        userDetailService.createUser("user_profileControllerFriend2", "password");
+        userDetailService.completeVerification(userDetailService.createUser("admin", "password", null));
+        userDetailService.completeVerification(userDetailService.createUser("user_profileControllerFriend2", "password", null));
 
 
         User adminUser = userRepository.findUserByUsername("admin");

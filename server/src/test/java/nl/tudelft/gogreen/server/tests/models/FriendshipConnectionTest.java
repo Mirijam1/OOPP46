@@ -19,8 +19,8 @@ public class FriendshipConnectionTest {
 
     @Before
     public void setUp() {
-        User initUser = new User(null, null, "user1", null, false, false, true, null);
-        User invitedUser = new User(null, null, "user2", null, false, false, true, null);
+        User initUser = new User(null, null, null, "user1", null, null, false, false, true, null);
+        User invitedUser = new User(null, null, null, "user2", null, null,false, false, true, null);
         initProfile = new UserProfile(null, initUser, null, null, null, null, null, null);
         invitedProfile = new UserProfile(null, invitedUser, null, null, null, null, null, null);
 

@@ -1,4 +1,4 @@
-package controllers;
+package nl.tudelft.gogreen.gui.controllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -12,10 +12,6 @@ import nl.tudelft.gogreen.api.ServerCallback;
 import nl.tudelft.gogreen.shared.models.UserServer;
 
 public class LeaderboardController {
-
-    @FXML
-    private AnchorPane AnchorPane;
-
     @FXML
     private ScrollPane friendsScroll;
 
@@ -51,28 +47,28 @@ public class LeaderboardController {
         globalVbox.setTranslateY(2);
 
         for (int i = 0; i < users.length; i++) {
-            if (users[i].getUser().getName() != null) {
-                Label user = new Label(users[i].getUser().getName());
+            if (users[i].getUser().getUsername() != null) {
+                Label user = new Label(users[i].getUser().getUsername());
                 user.setTranslateX(60);
                 user.setTranslateY(20);
 
-                Label points = new Label(users[i].getPoints() + " Points");
-                points.setTranslateX(350.00);
+                Label points = new Label(users[i].getPoints().toString());
+                points.setTranslateX(400.00);
                 points.setTranslateY(20.00);
 
                 Label rank = new Label((i+1) + ".");
                 rank.setTranslateY(20);
                 rank.setTranslateX(30);
 
-                Pane UserEntry = new Pane();
-                UserEntry.setPrefSize(492, 60);
-                UserEntry.setMaxWidth(492);
-                UserEntry.setMaxHeight(60);
-                UserEntry.setStyle("-fx-background-radius: 30; -fx-background-color: rgba(0, 0, 0, 0.50);");
+                Pane userEntry = new Pane();
+                userEntry.setPrefSize(492, 60);
+                userEntry.setMaxWidth(492);
+                userEntry.setMaxHeight(60);
+                userEntry.setStyle("-fx-background-radius: 30; -fx-background-color: rgba(0, 0, 0, 0.50);");
 
-                UserEntry.getChildren().addAll(rank, user, points);
+                userEntry.getChildren().addAll(rank, user, points);
                 globalVbox.setPrefHeight(66 * (i + 1));
-                globalVbox.getChildren().add(UserEntry);
+                globalVbox.getChildren().add(userEntry);
             }
         }
     }
@@ -84,8 +80,8 @@ public class LeaderboardController {
         friendsVbox.setTranslateY(2);
 
         for (int i = 0; i < friends.length; i++) {
-            if (friends[i].getUser().getName() != null) {
-                Label user = new Label(friends[i].getUser().getName());
+            if (friends[i].getUser().getUsername() != null) {
+                Label user = new Label(friends[i].getUser().getUsername());
                 user.setTranslateX(60);
                 user.setTranslateY(20);
 

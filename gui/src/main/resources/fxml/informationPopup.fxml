@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="240.0" prefWidth="500.0" style="-fx-background-color: #EEFFF2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InformationController">
+<AnchorPane prefHeight="240.0" prefWidth="500.0" style="-fx-background-color: #EEFFF2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.gogreen.gui.controllers.InformationController">
    <children>
       <Label fx:id="information" layoutX="33.0" layoutY="36.0" text="INFORMATION" textFill="#868484">
          <font>

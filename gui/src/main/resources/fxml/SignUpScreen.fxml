@@ -10,60 +10,115 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/signup.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/signup.css"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="nl.tudelft.gogreen.gui.controllers.signup.SignUpController">
     <children>
-        <Text fill="#7b7b7b" layoutX="421.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up for ">
+        <!-- Header -->
+        <Text fill="#7b7b7b" layoutX="421.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up for ">
             <font>
-                <Font name="Microsoft YaHei Light" size="24.0" />
+                <Font name="Microsoft YaHei Light" size="24.0"/>
             </font>
         </Text>
-        <TextField id="userfield" fx:id="username" layoutX="330.0" layoutY="192.0" onKeyPressed="#handle" prefHeight="21.0" prefWidth="205.0" promptText="Username">
+        <Text fill="#7b7b7b" layoutX="126.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GOGREEN"
+              textAlignment="RIGHT" wrappingWidth="421.796875">
             <font>
-                <Font size="14.0" />
+                <Font name="Microsoft YaHei Light" size="48.0"/>
+            </font>
+        </Text>
+
+        <!-- Username -->
+        <Text fill="#7b7b7b" layoutX="330.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Choose an username">
+            <font>
+                <Font name="Microsoft YaHei Light" size="13.0"/>
+            </font>
+        </Text>
+        <TextField id="userfield" fx:id="username" layoutX="330.0" layoutY="104.0" onKeyPressed="#handle"
+                   minHeight="33.0" maxHeight="33.0"  prefWidth="205.0" promptText="Username">
+            <font>
+                <Font size="13.0"/>
             </font>
         </TextField>
-        <PasswordField id="passfield" fx:id="password" layoutX="330.0" layoutY="263.0" onKeyPressed="#handle" prefHeight="30.0" prefWidth="205.0" promptText="Password">
+        <Label fx:id="usermessage" layoutX="330.0" layoutY="138.0" minHeight="15.0" maxHeight="15.0" prefWidth="205.0" textFill="RED">
             <font>
-                <Font size="14.0" />
+                <Font name="Microsoft YaHei Light" size="11.0"/>
+            </font>
+        </Label>
+
+        <!-- Password -->
+        <Text fill="#7b7b7b" layoutX="330.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Choose a password">
+            <font>
+                <Font size="13.0"/>
+            </font>
+        </Text>
+        <PasswordField id="passfield" fx:id="password" layoutX="330.0" layoutY="174.0" onKeyPressed="#handle"
+                       minHeight="33.0" maxHeight="33.0"  prefWidth="205.0" promptText="Password">
+            <font>
+                <Font size="14.0"/>
             </font>
         </PasswordField>
-        <Button fx:id="signupbtn" layoutX="330.0" layoutY="316.0" mnemonicParsing="false" onAction="#signup" prefHeight="30.0" prefWidth="205.0" stylesheets="@../css/signup.css" text="Sign me up!" textFill="#7b7b7b" wrapText="true">
+        <Label fx:id="pwdmessage" layoutX="330.0" layoutY="208.0" minHeight="15.0" maxHeight="15.0" prefWidth="205.0" textFill="RED">
             <font>
-                <Font name="Microsoft YaHei Light" size="14.0" />
+                <Font name="Microsoft YaHei Light" size="11.0"/>
+            </font>
+        </Label>
+
+        <!-- Email -->
+        <Text fill="#7b7b7b" layoutX="330.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Enter your email">
+            <font>
+                <Font size="13.0"/>
+            </font>
+        </Text>
+        <TextField fx:id="emailField" layoutX="330.0" layoutY="243.0" onKeyPressed="#handle"
+                   minHeight="33.0" maxHeight="33.0" prefWidth="205.0" promptText="Email">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="emailConfirmationField" layoutX="330.0" layoutY="278.0"
+                   onKeyPressed="#handle" minHeight="33.0" maxHeight="33.0"  prefWidth="205.0" promptText="Confirm email">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <Label fx:id="emailError" layoutX="330.0" layoutY="313.0" minHeight="15.0" maxHeight="15.0" prefWidth="205.0" textFill="RED">
+            <font>
+                <Font name="Microsoft YaHei Light" size="11.0"/>
+            </font>
+        </Label>
+
+        <!-- Submit button -->
+        <Button layoutX="330.0" layoutY="333.0" mnemonicParsing="false" onAction="#signup"
+                prefHeight="25.0" prefWidth="205.0" stylesheets="@../css/signup.css" text="Sign me up!"
+                textFill="#7b7b7b" wrapText="true">
+            <font>
+                <Font name="Microsoft YaHei Light" size="14.0"/>
             </font>
         </Button>
-        <ImageView fitHeight="119.0" fitWidth="109.0" layoutX="14.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
+        <Button layoutX="330.0" layoutY="366.0" mnemonicParsing="false" onAction="#continueVerification"
+                prefHeight="25.0" prefWidth="205.0" stylesheets="@../css/signup.css" text="Continue verification"
+                textFill="#7b7b7b" wrapText="true">
+            <font>
+                <Font name="Microsoft YaHei Light" size="14.0"/>
+            </font>
+        </Button>
+
+        <!-- Other stuff -->
+        <ImageView fitHeight="119.0" fitWidth="109.0" layoutX="14.0" layoutY="288.0" pickOnBounds="true"
+                   preserveRatio="true">
             <image>
-                <Image url="@../img/logo.png" />
+                <Image url="@../img/logo.png"/>
             </image>
         </ImageView>
-        <Text fill="#7b7b7b" layoutX="126.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GOGREEN" textAlignment="RIGHT" wrappingWidth="421.796875">
+        <JFXTextArea editable="false" focusColor="#7b7b7b" layoutX="95.0" layoutY="194.0" prefHeight="255.0" prefWidth="205.0"
+                     text="Welcome to GOGREEN&#10;Sign up now to: &#10;- Track your CO2 emission&#10;- Reduce your CO2 emission&#10;- Compete with friends&#10;Help our planet!"
+                     unFocusColor="#7b7b7b">
             <font>
-                <Font name="Microsoft YaHei Light" size="48.0" />
-            </font>
-        </Text>
-        <Text fill="#7b7b7b" layoutX="330.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a password">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Text>
-        <Text fill="#7b7b7b" layoutX="330.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a username">
-            <font>
-                <Font name="Microsoft YaHei Light" size="14.0" />
-            </font>
-        </Text>
-        <Label fx:id="usermessage" layoutX="330.0" layoutY="222.0" prefHeight="21.0" prefWidth="205.0" textFill="RED">
-         <font>
-            <Font name="Microsoft YaHei Light" size="14.0" />
-         </font></Label>
-        <Label fx:id="pwdmessage" layoutX="330.0" layoutY="293.0" prefHeight="21.0" prefWidth="205.0" textFill="RED">
-         <font>
-            <Font name="Microsoft YaHei Light" size="14.0" />
-         </font></Label>
-        <JFXTextArea focusColor="#7b7b7b" layoutX="95.0" layoutY="194.0" prefHeight="255.0" prefWidth="205.0" text="Welcome to GOGREEN&#10;Sign up now to: &#10;- Track your CO2 emission&#10;- Reduce your CO2 emission&#10;- Compete with friends&#10;Help our planet!" unFocusColor="#7b7b7b">
-            <font>
-                <Font name="Microsoft YaHei Light" size="14.0" />
+                <Font name="Microsoft YaHei Light" size="14.0"/>
             </font>
         </JFXTextArea>
     </children>

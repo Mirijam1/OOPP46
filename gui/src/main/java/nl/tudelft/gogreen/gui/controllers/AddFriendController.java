@@ -1,4 +1,4 @@
-package controllers;
+package nl.tudelft.gogreen.gui.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -71,7 +71,7 @@ public class AddFriendController {
         addFriendVBox.setTranslateX(3);
         addFriendVBox.setTranslateY(2);
 
-        Label userLabel = new Label(userServer.getUser().getName());
+        Label userLabel = new Label(userServer.getUser().getUsername());
         userLabel.setTranslateX(30);
         userLabel.setTranslateY(14);
 

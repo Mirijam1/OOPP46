@@ -62,7 +62,7 @@ public class ProfileControllerCompletablesTest {
 
         User user = userRepository.findUserByUsername("gogreenuser");
         userDetailService.removeUser(user);
-        userDetailService.createUser("gogreenuser", "password");
+        userDetailService.completeVerification(userDetailService.createUser("gogreenuser", "password", null));
 
         inserted = true;
         Collection<SubmittedActivityOption> options = new ArrayList<>();

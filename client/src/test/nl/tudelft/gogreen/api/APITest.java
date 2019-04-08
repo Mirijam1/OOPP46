@@ -3,7 +3,6 @@ package nl.tudelft.gogreen.api;
 import nl.tudelft.gogreen.api.servermodels.Activity;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
 import nl.tudelft.gogreen.api.servermodels.Category;
-import nl.tudelft.gogreen.api.servermodels.User;
 import nl.tudelft.gogreen.shared.StatusCodes;
 import nl.tudelft.gogreen.shared.models.SubmitResponse;
 import nl.tudelft.gogreen.shared.models.SubmittedActivity;

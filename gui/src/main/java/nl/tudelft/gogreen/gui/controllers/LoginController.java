@@ -1,4 +1,4 @@
-package controllers;
+package nl.tudelft.gogreen.gui.controllers;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -17,8 +17,8 @@ import javafx.stage.Stage;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
-import nl.tudelft.gogreen.api.servermodels.User;
 import nl.tudelft.gogreen.shared.StatusCodes;
+import nl.tudelft.gogreen.shared.models.User;
 
 import java.io.IOException;
 
@@ -113,7 +113,7 @@ public class LoginController {
                         Platform.runLater(() -> pwdmessage.setText("Invalid username or password"));
                     }
                 }
-            }, new User(userfield.getText(), passfield.getText()));
+            }, new User(userfield.getText(), passfield.getText(), null));
         }
     }
 

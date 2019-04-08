@@ -65,13 +65,13 @@ public class SocialControllerTest {
             return;
         }
 
-        userDetailService.createUser("user_socialControllerTest1", "password");
-        userDetailService.createUser("user_socialControllerTest2", "password");
-        userDetailService.createUser("user_socialControllerTest3", "password");
-        userDetailService.createUser("user_socialControllerTest4", "password");
-        userDetailService.createUser("user_socialControllerTest5", "password");
-        userDetailService.createUser("user_socialControllerTest6", "password");
-        userDetailService.createUser("user_socialControllerTest7", "password");
+        userDetailService.completeVerification(userDetailService.createUser("user_socialControllerTest1", "password", null));
+        userDetailService.completeVerification(userDetailService.createUser("user_socialControllerTest2", "password", null));
+        userDetailService.completeVerification(userDetailService.createUser("user_socialControllerTest3", "password", null));
+        userDetailService.completeVerification(userDetailService.createUser("user_socialControllerTest4", "password", null));
+        userDetailService.completeVerification(userDetailService.createUser("user_socialControllerTest5", "password", null));
+        userDetailService.completeVerification(userDetailService.createUser("user_socialControllerTest6", "password", null));
+        userDetailService.completeVerification(userDetailService.createUser("user_socialControllerTest7", "password", null));
 
         inserted = true;
 
