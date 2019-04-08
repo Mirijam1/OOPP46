@@ -15,6 +15,10 @@ public enum InputType {
         this.controlId = controlId;
     }
 
+    /**
+     * get Options based on Activity.
+     * @return Control
+     */
     public Control getControl() {
         switch (this.controlId) {
             case 0:

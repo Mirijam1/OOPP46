@@ -20,6 +20,12 @@ public class User {
     private Float points;
     private UUID externalId;
 
+    /**
+     * user constructor.
+     * @param username username of user
+     * @param password password of user
+     * @param mail email of user
+     */
     public User(String username, String password, String mail) {
         this.username = username;
         this.password = password;

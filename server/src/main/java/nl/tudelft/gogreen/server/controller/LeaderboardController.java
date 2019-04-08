@@ -36,7 +36,7 @@ public class LeaderboardController {
     /**
      * retrieve global leaderboard.
      * @param limit no of entries
-     * @return
+     * @return Collection of UserProfile
      */
 
     @RequestMapping(path = "/global",
@@ -45,7 +45,7 @@ public class LeaderboardController {
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class)
     public @ResponseBody
-    Collection<UserProfile> getGlobalLeaderboard(@RequestParam(value = "limit",
+        Collection<UserProfile> getGlobalLeaderboard(@RequestParam(value = "limit",
             required = false)
                                                          Integer limit) {
         if (limit == null) {
@@ -59,7 +59,7 @@ public class LeaderboardController {
      *  get user's friends leaderboard.
      * @param authentication token of logged in user
      * @param limit no of entries
-     * @return
+     * @return Collection of UserProfile
      */
 
     @RequestMapping(path = "/friends",
@@ -68,7 +68,7 @@ public class LeaderboardController {
     @ResponseStatus(HttpStatus.OK)
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class)
     public @ResponseBody
-    Collection<UserProfile> getFriendLeaderboard(Authentication authentication,
+        Collection<UserProfile> getFriendLeaderboard(Authentication authentication,
                                                  @RequestParam(value = "limit",
                                                          required = false)
                                                          Integer limit) {

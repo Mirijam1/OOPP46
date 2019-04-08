@@ -21,7 +21,7 @@ import java.util.UUID;
 @Builder(toBuilder = true)
 @Table(name = "VERIFICATION_TOKEN", indexes = {
         @Index(name = "TOKEN_INDEX", columnList = "TOKEN")
-})
+    })
 public class VerificationToken {
     @Id
     @Column(name = "ID", nullable = false, unique = true, updatable = false)

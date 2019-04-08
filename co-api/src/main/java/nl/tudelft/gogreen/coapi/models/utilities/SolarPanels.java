@@ -12,9 +12,9 @@ import java.io.IOException;
 @Setter
 public class SolarPanels {
     private Integer residents;
-    private String key;
     @JsonProperty("green_electricity")
     private double electricity;
+    private String key;
 
     /**
      * constructor solar panels activity.

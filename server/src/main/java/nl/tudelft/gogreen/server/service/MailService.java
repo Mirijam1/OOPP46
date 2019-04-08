@@ -28,6 +28,12 @@ public class MailService implements IMailService {
     @Autowired
     private Environment environment;
 
+    /**
+     * instantiates MailService Constructor.
+     * @param mailSender mailSender object.
+     * @param mailTemplates mailTemplates object.
+     */
+
     @Autowired
     /*
      * If you IDE complains about beans (mailSender) not being present you can ignore it.

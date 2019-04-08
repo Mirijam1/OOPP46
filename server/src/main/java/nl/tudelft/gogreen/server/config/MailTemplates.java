@@ -6,6 +6,10 @@ import org.springframework.mail.SimpleMailMessage;
 
 @Configuration
 public class MailTemplates {
+    /**
+     * registration Confirmation Mail Template Message.
+     * @return MailMessage.
+     */
     @Bean
     public SimpleMailMessage registerConfirmationTemplate() {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -20,6 +24,10 @@ public class MailTemplates {
         return mailMessage;
     }
 
+    /**
+     *  Registration Completion Mail Template Message.
+     * @return MailMessage.
+     */
     @Bean
     public SimpleMailMessage registrationComplete() {
         SimpleMailMessage mailMessage = new SimpleMailMessage();

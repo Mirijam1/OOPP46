@@ -81,7 +81,7 @@ public class SocialService implements ISocialService {
      * buildConnection between two users accepting friendship.
      * @param profile current user
      * @param target target user.
-     * @return
+     * @return FriendshipConnection
      */
     @Transactional
     public FriendshipConnection buildConnection(UserProfile profile, UserProfile target) {
@@ -107,7 +107,7 @@ public class SocialService implements ISocialService {
      *  buildNewConnection between two users.
      * @param profile current user.
      * @param target target user.
-     * @return
+     * @return FriendshipConnection
      */
     @Transactional
     public FriendshipConnection buildNewConnection(UserProfile profile, UserProfile target) {
@@ -127,7 +127,7 @@ public class SocialService implements ISocialService {
     /**
      * accept user invitations.
      * @param friendshipConnection connection betwee two users.
-     * @return
+     * @return FriendshipConnection
      */
     @Transactional
     public FriendshipConnection acceptInvitation(FriendshipConnection friendshipConnection) {

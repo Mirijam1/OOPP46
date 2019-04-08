@@ -4,7 +4,14 @@ import com.mashape.unirest.http.HttpMethod;
 import nl.tudelft.gogreen.api.servermodels.AchievedBadge;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
 import nl.tudelft.gogreen.cache.Request;
-import nl.tudelft.gogreen.shared.models.*;
+import nl.tudelft.gogreen.shared.models.Activity;
+import nl.tudelft.gogreen.shared.models.Category;
+import nl.tudelft.gogreen.shared.models.CompletedAchievements;
+import nl.tudelft.gogreen.shared.models.CompletedActivity;
+import nl.tudelft.gogreen.shared.models.SubmitResponse;
+import nl.tudelft.gogreen.shared.models.SubmittedActivity;
+import nl.tudelft.gogreen.shared.models.User;
+import nl.tudelft.gogreen.shared.models.UserServer;
 import nl.tudelft.gogreen.shared.models.social.Friendship;
 
 import java.io.IOException;
@@ -60,12 +67,12 @@ public class API {
         ServerConnection.request(BasicResponse.class, request, callback, true, 15);
     }
 
-    //    /**
-//     * <p>Makes a fake request to the status endpoint. This function is more or less made to show the
-//     * functionality of mocking requests.</p>
-//     *
-//     * @param callback {@link ServerCallback} which will be called when the request returns.
-//     */
+    /**
+     * <p>Makes a fake request to the status endpoint. This function is more or less made to show the
+     * functionality of mocking requests.</p>
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
     public static void requestFakeStatus(ServerCallback<Object, BasicResponse> callback) {
         Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, "/api/fake/url");
 
@@ -116,13 +123,19 @@ public class API {
      * @param user The {@link User} to verify
      * @param token An {@link Integer} representing the token
      */
-    public static void submitVerificationCode(ServerCallback<Object, BasicResponse> callback, User user, Integer token) {
+    public static void submitVerificationCode(ServerCallback<Object, BasicResponse> callback,
+                                              User user, Integer token) {
         Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.POST,
                 buildUrl(EndPoints.VERIFY_USER, user.getExternalId()) + "?token=" + token);
 
         ServerConnection.request(BasicResponse.class, request, callback, false, -1);
     }
-    /* Please add javadocs below */
+
+    /**
+     * retrieves Category List.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
 
     public static void retrieveCategoryList(ServerCallback<Object, Category[]> callback) {
         String url = buildUrl(EndPoints.ALL_CATEGORIES);
@@ -134,6 +147,11 @@ public class API {
             .buildSimpleRequest(HttpMethod.GET, url);
         ServerConnection.request(Category[].class, body, callback, true, -1);
     }
+    /**
+     * retrieve User's Completed Activities.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
 
     public static void retrieveCompletedActivities(ServerCallback<Object, CompletedActivity[]> callback) {
         String url = buildUrl(EndPoints.GET_USER_ACTIVITIES);
@@ -147,6 +165,12 @@ public class API {
         ServerConnection.request(CompletedActivity[].class, body, callback, false, 0);
     }
 
+    /**
+     * retrieves Activity List based on Category.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     * @param category name of the category to retrieve its relevant activities
+     */
     public static void retrieveActivityList(ServerCallback<Object, Activity[]> callback, String category) {
         String url = buildUrl(EndPoints.FIND_ACTIVITIES_FROM_CATEGORY, category);
 
@@ -158,6 +182,11 @@ public class API {
         ServerConnection.request(Activity[].class, body, callback, true, -1);
     }
 
+    /**
+     * retrieve Fake User - User(TestUser).
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
     public static void retrieveFakeUser(ServerCallback<Object, User> callback) {
         Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, "/api/user");
 
@@ -170,6 +199,11 @@ public class API {
             200);
     }
 
+    /**
+     * retrieve FakeCO2 - testing method used to mock a to-be implemented API request.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
     public static void retrieveFakeCo2(ServerCallback<Object, BasicResponse> callback) {
         Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, "/api/profile");
 
@@ -181,12 +215,25 @@ public class API {
             new BasicResponse("0.4"), 200);
     }
 
+    /**
+     * retrieves activity by id.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     * @param id       Integer id of the activity
+     */
     public static void retrieveActivityById(ServerCallback<Object, Activity> callback, Integer id) {
         Request<Object> request = ServerConnection
                 .buildSimpleRequest(HttpMethod.GET, buildUrl(EndPoints.FIND_ACTIVITY_BY_ID, id));
 
         ServerConnection.request(Activity.class, request, callback, true, -1);
     }
+
+    /**
+     * Create a User - PUT method.
+     *
+     * @param callback - {@link ServerCallback} which will be called when the request returns.
+     * @param user user of this type {User} is created.
+     */
 
     public static void createUser(ServerCallback<User, User> callback, User user) {
         //Check if this is correct
@@ -197,6 +244,12 @@ public class API {
         System.out.println(user);
         ServerConnection.request(User.class, body, callback);
     }
+    /**
+     * update user with new user attributes.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     * @param user     user updated
+     */
 
     public static void updateUser(ServerCallback<User, User> callback, User user) {
         String url = buildUrl(EndPoints.UPDATE_USER);
@@ -207,6 +260,11 @@ public class API {
         ServerConnection.request(User.class, body, callback);
     }
 
+    /**
+     * retrieve username of logged in user.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
     public static void retrieveUser(ServerCallback<Object, UserServer> callback) {
         String url = buildUrl(EndPoints.GET_USER_INFO);
 
@@ -219,6 +277,11 @@ public class API {
         ServerConnection.request(UserServer.class, body, callback, true, -1);
     }
 
+    /**
+     * retrieve user profile of logged in user.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
     public static void retrieveUserProfile(ServerCallback<Object, UserServer> callback) {
         String url = buildUrl(EndPoints.GET_PROFILE);
 
@@ -231,6 +294,11 @@ public class API {
         ServerConnection.request(UserServer.class, body, callback, true, -1);
     }
 
+    /**
+     * retrieve achieved badges of logged in user.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
     public static void retrieveAchievedBadges(ServerCallback<Object, AchievedBadge[]> callback) {
         String url = buildUrl(EndPoints.GET_BADGES);
         Request<Object> body = ServerConnection
@@ -238,6 +306,11 @@ public class API {
 
         ServerConnection.request(AchievedBadge[].class, body, callback, true, 0);
     }
+    /**
+     * retrieve friends leaderboard of logged in user.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
 
     public static void retrieveFriendsLeaderboard(ServerCallback<Object, UserServer[]> callback) {
         String url = buildUrl(EndPoints.GET_FRIEND_LEADERBOARD);
@@ -246,6 +319,11 @@ public class API {
         ServerConnection.request(UserServer[].class, body, callback, true, 0);
     }
 
+    /**
+     * retrieve global leaderboard.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
     public static void retrieveGlobalLeaderboard(ServerCallback<Object, UserServer[]> callback) {
         String url = buildUrl(EndPoints.GET_GLOBAL_LEADERBOARD);
         Request<Object> body = ServerConnection
@@ -253,6 +331,11 @@ public class API {
         ServerConnection.request(UserServer[].class, body, callback, true, 0);
     }
 
+    /**
+     * retrieve friends of logged in user.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
     public static void retrieveFriends(ServerCallback<Object, Friendship[]> callback) {
         String url = buildUrl(EndPoints.GET_FRIENDS);
         Request<Object> body = ServerConnection
@@ -260,12 +343,24 @@ public class API {
         ServerConnection.request(Friendship[].class, body, callback, true, 0);
     }
 
+    /**
+     * add Friend.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     * @param username username of friend to add
+     */
     public static void addFriend(ServerCallback<Object, Friendship> callback, String username) {
         String url = buildUrl(EndPoints.ADD_FRIEND_BY_NAME, username);
         Request<Object> body = ServerConnection
             .buildSimpleRequest(HttpMethod.PUT, url);
         ServerConnection.request(Friendship.class, body, callback, true, 0);
     }
+
+    /**
+     * retrieve pending received friend requests of logged in user.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
 
     public static void retrievePendingReceivedFriendRequests(ServerCallback<Object, Friendship[]> callback) {
         String url = buildUrl(EndPoints.GET_RECEIVED_FRIEND_INVITES);
@@ -274,6 +369,11 @@ public class API {
         ServerConnection.request(Friendship[].class, body, callback, true, 0);
     }
 
+    /**
+     * search User profiles.
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     * @param username String Username
+     */
     public static void searchUserProfiles(ServerCallback<Object, UserServer> callback, String username) {
         String url = buildUrl(EndPoints.SEARCH_USER_PROFILE, username);
         Request<Object> body = ServerConnection
@@ -281,6 +381,11 @@ public class API {
         ServerConnection.request(UserServer.class, body, callback, true, 0);
     }
 
+    /**
+     * retrieve pending sent friend requests of logged in user.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
     public static void retrievePendingSentFriendRequests(ServerCallback<Object, Friendship[]> callback) {
         String url = buildUrl(EndPoints.GET_PENDING_SENT_FRIEND_INVITES);
         Request<Object> body = ServerConnection
@@ -288,11 +393,38 @@ public class API {
         ServerConnection.request(Friendship[].class, body, callback, true, 0);
     }
 
+    /**
+     * retrieve friend activities of logged in user.
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns.
+     */
     public static void retrieveFriendActivities(ServerCallback<Object, CompletedActivity[]> callback) {
         String url = buildUrl(EndPoints.GET_FRIEND_ACTIVITY);
         Request<Object> body = ServerConnection
             .buildSimpleRequest(HttpMethod.GET, url);
         ServerConnection.request(CompletedActivity[].class, body, callback, true, 0);
+    }
+    /**
+     * retrieve user completed achievements.
+     * @param callback servercallback
+     */
+
+    public static void retrieveAchievements(ServerCallback<Object, CompletedAchievements[]> callback) {
+        String url = buildUrl(EndPoints.GET_COMPLETED_ACHIEVEMENTS);
+        Request<Object> body = ServerConnection
+                .buildSimpleRequest(HttpMethod.GET, url);
+        ServerConnection.request(CompletedAchievements[].class, body, callback, true, 0);
+    }
+
+    /**
+     * retrieve progressing achievements.
+     * @param callback servercallback
+     */
+    public static void retrieveProgressingAchievements(ServerCallback<Object, CompletedAchievements[]> callback) {
+        String url = buildUrl(EndPoints.GET_PROGRESSING_ACHIEVEMENTS);
+        Request<Object> body = ServerConnection
+                .buildSimpleRequest(HttpMethod.GET, url);
+        ServerConnection.request(CompletedAchievements[].class, body, callback, true, 0);
     }
 
 

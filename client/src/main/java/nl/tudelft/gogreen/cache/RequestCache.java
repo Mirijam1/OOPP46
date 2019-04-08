@@ -47,6 +47,7 @@ public class RequestCache {
      * @param response The {@link HttpResponse} to update or insert
      * @param ttl Cache's time to live
      * @param <T> Type of the object in the request and response
+     * @param <I> Type of the object in the request and response
      */
     public <T, I> void updateCache(Request<T> request, HttpResponse<I> response, int ttl) {
         for (CachedRequest cachedRequest : cachedRequests.get(request.getUrl())) {
