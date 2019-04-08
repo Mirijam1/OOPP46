@@ -1,4 +1,4 @@
-package controllers;
+package nl.tudelft.gogreen.gui.controllers;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.FadeTransition;
@@ -55,6 +55,7 @@ public class AccountPageController {
     public void initialize() {
         modDataButton.setVisible(false);
         modDataButton.setDisable(true);
+
         API.retrieveUserProfile(new ServerCallback<Object, UserServer>() {
             @Override
             public void run() {
@@ -97,12 +98,12 @@ public class AccountPageController {
         if (newUserName.length() < 3) {
             errorMsg.setTextFill(Color.RED);
             errorMsg.setText("Username must be at least 3 characters");
-        } else if (user.getName().equals(newUserName)) {
+        } else if (user.getUsername().equals(newUserName)) {
             errorMsg.setTextFill(Color.RED);
             errorMsg.setText("Same username");
         } else {
-            API.updateUser(new ServerCallback<nl.tudelft.gogreen.api.servermodels.User,
-                    nl.tudelft.gogreen.api.servermodels.User>() {
+            System.out.println("new username: " + newUserName + " and password: " + user.getPassword());
+            API.updateUser(new ServerCallback<User, User>() {
                 @Override
                 public void run() {
                     Platform.runLater(() -> {
@@ -111,7 +112,7 @@ public class AccountPageController {
                         System.out.println(getResult());
                     });
                 }
-            }, new nl.tudelft.gogreen.api.servermodels.User(userForm.getText(), user.getPassword()));
+            }, new User(userForm.getText(), user.getPassword(), user.getMail()));
 
         }
         userForm.setText("");
@@ -121,17 +122,19 @@ public class AccountPageController {
         user = newuser;
         points = newpoints;
         String pointText = " Points";
+
         if (points <= 1f) {
             pointText = " Point";
         }
-        userTitle.setText(user.getName() + "'s Account");
-        userForm.setPromptText(user.getName());
-        SidebarController.controller.userLabel.setText(user.getName());
+
+        userTitle.setText(user.getUsername() + "'s Account");
+        userForm.setPromptText(user.getUsername());
+        SidebarController.controller.userLabel.setText(user.getUsername());
         co2Savings.setText(points.toString() + pointText);
     }
 
     public void initBadges(AchievedBadge[] achievedBadges) {
-        String badgeName = null;
+        String badgeName;
         int imageCol = 0;
         int imageRow = 0;
         //keeps track of achieved badges
@@ -150,9 +153,10 @@ public class AccountPageController {
             }
             //If the badge has been achieved multiple times, it won't be shown again
             if (counter <= 1) {
-                badgeName = achievedBadge.getBadge().getBadgeName();
+                badgeName = achievedBadge.getBadge().getBadgeName().toUpperCase();
 
                 String imgName = "img/" + badgeName + ".png";
+                System.out.println(imgName);
                 Image image = new Image(imgName);
                 ImageView iv = new ImageView(image);
 

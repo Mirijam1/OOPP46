@@ -1,4 +1,4 @@
-package controllers;
+package nl.tudelft.gogreen.gui.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.Interpolator;

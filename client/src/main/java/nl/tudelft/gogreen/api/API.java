@@ -3,7 +3,6 @@ package nl.tudelft.gogreen.api;
 import com.mashape.unirest.http.HttpMethod;
 import nl.tudelft.gogreen.api.servermodels.AchievedBadge;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
-import nl.tudelft.gogreen.api.servermodels.User;
 import nl.tudelft.gogreen.cache.Request;
 import nl.tudelft.gogreen.shared.models.*;
 import nl.tudelft.gogreen.shared.models.social.Friendship;
@@ -111,6 +110,18 @@ public class API {
         ServerConnection.request(SubmitResponse.class, request, callback, false, -1);
     }
 
+    /**
+     * <p>Submits a verification token to the server.</p>
+     * @param callback {@link ServerCallback} which will be called when the request returns
+     * @param user The {@link User} to verify
+     * @param token An {@link Integer} representing the token
+     */
+    public static void submitVerificationCode(ServerCallback<Object, BasicResponse> callback, User user, Integer token) {
+        Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.POST,
+                buildUrl(EndPoints.VERIFY_USER, user.getExternalId()) + "?token=" + token);
+
+        ServerConnection.request(BasicResponse.class, request, callback, false, -1);
+    }
     /* Please add javadocs below */
 
     public static void retrieveCategoryList(ServerCallback<Object, Category[]> callback) {
@@ -155,7 +166,7 @@ public class API {
             callback,
             false,
             -1,
-            new User("TestUser", "123", 130f),
+            new User("TestUser", "123", "mail@example.com", 130f, null),
             200);
     }
 

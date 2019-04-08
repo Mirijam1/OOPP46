@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,14 +16,13 @@ import lombok.NoArgsConstructor;
 public class User {
     private String username;
     private String password;
+    private String mail;
     private Float points;
+    private UUID externalId;
 
-    public User(String username, String password) {
+    public User(String username, String password, String mail) {
         this.username = username;
         this.password = password;
-    }
-
-    public String getName() {
-        return this.username;
+        this.mail = mail;
     }
 }

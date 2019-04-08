@@ -44,6 +44,11 @@ public class User implements UserDetails, Serializable {
     @Column(name = "USER_ID", nullable = false, unique = true, updatable = false)
     private UUID id;
 
+    @JsonView({nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class,
+            nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
+    @Column(name = "EXTERNAL_ID", nullable = false, unique = true, updatable = false)
+    private UUID externalId;
+
     @JsonIgnore
     @OneToOne(targetEntity = UserProfile.class, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
     private UserProfile profile;
@@ -52,6 +57,10 @@ public class User implements UserDetails, Serializable {
             nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
     @Column(name = "NAME", nullable = false, unique = true)
     private String username;
+
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
+    @Column(name = "MAIL", unique = true)
+    private String mail;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "PASSWORD", nullable = false)

@@ -41,6 +41,7 @@ public class UserControllerTest {
     public class TestUser {
         private String username;
         private String password;
+        private String mail;
     }
 
     private final String basisEndpoint = "/api/user/";
@@ -56,8 +57,8 @@ public class UserControllerTest {
 
     @Before
     public void setUp() throws JsonProcessingException {
-        mappedUser = mapper.writeValueAsString(new TestUser("tim", "password"));
-        mapperUserPasswordOnly = mapper.writeValueAsString(new TestUser(null, "password"));
+        mappedUser = mapper.writeValueAsString(new TestUser("tim", "password", "null@mail"));
+        mapperUserPasswordOnly = mapper.writeValueAsString(new TestUser(null, "password", "null2@mail"));
     }
 
     @WithAnonymousUser
@@ -106,7 +107,7 @@ public class UserControllerTest {
         mock.perform(put(basisEndpoint + "create")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(mappedUser))
-            .andExpect(status().isOk());
+            .andExpect(status().isServiceUnavailable()); // Since email is not available
     }
 
     @WithAnonymousUser
@@ -114,7 +115,7 @@ public class UserControllerTest {
     public void shouldReturnConflictWhenCreatingDuplicate() throws Exception {
         mock.perform(put(basisEndpoint + "create")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
-            .content(mapper.writeValueAsString(new TestUser("gogreenuser", "password"))))
+            .content(mapper.writeValueAsString(new TestUser("gogreenuser", "password", "null@mail"))))
             .andExpect(status().isConflict());
     }
 
@@ -123,7 +124,7 @@ public class UserControllerTest {
     public void shouldReturnBadRequestWhenCreatingWithoutName() throws Exception {
         mock.perform(put(basisEndpoint + "create")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
-            .content(mapper.writeValueAsString(new TestUser(null, "password"))))
+            .content(mapper.writeValueAsString(new TestUser(null, "password", "null@mail"))))
             .andExpect(status().isBadRequest());
     }
 
@@ -132,7 +133,7 @@ public class UserControllerTest {
     public void shouldReturnBadRequestWhenCreatingWithoutPassword() throws Exception {
         mock.perform(put(basisEndpoint + "create")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
-            .content(mapper.writeValueAsString(new TestUser("tim", null))))
+            .content(mapper.writeValueAsString(new TestUser("tim", null, "null@mail"))))
             .andExpect(status().isBadRequest());
     }
 
@@ -141,7 +142,7 @@ public class UserControllerTest {
     public void shouldReturnBadRequestWhenCreatingWithBadName() throws Exception {
         mock.perform(put(basisEndpoint + "create")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
-            .content(mapper.writeValueAsString(new TestUser("t", "password"))))
+            .content(mapper.writeValueAsString(new TestUser("t", "password", "null@mail"))))
             .andExpect(status().isBadRequest());
     }
 
@@ -150,7 +151,7 @@ public class UserControllerTest {
     public void shouldReturnBadRequestWhenCreatingWithBadPassword() throws Exception {
         mock.perform(put(basisEndpoint + "create")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
-            .content(mapper.writeValueAsString(new TestUser("tim", "pw"))))
+            .content(mapper.writeValueAsString(new TestUser("tim", "pw", "null@mail"))))
             .andExpect(status().isBadRequest());
     }
 
@@ -174,7 +175,7 @@ public class UserControllerTest {
     public void shouldUpdateUserWhenUpdatingAsUser() throws Exception {
         mock.perform(patch(basisEndpoint + "update")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(mapper.writeValueAsString(new TestUser("admin2", "password12345"))))
+                .content(mapper.writeValueAsString(new TestUser("admin2", "password12345", "not_null@mail"))))
                 .andExpect(status().isOk());
     }
 
@@ -183,7 +184,7 @@ public class UserControllerTest {
     public void shouldUpdateUserWhenUpdatingAsUserWhenNoChanges() throws Exception {
         mock.perform(patch(basisEndpoint + "update")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(mapper.writeValueAsString(new TestUser(null, null))))
+                .content(mapper.writeValueAsString(new TestUser(null, null, null))))
                 .andExpect(status().isOk());
     }
 
@@ -193,7 +194,7 @@ public class UserControllerTest {
     public void shouldReturnConflictWhenUpdatingUserToDuplicateName() throws Exception {
         mock.perform(patch(basisEndpoint + "update")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
-            .content(mapper.writeValueAsString(new TestUser("test_user", "password"))))
+            .content(mapper.writeValueAsString(new TestUser("test_user", "password", "null@mail"))))
             .andExpect(status().isConflict());
     }
 }

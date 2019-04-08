@@ -1,13 +1,19 @@
 package nl.tudelft.gogreen.server.service;
 
+import nl.tudelft.gogreen.api.servermodels.BasicResponse;
+import nl.tudelft.gogreen.server.exceptions.ForbiddenException;
+import nl.tudelft.gogreen.server.exceptions.NotFoundException;
+import nl.tudelft.gogreen.server.exceptions.ServiceUnavailable;
 import nl.tudelft.gogreen.server.models.Authority;
 import nl.tudelft.gogreen.server.models.user.User;
+import nl.tudelft.gogreen.server.models.user.VerificationToken;
 import nl.tudelft.gogreen.server.repository.AuthorityRepository;
 import nl.tudelft.gogreen.server.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @Primary
@@ -26,15 +33,21 @@ public class UserDetailService implements UserDetailsService, IUserService {
     private final PasswordEncoder passwordEncoder;
     private final AuthorityRepository authorityRepository;
     private final IProfileService profileService;
+    private final IVerificationTokenService verificationTokenService;
+    private final IMailService mailService;
 
     @Autowired
     public UserDetailService(UserRepository userRepository,
                              PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository,
-                             IProfileService profileService) {
+                             IProfileService profileService,
+                             IVerificationTokenService verificationTokenService,
+                             IMailService mailService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.profileService = profileService;
+        this.verificationTokenService = verificationTokenService;
+        this.mailService = mailService;
     }
 
     @Override
@@ -55,7 +68,7 @@ public class UserDetailService implements UserDetailsService, IUserService {
 
     @Override
     @Transactional
-    public User createUser(String username, String password) {
+    public User createUser(String username, String password, String mail) {
         Collection<Authority> authorities = new ArrayList<>();
 
         // Add basic authority
@@ -64,8 +77,10 @@ public class UserDetailService implements UserDetailsService, IUserService {
         User user = User.builder()
                 .username(username)
                 .password(passwordEncoder.encode(password))
-                .enabled(true)
+                .mail(mail)
+                .enabled(false)
                 .id(UUID.randomUUID())
+                .externalId(UUID.randomUUID())
                 .authorities(authorities)
                 .locked(false)
                 .expired(false)
@@ -100,5 +115,47 @@ public class UserDetailService implements UserDetailsService, IUserService {
             logger.info("Deleting created user '" + user.getUsername() + "' with ID '" + user.getId() + "'");
             userRepository.delete(user);
         }
+    }
+
+    @Override
+    public void generateToken(User user) {
+        if (!mailService.mailAvailable()) {
+            // TODO: Add verification code for testing, only in dev mode
+            throw new ServiceUnavailable();
+        }
+
+        // Create code and send mail
+        VerificationToken token = verificationTokenService.createTokenForUser(user,
+                ThreadLocalRandom.current().nextInt(1000000, 99999999));
+
+        mailService.sendRegistrationMessage(user.getMail(),
+                user.getUsername(),
+                token.getToken().toString(),
+                user.getExternalId().toString());
+    }
+
+    @Override
+    @Transactional
+    public BasicResponse verifyUser(User user, Integer token) {
+        HttpStatus status = verificationTokenService.verifyToken(token, user);
+
+        if (status == HttpStatus.OK) {
+            this.completeVerification(user);
+            return new BasicResponse(status.getReasonPhrase());
+        } else if (status == HttpStatus.FORBIDDEN) {
+            this.generateToken(user);
+            throw new ForbiddenException();
+        }
+
+        throw new NotFoundException();
+    }
+
+    @Override
+    @Transactional
+    public void completeVerification(User user) {
+        user.setEnabled(true);
+        userRepository.save(user);
+
+        mailService.sendRegistrationCompleteMessage(user.getMail(), user.getUsername());
     }
 }

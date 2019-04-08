@@ -5,7 +5,6 @@ import nl.tudelft.gogreen.api.EndPoints;
 import nl.tudelft.gogreen.api.ServerCallback;
 import nl.tudelft.gogreen.api.servermodels.AchievedBadge;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
-import nl.tudelft.gogreen.api.servermodels.User;
 import nl.tudelft.gogreen.shared.StatusCodes;
 import nl.tudelft.gogreen.shared.models.*;
 import nl.tudelft.gogreen.shared.models.social.Friendship;
@@ -34,7 +33,7 @@ public class APITest {
                 testRetrieveAchievedBadges();
                 testRetrieveFriendsLeaderboard();
             }
-        }, new User("admin", "password", 0F));
+        }, new User("admin", "password", null, 0F, null));
     }
 
     @Test
@@ -80,7 +79,7 @@ public class APITest {
                 }
 
             }
-        }, new User("admin", "password", (float) 0));
+        }, new User("admin", "password", null, (float) 0, null));
 
     }
 
@@ -197,9 +196,9 @@ public class APITest {
                             }
                         });
                     }
-                }, new User("testuser", "password", 0F));
+                }, new User("testuser", "password", null, 0F, null));
             }
-        }, new User("testuser", "password", 0F));
+        }, new User("testuser", "password", null, 0F, null));
     }
 
     @Test
@@ -218,9 +217,9 @@ public class APITest {
                             }
                         });
                     }
-                }, new User("testuser", "pass", 0F));
+                }, new User("testuser", "pass", null, 0F, null));
             }
-        }, new User("testuser", "pass", 0F));
+        }, new User("testuser", "pass", null, 0F, null));
     }
 
     @Test
@@ -236,7 +235,7 @@ public class APITest {
                     }
                 });
             }
-        }, new User("testuser", "pass", 0F));
+        }, new User("testuser", "pass", null,0F, null));
     }
 
     @Test

@@ -12,70 +12,77 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/accountPage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AccountPageController">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="nl.tudelft.gogreen.gui.controllers.AccountPageController">
     <children>
-        <Label fx:id="userTitle" alignment="TOP_CENTER" layoutX="384.0" layoutY="51.0" prefHeight="67.0" prefWidth="512.0" text="&lt;Username&gt;'s Account" textFill="#7b7b7b" AnchorPane.topAnchor="50.0">
+        <Label fx:id="userTitle" alignment="TOP_CENTER" layoutX="384.0" layoutY="51.0" prefHeight="67.0"
+               prefWidth="512.0" text="&lt;Username&gt;'s Account" textFill="#7b7b7b" AnchorPane.topAnchor="50.0">
             <font>
-                <Font name="Microsoft YaHei Light" size="48.0" />
+                <Font name="Microsoft YaHei Light" size="48.0"/>
             </font>
         </Label>
         <Label fx:id="co2Savings" layoutX="321.0" layoutY="359.0" text="&lt;CO2 Savings&gt;">
             <font>
-                <Font name="Microsoft YaHei Light" size="24.0" />
+                <Font name="Microsoft YaHei Light" size="24.0"/>
             </font>
         </Label>
-        <Line endX="37.0" endY="-50.0" fill="#9e9e9e" layoutX="603.0" layoutY="247.0" startX="37.0" startY="429.0" stroke="#036400" />
+        <Line endX="37.0" endY="-50.0" fill="#9e9e9e" layoutX="603.0" layoutY="247.0" startX="37.0" startY="429.0"
+              stroke="#036400"/>
         <Text layoutX="293.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Account">
             <font>
-                <Font name="Microsoft YaHei Light" size="24.0" />
+                <Font name="Microsoft YaHei Light" size="24.0"/>
             </font>
         </Text>
         <Text layoutX="197.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
             <font>
-                <Font name="Microsoft YaHei Light" size="24.0" />
+                <Font name="Microsoft YaHei Light" size="24.0"/>
             </font>
         </Text>
         <Text layoutX="896.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Badges">
             <font>
-                <Font name="Microsoft YaHei Light" size="24.0" />
+                <Font name="Microsoft YaHei Light" size="24.0"/>
             </font>
         </Text>
         <Text layoutX="170.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Savings:">
             <font>
-                <Font name="Microsoft YaHei Light" size="24.0" />
+                <Font name="Microsoft YaHei Light" size="24.0"/>
             </font>
         </Text>
-        <JFXTextField fx:id="userForm" focusColor="#036400" layoutX="321.0" layoutY="305.0" onKeyReleased="#checkSubmittable" prefHeight="39.0" prefWidth="157.0" unFocusColor="#7b7b7b">
+        <JFXTextField fx:id="userForm" focusColor="#036400" layoutX="321.0" layoutY="305.0"
+                      onKeyReleased="#checkSubmittable" prefHeight="39.0" prefWidth="157.0" unFocusColor="#7b7b7b">
             <font>
-                <Font size="18.0" />
+                <Font size="18.0"/>
             </font>
         </JFXTextField>
-        <JFXButton fx:id="modDataButton" layoutX="485.0" layoutY="309.0" onAction="#editUsername" text="Edit Username" textFill="#7b7b7b">
+        <JFXButton fx:id="modDataButton" layoutX="485.0" layoutY="309.0" onAction="#editUsername" text="Edit Username"
+                   textFill="#7b7b7b">
             <ripplerFill>
                 <LinearGradient>
                     <stops>
-                        <Stop color="#31e145" />
-                        <Stop color="#64ffe5" offset="1.0" />
+                        <Stop color="#31e145"/>
+                        <Stop color="#64ffe5" offset="1.0"/>
                     </stops>
                 </LinearGradient>
             </ripplerFill>
         </JFXButton>
         <Label fx:id="errorMsg" layoutX="321.0" layoutY="280.0" textFill="RED">
             <font>
-                <Font size="12.0" />
+                <Font size="12.0"/>
             </font>
         </Label>
-      <GridPane fx:id="badges" layoutX="753.0" layoutY="237.0" maxHeight="400.0" maxWidth="400.0" prefHeight="400.0" prefWidth="400.0" vgap="160.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
+        <GridPane fx:id="badges" layoutX="753.0" layoutY="237.0" maxHeight="400.0" maxWidth="400.0" prefHeight="400.0"
+                  prefWidth="400.0" vgap="160.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+        </GridPane>
     </children>
 </AnchorPane>

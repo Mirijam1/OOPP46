@@ -1,4 +1,4 @@
-package controllers;
+package nl.tudelft.gogreen.gui.controllers.signup;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +18,6 @@ public class SignUpConfirmationController {
 
     @FXML
     void gotologin(ActionEvent event) {
-        System.out.println("close");
         Stage currentStage = (Stage) signupbtn.getScene().getWindow();
         currentStage.close();
 
@@ -33,8 +32,5 @@ public class SignUpConfirmationController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
     }
 }

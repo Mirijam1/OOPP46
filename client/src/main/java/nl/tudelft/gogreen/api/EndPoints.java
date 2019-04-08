@@ -12,6 +12,7 @@ public class EndPoints {
     public static final String GET_USER_INFO = "api/user/"; // GET
     public static final String CREATE_USER = "api/user/create"; // PUT
     public static final String UPDATE_USER = "api/user/update"; // DELETE
+    public static final String VERIFY_USER = "api/user/verify/{var}"; // POST
 
     // PROFILE ENDPOINTS
     public static final String GET_PROFILE = "api/profile/"; // GET

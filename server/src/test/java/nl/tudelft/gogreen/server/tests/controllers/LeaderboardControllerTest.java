@@ -48,10 +48,9 @@ public class LeaderboardControllerTest {
             return;
         }
 
-        userDetailService.createUser("user_leaderboardControllerTest1", "password");
-        userDetailService.createUser("user_leaderboardControllerTest2", "password");
-        userDetailService.createUser("user_leaderboardControllerTest3", "password");
-
+        userDetailService.completeVerification(userDetailService.createUser("user_leaderboardControllerTest1", "password", null));
+        userDetailService.completeVerification(userDetailService.createUser("user_leaderboardControllerTest2", "password", null));
+        userDetailService.completeVerification(userDetailService.createUser("user_leaderboardControllerTest3", "password", null));
         inserted = true;
 
         UserProfile profile1 = userRepository.findUserByUsername("user_leaderboardControllerTest1").getProfile();

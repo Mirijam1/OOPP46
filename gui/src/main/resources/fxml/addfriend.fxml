@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="350.0" style="-fx-background-color: #F6FFED;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddFriendController" stylesheets="@../css/addfriend.css">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="350.0" style="-fx-background-color: #F6FFED;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.gogreen.gui.controllers.AddFriendController" stylesheets="@../css/addfriend.css">
    <children>
       <JFXButton fx:id="searchButton" layoutX="289.0" layoutY="27.0" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" onAction="#searchUser" prefHeight="36.0" prefWidth="36.0" text="">
          <graphic>
@@ -22,7 +22,7 @@
             </ImageView>
          </graphic>
          <ripplerFill>
-            <LinearGradient endX="1.0" endY="1.0">
+            <LinearGradient>
                <stops>
                   <Stop color="#00d30b" />
                   <Stop color="#00d30b" offset="0.007246376811594203" />

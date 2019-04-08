@@ -5,6 +5,7 @@ import nl.tudelft.gogreen.server.exceptions.ConflictException;
 import nl.tudelft.gogreen.server.exceptions.ForbiddenException;
 import nl.tudelft.gogreen.server.exceptions.InternalServerError;
 import nl.tudelft.gogreen.server.exceptions.NotFoundException;
+import nl.tudelft.gogreen.server.exceptions.ServiceUnavailable;
 import nl.tudelft.gogreen.server.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,6 +51,13 @@ public class ExceptionHandler {
     @org.springframework.web.bind.annotation.ExceptionHandler(InternalServerError.class)
     public ResponseEntity<ServerError> handleError() {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+
+        return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(ServiceUnavailable.class)
+    public ResponseEntity<ServerError> handleServiceUnavailable() {
+        HttpStatus status = HttpStatus.SERVICE_UNAVAILABLE;
 
         return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
     }

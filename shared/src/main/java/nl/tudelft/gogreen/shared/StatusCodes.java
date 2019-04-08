@@ -21,4 +21,5 @@ public class StatusCodes {
     public static final int OK = 200;
     public static final int MISSING_FIELDS = 400;
     public static final int ALREADY_EXISTS = 409;
+    public static final int USER_CREATED = 201;
 }
