@@ -31,6 +31,7 @@ public class EndPoints {
     public static final String DELETE_FRIEND_BY_NAME = "api/social/friends/delete/{var}"; // DELETE
     public static final String GET_FRIEND_ACTIVITY = "api/social/friends/activities"; // GET
     public static final String SEARCH_USER_PROFILE = "api/social/user/{var}"; // GET
+    public static final String SEARCH_FOR_USER = "api/social/user/search/{var}"; // GET
 
     // LEADERBOARD ENDPOINTS
     public static final String GET_GLOBAL_LEADERBOARD = "api/leaderboard/global"; // GET

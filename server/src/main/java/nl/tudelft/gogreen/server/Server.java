@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.jpa.Search;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -12,8 +14,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.io.IOException;
 
 @SpringBootApplication
@@ -21,6 +26,13 @@ import java.io.IOException;
 @EnableAsync
 @EnableScheduling
 public class Server {
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    /**
+     * <p>Main entry point of program. Will bootstrap server.</p>
+     * @param args Program arguments
+     */
     public static void main(String... args) {
         SpringApplication.run(Server.class);
     }
@@ -29,7 +41,7 @@ public class Server {
      * initialize Unirest.
      */
     @PostConstruct
-    public static void initUnirest() {
+    public void initUnirest() {
         com.fasterxml.jackson.databind.ObjectMapper mapper =
                 new com.fasterxml.jackson.databind.ObjectMapper();
 

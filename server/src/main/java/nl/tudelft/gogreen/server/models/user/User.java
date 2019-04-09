@@ -12,6 +12,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import nl.tudelft.gogreen.server.models.Authority;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.CascadeType;
@@ -38,6 +40,7 @@ import java.util.UUID;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @EqualsAndHashCode(exclude = {"profile"})
 @ToString(exclude = {"profile"})
+@Indexed
 public class User implements UserDetails, Serializable {
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     @Id
@@ -56,6 +59,7 @@ public class User implements UserDetails, Serializable {
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class,
             nl.tudelft.gogreen.server.models.JsonView.Detailed.class})
     @Column(name = "NAME", nullable = false, unique = true)
+    @Field
     private String username;
 
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)

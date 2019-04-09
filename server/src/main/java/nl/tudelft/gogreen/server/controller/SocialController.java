@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @RestController
@@ -169,8 +170,27 @@ public class SocialController {
             throw new NotFoundException();
         }
 
-        //TODO: Hidden profile
-
         return profileService.getUserProfile(user);
+    }
+
+    /**
+     * <p>Returns a collection of {@link UserProfile}, whose username matches the search param to a certain degree.
+     * Certain means a fuzzy search with a maximum difference of two.</p>
+     * @param username A {@link String} representing the username to search for
+     * @return A collection of {@link UserProfile}
+     */
+    @RequestMapping(path = "/user/search/{username}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.NotDetailed.class)
+    public @ResponseBody Collection<UserProfile> searchUsers(Authentication authentication,
+                                                             @PathVariable("username") String username)
+            throws InterruptedException {
+        if (username == null) {
+            return new ArrayList<>();
+        }
+
+        return socialService.searchForUser(username, ((User) authentication.getPrincipal()).getId());
     }
 }

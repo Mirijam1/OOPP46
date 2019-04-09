@@ -6,6 +6,7 @@ import nl.tudelft.gogreen.server.models.social.FriendshipConnection;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
 
 import java.util.Collection;
+import java.util.UUID;
 
 public interface ISocialService {
     FriendshipConnection addFriend(UserProfile user, UserProfile target);
@@ -13,4 +14,6 @@ public interface ISocialService {
     ServerError deleteFriend(UserProfile user, UserProfile target);
 
     Collection<CompletedActivity> findFriendActivities(UserProfile user, Integer limit, Boolean includeSelf);
+
+    Collection<UserProfile> searchForUser(String name, UUID filter) throws InterruptedException;
 }

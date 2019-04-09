@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
+import nl.tudelft.gogreen.shared.StatusCodes;
 import nl.tudelft.gogreen.shared.models.UserServer;
 import nl.tudelft.gogreen.shared.models.social.Friendship;
 
@@ -49,23 +50,23 @@ public class AddFriendController {
         String searchUserName = searchField.getText();
         System.out.println(searchUserName);
 
-        API.searchUserProfiles(new ServerCallback<Object, UserServer>() {
+        API.searchForUsers(new ServerCallback<Object, UserServer[]>() {
             @Override
             public void run() {
-                if (getStatusCode() != 200) {
-                    System.out.println(getStatusCode());
-                } else {
-                    System.out.println(getResult());
-                    Platform.runLater(() -> createEntry(getResult()));
+                if (getStatusCode() == StatusCodes.OK) {
+                    Platform.runLater(() -> {
+                        for (int i = 0; i < 15; i++) { // TODO: Remove debug loop when the add function is fixed
+                            for (UserServer userServer : getResult()) {
+                                createEntry(userServer);
+                            }
+                        }
+                    });
                 }
             }
         }, searchUserName);
-
-        //        searchField.setText("");
     }
 
     private void createEntry(UserServer userServer) {
-        int entryHeight = 92;
         addFriendScroll.setFitToWidth(true);
         addFriendVBox.setSpacing(6);
         addFriendVBox.setTranslateX(3);
@@ -85,6 +86,7 @@ public class AddFriendController {
         entryPane.setPrefSize(292, 50);
         entryPane.setMaxWidth(292);
         entryPane.setStyle("-fx-background-radius: 25; -fx-background-color: rgba(0, 0, 0, 0.50);");
+        int entryHeight = 92;
 
         entryPane.getChildren().addAll(userLabel, addButton);
         addFriendVBox.setPrefHeight((entryHeight + 6));

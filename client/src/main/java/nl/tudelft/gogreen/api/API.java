@@ -15,6 +15,7 @@ import nl.tudelft.gogreen.shared.models.UserServer;
 import nl.tudelft.gogreen.shared.models.social.Friendship;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -129,6 +130,18 @@ public class API {
                 buildUrl(EndPoints.VERIFY_USER, user.getExternalId()) + "?token=" + token);
 
         ServerConnection.request(BasicResponse.class, request, callback, false, -1);
+    }
+
+    /**
+     * <p>Retrieves an array of {@link UserServer} with names matching the given name.</p>
+     * @param callback {@link ServerCallback} which will be called when the request returns
+     * @param username A {@link String} representing the username to search fore
+     */
+    public static void searchForUsers(ServerCallback<Object, UserServer[]> callback, String username) {
+        Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.GET,
+                buildUrl(EndPoints.SEARCH_FOR_USER, username));
+
+        ServerConnection.request(UserServer[].class, request, callback, true, 15);
     }
 
     /**

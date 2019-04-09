@@ -5,6 +5,7 @@ import nl.tudelft.gogreen.server.exceptions.handling.ServerError;
 import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
 import nl.tudelft.gogreen.server.models.social.FriendshipConnection;
 import nl.tudelft.gogreen.server.models.user.UserProfile;
+import nl.tudelft.gogreen.server.repository.ProfileRepository;
 import nl.tudelft.gogreen.server.repository.activity.CompletedActivityRepository;
 import nl.tudelft.gogreen.server.repository.social.FriendshipConnectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,16 @@ import java.util.UUID;
 public class SocialService implements ISocialService {
     private final FriendshipConnectionRepository friendshipConnectionRepository;
     private final CompletedActivityRepository completedActivityRepository;
+    private final ISearchService searchService;
+    private final ProfileRepository profileRepository;
 
     @Autowired
     public SocialService(FriendshipConnectionRepository friendshipConnectionRepository,
-                         CompletedActivityRepository completedActivityRepository) {
+                         CompletedActivityRepository completedActivityRepository, ISearchService searchService, ProfileRepository profileRepository) {
         this.friendshipConnectionRepository = friendshipConnectionRepository;
         this.completedActivityRepository = completedActivityRepository;
+        this.searchService = searchService;
+        this.profileRepository = profileRepository;
     }
 
     @Override
@@ -77,10 +82,16 @@ public class SocialService implements ISocialService {
         return activities;
     }
 
+    @Override
+    public Collection<UserProfile> searchForUser(String name, UUID filter) throws InterruptedException {
+        return profileRepository.findUserProfilesByUserInAndUserIdIsNot(searchService.searchUsersByName(name), filter);
+    }
+
     /**
      * buildConnection between two users accepting friendship.
+     *
      * @param profile current user
-     * @param target target user.
+     * @param target  target user.
      * @return FriendshipConnection
      */
     @Transactional
@@ -104,9 +115,10 @@ public class SocialService implements ISocialService {
     }
 
     /**
-     *  buildNewConnection between two users.
+     * buildNewConnection between two users.
+     *
      * @param profile current user.
-     * @param target target user.
+     * @param target  target user.
      * @return FriendshipConnection
      */
     @Transactional
@@ -126,6 +138,7 @@ public class SocialService implements ISocialService {
 
     /**
      * accept user invitations.
+     *
      * @param friendshipConnection connection betwee two users.
      * @return FriendshipConnection
      */
