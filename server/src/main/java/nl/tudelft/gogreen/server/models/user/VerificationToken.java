@@ -34,6 +34,6 @@ public class VerificationToken {
     private Long expiresAt;
 
     @OneToOne
-    @JoinColumn(name = "USER", referencedColumnName = "USER_ID")
+    @JoinColumn(name = "USER_REF", referencedColumnName = "USER_ID")
     private User user;
 }
