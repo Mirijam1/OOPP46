@@ -10,6 +10,7 @@ public class StatusCodes {
     // Request related
     public static final int NOT_FOUND = 404;
     public static final int ERROR = 500;
+    public static final int SERVICE_UNAVAILABLE = 503;
 
     // Submit related
     public static final int OK = 200;

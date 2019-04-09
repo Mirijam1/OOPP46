@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="450.0" prefWidth="350.0"
             xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="messageLabel" layoutX="75.0" layoutY="100.0" minHeight="25.0" maxHeight="25.0" prefWidth="300.0" textFill="BLACK">
+        <JFXTextArea fx:id="messageText" layoutX="75.0" layoutY="25.0" minHeight="800.0" maxHeight="800.0"
+                     prefWidth="205.0" editable="false" focusColor="#7b7b7b" unFocusColor="#7b7b7b"
+                     style="-fx-text-alignment: CENTER">
             <font>
                 <Font name="Microsoft YaHei Light" size="14.0"/>
             </font>
-        </Label>
-        <Label fx:id="dataError" layoutX="75.0" layoutY="125.0" minHeight="25.0" maxHeight="25.0" prefWidth="300.0" textFill="RED">
+        </JFXTextArea>
+        <JFXTextArea fx:id="dataError" layoutX="75.0" layoutY="115.0" minHeight="1150.0" maxHeight="1150.0"
+                     prefWidth="205.0" editable="false" focusColor="#7b7b7b" unFocusColor="#7b7b7b"
+                     style="-fx-text-fill: RED; -fx-text-alignment: CENTER">
             <font>
                 <Font name="Microsoft YaHei Light" size="14.0"/>
             </font>
-        </Label>
-        <TextField fx:id="tokenField" layoutX="75.0" layoutY="260.0"
+        </JFXTextArea>
+        <TextField fx:id="tokenField" layoutX="75.0" layoutY="270.0"
                    onKeyPressed="#handleInput" minHeight="33.0" maxHeight="33.0" prefWidth="205.0">
             <font>
                 <Font size="14.0"/>
             </font>
         </TextField>
 
-        <Label fx:id="inputError" layoutX="100.0" layoutY="310.0" minHeight="15.0" maxHeight="15.0" prefWidth="205.0" textFill="RED">
+        <Label fx:id="inputError" layoutX="100.0" layoutY="310.0" minHeight="15.0" maxHeight="15.0" prefWidth="205.0"
+               textFill="RED">
             <font>
                 <Font name="Microsoft YaHei Light" size="11.0"/>
             </font>

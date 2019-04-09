@@ -1,10 +1,12 @@
 package nl.tudelft.gogreen.gui.controllers.verification;
 
+import com.jfoenix.controls.JFXTextArea;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -15,8 +17,8 @@ import java.io.IOException;
 
 public class InputController<T, C extends InputConverter<T>> {
     private @FXML TextField tokenField;
-    private @FXML Label messageLabel;
-    private @FXML Label dataError;
+    private @FXML JFXTextArea messageText;
+    private @FXML JFXTextArea dataError;
     private @FXML Label inputError;
 
     private String title;
@@ -34,6 +36,10 @@ public class InputController<T, C extends InputConverter<T>> {
         this.inputConverter = inputConverter;
     }
 
+    public boolean inputReceived() {
+        return this.result != null;
+    }
+
     public void openScreen() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/inputScreen.fxml"));
@@ -47,7 +53,7 @@ public class InputController<T, C extends InputConverter<T>> {
             stage.setScene(new Scene(root));
             stage.setResizable(false);
 
-            messageLabel.setText(message);
+            messageText.setText(message);
 
             if (errorMessage != null) {
                 dataError.setText(errorMessage);

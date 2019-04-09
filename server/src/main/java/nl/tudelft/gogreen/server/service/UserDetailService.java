@@ -3,7 +3,7 @@ package nl.tudelft.gogreen.server.service;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
 import nl.tudelft.gogreen.server.exceptions.ForbiddenException;
 import nl.tudelft.gogreen.server.exceptions.NotFoundException;
-import nl.tudelft.gogreen.server.exceptions.ServiceUnavailable;
+import nl.tudelft.gogreen.server.exceptions.ServiceUnavailableException;
 import nl.tudelft.gogreen.server.models.Authority;
 import nl.tudelft.gogreen.server.models.user.User;
 import nl.tudelft.gogreen.server.models.user.VerificationToken;
@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
@@ -36,6 +38,8 @@ public class UserDetailService implements UserDetailsService, IUserService {
     private final IVerificationTokenService verificationTokenService;
     private final IMailService mailService;
 
+    private final Environment environment;
+
     /**
      * instantiate UserDetailService.
      * @param userRepository userRepository.
@@ -44,19 +48,22 @@ public class UserDetailService implements UserDetailsService, IUserService {
      * @param profileService profileService.
      * @param verificationTokenService verificationTokenService.
      * @param mailService mailService.
+     * @param environment environment.
      */
     @Autowired
     public UserDetailService(UserRepository userRepository,
                              PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository,
                              IProfileService profileService,
                              IVerificationTokenService verificationTokenService,
-                             IMailService mailService) {
+                             IMailService mailService,
+                             Environment environment) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.profileService = profileService;
         this.verificationTokenService = verificationTokenService;
         this.mailService = mailService;
+        this.environment = environment;
     }
 
     @Override
@@ -129,8 +136,13 @@ public class UserDetailService implements UserDetailsService, IUserService {
     @Override
     public void generateToken(User user) {
         if (!mailService.mailAvailable()) {
-            // TODO: Add verification code for testing, only in dev mode
-            throw new ServiceUnavailable();
+            // Check if the server is running in dev mode
+            // If so, create a developer token
+            if (Arrays.asList(environment.getActiveProfiles()).contains("dev")) {
+                verificationTokenService.createTokenForUser(user, 12345678);
+            }
+
+            throw new ServiceUnavailableException(user.getExternalId().toString());
         }
 
         // Create code and send mail
@@ -150,7 +162,7 @@ public class UserDetailService implements UserDetailsService, IUserService {
 
         if (status == HttpStatus.OK) {
             this.completeVerification(user);
-            return new BasicResponse(status.getReasonPhrase());
+            return new BasicResponse(status.getReasonPhrase(), null);
         } else if (status == HttpStatus.FORBIDDEN) {
             this.generateToken(user);
             throw new ForbiddenException();

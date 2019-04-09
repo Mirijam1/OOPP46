@@ -36,7 +36,7 @@ public class VerificationTokenService implements IVerificationTokenService {
 
     @Override
     public HttpStatus verifyToken(Integer token, User user) {
-        VerificationToken verificationToken = tokenRepository.findByToken(token);
+        VerificationToken verificationToken = tokenRepository.findByTokenAndUserExternalId(token, user.getExternalId());
 
         if (verificationToken == null || !verificationToken.getUser().getId().equals(user.getId())) {
             return HttpStatus.NOT_FOUND;

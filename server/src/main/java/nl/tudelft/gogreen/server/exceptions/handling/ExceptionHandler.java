@@ -5,7 +5,7 @@ import nl.tudelft.gogreen.server.exceptions.ConflictException;
 import nl.tudelft.gogreen.server.exceptions.ForbiddenException;
 import nl.tudelft.gogreen.server.exceptions.InternalServerError;
 import nl.tudelft.gogreen.server.exceptions.NotFoundException;
-import nl.tudelft.gogreen.server.exceptions.ServiceUnavailable;
+import nl.tudelft.gogreen.server.exceptions.ServiceUnavailableException;
 import nl.tudelft.gogreen.server.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class ExceptionHandler {
     public ResponseEntity<ServerError> handleUnauthorized() {
         HttpStatus status = HttpStatus.UNAUTHORIZED;
 
-        return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
+        return new ResponseEntity<>(new ServerError(status.getReasonPhrase(), null), status);
     }
     /**
      * Handling Forbidden Exceptions.
@@ -32,7 +32,7 @@ public class ExceptionHandler {
     public ResponseEntity<ServerError> handleForbidden() {
         HttpStatus status = HttpStatus.FORBIDDEN;
 
-        return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
+        return new ResponseEntity<>(new ServerError(status.getReasonPhrase(), null), status);
     }
     /**
      * Handling NotFound Exceptions.
@@ -43,7 +43,7 @@ public class ExceptionHandler {
     public ResponseEntity<ServerError> handleNotFound() {
         HttpStatus status = HttpStatus.NOT_FOUND;
 
-        return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
+        return new ResponseEntity<>(new ServerError(status.getReasonPhrase(), null), status);
     }
 
     /**
@@ -54,7 +54,7 @@ public class ExceptionHandler {
     public ResponseEntity<ServerError> handleBadRequest() {
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
-        return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
+        return new ResponseEntity<>(new ServerError(status.getReasonPhrase(), null), status);
     }
 
     /**
@@ -62,10 +62,10 @@ public class ExceptionHandler {
      * @return ServerError
      */
     @org.springframework.web.bind.annotation.ExceptionHandler(ConflictException.class)
-    public ResponseEntity<ServerError> handleConflict() {
+    public ResponseEntity<ServerError> handleConflict(ConflictException conflictException) {
         HttpStatus status = HttpStatus.CONFLICT;
 
-        return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
+        return new ResponseEntity<>(new ServerError(status.getReasonPhrase(), conflictException.getMessage()), status);
     }
 
     /**
@@ -76,17 +76,19 @@ public class ExceptionHandler {
     public ResponseEntity<ServerError> handleError() {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 
-        return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
+        return new ResponseEntity<>(new ServerError(status.getReasonPhrase(), null), status);
     }
 
     /**
-     * Handle ServiceUnavailable.
+     * Handle ServiceUnavailableException.
      * @return ServerError
      */
-    @org.springframework.web.bind.annotation.ExceptionHandler(ServiceUnavailable.class)
-    public ResponseEntity<ServerError> handleServiceUnavailable() {
+    @org.springframework.web.bind.annotation.ExceptionHandler(ServiceUnavailableException.class)
+    public ResponseEntity<ServerError> handleServiceUnavailable(
+            ServiceUnavailableException serviceUnavailableException) {
         HttpStatus status = HttpStatus.SERVICE_UNAVAILABLE;
 
-        return new ResponseEntity<>(new ServerError(status.getReasonPhrase()), status);
+        return new ResponseEntity<>(new ServerError(status.getReasonPhrase(),
+                serviceUnavailableException.getMessage()), status);
     }
 }

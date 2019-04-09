@@ -27,7 +27,7 @@ public class VerificationToken {
     @Column(name = "ID", nullable = false, unique = true, updatable = false)
     private UUID id;
 
-    @Column(name = "TOKEN", unique = true, nullable = false, updatable = false)
+    @Column(name = "TOKEN", nullable = false, updatable = false)
     private Integer token;
 
     @Column(name = "EXPIRES", nullable = false, updatable = false)

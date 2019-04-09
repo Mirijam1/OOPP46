@@ -6,5 +6,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @NoArgsConstructor
 @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
-public class ServiceUnavailable extends RuntimeException {
+public class ServiceUnavailableException extends RuntimeException {
+    public ServiceUnavailableException(String message) {
+        super(message);
+    }
 }

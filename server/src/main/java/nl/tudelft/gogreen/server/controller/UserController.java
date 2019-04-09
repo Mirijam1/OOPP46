@@ -90,9 +90,10 @@ public class UserController {
             throw new BadRequestException();
         }
 
-        if (userRepository.findUserByUsername(user.getUsername()) != null
+        User foundByUsername = userRepository.findUserByUsername(user.getUsername());
+        if (foundByUsername != null
                 || userRepository.findUserByMail(user.getMail()) != null) {
-            throw new ConflictException();
+            throw new ConflictException(foundByUsername == null ? "mail" : "name");
         }
 
         User createdUser = userService.createUser(user.getUsername(), user.getPassword(), user.getMail());

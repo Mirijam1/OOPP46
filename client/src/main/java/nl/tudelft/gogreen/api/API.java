@@ -81,7 +81,7 @@ public class API {
             callback,
             true,
             15,
-            new BasicResponse("Fake response from server"),
+            new BasicResponse("Fake response from server", null),
             200);
     }
 
@@ -212,7 +212,7 @@ public class API {
             callback,
             false,
             -1,
-            new BasicResponse("0.4"), 200);
+            new BasicResponse("0.4", null), 200);
     }
 
     /**
@@ -234,15 +234,12 @@ public class API {
      * @param callback - {@link ServerCallback} which will be called when the request returns.
      * @param user user of this type {User} is created.
      */
-
     public static void createUser(ServerCallback<User, User> callback, User user) {
-        //Check if this is correct
         String url = buildUrl(EndPoints.CREATE_USER);
-
         Request<User> body = ServerConnection
             .buildRequestWithBody(HttpMethod.PUT, url, user);
-        System.out.println(user);
-        ServerConnection.request(User.class, body, callback);
+
+        ServerConnection.request(User.class, body, callback, true, -1);
     }
     /**
      * update user with new user attributes.

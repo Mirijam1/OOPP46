@@ -1,6 +1,5 @@
 package nl.tudelft.gogreen.gui.controllers.signup;
 
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -109,7 +108,16 @@ public class SignUpController {
             public void run() {
                 Platform.runLater(() -> {
                     if (getStatusCode() == StatusCodes.USER_CREATED) {
-                        validateCode(getResult(), false);
+                        validateCode(getResult(), null);
+                    } else if (getStatusCode() == StatusCodes.SERVICE_UNAVAILABLE) {
+                        // Retrieve UUID that the server sent
+                        getResult().setExternalId(UUID.fromString(getResult().getAdditionalInfo()));
+
+                        // In this case the server does not have an active email service, should not be an issue on
+                        // production servers. However, for dev servers this may be useful, since by default 12345678
+                        // will be added iff the server is running in dev mode
+                        validateCode(getResult(), "Email registration is unavailable at the moment. \n"
+                                + "However, you can still verify with a developer token");
                     } else {
                         usermessage.setText("Already exists");
                     }
@@ -118,39 +126,47 @@ public class SignUpController {
         }, new User(username.getText(), password.getText(), emailField.getText()));
     }
 
-    private void validateCode(User user, boolean error) {
+    private void validateCode(User user, String error) {
         InputController<Integer, IntegerConverter> input = new InputController<>("Enter your token",
-                "Please enter the code you received in the mail", error ? "Wrong code!" : null, new IntegerConverter());
+                "Please enter the token you received in the mail", error, new IntegerConverter());
 
         input.openScreen();
-        API.submitVerificationCode(new ServerCallback<Object, BasicResponse>() {
-            @Override
-            public void run() {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (getStatusCode() == 200) {
-                            try {
-                                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/SignUpConfirmation.fxml"));
-                                Stage stage = new Stage();
-                                stage.initModality(Modality.APPLICATION_MODAL);
-                                stage.setTitle("Succesful Sign Up");
-                                stage.setScene(new Scene(root));
-                                stage.setResizable(false);
-                                stage.show();
 
-                                ((Stage) emailError.getScene().getWindow()).close();
+        if (input.inputReceived()) {
+            API.submitVerificationCode(new ServerCallback<Object, BasicResponse>() {
+                @Override
+                public void run() {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (getStatusCode() == StatusCodes.OK) {
+                                try {
+                                    Parent root = FXMLLoader
+                                            .load(getClass()
+                                                    .getClassLoader()
+                                                    .getResource("fxml/SignUpConfirmation.fxml")
+                                            );
+                                    Stage stage = new Stage();
+                                    stage.initModality(Modality.APPLICATION_MODAL);
+                                    stage.setTitle("Successful registration");
+                                    stage.setScene(new Scene(root));
+                                    stage.setResizable(false);
+                                    stage.show();
 
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                                    ((Stage) emailError.getScene().getWindow()).close();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            } else if (getStatusCode() == StatusCodes.FORBIDDEN) {
+                                validateCode(user, "That token is expired. \nWe have sent you a new one");
+                            } else {
+                                validateCode(user, "Invalid token");
                             }
-                        } else {
-                            validateCode(user, true);
                         }
-                    }
-                });
-            }
-        }, user, input.getResult());
+                    });
+                }
+            }, user, input.getResult());
+        }
     }
 
     public void changeStyleError(TextField field) {
@@ -171,6 +187,10 @@ public class SignUpController {
                 "Please enter the continuation token you received in the mail", null, new IdConverter());
 
         input.openScreen();
-        validateCode(new User(null, null, null, null, input.getResult()), false);
+
+        // Only continue if input received
+        if (input.inputReceived()) {
+            validateCode(new User(null, null, null, null, input.getResult()), null);
+        }
     }
 }

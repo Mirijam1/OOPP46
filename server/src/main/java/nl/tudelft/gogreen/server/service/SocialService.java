@@ -51,7 +51,7 @@ public class SocialService implements ISocialService {
             friendshipConnectionRepository.delete(connection);
         }
 
-        return new ServerError("Ok");
+        return new ServerError("Ok", null);
     }
 
     @Override

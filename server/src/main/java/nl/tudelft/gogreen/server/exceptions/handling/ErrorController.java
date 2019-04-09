@@ -22,11 +22,11 @@ public class ErrorController implements org.springframework.boot.web.servlet.err
 
         for (HttpStatus httpStatus : HttpStatus.values()) {
             if (status == httpStatus.value()) {
-                return new ServerError(httpStatus.getReasonPhrase());
+                return new ServerError(httpStatus.getReasonPhrase(), null);
             }
         }
 
-        return new ServerError(status + "");
+        return new ServerError(status + "", null);
     }
 
     @Override

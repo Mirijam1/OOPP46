@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User {
+public class User extends BasicResponse {
     private String username;
     private String password;
     private String mail;

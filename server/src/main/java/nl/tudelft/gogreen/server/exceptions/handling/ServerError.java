@@ -7,4 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class ServerError {
     private String response;
+    private String additionalInfo;
 }
