@@ -64,19 +64,6 @@ public class LoginController {
             pwdmessage.setText("Please enter password");
             changeStyleError(passfield);
         } else {
-
-//            try {
-//                root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/sidebar.fxml"));
-//                Stage stage = new Stage();
-//                stage.setTitle("GoGreen");
-//                stage.setScene(new Scene(root, 1280, 720));
-//                stage.show();
-//                // Hide this current window (if this is what you want)
-//                ((Node) (event.getSource())).getScene().getWindow().hide();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
             API.attemptAuthentication(new ServerCallback<Object, BasicResponse>() {
                 @Override
                 public void run() {
@@ -100,12 +87,15 @@ public class LoginController {
                                 stage.getIcons().add(new Image("img/leaficon.png"));
                                 stage.setScene(new Scene(root, 1380, 720));
                                 stage.show();
+                                stage.setOnCloseRequest(t -> {
+                                    API.closeAPI();
+                                    Platform.exit();
+                                    System.exit(0);
+                                });
 
                                 // do what you have to do
                                 SidebarController.controller = loader.getController();
                                 current.close();
-
-                                stage.setOnCloseRequest(e -> System.exit(0));
                             }
                         });
                     } else {
@@ -141,7 +131,12 @@ public class LoginController {
             stage.getIcons().add(new Image("img/leaficon.png"));
             stage.setScene(new Scene(root, 600, 400));
             stage.show();
-            // do what you have to do
+            stage.setOnCloseRequest(t -> {
+                API.closeAPI();
+                Platform.exit();
+                System.exit(0);
+            });
+
             current.close();
         } catch (IOException e) {
             e.printStackTrace();

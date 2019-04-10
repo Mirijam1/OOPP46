@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Collections;
 import java.util.Map;
 import java.util.UUID;
@@ -173,7 +174,7 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody
-        BasicResponse verifyUser(@PathVariable UUID externalId, @RequestParam("token") Integer token) {
+        BasicResponse verifyUser(@PathVariable("externalId") UUID externalId, @RequestParam("token") Integer token) {
         User user = userRepository.findUserByExternalId(externalId);
 
         if (user == null) {
@@ -181,5 +182,44 @@ public class UserController {
         }
 
         return userService.verifyUser(user, token);
+    }
+
+    @RequestMapping(path = "/2fa/toggle/{toggle}",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody BasicResponse toggle2FA(Authentication authentication,
+                                                 @PathVariable("toggle") Boolean enabled)
+            throws UnsupportedEncodingException {
+        User user = (User) authentication.getPrincipal();
+
+        if (enabled) {
+            if (user.isTfaEnabled()) {
+                throw new BadRequestException();
+            }
+
+            return new BasicResponse(HttpStatus.OK.getReasonPhrase(),
+                    userService.generateQRUrlFor2FA(user));
+        } else {
+            userService.disable2FA(user);
+        }
+
+        return new BasicResponse(HttpStatus.OK.getReasonPhrase(), null);
+    }
+
+    @RequestMapping(path = "/2fa/enable/{token}",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody BasicResponse verify2FA(Authentication authentication,
+                                                 @PathVariable("token") Long token) {
+        User user = (User) authentication.getPrincipal();
+
+        if (user.isTfaEnabled()) {
+            throw new BadRequestException();
+        }
+
+        userService.enable2FA(user, token.toString());
+        return new BasicResponse(HttpStatus.OK.getReasonPhrase(), null);
     }
 }

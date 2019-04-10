@@ -75,6 +75,14 @@ public class User implements UserDetails, Serializable {
     private boolean expired;
 
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
+    @Column(name = "TWO_FA_ENABLED", nullable = false)
+    private boolean tfaEnabled;
+
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
+    @Column(name = "TWO_FA_SECRET")
+    private String tfaSecret;
+
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     @Column(name = "ACC_LOCKED", nullable = false)
     private boolean locked;
 

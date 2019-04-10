@@ -4,11 +4,14 @@ import nl.tudelft.gogreen.api.servermodels.BasicResponse;
 import nl.tudelft.gogreen.server.exceptions.ForbiddenException;
 import nl.tudelft.gogreen.server.exceptions.NotFoundException;
 import nl.tudelft.gogreen.server.exceptions.ServiceUnavailableException;
+import nl.tudelft.gogreen.server.exceptions.UnauthorizedException;
 import nl.tudelft.gogreen.server.models.Authority;
 import nl.tudelft.gogreen.server.models.user.User;
 import nl.tudelft.gogreen.server.models.user.VerificationToken;
 import nl.tudelft.gogreen.server.repository.AuthorityRepository;
 import nl.tudelft.gogreen.server.repository.UserRepository;
+import org.jboss.aerogear.security.otp.Totp;
+import org.jboss.aerogear.security.otp.api.Base32;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -178,5 +183,39 @@ public class UserDetailService implements UserDetailsService, IUserService {
         userRepository.save(user);
 
         mailService.sendRegistrationCompleteMessage(user.getMail(), user.getUsername());
+    }
+
+    @Override
+    @Transactional
+    public String generateQRUrlFor2FA(User user) throws UnsupportedEncodingException {
+        user.setTfaSecret(Base32.random());
+        userRepository.save(user);
+
+        return "https://chart.googleapis.com/chart?chs=200x200&chld=M%%7C0&cht=qr&chl="
+                + URLEncoder.encode(String.format("otpauth://totp/%s:%s?secret=%s&issuer=%s",
+                "GoGreen", user.getUsername(), user.getTfaSecret(), "GoGreen"),
+                "UTF-8");
+    }
+
+    @Override
+    @Transactional
+    public void enable2FA(User user, String token) {
+        Totp totp = new Totp(user.getTfaSecret());
+
+        if (!totp.verify(token)) {
+            throw new UnauthorizedException();
+        }
+
+        user.setTfaEnabled(true);
+        userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void disable2FA(User user) {
+        if (user.isTfaEnabled()) {
+            user.setTfaEnabled(false);
+            userRepository.save(user);
+        }
     }
 }

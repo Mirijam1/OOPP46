@@ -27,6 +27,7 @@ public class Gui extends Application {
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
         primaryStage.setOnCloseRequest(t -> {
+            API.closeAPI();
             Platform.exit();
             System.exit(0);
         });
