@@ -82,6 +82,10 @@ public class InputController<T, C extends InputConverter<T>> {
         return result;
     }
 
+    public String getRawInput() {
+        return tokenField.getText();
+    }
+
     /**
      * <p>Handles imput, and makes sure ENTER result in a submit action.</p>
      * @param event The {@link KeyEvent}

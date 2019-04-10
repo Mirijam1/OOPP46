@@ -33,7 +33,7 @@ public class APITest {
                 testRetrieveAchievedBadges();
                 testRetrieveFriendsLeaderboard();
             }
-        }, new User("admin", "password", null, 0F, null));
+        }, new User("admin", "password", false, null, 0F, null), null);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class APITest {
                 }
 
             }
-        }, new User("admin", "password", null, (float) 0, null));
+        }, new User("admin", "password", false, null, (float) 0, null), null);
 
     }
 
@@ -202,9 +202,9 @@ public class APITest {
                             }
                         });
                     }
-                }, new User("testuser", "password", null, 0F, null));
+                }, new User("testuser", "password", false, null, 0F, null), null);
             }
-        }, new User("testuser", "password", null, 0F, null));
+        }, new User("testuser", "password",false,  null, 0F, null));
     }
 
     @Test
@@ -223,9 +223,9 @@ public class APITest {
                             }
                         });
                     }
-                }, new User("testuser", "pass", null, 0F, null));
+                }, new User("testuser", "pass", false, null, 0F, null), null);
             }
-        }, new User("testuser", "pass", null, 0F, null));
+        }, new User("testuser", "pass",false,  null, 0F, null));
     }
 
     @Test
@@ -242,7 +242,7 @@ public class APITest {
                     }
                 });
             }
-        }, new User("testuser", "pass", null,0F, null));
+        }, new User("testuser", "pass", false, null,0F, null), null);
     }
 
     @Test

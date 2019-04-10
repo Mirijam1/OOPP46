@@ -32,9 +32,35 @@ public class MailTemplates {
     public SimpleMailMessage registrationComplete() {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
-        mailMessage.setSubject("Welcome to GoGreen!");
+        mailMessage.setSubject("Welcome to GoGreen");
         mailMessage.setText("Hey %s!<br><br>Your registration was just completed, you can now open the "
                 + "application and start saving the earth. <br>Welcome to GoGreen!"
+                + "<br><br>Yours securely, <br>Team GoGreen");
+
+        return mailMessage;
+    }
+
+    @Bean
+    public SimpleMailMessage twoFactorAuthenticationEnabled() {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+
+        mailMessage.setSubject("Your account is now secure");
+        mailMessage.setText("Hey %s!<br><br>Two-factor authentication was just enabled on your account! "
+                + "<br>Good job on securing your account, you can now save the earth without having to worry about "
+                + "your privacy."
+                + "<br><br>Yours securely, <br>Team GoGreen");
+
+        return mailMessage;
+    }
+
+    @Bean
+    public SimpleMailMessage twoFactorAuthenticationDisabled() {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+
+        mailMessage.setSubject("Important security notice");
+        mailMessage.setText("Hey %s!<br><br>Two-factor authentication was just disabled on your account!"
+                + "<br>For your safety, we highly recommend using two-factor authentication. Please consider enabling "
+                + "it again!"
                 + "<br><br>Yours securely, <br>Team GoGreen");
 
         return mailMessage;

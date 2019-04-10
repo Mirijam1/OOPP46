@@ -13,6 +13,8 @@ public class EndPoints {
     public static final String CREATE_USER = "api/user/create"; // PUT
     public static final String UPDATE_USER = "api/user/update"; // DELETE
     public static final String VERIFY_USER = "api/user/verify/{var}"; // POST
+    public static final String TOGGLE_2FA = "api/user/2fa/toggle/{var}"; // POST
+    public static final String CONFIRM_2FA = "api/user/2fa/enable/{var}"; // POST
 
     // PROFILE ENDPOINTS
     public static final String GET_PROFILE = "api/profile/"; // GET

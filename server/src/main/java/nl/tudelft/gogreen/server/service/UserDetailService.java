@@ -191,7 +191,7 @@ public class UserDetailService implements UserDetailsService, IUserService {
         user.setTfaSecret(Base32.random());
         userRepository.save(user);
 
-        return "https://chart.googleapis.com/chart?chs=200x200&chld=M%%7C0&cht=qr&chl="
+        return "https://chart.googleapis.com/chart?chs=150x150&chld=M%%7C0&cht=qr&chl="
                 + URLEncoder.encode(String.format("otpauth://totp/%s:%s?secret=%s&issuer=%s",
                 "GoGreen", user.getUsername(), user.getTfaSecret(), "GoGreen"),
                 "UTF-8");
@@ -208,6 +208,8 @@ public class UserDetailService implements UserDetailsService, IUserService {
 
         user.setTfaEnabled(true);
         userRepository.save(user);
+
+        mailService.sendTwoFactorToggleMail(user.getMail(), user.getUsername(), true);
     }
 
     @Override
@@ -216,6 +218,7 @@ public class UserDetailService implements UserDetailsService, IUserService {
         if (user.isTfaEnabled()) {
             user.setTfaEnabled(false);
             userRepository.save(user);
+            mailService.sendTwoFactorToggleMail(user.getMail(), user.getUsername(), false);
         }
     }
 }

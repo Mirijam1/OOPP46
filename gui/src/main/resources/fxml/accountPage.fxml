@@ -2,16 +2,20 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -50,6 +54,11 @@
                 <Font name="Microsoft YaHei Light" size="24.0"/>
             </font>
         </Text>
+        <Text layoutX="170.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2FA Enabled: ">
+            <font>
+                <Font name="Microsoft YaHei Light" size="24.0"/>
+            </font>
+        </Text>
         <JFXTextField fx:id="userForm" focusColor="#036400" layoutX="321.0" layoutY="305.0"
                       onKeyReleased="#checkSubmittable" prefHeight="39.0" prefWidth="157.0" unFocusColor="#7b7b7b">
             <font>
@@ -67,6 +76,8 @@
                 </LinearGradient>
             </ripplerFill>
         </JFXButton>
+        <JFXToggleButton fx:id="twoFactorToggleButton" layoutX="340.0" layoutY="392.0" onAction="#handleTwoFactorToggle">
+        </JFXToggleButton>
         <Label fx:id="errorMsg" layoutX="321.0" layoutY="280.0" textFill="RED">
             <font>
                 <Font size="12.0"/>

@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import nl.tudelft.gogreen.api.API;
+import nl.tudelft.gogreen.gui.controllers.helpers.TwoFactorEnableController;
+import nl.tudelft.gogreen.gui.controllers.verification.IntegerConverter;
 
 public class Gui extends Application {
 

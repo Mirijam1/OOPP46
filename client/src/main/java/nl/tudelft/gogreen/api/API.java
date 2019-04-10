@@ -15,7 +15,6 @@ import nl.tudelft.gogreen.shared.models.UserServer;
 import nl.tudelft.gogreen.shared.models.social.Friendship;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +29,6 @@ public class API {
     public static void prepareAPI(boolean local) {
         ServerConnection.initModelBuilder();
 
-        // TODO: Read these links from property file
         locationUrl = local ? "http://localhost:8088/" : "https://oopp.timanema.net/";
     }
 
@@ -78,12 +76,12 @@ public class API {
         Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, "/api/fake/url");
 
         ServerConnection.mockRequest(BasicResponse.class,
-            request,
-            callback,
-            true,
-            15,
-            new BasicResponse("Fake response from server", null),
-            200);
+                request,
+                callback,
+                true,
+                15,
+                new BasicResponse("Fake response from server", null),
+                200);
     }
 
     /**
@@ -92,12 +90,14 @@ public class API {
      * @param callback {@link ServerCallback} which will be called when the request returns.
      * @param user     A {@link User} which represents the user credentials.
      */
-    public static void attemptAuthentication(ServerCallback<Object, BasicResponse> callback, User user) {
+    public static void attemptAuthentication(ServerCallback<Object, BasicResponse> callback, User user,
+                                             String tfaToken) {
         String url = buildUrl(EndPoints.LOGIN);
         Map<String, Object> credentials = new HashMap<>();
 
         credentials.put("username", user.getUsername());
         credentials.put("password", user.getPassword());
+        credentials.put("code", tfaToken);
 
         Request<Object> request = ServerConnection.buildRequestWithFields(HttpMethod.POST, url, credentials);
 
@@ -113,16 +113,17 @@ public class API {
     public static void submitActivity(ServerCallback<SubmittedActivity, SubmitResponse> callback,
                                       SubmittedActivity activity) {
         Request<SubmittedActivity> request = ServerConnection
-            .buildRequestWithBody(HttpMethod.PUT, buildUrl(EndPoints.SUBMIT_ACTIVITY), activity);
+                .buildRequestWithBody(HttpMethod.PUT, buildUrl(EndPoints.SUBMIT_ACTIVITY), activity);
 
         ServerConnection.request(SubmitResponse.class, request, callback, false, -1);
     }
 
     /**
      * <p>Submits a verification token to the server.</p>
+     *
      * @param callback {@link ServerCallback} which will be called when the request returns
-     * @param user The {@link User} to verify
-     * @param token An {@link Integer} representing the token
+     * @param user     The {@link User} to verify
+     * @param token    An {@link Integer} representing the token
      */
     public static void submitVerificationCode(ServerCallback<Object, BasicResponse> callback,
                                               User user, Integer token) {
@@ -134,6 +135,7 @@ public class API {
 
     /**
      * <p>Retrieves an array of {@link UserServer} with names matching the given name.</p>
+     *
      * @param callback {@link ServerCallback} which will be called when the request returns
      * @param username A {@link String} representing the username to search fore
      */
@@ -142,6 +144,32 @@ public class API {
                 buildUrl(EndPoints.SEARCH_FOR_USER, username));
 
         ServerConnection.request(UserServer[].class, request, callback, true, 15);
+    }
+
+    /**
+     * <p>Sends a request to toggle two factor authentication.</p>
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns
+     * @param toggle   A {@link Boolean} indicating whether 2FA should be toggled on or off
+     */
+    public static void toggleTwoFactorAuthentication(ServerCallback<Object, BasicResponse> callback, Boolean toggle) {
+        Request<Object> request = ServerConnection
+                .buildSimpleRequest(HttpMethod.POST, buildUrl(EndPoints.TOGGLE_2FA, toggle));
+
+        ServerConnection.request(BasicResponse.class, request, callback, false, -1);
+    }
+
+    /**
+     * <p>Attempts to confirm 2FA activation with the given token.</p>
+     *
+     * @param callback {@link ServerCallback} which will be called when the request returns
+     * @param token    The token used for activation
+     */
+    public static void confirmTwoFactorAuthentication(ServerCallback<Object, BasicResponse> callback, String token) {
+        Request<Object> request = ServerConnection
+                .buildSimpleRequest(HttpMethod.POST, buildUrl(EndPoints.CONFIRM_2FA, token));
+
+        ServerConnection.request(BasicResponse.class, request, callback, false, -1);
     }
 
     /**
@@ -157,9 +185,10 @@ public class API {
         System.out.println("Endpoint url:" + url);
 
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
         ServerConnection.request(Category[].class, body, callback, true, -1);
     }
+
     /**
      * retrieve User's Completed Activities.
      *
@@ -173,7 +202,7 @@ public class API {
         System.out.println("Endpoint url:" + url);
 
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
 
         ServerConnection.request(CompletedActivity[].class, body, callback, false, 0);
     }
@@ -191,7 +220,7 @@ public class API {
         System.out.println("Endpoint url:" + url);
 
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
         ServerConnection.request(Activity[].class, body, callback, true, -1);
     }
 
@@ -204,12 +233,12 @@ public class API {
         Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, "/api/user");
 
         ServerConnection.mockRequest(User.class,
-            request,
-            callback,
-            false,
-            -1,
-            new User("TestUser", "123", "mail@example.com", 130f, null),
-            200);
+                request,
+                callback,
+                false,
+                -1,
+                new User("TestUser", "123", false, "mail@example.com", 130f, null),
+                200);
     }
 
     /**
@@ -221,11 +250,11 @@ public class API {
         Request<Object> request = ServerConnection.buildSimpleRequest(HttpMethod.GET, "/api/profile");
 
         ServerConnection.mockRequest(BasicResponse.class,
-            request,
-            callback,
-            false,
-            -1,
-            new BasicResponse("0.4", null), 200);
+                request,
+                callback,
+                false,
+                -1,
+                new BasicResponse("0.4", null), 200);
     }
 
     /**
@@ -245,15 +274,16 @@ public class API {
      * Create a User - PUT method.
      *
      * @param callback - {@link ServerCallback} which will be called when the request returns.
-     * @param user user of this type {User} is created.
+     * @param user     user of this type {User} is created.
      */
     public static void createUser(ServerCallback<User, User> callback, User user) {
         String url = buildUrl(EndPoints.CREATE_USER);
         Request<User> body = ServerConnection
-            .buildRequestWithBody(HttpMethod.PUT, url, user);
+                .buildRequestWithBody(HttpMethod.PUT, url, user);
 
         ServerConnection.request(User.class, body, callback, true, -1);
     }
+
     /**
      * update user with new user attributes.
      *
@@ -265,7 +295,7 @@ public class API {
         String url = buildUrl(EndPoints.UPDATE_USER);
 
         Request<User> body = ServerConnection
-            .buildRequestWithBody(HttpMethod.PATCH, url, user);
+                .buildRequestWithBody(HttpMethod.PATCH, url, user);
 
         ServerConnection.request(User.class, body, callback);
     }
@@ -282,7 +312,7 @@ public class API {
         System.out.println("Endpoint url:" + url);
 
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
 
         ServerConnection.request(UserServer.class, body, callback, true, -1);
     }
@@ -299,7 +329,7 @@ public class API {
         System.out.println("Endpoint url:" + url);
 
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
 
         ServerConnection.request(UserServer.class, body, callback, true, -1);
     }
@@ -312,10 +342,11 @@ public class API {
     public static void retrieveAchievedBadges(ServerCallback<Object, AchievedBadge[]> callback) {
         String url = buildUrl(EndPoints.GET_BADGES);
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
 
         ServerConnection.request(AchievedBadge[].class, body, callback, true, 0);
     }
+
     /**
      * retrieve friends leaderboard of logged in user.
      *
@@ -325,7 +356,7 @@ public class API {
     public static void retrieveFriendsLeaderboard(ServerCallback<Object, UserServer[]> callback) {
         String url = buildUrl(EndPoints.GET_FRIEND_LEADERBOARD);
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
         ServerConnection.request(UserServer[].class, body, callback, true, 0);
     }
 
@@ -337,7 +368,7 @@ public class API {
     public static void retrieveGlobalLeaderboard(ServerCallback<Object, UserServer[]> callback) {
         String url = buildUrl(EndPoints.GET_GLOBAL_LEADERBOARD);
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
         ServerConnection.request(UserServer[].class, body, callback, true, 0);
     }
 
@@ -349,7 +380,7 @@ public class API {
     public static void retrieveFriends(ServerCallback<Object, Friendship[]> callback) {
         String url = buildUrl(EndPoints.GET_FRIENDS);
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
         ServerConnection.request(Friendship[].class, body, callback, true, 0);
     }
 
@@ -362,7 +393,7 @@ public class API {
     public static void addFriend(ServerCallback<Object, Friendship> callback, String username) {
         String url = buildUrl(EndPoints.ADD_FRIEND_BY_NAME, username);
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.PUT, url);
+                .buildSimpleRequest(HttpMethod.PUT, url);
         ServerConnection.request(Friendship.class, body, callback, true, 0);
     }
 
@@ -375,19 +406,20 @@ public class API {
     public static void retrievePendingReceivedFriendRequests(ServerCallback<Object, Friendship[]> callback) {
         String url = buildUrl(EndPoints.GET_RECEIVED_FRIEND_INVITES);
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.PUT, url);
+                .buildSimpleRequest(HttpMethod.PUT, url);
         ServerConnection.request(Friendship[].class, body, callback, true, 0);
     }
 
     /**
      * search User profiles.
+     *
      * @param callback {@link ServerCallback} which will be called when the request returns.
      * @param username String Username
      */
     public static void searchUserProfiles(ServerCallback<Object, UserServer> callback, String username) {
         String url = buildUrl(EndPoints.SEARCH_USER_PROFILE, username);
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
         ServerConnection.request(UserServer.class, body, callback, true, 0);
     }
 
@@ -399,7 +431,7 @@ public class API {
     public static void retrievePendingSentFriendRequests(ServerCallback<Object, Friendship[]> callback) {
         String url = buildUrl(EndPoints.GET_PENDING_SENT_FRIEND_INVITES);
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
         ServerConnection.request(Friendship[].class, body, callback, true, 0);
     }
 
@@ -411,11 +443,13 @@ public class API {
     public static void retrieveFriendActivities(ServerCallback<Object, CompletedActivity[]> callback) {
         String url = buildUrl(EndPoints.GET_FRIEND_ACTIVITY);
         Request<Object> body = ServerConnection
-            .buildSimpleRequest(HttpMethod.GET, url);
+                .buildSimpleRequest(HttpMethod.GET, url);
         ServerConnection.request(CompletedActivity[].class, body, callback, true, 0);
     }
+
     /**
      * retrieve user completed achievements.
+     *
      * @param callback servercallback
      */
 
@@ -428,6 +462,7 @@ public class API {
 
     /**
      * retrieve progressing achievements.
+     *
      * @param callback servercallback
      */
     public static void retrieveProgressingAchievements(ServerCallback<Object, CompletedAchievements[]> callback) {
