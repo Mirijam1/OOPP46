@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -16,10 +15,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class InputController<T, C extends InputConverter<T>> {
-    private @FXML TextField tokenField;
-    private @FXML JFXTextArea messageText;
-    private @FXML JFXTextArea dataError;
-    private @FXML Label inputError;
+    @FXML
+    private TextField tokenField;
+    @FXML
+    private JFXTextArea messageText;
+    @FXML
+    private JFXTextArea dataError;
+    @FXML
+    private Label inputError;
 
     private String title;
     private String message;
@@ -29,6 +32,13 @@ public class InputController<T, C extends InputConverter<T>> {
     private C inputConverter;
     private T result;
 
+    /**
+     * <p>Instantiates a new input screen.</p>
+     * @param title A {@link String} representing the title of the screen
+     * @param message A {@link String} representing the message that will be displayed
+     * @param errorMessage A {@link String} representing the error message, if any, that will be displayed
+     * @param inputConverter An instance of an {@link InputConverter}, which will be used to parse the input
+     */
     public InputController(String title, String message, String errorMessage, C inputConverter) {
         this.title = title;
         this.message = message;
@@ -40,6 +50,9 @@ public class InputController<T, C extends InputConverter<T>> {
         return this.result != null;
     }
 
+    /**
+     * <p>Opens the input screen.</p>
+     */
     public void openScreen() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/inputScreen.fxml"));
@@ -69,6 +82,14 @@ public class InputController<T, C extends InputConverter<T>> {
         return result;
     }
 
+    public String getRawInput() {
+        return tokenField.getText();
+    }
+
+    /**
+     * <p>Handles imput, and makes sure ENTER result in a submit action.</p>
+     * @param event The {@link KeyEvent}
+     */
     @FXML
     public void handleInput(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
@@ -76,6 +97,9 @@ public class InputController<T, C extends InputConverter<T>> {
         }
     }
 
+    /**
+     * <p>Attempts to parse the input, and handles accordingly.</p>
+     */
     @FXML
     public void handleSubmit() {
         String token = tokenField.getText();

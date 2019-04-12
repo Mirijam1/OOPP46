@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -29,25 +31,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final EntryDenied entryDenied;
     private final AuthSuccessHandler authSuccessHandler;
     private final AuthFailureHandler authFailureHandler;
+    private final TwoFactorAuthenticationDetailsSource twoFactorAuthenticationDetailsSource;
 
     /**
      * instantiates SecurityConfig.
-     * @param userDetailsService userDetailsService
-     * @param dataSource dataSource
-     * @param passwordEncoder passwordEncoder
-     * @param entryPoint entryPoint
-     * @param entryDenied entryDenied
-     * @param authSuccessHandler authSuccessHandler
-     * @param authFailureHandler authFailureHandler
+     *
+     * @param userDetailsService                   userDetailsService
+     * @param dataSource                           dataSource
+     * @param passwordEncoder                      passwordEncoder
+     * @param entryPoint                           entryPoint
+     * @param entryDenied                          entryDenied
+     * @param authSuccessHandler                   authSuccessHandler
+     * @param authFailureHandler                   authFailureHandler
+     * @param twoFactorAuthenticationDetailsSource twoFactorAuthenticationDetailsSource
      */
     @Autowired
     public SecurityConfig(UserDetailsService userDetailsService,
-                          DataSource dataSource,
+                          DataSource dataSource, // Ignore auto-inspection here if it complains about missing beans
                           PasswordEncoder passwordEncoder,
                           EntryPoint entryPoint,
                           EntryDenied entryDenied,
                           AuthSuccessHandler authSuccessHandler,
-                          AuthFailureHandler authFailureHandler) {
+                          AuthFailureHandler authFailureHandler,
+                          TwoFactorAuthenticationDetailsSource twoFactorAuthenticationDetailsSource) {
         this.userDetailsService = userDetailsService;
         this.dataSource = dataSource;
         this.passwordEncoder = passwordEncoder;
@@ -55,6 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.entryDenied = entryDenied;
         this.authSuccessHandler = authSuccessHandler;
         this.authFailureHandler = authFailureHandler;
+        this.twoFactorAuthenticationDetailsSource = twoFactorAuthenticationDetailsSource;
     }
 
     @Override
@@ -64,8 +71,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+    public void configure(AuthenticationManagerBuilder auth) {
+        auth
+                .authenticationProvider(authProvider());
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authProvider() {
+        TwoFactorAuthenticationProvider authProvider = new TwoFactorAuthenticationProvider();
+
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder);
+        return authProvider;
     }
 
     @Autowired
@@ -82,6 +99,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(entryDenied)
                 .and()
                 .authorizeRequests()
+                .antMatchers("/api/user/2fa/**").access("hasAnyAuthority('USER_AUTHORITY')")
                 .antMatchers("/api/profile/**").access("hasAnyAuthority('USER_AUTHORITY')")
                 .antMatchers("/api/social/**").access("hasAnyAuthority('USER_AUTHORITY')")
                 .antMatchers("/api/restricted/**").access("hasAnyAuthority('USER_AUTHORITY')")
@@ -90,13 +108,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/status/admin/**").access("hasAnyAuthority('ADMIN_AUTHORITY')")
                 .and()
                 .formLogin()
+                .authenticationDetailsSource(twoFactorAuthenticationDetailsSource)
                 .successHandler(authSuccessHandler)
                 .failureHandler(authFailureHandler)
                 .and()
                 .logout()
                 .logoutSuccessUrl("/");
 
-        // TODO: Make this dependent on profile
         http.headers().frameOptions().sameOrigin();
 
         http.sessionManagement()

@@ -19,6 +19,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.util.Arrays;
 
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Service
 public class MailService implements IMailService {
     private final Logger logger = LoggerFactory.getLogger(MailService.class);
@@ -106,6 +107,15 @@ public class MailService implements IMailService {
     @Async
     public void sendRegistrationCompleteMessage(String target, String name) {
         SimpleMailMessage unformattedMail = mailTemplates.registrationComplete();
+        String mail = String.format(unformattedMail.getText(), name);
+
+        this.sendMessage(target, unformattedMail.getSubject(), mail);
+    }
+
+    @Override
+    public void sendTwoFactorToggleMail(String target, String name, Boolean enabled) {
+        SimpleMailMessage unformattedMail = enabled ? mailTemplates.twoFactorAuthenticationEnabled()
+                : mailTemplates.twoFactorAuthenticationDisabled();
         String mail = String.format(unformattedMail.getText(), name);
 
         this.sendMessage(target, unformattedMail.getSubject(), mail);

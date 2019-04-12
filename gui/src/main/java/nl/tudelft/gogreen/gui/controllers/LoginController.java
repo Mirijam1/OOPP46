@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
 import nl.tudelft.gogreen.api.servermodels.BasicResponse;
+import nl.tudelft.gogreen.gui.controllers.verification.InputController;
+import nl.tudelft.gogreen.gui.controllers.verification.IntegerAsStringConverter;
 import nl.tudelft.gogreen.shared.StatusCodes;
 import nl.tudelft.gogreen.shared.models.User;
 
@@ -64,57 +66,83 @@ public class LoginController {
             pwdmessage.setText("Please enter password");
             changeStyleError(passfield);
         } else {
-
-//            try {
-//                root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/sidebar.fxml"));
-//                Stage stage = new Stage();
-//                stage.setTitle("GoGreen");
-//                stage.setScene(new Scene(root, 1280, 720));
-//                stage.show();
-//                // Hide this current window (if this is what you want)
-//                ((Node) (event.getSource())).getScene().getWindow().hide();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
-            API.attemptAuthentication(new ServerCallback<Object, BasicResponse>() {
-                @Override
-                public void run() {
-                    if (getStatusCode() == StatusCodes.AUTHENTICATED) {
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                Parent root = null;
-                                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/sidebar.fxml"));
-
-                                // get a handle to the stage
-                                Stage current = (Stage) loginbtn.getScene().getWindow();
-                                try {
-                                    root = loader.load();
-
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                                Stage stage = new Stage();
-                                stage.setTitle("GOGREEN - overview");
-                                stage.getIcons().add(new Image("img/leaficon.png"));
-                                stage.setScene(new Scene(root, 1380, 720));
-                                stage.show();
-
-                                // do what you have to do
-                                SidebarController.controller = loader.getController();
-                                current.close();
-
-                                stage.setOnCloseRequest(e -> System.exit(0));
-                            }
-                        });
-                    } else {
-                        System.out.println("Invalid username or password");
-                        Platform.runLater(() -> pwdmessage.setText("Invalid username or password"));
-                    }
-                }
-            }, new User(userfield.getText(), passfield.getText(), null));
+            this.attemptInitialAuthentication(userfield.getText(), passfield.getText());
         }
+    }
+
+    private void attemptInitialAuthentication(String username, String password) {
+        API.attemptAuthentication(new ServerCallback<Object, BasicResponse>() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    if (getStatusCode() == StatusCodes.AUTHENTICATED) {
+                        continueAfterAuthentication();
+                    } else if (getResult().getAdditionalInfo() != null
+                            && getResult().getAdditionalInfo().equals("2fa")) {
+                        attemptAuthenticationWithTwoFactorAuthentication(username, password, false);
+                    } else {
+                        pwdmessage.setText("Invalid username or password");
+                    }
+                });
+
+            }
+        }, new User(userfield.getText(), passfield.getText(), null), null);
+    }
+
+    private void attemptAuthenticationWithTwoFactorAuthentication(String username, String password, boolean error) {
+        InputController<String, IntegerAsStringConverter> input = new InputController<>("Enter your 2FA token",
+                "Enter the 2FA token from the app",
+                error ? "Incorrect token and/or credentials" : null,
+                new IntegerAsStringConverter());
+
+        input.openScreen();
+
+        if (input.inputReceived()) {
+            this.loginWithToken(username, password, input.getResult());
+        }
+    }
+
+    private void loginWithToken(String username, String password, String token) {
+        API.attemptAuthentication(new ServerCallback<Object, BasicResponse>() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    if (getStatusCode() == StatusCodes.UNAUTHORIZED) {
+                        attemptAuthenticationWithTwoFactorAuthentication(username, password, true);
+                    } else {
+                        continueAfterAuthentication();
+                    }
+                });
+            }
+        }, new User(username, password, null), token);
+    }
+
+    private void continueAfterAuthentication() {
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/sidebar.fxml"));
+
+        // get a handle to the stage
+        try {
+            root = loader.load();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.setTitle("GOGREEN - overview");
+        stage.getIcons().add(new Image("img/leaficon.png"));
+        stage.setScene(new Scene(root, 1380, 720));
+        stage.show();
+        stage.setOnCloseRequest(t -> {
+            API.closeAPI();
+            Platform.exit();
+            System.exit(0);
+        });
+
+        // do what you have to do
+        Stage current = (Stage) loginbtn.getScene().getWindow();
+        SidebarController.controller = loader.getController();
+        current.close();
     }
 
     private void changeStyleError(TextField field) {
@@ -133,7 +161,6 @@ public class LoginController {
     void signUp(ActionEvent event) {
         try {
             Parent root;
-            Stage current = (Stage) loginbtn.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/SignUpScreen.fxml"));
             root = loader.load();
             Stage stage = new Stage();
@@ -141,7 +168,13 @@ public class LoginController {
             stage.getIcons().add(new Image("img/leaficon.png"));
             stage.setScene(new Scene(root, 600, 400));
             stage.show();
-            // do what you have to do
+            stage.setOnCloseRequest(t -> {
+                API.closeAPI();
+                Platform.exit();
+                System.exit(0);
+            });
+
+            Stage current = (Stage) loginbtn.getScene().getWindow();
             current.close();
         } catch (IOException e) {
             e.printStackTrace();

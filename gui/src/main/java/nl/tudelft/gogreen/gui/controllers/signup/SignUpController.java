@@ -1,7 +1,6 @@
 package nl.tudelft.gogreen.gui.controllers.signup;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,10 +31,10 @@ public class SignUpController {
     private PasswordField password;
 
     @FXML
-    private Label usermessage;
+    private Label userMessage;
 
     @FXML
-    private Label pwdmessage;
+    private Label passwordMessage;
 
     @FXML
     private TextField username;
@@ -50,14 +49,14 @@ public class SignUpController {
     private Label emailError;
 
     @FXML
-    void signup(ActionEvent event) {
+    void signUp() {
         password.setStyle("-fx-border-color: none ; -fx-border-width: 2px ;");
         username.setStyle("-fx-border-color: none ; -fx-border-width: 2px ;");
         emailField.setStyle("-fx-border-color: none ; -fx-border-width: 2px ;");
         emailConfirmationField.setStyle("-fx-border-color: none ; -fx-border-width: 2px ;");
         emailError.setText("");
-        usermessage.setText("");
-        pwdmessage.setText("");
+        userMessage.setText("");
+        passwordMessage.setText("");
 
         if (validateUsername() & validatePassword() & validateEmail()) {
             this.submitInformation();
@@ -66,7 +65,7 @@ public class SignUpController {
 
     private boolean validateUsername() {
         if (username.getText().trim().length() < 3) {
-            usermessage.setText("Name too short (3 min)");
+            userMessage.setText("Name too short (3 min)");
             changeStyleError(username);
             return false;
         }
@@ -76,7 +75,7 @@ public class SignUpController {
 
     private boolean validatePassword() {
         if (password.getText().trim().length() < 5) {
-            pwdmessage.setText("Password too short (5 min)");
+            passwordMessage.setText("Password too short (5 min)");
             changeStyleError(password);
             return false;
         }
@@ -119,7 +118,11 @@ public class SignUpController {
                         validateCode(getResult(), "Email registration is unavailable at the moment. \n"
                                 + "However, you can still verify with a developer token");
                     } else {
-                        usermessage.setText("Already exists");
+                        if (getResult().getAdditionalInfo().equals("mail")) {
+                            emailError.setText("Already used");
+                        } else {
+                            userMessage.setText("Already exists");
+                        }
                     }
                 });
             }
@@ -174,10 +177,9 @@ public class SignUpController {
     }
 
     @FXML
-    public void handle(KeyEvent event) throws Exception {
+    public void handle(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            ActionEvent ae = new ActionEvent();
-            signup(ae);
+            signUp();
         }
     }
 
@@ -190,7 +192,7 @@ public class SignUpController {
 
         // Only continue if input received
         if (input.inputReceived()) {
-            validateCode(new User(null, null, null, null, input.getResult()), null);
+            validateCode(new User(null, null, false, null, null, input.getResult()), null);
         }
     }
 }

@@ -21,12 +21,12 @@ public class Gui extends Application {
 
         // Continue start
         Parent root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
-        //  primaryStage.getIcons().add(new Image("img/logo.png"));
         primaryStage.getIcons().add(new Image("img/leaficon.png"));
         primaryStage.setTitle("GoGreen");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
         primaryStage.setOnCloseRequest(t -> {
+            API.closeAPI();
             Platform.exit();
             System.exit(0);
         });
