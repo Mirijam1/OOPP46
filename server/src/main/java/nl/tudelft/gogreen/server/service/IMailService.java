@@ -12,4 +12,6 @@ public interface IMailService {
     void sendRegistrationMessage(String target, String name, String code, String externalId);
 
     void sendRegistrationCompleteMessage(String target, String name);
+
+    void sendTwoFactorToggleMail(String target, String name, Boolean enabled);
 }

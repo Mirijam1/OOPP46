@@ -1,6 +1,7 @@
 package nl.tudelft.gogreen.gui.controllers;
 
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -16,6 +17,9 @@ import javafx.util.Duration;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
 import nl.tudelft.gogreen.api.servermodels.AchievedBadge;
+import nl.tudelft.gogreen.api.servermodels.BasicResponse;
+import nl.tudelft.gogreen.gui.controllers.helpers.TwoFactorEnableController;
+import nl.tudelft.gogreen.gui.controllers.verification.IntegerConverter;
 import nl.tudelft.gogreen.shared.models.Badge;
 import nl.tudelft.gogreen.shared.models.User;
 import nl.tudelft.gogreen.shared.models.UserServer;
@@ -45,6 +49,8 @@ public class AccountPageController {
     @FXML
     private GridPane badges;
 
+    @FXML
+    private JFXToggleButton twoFactorToggleButton;
 
     private User user;
     private Float points;
@@ -67,6 +73,7 @@ public class AccountPageController {
                 }
             }
         });
+
         API.retrieveAchievedBadges(new ServerCallback<Object, AchievedBadge[]>() {
             @Override
             public void run() {
@@ -131,6 +138,8 @@ public class AccountPageController {
         userForm.setPromptText(user.getUsername());
         SidebarController.controller.userLabel.setText(user.getUsername());
         co2Savings.setText(points.toString() + pointText);
+
+        twoFactorToggleButton.setSelected(user.isTfaEnabled());
     }
 
     public void initBadges(AchievedBadge[] achievedBadges) {
@@ -177,4 +186,33 @@ public class AccountPageController {
         }
     }
 
+    @FXML
+    public void handleTwoFactorToggle(ActionEvent event) {
+        JFXToggleButton button = (JFXToggleButton) event.getTarget();
+
+        this.toggleTwoFactorAuthentication(button.isSelected());
+    }
+
+    private void toggleTwoFactorAuthentication(Boolean enable) {
+        System.out.println("Toggling 2FA: " + enable);
+        API.toggleTwoFactorAuthentication(new ServerCallback<Object, BasicResponse>() {
+            @Override
+            public void run() {
+                if (enable) {
+                    Platform.runLater(() -> enableTwoFactorAuthentication(getResult().getAdditionalInfo()));
+                }
+            }
+        }, enable);
+    }
+
+    private void enableTwoFactorAuthentication(String qrUrl) {
+        TwoFactorEnableController twoFactorEnableController =
+                new TwoFactorEnableController(qrUrl, new IntegerConverter());
+
+        twoFactorEnableController.openScreen();
+
+        if (!twoFactorEnableController.isEnabled()) {
+            twoFactorToggleButton.setSelected(false);
+        }
+    }
 }

@@ -16,6 +16,7 @@ import java.util.UUID;
 public class User extends BasicResponse {
     private String username;
     private String password;
+    private boolean tfaEnabled;
     private String mail;
     private Float points;
     private UUID externalId;

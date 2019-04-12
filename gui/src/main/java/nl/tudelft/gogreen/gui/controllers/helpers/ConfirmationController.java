@@ -1,4 +1,4 @@
-package nl.tudelft.gogreen.gui.controllers;
+package nl.tudelft.gogreen.gui.controllers.helpers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
