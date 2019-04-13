@@ -11,7 +11,8 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="350.0" style="-fx-background-color: #F6FFED;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.gogreen.gui.controllers.AddFriendController" stylesheets="@../css/addfriend.css">
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="350.0" style="-fx-background-color: #F6FFED;" stylesheets="@../css/addfriend.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.gogreen.gui.controllers.AddFriendController">
    <children>
       <JFXButton fx:id="searchButton" layoutX="289.0" layoutY="27.0" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" onAction="#searchUser" prefHeight="36.0" prefWidth="36.0" text="">
          <graphic>
@@ -32,9 +33,9 @@
          </ripplerFill>
       </JFXButton>
       <JFXTextField fx:id="searchField" layoutX="25.0" layoutY="25.0" prefHeight="36.0" prefWidth="254.0" promptText="Search user" />
-      <ScrollPane fx:id="addFriendScroll" id="addFriendScroll" layoutX="25.0" layoutY="71.0" prefHeight="344.0" prefWidth="300.0">
+      <ScrollPane id="addFriendScroll" fx:id="addFriendScroll" layoutX="25.0" layoutY="71.0" prefHeight="200.0" prefWidth="300.0">
          <content>
-            <VBox fx:id="addFriendVBox" prefHeight="200.0" prefWidth="298.0"/>
+            <VBox fx:id="addFriendVBox" prefHeight="150.0" prefWidth="298.0" />
          </content>
       </ScrollPane>
       <JFXButton fx:id="exit" layoutX="332.0" minHeight="18.0" minWidth="18.0" onAction="#exit" prefHeight="18.0" prefWidth="18.0" ripplerFill="#eb0000" text="">
@@ -51,5 +52,15 @@
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>
       </Text>
+      <Text layoutX="75.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending Friend Requests">
+         <font>
+            <Font name="Microsoft YaHei Light" size="18.0" />
+         </font>
+      </Text>
+      <ScrollPane fx:id="pendingScroll" layoutX="25.0" layoutY="315.0" prefHeight="105.0" prefWidth="300.0">
+         <content>
+            <VBox fx:id="pendingVBox" prefHeight="100.0" prefWidth="298.0" />
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

@@ -75,9 +75,8 @@ public class DashboardController {
     @FXML
     private Button submitButton;
 
-
     @FXML
-    public void initialize() {
+    protected void initialize() {
         //    bindProperty();
         // Start retrieval
         API.retrieveCategoryList(new ServerCallback<Object, Category[]>() {
@@ -240,7 +239,8 @@ public class DashboardController {
         });
     }
 
-    public void submitButton(ActionEvent event) throws Exception {
+    @FXML
+    void submitButton(ActionEvent event) throws Exception {
         if (activityBox.getSelectionModel().isEmpty() || categoryBox.getSelectionModel().isEmpty()) {
             noInformationPopUp();
         } else {

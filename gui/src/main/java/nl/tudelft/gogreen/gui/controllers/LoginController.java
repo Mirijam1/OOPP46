@@ -132,6 +132,8 @@ public class LoginController {
         stage.setTitle("GOGREEN - overview");
         stage.getIcons().add(new Image("img/leaficon.png"));
         stage.setScene(new Scene(root, 1380, 720));
+        stage.setResizable(false);
+        stage.sizeToScene();
         stage.show();
         stage.setOnCloseRequest(t -> {
             API.closeAPI();
@@ -150,7 +152,7 @@ public class LoginController {
     }
 
     @FXML
-    public void handle(KeyEvent event) {
+    protected void handle(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             ActionEvent ae = new ActionEvent();
             login(ae);
@@ -167,6 +169,8 @@ public class LoginController {
             stage.setTitle("GOGREEN - Sign Up");
             stage.getIcons().add(new Image("img/leaficon.png"));
             stage.setScene(new Scene(root, 600, 400));
+            stage.setResizable(false);
+            stage.sizeToScene();
             stage.show();
             stage.setOnCloseRequest(t -> {
                 API.closeAPI();

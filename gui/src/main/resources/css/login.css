@@ -1,16 +1,11 @@
 #AnchorPane {
     -fx-background-image: url('../img/signupbackgr.jpg');
     -fx-background-size: cover;
-    /*-fx-background-color: #EFF0EB;*/
 }
 
 .button {
     -fx-background-color: #EFF0EB;
 
-}
-
-#Pane {
-    /*-fx-background-color: #E7ECD8;*/
 }
 
 

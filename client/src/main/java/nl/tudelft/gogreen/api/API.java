@@ -331,7 +331,7 @@ public class API {
         Request<Object> body = ServerConnection
                 .buildSimpleRequest(HttpMethod.GET, url);
 
-        ServerConnection.request(UserServer.class, body, callback, true, -1);
+        ServerConnection.request(UserServer.class, body, callback, false, -1);
     }
 
     /**
@@ -406,7 +406,7 @@ public class API {
     public static void retrievePendingReceivedFriendRequests(ServerCallback<Object, Friendship[]> callback) {
         String url = buildUrl(EndPoints.GET_RECEIVED_FRIEND_INVITES);
         Request<Object> body = ServerConnection
-                .buildSimpleRequest(HttpMethod.PUT, url);
+            .buildSimpleRequest(HttpMethod.GET, url);
         ServerConnection.request(Friendship[].class, body, callback, true, 0);
     }
 
