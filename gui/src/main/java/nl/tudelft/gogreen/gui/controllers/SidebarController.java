@@ -23,6 +23,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
@@ -33,6 +34,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SidebarController implements Initializable {
+
+    protected static SidebarController controller;
+
+    @FXML
+    protected Label userLabel;
 
     @FXML
     private AnchorPane anchor;
@@ -62,14 +68,9 @@ public class SidebarController implements Initializable {
     private Pane addFriendPane;
 
     @FXML
-    public Label userLabel;
-
-    protected static SidebarController controller;
-
-    @FXML
     private Pane subscene;
 
-    private Background BACKGROUND =
+    private Background background =
             new Background(new BackgroundImage(new Image("img/gogreenbg.jpg",
                     1280, 720, true, true),
                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
@@ -80,6 +81,12 @@ public class SidebarController implements Initializable {
     private boolean isExtended = false;
     private MediaPlayer mediaPlayer;
 
+    /**
+     * Initializes the sidebar controller, sets the userLabel to the users username,
+     * loads the overview screen and sets the background.
+     * @param location specifies the location (unused)
+     * @param resources specifies the resources (unused)
+     */
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         API.retrieveUserProfile(new ServerCallback<Object, UserServer>() {
@@ -101,7 +108,7 @@ public class SidebarController implements Initializable {
             e.printStackTrace();
         }
         subscene.getChildren().setAll(pane);
-        subscene.setBackground(BACKGROUND);
+        subscene.setBackground(background);
     }
 
     @FXML
@@ -109,6 +116,8 @@ public class SidebarController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/trackerScreen.fxml"));
         AnchorPane pane = loader.load();
         subscene.getChildren().setAll(pane);
+        Stage stage = (Stage) anchor.getScene().getWindow();
+        stage.setTitle("GOGREEN - Overview");
     }
 
     @FXML
@@ -116,6 +125,8 @@ public class SidebarController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/dashboard.fxml"));
         AnchorPane pane = loader.load();
         subscene.getChildren().setAll(pane);
+        Stage stage = (Stage) anchor.getScene().getWindow();
+        stage.setTitle("GOGREEN - Add Activity");
     }
 
     @FXML
@@ -123,6 +134,8 @@ public class SidebarController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/leaderboard.fxml"));
         AnchorPane pane = loader.load();
         subscene.getChildren().setAll(pane);
+        Stage stage = (Stage) anchor.getScene().getWindow();
+        stage.setTitle("GOGREEN - Leaderboard");
     }
 
     @FXML
@@ -130,6 +143,8 @@ public class SidebarController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/friends.fxml"));
         AnchorPane pane = loader.load();
         subscene.getChildren().setAll(pane);
+        Stage stage = (Stage) anchor.getScene().getWindow();
+        stage.setTitle("GOGREEN - Friends");
     }
 
     @FXML
@@ -137,6 +152,8 @@ public class SidebarController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/accountPage.fxml"));
         AnchorPane pane = loader.load();
         subscene.getChildren().setAll(pane);
+        Stage stage = (Stage) anchor.getScene().getWindow();
+        stage.setTitle("GOGREEN - Account");
     }
 
     @FXML
@@ -145,7 +162,8 @@ public class SidebarController implements Initializable {
             addFriendPane.translateYProperty().set(0);
 
             Timeline timeline = new Timeline();
-            KeyValue kv = new KeyValue(addFriendPane.translateYProperty(), -addFriendPane.getPrefHeight(), Interpolator.EASE_IN);
+            KeyValue kv = new KeyValue(addFriendPane.translateYProperty(),
+                    -addFriendPane.getPrefHeight(), Interpolator.EASE_IN);
             KeyFrame kf = new KeyFrame(Duration.millis(200), kv);
             timeline.getKeyFrames().add(kf);
             timeline.play();
@@ -202,12 +220,20 @@ public class SidebarController implements Initializable {
         button.setText("");
     }
 
-    public void gamify(ActionEvent actionEvent) {
+    @FXML
+    void gamify(ActionEvent actionEvent) {
         if (!isGamified) {
             isGamified = true;
-            BACKGROUND = new Background(new BackgroundImage(new Image("img/gamifybg.jpg", 1280, 720, true, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
-            subscene.setBackground(BACKGROUND);
-            URL url = getClass().getClassLoader().getResource("media/C418 - Minecraft.wav");
+            background = new Background(new BackgroundImage(new Image("img/gamifybg.jpg", 1280,
+                    720, true, true), BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+            subscene.setBackground(background);
+            Background spooky = new Background(new BackgroundImage(new Image("img/spooky.jpg", 1280,
+                    720, true, true), BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(350, 440,
+                    false, false, false, false)));
+            addFriendPane.setBackground(spooky);
+            URL url = getClass().getClassLoader().getResource("media/C418 - Sweden.wav");
 
             if (url == null) {
                 return;

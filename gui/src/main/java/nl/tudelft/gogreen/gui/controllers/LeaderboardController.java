@@ -24,7 +24,7 @@ public class LeaderboardController {
     private VBox globalVbox;
 
     @FXML
-    public void initialize() {
+    protected void initialize() {
         API.retrieveFriendsLeaderboard(new ServerCallback<Object, UserServer[]>() {
             @Override
             public void run() {
@@ -55,7 +55,7 @@ public class LeaderboardController {
                 points.setTranslateX(350.00);
                 points.setTranslateY(20.00);
 
-                Label rank = new Label((i+1) + ".");
+                Label rank = new Label((i + 1) + ".");
                 rank.setTranslateY(20);
                 rank.setTranslateX(30);
 
@@ -88,7 +88,7 @@ public class LeaderboardController {
                 points.setTranslateX(350.00);
                 points.setTranslateY(20.00);
 
-                Label rank = new Label((i+1)+".");
+                Label rank = new Label((i + 1) + ".");
                 rank.setTranslateY(20);
                 rank.setTranslateX(30);
 

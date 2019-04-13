@@ -28,8 +28,8 @@ public class ErrorController {
     @FXML
     private Label error;
 
-
-    public void exit(ActionEvent event) {
+    @FXML
+    protected void exit(ActionEvent event) {
         System.out.println("close");
 
         Stage stage = (Stage) goback.getScene().getWindow();

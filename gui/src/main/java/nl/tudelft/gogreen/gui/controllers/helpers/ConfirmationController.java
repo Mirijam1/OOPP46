@@ -32,8 +32,8 @@ public class ConfirmationController {
     @FXML
     private Label content;
 
-
-    public void confirmButton(ActionEvent event) {
+    @FXML
+    protected void confirmButton(ActionEvent event) {
         Collection<SubmittedActivityOption> options =
                 new ArrayList<>();
 
@@ -49,7 +49,8 @@ public class ConfirmationController {
         }, activity);
     }
 
-    public void exit(ActionEvent event) {
+    @FXML
+    protected void exit(ActionEvent event) {
         System.out.println("exit");
 
         Stage stage = (Stage) cancel.getScene().getWindow();

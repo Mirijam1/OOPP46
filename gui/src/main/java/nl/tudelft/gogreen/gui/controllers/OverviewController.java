@@ -11,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import nl.tudelft.gogreen.api.API;
 import nl.tudelft.gogreen.api.ServerCallback;
 import nl.tudelft.gogreen.shared.models.CompletedActivity;
@@ -45,7 +46,7 @@ public class OverviewController {
     private Float points;
 
     @FXML
-    public void initialize() {
+    protected void initialize() {
         API.retrieveUserProfile(new ServerCallback<Object, UserServer>() {
             @Override
             public void run() {
@@ -145,29 +146,31 @@ public class OverviewController {
         suggVBox.setTranslateY(2);
 
         String[] suggestions = {"Eat a vegetarian meal and add it to your activities!",
-                "Buy local produce and add it to your activities!",
-                "Take the bike instead of the car for 10km or take the bus",
-                "Replace 2 traditional lights with LED lights", "Go vegetarian for an entire week!",
-                "Travel by train for at least 25km", "Lower the temperature in your house by 3 degrees!",
-                "Plant a tree in your garden!", "Install at least 2 solar panels!",
-                "Buy local produce for a whole week!", "Travel by bike for at least 25km",
-                "Replace all the lights in your house with LED lights!", "Go vegan for life!",
-                "Get all your energy from your solar panels", "Plant a tree every week!",
-                "Only use the bike or public transport from now on"};
+                                "Buy local produce and add it to your activities!",
+                                "Take the bike instead of the car for 10km or take the bus",
+                                "Replace 2 traditional lights with LED lights", "Go vegetarian for an entire week!",
+                                "Travel by train for at least 25km",
+                                "Lower the temperature in your house by 3 degrees!",
+                                "Plant a tree in your garden!", "Install at least 2 solar panels!",
+                                "Buy local produce for a whole week!", "Travel by bike for at least 25km",
+                                "Replace all the lights in your house with LED lights!", "Go vegan for life!",
+                                "Get all your energy from your solar panels", "Plant a tree every week!",
+                                "Only use the bike or public transport from now on"};
 
-        int i = calculateI();
-        int j = i + 4;
+        int index = calculateI();
+        int endIndex = index + 4;
 
-        while (i < j) {
-            Label suggestionText = new Label(suggestions[i]);
-            suggestionText.setStyle("-fx-font-weight: bold");
-            suggestionText.setTranslateX(44);
-            suggestionText.setTranslateY(21);
+        while (index < endIndex) {
+            Label suggestionText = new Label(suggestions[index]);
+            suggestionText.setFont(Font.font("Microsoft YaHei Light"));
+            suggestionText.setStyle("-fx-font-size: 18;");
+            suggestionText.setTranslateX(40);
+            suggestionText.setTranslateY(18);
 
             VBox suggestion = createEntry(entryHeight);
             suggestion.getChildren().add(suggestionText);
             suggVBox.getChildren().add(suggestion);
-            i++;
+            index++;
         }
     }
 

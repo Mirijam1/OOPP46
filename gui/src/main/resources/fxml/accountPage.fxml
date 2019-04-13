@@ -1,96 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="nl.tudelft.gogreen.gui.controllers.AccountPageController">
+
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.gogreen.gui.controllers.AccountPageController">
     <children>
-        <Label fx:id="userTitle" alignment="TOP_CENTER" layoutX="384.0" layoutY="51.0" prefHeight="67.0"
-               prefWidth="512.0" text="&lt;Username&gt;'s Account" textFill="#7b7b7b" AnchorPane.topAnchor="50.0">
+        <Label fx:id="userTitle" alignment="TOP_CENTER" layoutX="384.0" layoutY="51.0" prefHeight="67.0" prefWidth="512.0" text="&lt;Username&gt;'s Account" AnchorPane.topAnchor="50.0">
             <font>
-                <Font name="Microsoft YaHei Light" size="48.0"/>
+                <Font name="Microsoft YaHei Light" size="48.0" />
             </font>
         </Label>
-        <Label fx:id="co2Savings" layoutX="321.0" layoutY="359.0" text="&lt;CO2 Savings&gt;">
+        <Line endX="37.0" endY="-91.0" fill="#9e9e9e" layoutX="603.0" layoutY="247.0" startX="37.0" startY="429.0" stroke="#036400" />
+        <Text layoutX="268.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Account">
             <font>
-                <Font name="Microsoft YaHei Light" size="24.0"/>
-            </font>
-        </Label>
-        <Line endX="37.0" endY="-50.0" fill="#9e9e9e" layoutX="603.0" layoutY="247.0" startX="37.0" startY="429.0"
-              stroke="#036400"/>
-        <Text layoutX="293.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Account">
-            <font>
-                <Font name="Microsoft YaHei Light" size="24.0"/>
+                <Font name="Microsoft YaHei Light" size="24.0" />
             </font>
         </Text>
-        <Text layoutX="197.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
-            <font>
-                <Font name="Microsoft YaHei Light" size="24.0"/>
-            </font>
-        </Text>
-        <Text layoutX="896.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Badges">
-            <font>
-                <Font name="Microsoft YaHei Light" size="24.0"/>
-            </font>
-        </Text>
-        <Text layoutX="170.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Savings:">
-            <font>
-                <Font name="Microsoft YaHei Light" size="24.0"/>
-            </font>
-        </Text>
-        <Text layoutX="170.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2FA Enabled: ">
-            <font>
-                <Font name="Microsoft YaHei Light" size="24.0"/>
-            </font>
-        </Text>
-        <JFXTextField fx:id="userForm" focusColor="#036400" layoutX="321.0" layoutY="305.0"
-                      onKeyReleased="#checkSubmittable" prefHeight="39.0" prefWidth="157.0" unFocusColor="#7b7b7b">
-            <font>
-                <Font size="18.0"/>
-            </font>
-        </JFXTextField>
-        <JFXButton fx:id="modDataButton" layoutX="485.0" layoutY="309.0" onAction="#editUsername" text="Edit Username"
-                   textFill="#7b7b7b">
-            <ripplerFill>
-                <LinearGradient>
-                    <stops>
-                        <Stop color="#31e145"/>
-                        <Stop color="#64ffe5" offset="1.0"/>
-                    </stops>
-                </LinearGradient>
-            </ripplerFill>
-        </JFXButton>
-        <JFXToggleButton fx:id="twoFactorToggleButton" layoutX="340.0" layoutY="392.0"
-                         onAction="#handleTwoFactorToggle"/>
-        <Label fx:id="errorMsg" layoutX="321.0" layoutY="280.0" textFill="RED">
-            <font>
-                <Font size="12.0"/>
-            </font>
-        </Label>
-        <GridPane fx:id="badges" layoutX="753.0" layoutY="237.0" maxHeight="400.0" maxWidth="400.0" prefHeight="400.0"
-                  prefWidth="400.0" vgap="160.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-        </GridPane>
+        <JFXTabPane layoutX="704.0" layoutY="180.0" prefHeight="480.0" prefWidth="500.0" stylesheets="@../css/accountPage.css">
+            <tabs>
+                <Tab text="Badges">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="500.0">
+                            <children>
+                                <ScrollPane prefHeight="443.0" prefWidth="500.0">
+                                    <content>
+                                        <GridPane fx:id="badges" alignment="TOP_CENTER" maxHeight="150.0" maxWidth="400.0" prefHeight="410.0" prefWidth="400.0" translateX="50.0" translateY="15.0" vgap="10.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints prefWidth="160.0" />
+                                                <ColumnConstraints prefWidth="150.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints prefHeight="160.0" />
+                                            </rowConstraints>
+                                        </GridPane>
+                                    </content>
+                                </ScrollPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Achievements">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="428.0" prefWidth="500.0">
+                            <children>
+                                <ScrollPane id="achievementsPane" fx:id="achievementScroll" layoutY="10.0" prefHeight="394.0" prefWidth="500.0" stylesheets="@../css/accountPage.css">
+                                    <content>
+                                        <VBox fx:id="achievementsVBox" layoutX="1.0" prefHeight="199.0" prefWidth="498.0" />
+                                    </content>
+                                </ScrollPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </JFXTabPane>
+      <Pane layoutX="115.0" layoutY="243.0" prefHeight="235.0" prefWidth="454.0" style="-fx-background-color: rgb(0,0,0,0.5); -fx-background-radius: 30;" styleClass="accountPane">
+         <children>
+              <Label fx:id="co2Savings" layoutX="176.0" layoutY="103.0" text="&lt;CO2 Savings&gt;" textFill="WHITE">
+                  <font>
+                      <Font name="Microsoft YaHei Light" size="24.0" />
+                  </font>
+              </Label>
+              <Text fill="WHITE" layoutX="25.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
+                  <font>
+                      <Font name="Microsoft YaHei Light" size="24.0" />
+                  </font>
+              </Text>
+              <Text fill="WHITE" layoutX="25.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Savings:">
+                  <font>
+                      <Font name="Microsoft YaHei Light" size="24.0" />
+                  </font>
+              </Text>
+              <JFXTextField fx:id="userForm" focusColor="#036400" layoutX="149.0" layoutY="42.0" onKeyReleased="#displayButton" prefHeight="39.0" prefWidth="157.0" style="-fx-prompt-text-fill: #FFFFFF; -fx-text-fill: #FFFFFF;" unFocusColor="#7b7b7b">
+                  <font>
+                      <Font size="18.0" />
+                  </font>
+              </JFXTextField>
+              <JFXButton fx:id="modDataButton" layoutX="313.0" layoutY="46.0" onAction="#editUsername" text="Edit Username" textFill="WHITE">
+                  <ripplerFill>
+                      <LinearGradient endX="1.0" endY="1.0">
+                          <stops>
+                              <Stop color="#31e145" />
+                              <Stop color="WHITE" offset="1.0" />
+                          </stops>
+                      </LinearGradient>
+                  </ripplerFill>
+              </JFXButton>
+              <JFXToggleButton fx:id="twoFactorToggleButton" layoutX="25.0" layoutY="151.0" onAction="#handleTwoFactorToggle" text="Enable 2 Factor Authentication" textFill="WHITE" toggleColor="#009431" toggleLineColor="#78c27b" />
+              <Label fx:id="errorMsg" layoutX="149.0" layoutY="25.0" textFill="RED">
+                  <font>
+                      <Font size="12.0" />
+                  </font>
+              </Label>
+         </children>
+      </Pane>
     </children>
 </AnchorPane>

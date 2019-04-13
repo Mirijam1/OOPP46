@@ -172,19 +172,19 @@ public class SignUpController {
         }
     }
 
-    public void changeStyleError(TextField field) {
+    private void changeStyleError(TextField field) {
         field.setStyle("-fx-border-color: red ; -fx-border-width: 2px ; -fx-border-radius: 5px;");
     }
 
     @FXML
-    public void handle(KeyEvent event) {
+    protected void handle(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             signUp();
         }
     }
 
     @FXML
-    public void continueVerification() {
+    protected void continueVerification() {
         InputController<UUID, IdConverter> input = new InputController<>("Enter your token",
                 "Please enter the continuation token you received in the mail", null, new IdConverter());
 

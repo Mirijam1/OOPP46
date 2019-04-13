@@ -91,7 +91,7 @@ public class InputController<T, C extends InputConverter<T>> {
      * @param event The {@link KeyEvent}
      */
     @FXML
-    public void handleInput(KeyEvent event) {
+    protected void handleInput(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             handleSubmit();
         }
@@ -101,7 +101,7 @@ public class InputController<T, C extends InputConverter<T>> {
      * <p>Attempts to parse the input, and handles accordingly.</p>
      */
     @FXML
-    public void handleSubmit() {
+    protected void handleSubmit() {
         String token = tokenField.getText();
 
         try {

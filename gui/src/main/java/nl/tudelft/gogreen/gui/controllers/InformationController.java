@@ -22,7 +22,6 @@ public class InformationController {
     @FXML
     private Button ok;
 
-
     @FXML
     void exit(ActionEvent event) {
         System.out.println("exit");

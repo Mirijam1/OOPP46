@@ -26,10 +26,10 @@ public class FriendsController {
     private ScrollPane activityScroll;
 
     @FXML
-    private VBox FriendOverview;
+    private VBox friendOverview;
 
     @FXML
-    public void initialize() {
+    protected void initialize() {
         API.retrieveFriends(new ServerCallback<Object, Friendship[]>() {
             @Override
             public void run() {
@@ -55,19 +55,19 @@ public class FriendsController {
                     user.setTranslateY(20);
                     user.setTranslateX(60);
 
-                    Pane FriendEntry = new Pane();
-                    FriendEntry.setPrefSize(492, 60);
-                    FriendEntry.setMaxWidth(492);
-                    FriendEntry.setMaxHeight(60);
-                    FriendEntry.setStyle("-fx-background-radius: 30; -fx-background-color: rgba(0, 0, 0, 0.50);");
+                    Pane friendEntry = new Pane();
+                    friendEntry.setPrefSize(492, 60);
+                    friendEntry.setMaxWidth(492);
+                    friendEntry.setMaxHeight(60);
+                    friendEntry.setStyle("-fx-background-radius: 30; -fx-background-color: rgba(0, 0, 0, 0.50);");
                     friendlist.setPrefHeight(66 * (i + 1));
 
                     Label rank = new Label((i + 1) + ".");
                     rank.setTranslateY(20);
                     rank.setTranslateX(30);
-                    FriendEntry.getChildren().addAll(rank, user);
+                    friendEntry.getChildren().addAll(rank, user);
 
-                    friendlist.getChildren().add(FriendEntry);
+                    friendlist.getChildren().add(friendEntry);
                 }
             }
         } else {
@@ -89,7 +89,7 @@ public class FriendsController {
 
     private void initFriendsOverview(CompletedActivity[] friendActivities) {
         activityScroll.setFitToWidth(true);
-        FriendOverview.setSpacing(6);
+        friendOverview.setSpacing(6);
 
         if (friendActivities.length > 0) {
             for (int i = 0; i < friendActivities.length; i++) {
@@ -97,7 +97,8 @@ public class FriendsController {
                     CompletedActivity completedActivity = friendActivities[i];
                     String points = new DecimalFormat("0.0#").format(completedActivity.getPoints());
                     Label activity = new Label(String.format("%2$s completed '%3$s' (%1$s points)",
-                            points, completedActivity.getUsername(), completedActivity.getActivity().getActivityName()));
+                            points, completedActivity.getUsername(),
+                            completedActivity.getActivity().getActivityName()));
                     activity.setTranslateY(20);
                     activity.setTranslateX(60);
 
@@ -106,10 +107,10 @@ public class FriendsController {
                     overviewEntry.setMaxWidth(492);
                     overviewEntry.setMaxHeight(60);
                     overviewEntry.setStyle("-fx-background-radius: 30; -fx-background-color: rgba(0, 0, 0, 0.50);");
-                    FriendOverview.setPrefHeight(66 * (i + 1));
+                    friendOverview.setPrefHeight(66 * (i + 1));
 
                     overviewEntry.getChildren().add(activity);
-                    FriendOverview.getChildren().add(overviewEntry);
+                    friendOverview.getChildren().add(overviewEntry);
                 }
             }
         } else {
@@ -124,8 +125,8 @@ public class FriendsController {
             noActivityEntry.setStyle("-fx-background-radius: 30; -fx-background-color: rgba(0, 0, 0, 0.50);");
             noActivityEntry.getChildren().add(text);
 
-            FriendOverview.setPrefHeight(66);
-            FriendOverview.getChildren().add(noActivityEntry);
+            friendOverview.setPrefHeight(66);
+            friendOverview.getChildren().add(noActivityEntry);
         }
     }
 }

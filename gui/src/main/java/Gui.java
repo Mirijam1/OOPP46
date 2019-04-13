@@ -12,7 +12,7 @@ public class Gui extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Setup API
-        API.prepareAPI(true);
+        API.prepareAPI(false);
         /*
         Please note that this call makes the client program have some threads always working,
         which means the application will keep running even after you close the GUI (you can only force
@@ -22,8 +22,10 @@ public class Gui extends Application {
         // Continue start
         Parent root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
         primaryStage.getIcons().add(new Image("img/leaficon.png"));
-        primaryStage.setTitle("GoGreen");
+        primaryStage.setTitle("GOGREEN - Sign In");
         primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setResizable(false);
+        primaryStage.sizeToScene();
         primaryStage.show();
         primaryStage.setOnCloseRequest(t -> {
             API.closeAPI();
