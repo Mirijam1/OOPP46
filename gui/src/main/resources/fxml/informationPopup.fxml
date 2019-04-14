@@ -8,26 +8,32 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="240.0" prefWidth="500.0" style="-fx-background-color: #EEFFF2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.gogreen.gui.controllers.InformationController">
-   <children>
-      <Label fx:id="information" layoutX="33.0" layoutY="36.0" text="INFORMATION" textFill="#868484">
-         <font>
-            <Font name="Microsoft YaHei Light" size="36.0" />
-         </font>
-      </Label>
-      <Line fx:id="line" endX="350.0" layoutX="109.0" layoutY="86.0" startX="-100.0" stroke="#9e9999" />
-      <ImageView fx:id="image" fitHeight="57.0" fitWidth="53.0" layoutX="407.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/information.png" />
-         </image></ImageView>
-      <Label layoutX="98.0" layoutY="120.0" text="Please don't leave the box(es) empty!">
-          <font>
-              <Font name="Microsoft YaHei Light" size="18.0" />
-          </font>
-      </Label>
-      <Button fx:id="ok" layoutX="183.0" layoutY="165.0" mnemonicParsing="false" onAction="#exit" prefHeight="38.0" prefWidth="157.0" stylesheets="@../css/button.css" text="OK" textFill="#7b7b7b">
-         <font>
-            <Font name="Microsoft JhengHei Light" size="18.0" />
-         </font></Button>
-   </children>
+<AnchorPane prefHeight="240.0" prefWidth="500.0" style="-fx-background-color: #EEFFF2;"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="nl.tudelft.gogreen.gui.controllers.InformationController">
+    <children>
+        <Label fx:id="information" layoutX="33.0" layoutY="36.0" text="INFORMATION" textFill="#868484">
+            <font>
+                <Font name="Microsoft YaHei Light" size="36.0"/>
+            </font>
+        </Label>
+        <Line fx:id="line" endX="350.0" layoutX="109.0" layoutY="86.0" startX="-100.0" stroke="#9e9999"/>
+        <ImageView fx:id="image" fitHeight="57.0" fitWidth="53.0" layoutX="407.0" layoutY="24.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../img/information.png"/>
+            </image>
+        </ImageView>
+        <Label layoutX="98.0" layoutY="120.0" text="Please don't leave the box(es) empty!">
+            <font>
+                <Font name="Microsoft YaHei Light" size="18.0"/>
+            </font>
+        </Label>
+        <Button fx:id="ok" layoutX="183.0" layoutY="165.0" mnemonicParsing="false" onAction="#exit" prefHeight="38.0"
+                prefWidth="157.0" stylesheets="@../css/button.css" text="OK" textFill="#7b7b7b">
+            <font>
+                <Font name="Microsoft JhengHei Light" size="18.0"/>
+            </font>
+        </Button>
+    </children>
 </AnchorPane>

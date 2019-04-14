@@ -204,7 +204,7 @@ public class APITest {
                     }
                 }, new User("testuser", "password", false, null, 0F, null), null);
             }
-        }, new User("testuser", "password",false,  null, 0F, null));
+        }, new User("testuser", "password", false, null, 0F, null));
     }
 
     @Test
@@ -225,7 +225,7 @@ public class APITest {
                     }
                 }, new User("testuser", "pass", false, null, 0F, null), null);
             }
-        }, new User("testuser", "pass",false,  null, 0F, null));
+        }, new User("testuser", "pass", false, null, 0F, null));
     }
 
     @Test
@@ -238,11 +238,11 @@ public class APITest {
                     @Override
                     public void run() {
                         assertEquals("testuser", getResult().getUser());
-                        assertEquals("0F",getResult().getPoints());
+                        assertEquals("0F", getResult().getPoints());
                     }
                 });
             }
-        }, new User("testuser", "pass", false, null,0F, null), null);
+        }, new User("testuser", "pass", false, null, 0F, null), null);
     }
 
     @Test

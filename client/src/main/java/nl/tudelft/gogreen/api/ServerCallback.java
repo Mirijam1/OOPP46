@@ -46,6 +46,7 @@ public abstract class ServerCallback<T, I> {
 
     /**
      * <p>Returns the status code of the previous request.</p>
+     *
      * @return Integer representing the status code of the previous request
      */
     protected int getStatusCode() {

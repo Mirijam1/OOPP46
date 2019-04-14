@@ -84,7 +84,8 @@ public class SidebarController implements Initializable {
     /**
      * Initializes the sidebar controller, sets the userLabel to the users username,
      * loads the overview screen and sets the background.
-     * @param location specifies the location (unused)
+     *
+     * @param location  specifies the location (unused)
      * @param resources specifies the resources (unused)
      */
     @FXML

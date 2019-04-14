@@ -8,11 +8,11 @@ public class CachedRequestTest {
 
     @Test
     public void retrieveFromCache() {
-    assertEquals(2,2);
-}
+        assertEquals(2, 2);
+    }
 
     @Test
     public void updateCache() {
-        assertNotEquals(5,2);
+        assertNotEquals(5, 2);
     }
 }

@@ -146,16 +146,16 @@ public class OverviewController {
         suggVBox.setTranslateY(2);
 
         String[] suggestions = {"Eat a vegetarian meal and add it to your activities!",
-                                "Buy local produce and add it to your activities!",
-                                "Take the bike instead of the car for 10km or take the bus",
-                                "Replace 2 traditional lights with LED lights", "Go vegetarian for an entire week!",
-                                "Travel by train for at least 25km",
-                                "Lower the temperature in your house by 3 degrees!",
-                                "Plant a tree in your garden!", "Install at least 2 solar panels!",
-                                "Buy local produce for a whole week!", "Travel by bike for at least 25km",
-                                "Replace all the lights in your house with LED lights!", "Go vegan for life!",
-                                "Get all your energy from your solar panels", "Plant a tree every week!",
-                                "Only use the bike or public transport from now on"};
+            "Buy local produce and add it to your activities!",
+            "Take the bike instead of the car for 10km or take the bus",
+            "Replace 2 traditional lights with LED lights", "Go vegetarian for an entire week!",
+            "Travel by train for at least 25km",
+            "Lower the temperature in your house by 3 degrees!",
+            "Plant a tree in your garden!", "Install at least 2 solar panels!",
+            "Buy local produce for a whole week!", "Travel by bike for at least 25km",
+            "Replace all the lights in your house with LED lights!", "Go vegan for life!",
+            "Get all your energy from your solar panels", "Plant a tree every week!",
+            "Only use the bike or public transport from now on"};
 
         int index = calculateI();
         int endIndex = index + 4;

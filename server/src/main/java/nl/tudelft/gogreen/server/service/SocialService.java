@@ -25,9 +25,17 @@ public class SocialService implements ISocialService {
     private final ISearchService searchService;
     private final ProfileRepository profileRepository;
 
+    /**
+     * All parameter constructor.
+     * @param friendshipConnectionRepository the repository responsible for connections
+     * @param completedActivityRepository the repository responsible for activities
+     * @param searchService the service responsible for searching
+     * @param profileRepository the repository responsible for profiles
+     */
     @Autowired
     public SocialService(FriendshipConnectionRepository friendshipConnectionRepository,
-                         CompletedActivityRepository completedActivityRepository, ISearchService searchService, ProfileRepository profileRepository) {
+                         CompletedActivityRepository completedActivityRepository, ISearchService searchService,
+                         ProfileRepository profileRepository) {
         this.friendshipConnectionRepository = friendshipConnectionRepository;
         this.completedActivityRepository = completedActivityRepository;
         this.searchService = searchService;

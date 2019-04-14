@@ -76,6 +76,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationProvider(authProvider());
     }
 
+    /**
+     * Creates a new authontication provider.
+     * Based on our custom userDetailsService class, and
+     * out default password encoder.
+     * @return an authentication provider with the specific traits
+     */
     @Bean
     public DaoAuthenticationProvider authProvider() {
         TwoFactorAuthenticationProvider authProvider = new TwoFactorAuthenticationProvider();
