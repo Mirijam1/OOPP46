@@ -322,28 +322,6 @@ You can either click the executable JAR or use the CLI to launch it:
 $ java -jar Client.jar
 ```
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Java](https://www.oracle.com/technetwork/java/javase/downloads/index.html) installed on your computer. From your command line:
-
-```bash
-# Clone this repository
-$ git clone https://gitlab.ewi.tudelft.nl/cse1105/2018-2019/oopp-group-46/template.git
-
-# Go into directory
-$ cd template
-
-# Build project (Windows CMD)
-$ mvnw clean install
-
-# Build project (Unix terminal / Git Bash)
-$ ./mvnw clean install
-
-# Run the server
-$ java -jar server/target/Server.jar
-
-# Run the client
-$ java -jar client/target/Client.jar
-```
-
 ### Git basics
 Quick disclaimer: I've left out a lot of things, and this is just a short summary with some example. 
 If you want to know more, there are some quality links on Brightspace. I also can recommend [this website](https://learngitbranching.js.org/), because they visualize git which can be helpful.<br>

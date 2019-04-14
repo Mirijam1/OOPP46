@@ -27,7 +27,7 @@ public class API {
      * @param local Boolean indicating whether this application is running in local mode, or not.
      */
     public static void prepareAPI(boolean local) {
-        ServerConnection.initModelBuilder();
+        ServerConnection.initModelBuilder(new com.fasterxml.jackson.databind.ObjectMapper());
 
         locationUrl = local ? "http://localhost:8088/" : "https://oopp.timanema.net/";
     }
