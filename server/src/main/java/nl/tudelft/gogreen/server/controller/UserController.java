@@ -45,6 +45,7 @@ public class UserController {
 
     /**
      * get user details.
+     *
      * @param authentication authtoken for logged in user.
      * @return User
      */
@@ -65,7 +66,8 @@ public class UserController {
 
     /**
      * create user with params.
-     * @param user user details
+     *
+     * @param user           user details
      * @param authentication authtoken
      * @return User
      */
@@ -106,6 +108,7 @@ public class UserController {
 
     /**
      * delete user.
+     *
      * @param authentication authtoken
      * @return Map
      */
@@ -130,7 +133,8 @@ public class UserController {
 
     /**
      * update user.
-     * @param user user details.
+     *
+     * @param user           user details.
      * @param authentication authtoken.
      * @return User
      */
@@ -165,8 +169,9 @@ public class UserController {
 
     /**
      * verify user by authtoken.
+     *
      * @param externalId externalID of user.
-     * @param token authtoken
+     * @param token      authtoken
      * @return BasicResponse
      */
     @RequestMapping(path = "/verify/{externalId}",
@@ -184,12 +189,20 @@ public class UserController {
         return userService.verifyUser(user, token);
     }
 
+    /**
+     * Toggles 2 factor basic authentication if it is not on already.
+     * @param authentication the basic authentication factor
+     * @param enabled to determine if the authentication is already enabled
+     * @return a generic response which contains information about the authentication.
+     * @throws UnsupportedEncodingException if a different encoding has been used
+     */
     @RequestMapping(path = "/2fa/toggle/{toggle}",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody BasicResponse toggle2FA(Authentication authentication,
-                                                 @PathVariable("toggle") Boolean enabled)
+    public @ResponseBody
+        BasicResponse toggle2FA(Authentication authentication,
+                            @PathVariable("toggle") Boolean enabled)
             throws UnsupportedEncodingException {
         User user = (User) authentication.getPrincipal();
 
@@ -207,12 +220,19 @@ public class UserController {
         return new BasicResponse(HttpStatus.OK.getReasonPhrase(), null);
     }
 
+    /**
+     * Verifies whether or not two-factor authentication has been enabled.
+     * @param authentication the authentication factor
+     * @param token the user's unique token
+     * @return a basic response with a generic OK response if everything went alright/
+     */
     @RequestMapping(path = "/2fa/enable/{token}",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody BasicResponse verify2FA(Authentication authentication,
-                                                 @PathVariable("token") Long token) {
+    public @ResponseBody
+        BasicResponse verify2FA(Authentication authentication,
+                            @PathVariable("token") Long token) {
         User user = (User) authentication.getPrincipal();
 
         if (user.isTfaEnabled()) {

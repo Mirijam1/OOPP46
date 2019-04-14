@@ -8,26 +8,26 @@ public class RequestCacheTest {
 
     @Test
     public void getInstance() {
-        assertEquals(2,2);
+        assertEquals(2, 2);
     }
 
     @Test
     public void retrieveFromCache() {
-        assertEquals(2,2);
+        assertEquals(2, 2);
     }
 
     @Test
     public void updateCache() {
-        assertEquals(2,2);
+        assertEquals(2, 2);
     }
 
     @Test
     public void clearCache() {
-        assertEquals(2,2);
+        assertEquals(2, 2);
     }
 
     @Test
     public void clearCache1() {
-        assertEquals(2,2);
+        assertEquals(2, 2);
     }
 }

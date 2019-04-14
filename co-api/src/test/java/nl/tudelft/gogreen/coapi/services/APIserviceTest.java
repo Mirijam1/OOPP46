@@ -29,7 +29,7 @@ public class APIserviceTest {
     @Test
     public void testVegMeal() throws Exception {
         Double points = apiService.vegmeal(new Vegmeal("2019-03-29", 1, 400));
-       Double testpoint = 16.0;
+        Double testpoint = 16.0;
         assertEquals(testpoint, points);
     }
 

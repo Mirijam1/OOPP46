@@ -156,7 +156,7 @@ public class ServerConnection {
      * @param <T>                Type of the object to map to
      * @param <I>                Type of the object to map to
      * @param response           Object that will be put into the
-     * {@link HttpResponse}, as if it was returned from the server.
+     *                           {@link HttpResponse}, as if it was returned from the server.
      * @param responseStatusCode Status code that will be put into the {@link HttpResponse},
      *                           as if it was returned from the server.
      *                           Keep in mind that this parameter will not affect the status text field.

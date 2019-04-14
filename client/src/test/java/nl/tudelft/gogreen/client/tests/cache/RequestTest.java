@@ -8,11 +8,11 @@ public class RequestTest {
 
     @Test
     public void clearCache() {
-        assertEquals(2,2);
+        assertEquals(2, 2);
     }
 
     @Test
     public void buildHttpRequest() {
-        assertEquals(2,2);
+        assertEquals(2, 2);
     }
 }

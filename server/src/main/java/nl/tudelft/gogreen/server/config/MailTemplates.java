@@ -40,6 +40,10 @@ public class MailTemplates {
         return mailMessage;
     }
 
+    /**
+     * Creates a SimpleMailMessage to inform the user that their account is secure.
+     * @return the predetermined informative message.
+     */
     @Bean
     public SimpleMailMessage twoFactorAuthenticationEnabled() {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -53,6 +57,11 @@ public class MailTemplates {
         return mailMessage;
     }
 
+    /**
+     * Creates a new SimpleMailMessage that informs the user that two-factor authentication.
+     * Has been disabled for their account.
+     * @return the message
+     */
     @Bean
     public SimpleMailMessage twoFactorAuthenticationDisabled() {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
