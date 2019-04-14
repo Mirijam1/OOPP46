@@ -5,6 +5,7 @@ import nl.tudelft.gogreen.server.exceptions.ServiceUnavailableException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.MailAuthenticationException;
 import org.springframework.mail.MailSendException;
@@ -28,6 +29,9 @@ public class MailService implements IMailService {
     private final Environment environment;
 
     private boolean mailEnabled;
+
+    @Value("${spring.mail.username}")
+    private String mail;
 
     /**
      * instantiates MailService Constructor.
@@ -61,7 +65,7 @@ public class MailService implements IMailService {
         logger.info("Checking mail service availability");
 
         try {
-            this.sendMessage("noreply.gogreen@gmail.com", "Startup", "Verifying mail availability");
+            this.sendMessage(mail, "Startup", "Verifying mail availability");
         } catch (ServiceUnavailableException unavailable) {
             logger.warn("Disabling mail for this instance!");
             this.mailEnabled = false;
