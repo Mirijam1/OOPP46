@@ -4,6 +4,7 @@ import nl.tudelft.gogreen.server.controller.UserController;
 import nl.tudelft.gogreen.server.exceptions.BadRequestException;
 import nl.tudelft.gogreen.server.exceptions.ConflictException;
 import nl.tudelft.gogreen.server.exceptions.ForbiddenException;
+import nl.tudelft.gogreen.server.exceptions.NotFoundException;
 import nl.tudelft.gogreen.server.exceptions.UnauthorizedException;
 import nl.tudelft.gogreen.server.models.Authority;
 import nl.tudelft.gogreen.server.models.user.User;
@@ -18,9 +19,12 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 public class UserControllerTest {
@@ -130,5 +134,39 @@ public class UserControllerTest {
         when(repository.findUserByUsername("yeet")).thenReturn(Mockito.mock(User.class));
 
         userController.updateUser(user, new UsernamePasswordAuthenticationToken(null, null));
+    }
+
+    @Test
+    public void shouldThrowNotFoundWhenVerifyingNonExistingUser() {
+        exception.expect(NotFoundException.class);
+        UUID id = UUID.randomUUID();
+
+        when(repository.findUserByExternalId(id)).thenReturn(null);
+
+        userController.verifyUser(id, 42);
+    }
+
+    @Test
+    public void shouldThrowBadRequestWhenToggling2FATOTrueWhenAlreadyEnabled() throws UnsupportedEncodingException {
+        exception.expect(BadRequestException.class);
+        Authentication authentication = Mockito.mock(Authentication.class);
+        User user = Mockito.mock(User.class);
+
+        when(authentication.getPrincipal()).thenReturn(user);
+        when(user.isTfaEnabled()).thenReturn(true);
+
+        userController.toggle2FA(authentication, true);
+    }
+
+    @Test
+    public void shouldThrowBadRequestWhenVerifying2FAWhenAlreadyEnabled() {
+        exception.expect(BadRequestException.class);
+        Authentication authentication = Mockito.mock(Authentication.class);
+        User user = Mockito.mock(User.class);
+
+        when(authentication.getPrincipal()).thenReturn(user);
+        when(user.isTfaEnabled()).thenReturn(true);
+
+        userController.verify2FA(authentication, 123L);
     }
 }

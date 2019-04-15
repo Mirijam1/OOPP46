@@ -12,7 +12,7 @@ public class Gui extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Setup API
-        API.prepareAPI(false);
+        API.prepareAPI(true);
         /*
         Please note that this call makes the client program have some threads always working,
         which means the application will keep running even after you close the GUI (you can only force

@@ -3,6 +3,7 @@ package nl.tudelft.gogreen.server.config.security;
 import nl.tudelft.gogreen.server.config.error.AuthFailureHandler;
 import nl.tudelft.gogreen.server.config.error.EntryDenied;
 import nl.tudelft.gogreen.server.config.error.EntryPoint;
+import nl.tudelft.gogreen.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final AuthSuccessHandler authSuccessHandler;
     private final AuthFailureHandler authFailureHandler;
     private final TwoFactorAuthenticationDetailsSource twoFactorAuthenticationDetailsSource;
+    private final UserRepository userRepository;
 
     /**
      * instantiates SecurityConfig.
@@ -53,7 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                           EntryDenied entryDenied,
                           AuthSuccessHandler authSuccessHandler,
                           AuthFailureHandler authFailureHandler,
-                          TwoFactorAuthenticationDetailsSource twoFactorAuthenticationDetailsSource) {
+                          TwoFactorAuthenticationDetailsSource twoFactorAuthenticationDetailsSource,
+                          UserRepository userRepository) {
         this.userDetailsService = userDetailsService;
         this.dataSource = dataSource;
         this.passwordEncoder = passwordEncoder;
@@ -62,6 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.authSuccessHandler = authSuccessHandler;
         this.authFailureHandler = authFailureHandler;
         this.twoFactorAuthenticationDetailsSource = twoFactorAuthenticationDetailsSource;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -84,7 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public DaoAuthenticationProvider authProvider() {
-        TwoFactorAuthenticationProvider authProvider = new TwoFactorAuthenticationProvider();
+        TwoFactorAuthenticationProvider authProvider = new TwoFactorAuthenticationProvider(userRepository);
 
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder);

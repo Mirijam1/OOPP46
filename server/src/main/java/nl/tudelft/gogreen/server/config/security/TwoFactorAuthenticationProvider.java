@@ -12,11 +12,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TwoFactorAuthenticationProvider extends DaoAuthenticationProvider {
+    private final UserRepository userRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    public TwoFactorAuthenticationProvider(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public Authentication authenticate(Authentication authentication) {
+        Authentication result = super.authenticate(authentication);
         String code = ((TwoFactorAuthenticationDetails) authentication.getDetails()).getCode();
         User user = userRepository.findUserByUsername(authentication.getName());
 
@@ -32,7 +37,6 @@ public class TwoFactorAuthenticationProvider extends DaoAuthenticationProvider {
             }
         }
 
-        Authentication result = super.authenticate(authentication);
         return new UsernamePasswordAuthenticationToken(user, result.getCredentials(), result.getAuthorities());
     }
 
