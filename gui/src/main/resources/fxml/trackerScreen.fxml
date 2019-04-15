@@ -2,60 +2,33 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/overview.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OverviewController">
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/overview.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.gogreen.gui.controllers.OverviewController">
    <children>
-      <Text layoutX="306.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Overview of CO2 tracker" wrappingWidth="667.1953125">
+      <Label fx:id="userWelcome" alignment="CENTER" contentDisplay="CENTER" layoutX="313.0" layoutY="64.0" prefHeight="67.0" prefWidth="655.0" text="Welcome &lt;Username&gt;" textAlignment="CENTER">
          <font>
-            <Font name="Microsoft YaHei Light" size="60.0" />
-         </font>
-         <fill>
-            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startY="1.0">
-               <stops>
-                  <Stop color="#00ccff" />
-                  <Stop color="#00ffa4" offset="0.534375" />
-                  <Stop color="#00ff3e" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </fill>
-      </Text>
-      <Text layoutX="408.0" layoutY="198.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount of CO2 Saved:">
-         <font>
-            <Font name="Microsoft YaHei Light" size="30.0" />
-         </font>
-      </Text>
-      <Text layoutX="70.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="History of Activities">
-         <font>
-            <Font name="Microsoft YaHei Light" size="25.0" />
-         </font>
-      </Text>
-      <Text layoutX="1074.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suggestions">
-         <font>
-            <Font name="Microsoft YaHei Light" size="25.0" />
-         </font>
-      </Text>
-      <Label fx:id="username" layoutX="1180.0" layoutY="29.0" prefHeight="20.0" prefWidth="40.0" text="User" />
-      <ImageView fitHeight="49.0" fitWidth="46.0" layoutX="1220.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/user.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="amount" layoutX="728.0" layoutY="165.0" text="000 Points">
-         <font>
-            <Font name="Microsoft YaHei Light" size="30.0" />
+            <Font name="Microsoft YaHei Light" size="48.0" />
          </font>
       </Label>
+      <Label fx:id="amount" alignment="CENTER" layoutX="388.0" layoutY="170.0" prefHeight="40.0" prefWidth="504.0" style="-fx-background-color: rgba(0, 0, 0, 0.50); -fx-background-radius: 20;" text="Amount of CO2 Saved: 000 Points" textAlignment="CENTER">
+         <font>
+            <Font name="Microsoft YaHei Light" size="24.0" />
+         </font>
+      </Label>
+      <Text layoutX="130.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="History of Activities">
+         <font>
+            <Font name="Microsoft YaHei Light" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="1014.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suggestions">
+         <font>
+            <Font name="Microsoft YaHei Light" size="24.0" />
+         </font>
+      </Text>
       <ScrollPane fx:id="histPane" layoutX="227.0" layoutY="266.0" prefHeight="380.0" prefWidth="550.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="70.0">
          <content>
-            <VBox fx:id="histVBox" prefHeight="200.0" prefWidth="548.0" />
+            <VBox fx:id="histVBox" prefHeight="200.0" prefWidth="548.0"/>
          </content>
       </ScrollPane>
       <ScrollPane fx:id="suggPane" layoutX="745.0" layoutY="360.0" prefHeight="380.0" prefWidth="550.0" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="70.0">

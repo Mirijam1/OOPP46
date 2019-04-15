@@ -18,5 +18,5 @@ public class SubmitResponse {
     private Float points;
     private Float updatedPoints;
     private Collection<Badge> badges;
-    // TODO: Add badges and everything
+    private Collection<Achievement> achievements;
 }

@@ -37,7 +37,8 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
             HttpServletResponse response,
             Authentication authentication) throws IOException {
         HttpStatus status = HttpStatus.OK;
-        final String result = mapper.writeValueAsString(new ServerError(status.getReasonPhrase())); // Error: success
+        final String result = mapper.writeValueAsString(
+                new ServerError(status.getReasonPhrase(), null)); // Error: success
 
         response.setStatus(status.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);

@@ -1,0 +1,11 @@
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+#friendsScroll, #activityScroll  {
+    -fx-background-color: transparent;
+}
+
+.label {
+    -fx-text-fill: #FFFFFF;
+}

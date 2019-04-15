@@ -5,6 +5,7 @@ import nl.tudelft.gogreen.server.models.user.UserProfile;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,5 +15,9 @@ public interface CompletedActivityRepository extends JpaRepository<CompletedActi
 
     CompletedActivity findCompletedActivityByProfileAndExternalId(UserProfile profile, UUID externalId);
 
-    CompletedActivity findCompletedActivityById(UUID id);
+    List<CompletedActivity> findCompletedActivitiesByProfileInOrderByDateTimeCompletedDesc(
+            Collection<UserProfile> profiles,
+            Pageable pageable);
+
+    CompletedActivity findCompletedActivityByExternalId(UUID id);
 }

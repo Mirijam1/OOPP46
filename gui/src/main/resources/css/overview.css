@@ -1,0 +1,21 @@
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+#histPane {
+    -fx-background-color: transparent;
+}
+
+#suggPane {
+    -fx-background-color: transparent;
+}
+
+.label {
+    -fx-text-fill: #FFFFFF;
+}
+
+#userWelcome {
+    -fx-text-fill: #000000;
+}
+
+

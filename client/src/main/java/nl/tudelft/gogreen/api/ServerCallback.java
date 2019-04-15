@@ -2,7 +2,6 @@ package nl.tudelft.gogreen.api;
 
 import com.mashape.unirest.http.HttpResponse;
 import lombok.Data;
-import lombok.NonNull;
 import nl.tudelft.gogreen.cache.Request;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -34,10 +33,10 @@ public abstract class ServerCallback<T, I> {
         this.exception = exception;
     }
 
-    protected synchronized void result(@NonNull I result,
-                                       @NonNull HttpResponse response,
-                                       @NonNull boolean cached,
-                                       @NonNull Request<T> request) {
+    protected synchronized void result(I result,
+                                       HttpResponse response,
+                                       boolean cached,
+                                       Request<T> request) {
         this.result = result;
         this.response = response;
         this.cached = cached;
@@ -46,6 +45,7 @@ public abstract class ServerCallback<T, I> {
 
     /**
      * <p>Returns the status code of the previous request.</p>
+     *
      * @return Integer representing the status code of the previous request
      */
     protected int getStatusCode() {

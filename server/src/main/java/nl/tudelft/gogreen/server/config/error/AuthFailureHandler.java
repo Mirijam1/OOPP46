@@ -31,6 +31,9 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
         response.setStatus(status.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(mapper.writeValueAsString(new ServerError(status.getReasonPhrase())));
+        response.getWriter().write(
+                mapper.writeValueAsString(new ServerError(status.getReasonPhrase(),
+                        exception.getMessage().equals("Invalid 2FA code") ? "2fa" : null))
+        );
     }
 }

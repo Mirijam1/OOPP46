@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Collection;
 
 public interface BadgeRepository extends JpaRepository<Badge, Integer> {
-    Collection<Badge> findBadgesByTriggerIn(Collection<Trigger> triggers);
+    Collection<Badge> findBadgesByTrigger(Trigger trigger);
 }

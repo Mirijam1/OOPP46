@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<AnchorPane fx:id="friends" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/friends.css"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="nl.tudelft.gogreen.gui.controllers.FriendsController">
+    <children>
+        <Text layoutX="563.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Friends">
+            <font>
+                <Font name="Microsoft YaHei Light" size="48.0"/>
+            </font>
+        </Text>
+        <Text layoutX="286.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Friend List">
+            <font>
+                <Font name="Microsoft YaHei Light" size="24.0"/>
+            </font>
+        </Text>
+        <Text layoutX="858.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Friend Activity">
+            <font>
+                <Font name="Microsoft YaHei Light" size="24.0"/>
+            </font>
+        </Text>
+        <ScrollPane fx:id="friendsScroll" layoutX="91.0" layoutY="271.0" prefHeight="400.0" prefWidth="500.0">
+            <content>
+                <VBox fx:id="friendlist" prefHeight="400.0" prefWidth="498.0"/>
+            </content>
+        </ScrollPane>
+        <ScrollPane fx:id="activityScroll" layoutX="684.0" layoutY="271.0" prefHeight="400.0" prefWidth="500.0">
+            <content>
+                <VBox fx:id="friendOverview" prefHeight="400.0" prefWidth="498.0"/>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

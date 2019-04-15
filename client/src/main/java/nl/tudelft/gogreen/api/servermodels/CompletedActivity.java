@@ -5,8 +5,11 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import nl.tudelft.gogreen.api.LocalDateTimeDeserializer;
+import nl.tudelft.gogreen.shared.models.Activity;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -15,10 +18,17 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
+@Getter
+@Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CompletedActivity {
     private UUID externalId;
     private Float points;
-    private @JsonDeserialize(using = LocalDateTimeDeserializer.class) LocalDateTime dateTimeCompleted;
+    private @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+        LocalDateTime dateTimeCompleted;
     private Activity activity;
+
+    public String getActivityDescription() {
+        return this.activity.getDescription();
+    }
 }

@@ -58,6 +58,7 @@
                         <goals>
                             <goal>report-aggregate</goal>
                         </goals>
+
                         <configuration>
                             <title>GoGreen</title>
                             <footer>Code Coverage Report for GoGreen ${project.version}</footer>
@@ -68,7 +69,15 @@
                             <excludes>
                                 <exclude>**/HelpMojo.class</exclude>
                             </excludes>
+
                         </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

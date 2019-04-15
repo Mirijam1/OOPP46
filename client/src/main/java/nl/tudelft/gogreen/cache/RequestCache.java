@@ -28,6 +28,7 @@ public class RequestCache {
      * <p>Returns the saved {@link HttpResponse} for the given {@link Request}, if any.</p>
      * @param request The {@link Request} to retrieve from cache
      * @param <T> Type of object inside request
+     * @param <I> Type of object mapped
      * @return Cached {@link HttpResponse} if any
      */
     public <T, I> HttpResponse<I> retrieveFromCache(Request<T> request) {
@@ -46,6 +47,7 @@ public class RequestCache {
      * @param response The {@link HttpResponse} to update or insert
      * @param ttl Cache's time to live
      * @param <T> Type of the object in the request and response
+     * @param <I> Type of the object in the request and response
      */
     public <T, I> void updateCache(Request<T> request, HttpResponse<I> response, int ttl) {
         for (CachedRequest cachedRequest : cachedRequests.get(request.getUrl())) {
