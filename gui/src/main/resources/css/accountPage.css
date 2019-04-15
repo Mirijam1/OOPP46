@@ -1,0 +1,29 @@
+/* Set background */
+#AnchorPane {
+    -fx-background-image: url('../img/gogreenbg.jpg');
+    -fx-background-size: cover;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.jfx-tab-pane .headers-region {
+    -fx-background-color: #036400;
+}
+
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: #036400;
+}
+
+.jfx-tab-pane .tab-selected-line {
+    -fx-background-color: white;
+}
+
+.jfx-tab-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}

@@ -29,7 +29,7 @@ public class StatusController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody
-    Map<String, String> getStatus() {
+        Map<String, String> getStatus() {
         return Collections.singletonMap("response", statusService.getStatus());
     }
 
@@ -39,7 +39,7 @@ public class StatusController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody
-    Map<String, String> getRestrictedStatus() {
+        Map<String, String> getRestrictedStatus() {
         return Collections.singletonMap("response", statusService.getRestrictedStatus());
     }
 
@@ -49,7 +49,7 @@ public class StatusController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody
-    Map<String, String> getAdminStatus() {
+        Map<String, String> getAdminStatus() {
         return Collections.singletonMap("response", statusService.getAdminStatus());
     }
 }

@@ -1,5 +1,6 @@
 package nl.tudelft.gogreen.shared.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Badge {
     private UUID externalId;
     private String badgeName;

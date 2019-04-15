@@ -22,6 +22,11 @@ public class CategoryService implements ICategoryService {
         return new ArrayList<>(categoryRepository.findAll());
     }
 
+    /**
+     * gets Categoryname from categoryRepository.
+     * @param name - name of category
+     * @return category
+     */
     public Category getCategory(String name) {
         Category category = categoryRepository.findByCategoryName(name);
 

@@ -32,21 +32,21 @@ public class ErrorControllerTest {
     public void shouldReturnNotFoundWhenPageNotFound() {
         when(mockRequest.getAttribute(RequestDispatcher.ERROR_STATUS_CODE)).thenReturn("404");
 
-        assertEquals(errorController.error(mockRequest), new ServerError(HttpStatus.NOT_FOUND.getReasonPhrase()));
+        assertEquals(errorController.error(mockRequest), new ServerError(HttpStatus.NOT_FOUND.getReasonPhrase(), null));
     }
 
     @Test
     public void shouldReturnForbiddenWhenForbidden() {
         when(mockRequest.getAttribute(RequestDispatcher.ERROR_STATUS_CODE)).thenReturn("403");
 
-        assertEquals(errorController.error(mockRequest), new ServerError(HttpStatus.FORBIDDEN.getReasonPhrase()));
+        assertEquals(errorController.error(mockRequest), new ServerError(HttpStatus.FORBIDDEN.getReasonPhrase(), null));
     }
 
     @Test
     public void shouldReturnCodeWhenErrorNotFound() {
         when(mockRequest.getAttribute(RequestDispatcher.ERROR_STATUS_CODE)).thenReturn("424242");
 
-        assertEquals(errorController.error(mockRequest), new ServerError("424242"));
+        assertEquals(errorController.error(mockRequest), new ServerError("424242", null));
     }
 
     @Test

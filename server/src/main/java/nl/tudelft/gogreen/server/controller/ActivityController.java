@@ -1,5 +1,6 @@
 package nl.tudelft.gogreen.server.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import nl.tudelft.gogreen.server.models.activity.Activity;
 import nl.tudelft.gogreen.server.models.activity.config.ActivityOption;
 import nl.tudelft.gogreen.server.service.ActivityService;
@@ -21,16 +22,19 @@ public class ActivityController {
     }
 
     @RequestMapping("/category/{categoryName}")
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     public Collection<Activity> getActivityByCategory(@PathVariable String categoryName) {
         return activityService.getActivitiesByCategory(categoryName);
     }
 
     @RequestMapping("/{activityId}/options")
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     public Collection<ActivityOption> getActivityOptions(@PathVariable Integer activityId) {
         return activityService.getActivityOptions(activityId);
     }
 
     @RequestMapping("/{activityId}")
+    @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     public Activity getActivity(@PathVariable Integer activityId) {
         return activityService.getActivity(activityId);
     }

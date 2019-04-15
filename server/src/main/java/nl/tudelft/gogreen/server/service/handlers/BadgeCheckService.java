@@ -1,5 +1,6 @@
 package nl.tudelft.gogreen.server.service.handlers;
 
+import nl.tudelft.gogreen.server.exceptions.InternalServerError;
 import nl.tudelft.gogreen.server.models.activity.CompletedActivity;
 import nl.tudelft.gogreen.server.models.completables.AchievedBadge;
 import nl.tudelft.gogreen.server.models.completables.Badge;
@@ -29,9 +30,41 @@ public class BadgeCheckService implements IBadgeCheckService {
     public Collection<AchievedBadge> checkBadge(CompletedActivity completedActivity,
                                                 UserProfile userProfile,
                                                 Collection<Trigger> triggers) {
-        addSpecialBadges(completedActivity, userProfile, triggers);
+        ArrayList<Trigger> workingTriggers = new ArrayList<>(triggers);
+        Collection<AchievedBadge> achievedBadges = new ArrayList<>();
 
-        Collection<Badge> badges = badgeRepository.findBadgesByTriggerIn(triggers);
+        addSpecialBadges(completedActivity, userProfile, workingTriggers);
+
+        int loopGuard = 10000; // 10000 triggers per activity should be more than enough as upper limit
+
+        while (!workingTriggers.isEmpty() && loopGuard != 0) {
+            Trigger currentTrigger = workingTriggers.remove(workingTriggers.size() - 1);
+
+            achievedBadges.addAll(addBadgesAndTriggers(completedActivity,
+                    userProfile,
+                    currentTrigger,
+                    triggers,
+                    workingTriggers));
+
+            loopGuard -= 1;
+        }
+
+        if (loopGuard == 0) {
+            // If this happened there is a circular reference between triggers, which should be fixed
+            throw new InternalServerError();
+        }
+
+        return achievedBadges;
+    }
+
+    @Override
+    @Transactional
+    public Collection<AchievedBadge> addBadgesAndTriggers(CompletedActivity completedActivity,
+                                                          UserProfile userProfile,
+                                                          Trigger trigger,
+                                                          Collection<Trigger> triggers,
+                                                          Collection<Trigger> workingTriggers) {
+        Collection<Badge> badges = badgeRepository.findBadgesByTrigger(trigger);
         Collection<AchievedBadge> achievedBadges = new ArrayList<>();
 
         for (Badge badge : badges) {
@@ -45,6 +78,8 @@ public class BadgeCheckService implements IBadgeCheckService {
                     .build();
 
             achievedBadges.add(achievedBadge);
+            triggers.addAll(badge.getTriggers());
+            workingTriggers.addAll(badge.getTriggers());
         }
 
         return achievedBadges;
@@ -53,6 +88,8 @@ public class BadgeCheckService implements IBadgeCheckService {
     private void addSpecialBadges(CompletedActivity completedActivity,
                                   UserProfile userProfile,
                                   Collection<Trigger> triggers) {
-        //TODO: Add stuff like points gained etc
+        for (float points = completedActivity.getPoints(); points > 0 && triggers.size() < 100; points -= 1) {
+            triggers.add(Trigger.GAINED_POINT);
+        }
     }
 }

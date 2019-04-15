@@ -28,8 +28,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Table(name = "ACHIEVED_BADGE")
-@EqualsAndHashCode(exclude = "activity")
-@ToString(exclude = "activity")
+@EqualsAndHashCode(exclude = {"activity", "profile"})
+@ToString(exclude = {"activity", "profile"})
 public class AchievedBadge {
     @JsonIgnore
     @Id
@@ -44,7 +44,7 @@ public class AchievedBadge {
     @JsonView(nl.tudelft.gogreen.server.models.JsonView.Detailed.class)
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "PROFILE", referencedColumnName = "PROFILE_ID")
+    @JoinColumn(name = "PROFILE", referencedColumnName = "ID")
     private UserProfile profile;
 
     @JsonView({nl.tudelft.gogreen.server.models.JsonView.Detailed.class,

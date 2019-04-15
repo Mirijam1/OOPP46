@@ -206,10 +206,100 @@ Problem-solving skills are essential for programmers in the 21st century and we 
 2. **Having professional, friendly and open team communication to clearly get ideas across the group and be open to constructive criticism.**<br>
 Since the project is more about software engineering methods than programming, communication is key so it’s a good idea to learn about modern development processes like agile and software-development life cycles. Efficient time-management – prioritise tasks in an effective workflow environment using scrum methods.
 
-## How To Use
+## Usage
+This program has several components: a client, server and CO2 api.
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Java](https://www.oracle.com/technetwork/java/javase/downloads/index.html) installed on your computer. From your command line:
+### Server
+Our server application is containerized with Docker. This means you will need to install the docker engine first. A great guide can be found [here](https://docs.docker.com/install/).
+Since we use three containers (server, CO2 API, PostgreSQL), we highly recommend using [Docker Compose](https://docs.docker.com/compose/install/).<br>
+To use docker compose you will need a docker-compose.yml. You can get it from our repository (recommended) or copy the one below:
+```yaml
+version: '3'
+services:
+  web:
+    build: server/
+    image: tanema/oopp-group-46
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      GOGREEN_MAIL_PASSWORD: ${GOGREEN_MAIL_PASSWORD}
+      GOGREEN_MAIL_USER: ${GOGREEN_MAIL_USER}
+    ports:
+      - "8088:8088"
+    depends_on:
+      - postgres
+      - coapi
+  coapi:
+    build: co-api/
+    image: tanema/oopp-group-46-co-api
+    ports:
+      - "8080:8080"
+  postgres:
+    container_name: postgres
+    restart: always
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+volumes:
+  postgres:
+```
 
+After you have installed Docker and Docker Compose simply run the following (Unix):
+```bash
+# Start services in background
+$ docker-compose up -d
+
+# To stop the server
+$ docker-compose down
+
+# To remove the DB volume (Warning: This removes all volumes, use with caution if running other docker containers)
+$ docker volume rm $(docker volume ls -q)
+```
+
+#### Environment variables
+As can be seen in the docker-compose.yml, the server retrieves its settings by default from the host system's environment variables.
+You can change this behaviour in the docker-compose.yml, if needed. If not, here's a comprehensive list of all required variables:
+ - POSTGRES_USER
+   - Username to use for PostgreSQL database
+ - POSTGRES_PASSWORD
+   - Password to use for PostgreSQL database
+ - POSTGRES_DB
+   - Database name to use for PostgreSQL database
+ - GOGREEN_MAIL_USER
+   - Username to use when logging in to gmail
+ - GOGREEN_MAIL_PASSWORD
+   - Password to use when logging in to gmail
+   - This should be an [application password](https://support.google.com/accounts/answer/185833?hl=en)
+
+#### Running without Docker Compose
+If, for whatever reason, you don't want to use Docker Compose, you can always use plain Docker. 
+However, we **highly recommend** using Docker Compose. That said, we will give you a few things that might be useful, if don't want to use
+Docker Compose.
+
+- The server **needs** PostgreSQL to run, it will simply *not* work without
+- CO2 API is optional, but **highly recommended**
+  - Without a CO2 API the server will use a fallback value (20.0) for *all* activities
+- The environment variables in [the previous section](#environment-variables) should be set
+  - Variables prefixed with POSTGRES are **mandatory**
+  - Variables prefixed with GOGREEN_MAIL are optional, but **highly recommended**
+- Required images
+  - Server: tanema/oopp-group-46
+  - CO2 API: tanema/oopp-group-46-co-api
+  - PostgreSQL: postgres
+- We will **not** assist with non-docker-compose installations
+
+### Client
+The client is very easy to use. You can either find the latest JAR on our git repo (releases), or you can build the JAR yourself.
+You will need [Java](https://www.oracle.com/technetwork/java/javase/downloads/index.html) to run our program, and [Git](https://git-scm.com) to build it (if applicable).
+
+#### Building JAR
 ```bash
 # Clone this repository
 $ git clone https://gitlab.ewi.tudelft.nl/cse1105/2018-2019/oopp-group-46/template.git
@@ -217,17 +307,19 @@ $ git clone https://gitlab.ewi.tudelft.nl/cse1105/2018-2019/oopp-group-46/templa
 # Go into directory
 $ cd template
 
-# Build project (Windows CMD)
+# Build project (Windows)
 $ mvnw clean install
 
-# Build project (Unix terminal / Git Bash)
+# Build project (Unix / Git bash)
 $ ./mvnw clean install
+```
 
-# Run the server
-$ java -jar server/target/Server.jar
-
-# Run the client
-$ java -jar client/target/Client.jar
+#### Running JAR
+You can either click the executable JAR or use the CLI to launch it:
+```bash
+# Go into the correct directory first (client/target from root)
+# Then run it
+$ java -jar Client.jar
 ```
 
 ### Git basics

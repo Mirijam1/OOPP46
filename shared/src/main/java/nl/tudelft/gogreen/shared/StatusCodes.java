@@ -1,12 +1,6 @@
 package nl.tudelft.gogreen.shared;
 
 public class StatusCodes {
-    /**
-     * <p>Cannot be instantiated.</p>
-     */
-    private StatusCodes() {
-
-    }
 
     // Auth related
     public static final int AUTHENTICATED = 200;
@@ -15,8 +9,12 @@ public class StatusCodes {
 
     // Request related
     public static final int NOT_FOUND = 404;
+    public static final int ERROR = 500;
+    public static final int SERVICE_UNAVAILABLE = 503;
 
     // Submit related
+    public static final int OK = 200;
     public static final int MISSING_FIELDS = 400;
     public static final int ALREADY_EXISTS = 409;
+    public static final int USER_CREATED = 201;
 }

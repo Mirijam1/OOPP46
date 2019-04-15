@@ -2,28 +2,49 @@ package nl.tudelft.gogreen.api;
 
 public class EndPoints {
     // STATUS ENDPOINTS
-    public static final String STATUS = "api/status/test";
-    public static final String STATUS_USER = "api/status/restricted/test";
-    public static final String STATUS_ADMIN = "api/status/admin/test";
+    public static final String STATUS = "api/status/test"; // GET
+    public static final String STATUS_USER = "api/status/restricted/test"; // GET
+    public static final String STATUS_ADMIN = "api/status/admin/test"; // GET
 
     // USER ENDPOINTS
-    public static final String LOGIN = "login";
-    public static final String LOGOUT = "logout";
+    public static final String LOGIN = "login"; // POST
+    public static final String LOGOUT = "logout"; // GET
+    public static final String GET_USER_INFO = "api/user/"; // GET
+    public static final String CREATE_USER = "api/user/create"; // PUT
+    public static final String UPDATE_USER = "api/user/update"; // DELETE
+    public static final String VERIFY_USER = "api/user/verify/{var}"; // POST
+    public static final String TOGGLE_2FA = "api/user/2fa/toggle/{var}"; // POST
+    public static final String CONFIRM_2FA = "api/user/2fa/enable/{var}"; // POST
 
     // PROFILE ENDPOINTS
+    public static final String GET_PROFILE = "api/profile/"; // GET
+    public static final String SUBMIT_ACTIVITY = "api/profile/activities/submit"; // PUT
+    public static final String GET_USER_ACTIVITIES = "api/profile/activities/"; // GET
+    public static final String GET_SPECIFIC_ACTIVITY = "api/profile/activities/{var}"; // GET
+    public static final String GET_BADGES = "api/profile/badges"; // GET
+    public static final String GET_COMPLETED_ACHIEVEMENTS = "api/profile/achievements"; // GET
+    public static final String GET_PROGRESSING_ACHIEVEMENTS = "api/profile/achievements/progressing"; // GET
+    public static final String GET_FRIENDS = "api/profile/friends"; // GET
+    public static final String GET_PENDING_SENT_FRIEND_INVITES = "api/profile/friends/pending"; // GET
+    public static final String GET_RECEIVED_FRIEND_INVITES = "api/profile/friends/invites"; // GET
+
+    // SOCIAL ENDPOINTS
+    public static final String ADD_FRIEND_BY_NAME = "api/social/friends/add/{var}"; // PUT
+    public static final String DELETE_FRIEND_BY_NAME = "api/social/friends/delete/{var}"; // DELETE
+    public static final String GET_FRIEND_ACTIVITY = "api/social/friends/activities"; // GET
+    public static final String SEARCH_USER_PROFILE = "api/social/user/{var}"; // GET
+    public static final String SEARCH_FOR_USER = "api/social/user/search/{var}"; // GET
+
+    // LEADERBOARD ENDPOINTS
+    public static final String GET_GLOBAL_LEADERBOARD = "api/leaderboard/global"; // GET
+    public static final String GET_FRIEND_LEADERBOARD = "api/leaderboard/friends"; // GET
+
+    // CATEGORY ENDPOINTS
+    public static final String ALL_CATEGORIES = "api/categories/"; // GET
+    public static final String FIND_CATEGORY = "api/categories/{var}"; // GET
 
     // ACTIVITY ENDPOINTS
-    public static final String ALL_CATEGORIES = "api/categories/";
-    public static final String FIND_CATEGORY = "api/categories/{var}";
-    public static final String SUBMIT_ACTIVITY = "api/profile/activities/submit";
-
-    public static final String ACTIVITY = "api/activities/";
-    public static final String FIND_ACTIVITIES_FROM_CATEGORY = "api/activities/category/{var}";
-
-    //
-    public static final String CREATE = "api/user/create";
-    public static final String UPDATE = "api/user/update";
-    public static final String DELETE = "api/user/delete";
-
-
+    public static final String FIND_ACTIVITY_BY_ID = "api/activities/{var}"; // GET
+    public static final String FIND_ACTIVITY_OPTIONS_BY_ID = "api/activities/{var}/options"; // GET
+    public static final String FIND_ACTIVITIES_FROM_CATEGORY = "api/activities/category/{var}"; // GET
 }

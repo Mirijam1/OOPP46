@@ -9,4 +9,8 @@ import java.util.UUID;
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
     User findUserByUsername(String username);
+
+    User findUserByMail(String mail);
+
+    User findUserByExternalId(UUID uuid);
 }

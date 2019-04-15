@@ -32,6 +32,13 @@ public class ActivityService implements IActivityService {
     private final ICategoryService categoryService;
     private final ICarbonService carbonService;
 
+    /**
+     * instantiates ActivityService as an Autowired Bean.
+     * @param activityRepository - instance of activityRepository
+     * @param categoryService - instance of categoryService
+     * @param activityOptionRepository - instance of activityOptionRepository
+     * @param carbonService - instance of carbonService
+     */
     @Autowired
     public ActivityService(ActivityRepository activityRepository,
                            ICategoryService categoryService,
@@ -55,6 +62,10 @@ public class ActivityService implements IActivityService {
     @Transactional(readOnly = true)
     public Collection<ActivityOption> getActivityOptions(Integer activityId) {
         Activity activity = activityRepository.findActivityById(activityId);
+
+        if (activity == null) {
+            throw new NotFoundException();
+        }
 
         return activityOptionRepository.findActivityOptionsByActivity(activity);
     }
@@ -87,11 +98,14 @@ public class ActivityService implements IActivityService {
                 .activity(activity)
                 .dateTimeCompleted(LocalDateTime.now())
                 .profile(user)
-                .triggers(activity.getTriggers()).build();
+                .achievedBadges(new ArrayList<>())
+                .progressingAchievements(new ArrayList<>())
+                .triggers(new ArrayList<>(activity.getTriggers()))
+                .build();
 
 
-        if (submittedActivity.getOptions() != null) {
-            if (activity.getOptions() == null
+        if (activity.getOptions() != null) {
+            if (submittedActivity.getOptions() == null
                     || activity.getOptions().size() != submittedActivity.getOptions().size()) {
                 throw new BadRequestException();
             }
@@ -112,7 +126,9 @@ public class ActivityService implements IActivityService {
                 ConfiguredOption option = ConfiguredOption.builder()
                         .id(id)
                         .inputType(activityOption.getInputType())
-                        .value(submittedActivityOption.getValue()).build();
+                        .activityOption(activityOption)
+                        .value(submittedActivityOption.getValue())
+                        .build();
 
                 options.add(option);
             }
@@ -122,7 +138,6 @@ public class ActivityService implements IActivityService {
         completedActivity.setOptions(options);
 
         // Fetch and set points
-        //TODO: Use CO2 API and maybe async
         completedActivity.setPoints(carbonService.fetchPoints(completedActivity));
 
         return completedActivity;

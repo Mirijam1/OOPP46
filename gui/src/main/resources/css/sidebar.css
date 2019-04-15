@@ -1,19 +1,20 @@
-#sidebarbg {
-    -fx-background-image: url('../img/loginbackground.jpg');
-    -fx-background-size: cover;
-}
 .button{
-    -fx-background-color: #32CD32;
+    -fx-background-color: #036400;
+    -fx-border-color: #F5FFE1;
     -fx-border-width: 2px;
-    -fx-border-color: #98FB98;
 }
 
-#sidebar {
-    -fx-background-color: #98FB98;
+.smallbutton{
+    -fx-border-width: 0px;
+    -fx-background-color: #036400;
+}
+
+.smallbutton:hover {
+    -fx-background-color: #20AF20;
 }
 
 #accountpane {
-    -fx-background-color: #32CD32;
+    -fx-background-color: #036400;
 }
 
 .combo-box-popup .list-view {
