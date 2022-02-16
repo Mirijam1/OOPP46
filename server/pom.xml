@@ -22,7 +22,7 @@
         <!-- Versions -->
         <org.apache.maven.plugins-version>3.0.0-M3</org.apache.maven.plugins-version>
         <org.springframework.security.oath-version>2.3.3.RELEASE</org.springframework.security.oath-version>
-        <org.postgresql-version>42.2.5</org.postgresql-version>
+        <org.postgresql-version>42.3.3</org.postgresql-version>
         <io.rest-assured-version>3.3.0</io.rest-assured-version>
     </properties>
 
